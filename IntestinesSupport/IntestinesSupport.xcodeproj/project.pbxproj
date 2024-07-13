@@ -21,6 +21,18 @@
 		A62298112C358A3F0099F425 /* MyMedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62298102C358A3F0099F425 /* MyMedicineViewController.swift */; };
 		A62298132C358A5A0099F425 /* CertificateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62298122C358A5A0099F425 /* CertificateViewController.swift */; };
 		A62298192C3825A50099F425 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62298182C3825A50099F425 /* TabViewController.swift */; };
+		A64AAC142C3FFCA000AE04C1 /* physicalConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC132C3FFCA000AE04C1 /* physicalConditionCell.xib */; };
+		A64AAC152C3FFCA000AE04C1 /* physicalConditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC122C3FFCA000AE04C1 /* physicalConditionCell.swift */; };
+		A64AAC182C3FFD4300AE04C1 /* calendarDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC172C3FFD4300AE04C1 /* calendarDateCell.xib */; };
+		A64AAC192C3FFD4300AE04C1 /* calendarDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC162C3FFD4300AE04C1 /* calendarDateCell.swift */; };
+		A64AAC1C2C4144F700AE04C1 /* fecesConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC1B2C4144F700AE04C1 /* fecesConditionCell.xib */; };
+		A64AAC1D2C4144F700AE04C1 /* fecesConditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC1A2C4144F700AE04C1 /* fecesConditionCell.swift */; };
+		A64AAC202C41455500AE04C1 /* additionButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC1F2C41455500AE04C1 /* additionButtonCell.xib */; };
+		A64AAC212C41455500AE04C1 /* additionButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC1E2C41455500AE04C1 /* additionButtonCell.swift */; };
+		A64AAC272C4146BF00AE04C1 /* medicineRecordDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC262C4146BF00AE04C1 /* medicineRecordDetailCell.xib */; };
+		A64AAC282C4146BF00AE04C1 /* medicineRecordDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC252C4146BF00AE04C1 /* medicineRecordDetailCell.swift */; };
+		A64AAC2B2C41556300AE04C1 /* memoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC2A2C41556300AE04C1 /* memoCell.xib */; };
+		A64AAC2C2C41556300AE04C1 /* memoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC292C41556300AE04C1 /* memoCell.swift */; };
 		ED0FE989D657E8FADDF3BE80 /* Pods_IntestinesSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 821BD2A208DED6BC34BAAE2E /* Pods_IntestinesSupport.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +76,18 @@
 		A62298102C358A3F0099F425 /* MyMedicineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMedicineViewController.swift; sourceTree = "<group>"; };
 		A62298122C358A5A0099F425 /* CertificateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateViewController.swift; sourceTree = "<group>"; };
 		A62298182C3825A50099F425 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		A64AAC122C3FFCA000AE04C1 /* physicalConditionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = physicalConditionCell.swift; sourceTree = "<group>"; };
+		A64AAC132C3FFCA000AE04C1 /* physicalConditionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = physicalConditionCell.xib; sourceTree = "<group>"; };
+		A64AAC162C3FFD4300AE04C1 /* calendarDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendarDateCell.swift; sourceTree = "<group>"; };
+		A64AAC172C3FFD4300AE04C1 /* calendarDateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = calendarDateCell.xib; sourceTree = "<group>"; };
+		A64AAC1A2C4144F700AE04C1 /* fecesConditionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fecesConditionCell.swift; sourceTree = "<group>"; };
+		A64AAC1B2C4144F700AE04C1 /* fecesConditionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = fecesConditionCell.xib; sourceTree = "<group>"; };
+		A64AAC1E2C41455500AE04C1 /* additionButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = additionButtonCell.swift; sourceTree = "<group>"; };
+		A64AAC1F2C41455500AE04C1 /* additionButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = additionButtonCell.xib; sourceTree = "<group>"; };
+		A64AAC252C4146BF00AE04C1 /* medicineRecordDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = medicineRecordDetailCell.swift; sourceTree = "<group>"; };
+		A64AAC262C4146BF00AE04C1 /* medicineRecordDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = medicineRecordDetailCell.xib; sourceTree = "<group>"; };
+		A64AAC292C41556300AE04C1 /* memoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memoCell.swift; sourceTree = "<group>"; };
+		A64AAC2A2C41556300AE04C1 /* memoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = memoCell.xib; sourceTree = "<group>"; };
 		B1FC26A613D5492A6A92A954 /* Pods-IntestinesSupportTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntestinesSupportTests.release.xcconfig"; path = "Target Support Files/Pods-IntestinesSupportTests/Pods-IntestinesSupportTests.release.xcconfig"; sourceTree = "<group>"; };
 		C6BAB30AA22CD6F747063D5A /* Pods_IntestinesSupport_IntestinesSupportUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupport_IntestinesSupportUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2E464BD7D4F2F142C45DAD /* Pods_IntestinesSupportTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupportTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,14 +171,14 @@
 			children = (
 				A62297DE2C341E7F0099F425 /* AppDelegate.swift */,
 				A62297E02C341E7F0099F425 /* SceneDelegate.swift */,
-				A622980E2C341F0E0099F425 /* CalendarViewController.swift */,
+				A62297E42C341E7F0099F425 /* Main.storyboard */,
+				A64AAC242C4145A600AE04C1 /* CalendarRecord */,
 				A62298102C358A3F0099F425 /* MyMedicineViewController.swift */,
 				A62298122C358A5A0099F425 /* CertificateViewController.swift */,
-				A62297E42C341E7F0099F425 /* Main.storyboard */,
+				A62298182C3825A50099F425 /* TabViewController.swift */,
 				A62297E72C341E810099F425 /* Assets.xcassets */,
 				A62297E92C341E810099F425 /* LaunchScreen.storyboard */,
 				A62297EC2C341E810099F425 /* Info.plist */,
-				A62298182C3825A50099F425 /* TabViewController.swift */,
 			);
 			path = IntestinesSupport;
 			sourceTree = "<group>";
@@ -174,6 +198,26 @@
 				A62298012C341E810099F425 /* IntestinesSupportUITestsLaunchTests.swift */,
 			);
 			path = IntestinesSupportUITests;
+			sourceTree = "<group>";
+		};
+		A64AAC242C4145A600AE04C1 /* CalendarRecord */ = {
+			isa = PBXGroup;
+			children = (
+				A622980E2C341F0E0099F425 /* CalendarViewController.swift */,
+				A64AAC162C3FFD4300AE04C1 /* calendarDateCell.swift */,
+				A64AAC172C3FFD4300AE04C1 /* calendarDateCell.xib */,
+				A64AAC122C3FFCA000AE04C1 /* physicalConditionCell.swift */,
+				A64AAC132C3FFCA000AE04C1 /* physicalConditionCell.xib */,
+				A64AAC1A2C4144F700AE04C1 /* fecesConditionCell.swift */,
+				A64AAC1B2C4144F700AE04C1 /* fecesConditionCell.xib */,
+				A64AAC1E2C41455500AE04C1 /* additionButtonCell.swift */,
+				A64AAC1F2C41455500AE04C1 /* additionButtonCell.xib */,
+				A64AAC252C4146BF00AE04C1 /* medicineRecordDetailCell.swift */,
+				A64AAC262C4146BF00AE04C1 /* medicineRecordDetailCell.xib */,
+				A64AAC292C41556300AE04C1 /* memoCell.swift */,
+				A64AAC2A2C41556300AE04C1 /* memoCell.xib */,
+			);
+			path = CalendarRecord;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,7 +330,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A62297E82C341E810099F425 /* Assets.xcassets in Resources */,
+				A64AAC202C41455500AE04C1 /* additionButtonCell.xib in Resources */,
 				A62297EB2C341E810099F425 /* Base in Resources */,
+				A64AAC142C3FFCA000AE04C1 /* physicalConditionCell.xib in Resources */,
+				A64AAC182C3FFD4300AE04C1 /* calendarDateCell.xib in Resources */,
+				A64AAC272C4146BF00AE04C1 /* medicineRecordDetailCell.xib in Resources */,
+				A64AAC2B2C41556300AE04C1 /* memoCell.xib in Resources */,
+				A64AAC1C2C4144F700AE04C1 /* fecesConditionCell.xib in Resources */,
 				A62297E62C341E7F0099F425 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,11 +466,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				A62298132C358A5A0099F425 /* CertificateViewController.swift in Sources */,
+				A64AAC192C3FFD4300AE04C1 /* calendarDateCell.swift in Sources */,
 				A622980F2C341F0E0099F425 /* CalendarViewController.swift in Sources */,
+				A64AAC1D2C4144F700AE04C1 /* fecesConditionCell.swift in Sources */,
+				A64AAC152C3FFCA000AE04C1 /* physicalConditionCell.swift in Sources */,
 				A62297DF2C341E7F0099F425 /* AppDelegate.swift in Sources */,
+				A64AAC282C4146BF00AE04C1 /* medicineRecordDetailCell.swift in Sources */,
+				A64AAC2C2C41556300AE04C1 /* memoCell.swift in Sources */,
 				A62297E12C341E7F0099F425 /* SceneDelegate.swift in Sources */,
 				A62298192C3825A50099F425 /* TabViewController.swift in Sources */,
 				A62298112C358A3F0099F425 /* MyMedicineViewController.swift in Sources */,
+				A64AAC212C41455500AE04C1 /* additionButtonCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,7 +584,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -585,7 +641,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -611,6 +667,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -640,6 +697,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

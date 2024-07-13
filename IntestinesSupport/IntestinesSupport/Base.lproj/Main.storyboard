@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cRp-JN-P6a">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -29,146 +30,17 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="430" id="sKn-DI-Ogm"/>
                                 </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Aq7-0i-CMW">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="44.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Aq7-0i-CMW" id="7oj-e5-gE3">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="44.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOp-N0-meU">
-                                <rect key="frame" x="100" y="341" width="193" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体調" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rst-ky-ITL">
-                                <rect key="frame" x="26" y="374" width="32" height="20.333333333333314"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIq-kg-CN0">
-                                <rect key="frame" x="105" y="366.66666666666669" width="32" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="1"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k2k-I4-jkY">
-                                <rect key="frame" x="161" y="366.66666666666669" width="34" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="2"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQu-Vf-Hdi">
-                                <rect key="frame" x="219" y="366.66666666666669" width="35" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="3"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQi-9D-7xP">
-                                <rect key="frame" x="278" y="366.66666666666669" width="35" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="4"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l5V-ip-geN">
-                                <rect key="frame" x="337" y="366.66666666666669" width="35" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="5"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="便の状態" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgM-g4-5Mw">
-                                <rect key="frame" x="10" y="414.33333333333331" width="64" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PlK-dA-MWC">
-                                <rect key="frame" x="105" y="407.33333333333331" width="32" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="1"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nmp-1Q-CVA">
-                                <rect key="frame" x="161" y="407.33333333333331" width="34" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="2"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l5m-ZT-KQT">
-                                <rect key="frame" x="219" y="407.33333333333331" width="35" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="3"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9DK-D7-IBh">
-                                <rect key="frame" x="278" y="407.33333333333331" width="35" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="4"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oq2-CS-MVR">
-                                <rect key="frame" x="337" y="407.33333333333331" width="35" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="5"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="便の回数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nW-9Q-dZF">
-                                <rect key="frame" x="10" y="475.33333333333331" width="64" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jA5-e3-6pa">
-                                <rect key="frame" x="99" y="461" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="Qg3-Yc-QfL"/>
-                                    <constraint firstAttribute="height" constant="50" id="tLr-sb-atl"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="plusButton"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1S-br-rPK">
-                                <rect key="frame" x="160.66666666666666" y="454" width="48" height="28"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="硬便">
-                                    <fontDescription key="titleFontDescription" name="BIZUDGothic-Regular" family="BIZ UDGothic" pointSize="12"/>
-                                </buttonConfiguration>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ukZ-6v-Qq3" userLabel="便秘">
-                                <rect key="frame" x="160.66666666666666" y="490" width="48" height="28"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="便秘">
-                                    <fontDescription key="titleFontDescription" name="BIZUDGothic-Regular" family="BIZ UDGothic" pointSize="12"/>
-                                </buttonConfiguration>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G4w-YY-t94">
-                                <rect key="frame" x="215.66666666666666" y="455" width="53.999999999999972" height="26"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="普通便">
-                                    <fontDescription key="titleFontDescription" name="BIZUDGothic-Regular" family="BIZ UDGothic" pointSize="10"/>
-                                </buttonConfiguration>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uMR-nz-R11" userLabel="軟便">
-                                <rect key="frame" x="218.66666666666666" y="490" width="47.999999999999972" height="28"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="軟便">
-                                    <fontDescription key="titleFontDescription" name="BIZUDGothic-Regular" family="BIZ UDGothic" pointSize="12"/>
-                                </buttonConfiguration>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRW-Nj-fbZ" userLabel="下痢">
-                                <rect key="frame" x="276.66666666666669" y="454" width="48" height="28"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="下痢">
-                                    <fontDescription key="titleFontDescription" name="BIZUDGothic-Regular" family="BIZ UDGothic" pointSize="12"/>
-                                </buttonConfiguration>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSv-Nx-rvy" userLabel="血便">
-                                <rect key="frame" x="276.66666666666669" y="490" width="48" height="28"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="血便">
-                                    <fontDescription key="titleFontDescription" name="BIZUDGothic-Regular" family="BIZ UDGothic" pointSize="12"/>
-                                </buttonConfiguration>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6I-7z-uPb" userLabel="履歴">
-                                <rect key="frame" x="330" y="469.33333333333331" width="54" height="33.333333333333329"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="履歴" buttonSize="medium">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
-                                </buttonConfiguration>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cXv-tO-hj2" userLabel="服用追加">
-                                <rect key="frame" x="152.66666666666666" y="528" width="88" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="服用追加"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EdB-Oi-QBb">
                                 <rect key="frame" x="306" y="50" width="74" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -190,89 +62,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="HMS-Vr-Kn0" firstAttribute="top" secondItem="iGu-j5-plf" secondAttribute="bottom" id="1KX-Pt-cD5"/>
-                            <constraint firstItem="tgM-g4-5Mw" firstAttribute="centerX" secondItem="Rst-ky-ITL" secondAttribute="centerX" id="1jR-ga-6eF"/>
                             <constraint firstItem="HMS-Vr-Kn0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4l4-qX-hnb"/>
-                            <constraint firstItem="bOp-N0-meU" firstAttribute="top" secondItem="iGu-j5-plf" secondAttribute="bottom" constant="2" id="5H3-lH-PDq"/>
-                            <constraint firstItem="nmp-1Q-CVA" firstAttribute="centerX" secondItem="k2k-I4-jkY" secondAttribute="centerX" id="5ye-0p-jeo"/>
-                            <constraint firstItem="l5V-ip-geN" firstAttribute="leading" secondItem="uQi-9D-7xP" secondAttribute="trailing" constant="24" id="6Je-ZW-qfY"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bOp-N0-meU" secondAttribute="trailing" constant="100" id="6Qd-iH-Ju7"/>
-                            <constraint firstItem="sIq-kg-CN0" firstAttribute="centerY" secondItem="Rst-ky-ITL" secondAttribute="centerY" id="75D-In-lNg"/>
-                            <constraint firstItem="ukZ-6v-Qq3" firstAttribute="centerX" secondItem="j1S-br-rPK" secondAttribute="centerX" id="8dX-3d-Zvo"/>
                             <constraint firstItem="iGu-j5-plf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="98V-Se-Q5Q"/>
-                            <constraint firstItem="4nW-9Q-dZF" firstAttribute="centerX" secondItem="Rst-ky-ITL" secondAttribute="centerX" id="AaS-8a-bER"/>
-                            <constraint firstItem="G4w-YY-t94" firstAttribute="centerY" secondItem="j1S-br-rPK" secondAttribute="centerY" id="Al7-U8-xgt"/>
-                            <constraint firstItem="l5m-ZT-KQT" firstAttribute="centerX" secondItem="aQu-Vf-Hdi" secondAttribute="centerX" id="Al8-ka-4xN"/>
-                            <constraint firstItem="Rst-ky-ITL" firstAttribute="top" secondItem="iGu-j5-plf" secondAttribute="bottom" constant="35" id="B18-NU-1e5"/>
-                            <constraint firstItem="uQi-9D-7xP" firstAttribute="leading" secondItem="aQu-Vf-Hdi" secondAttribute="trailing" constant="24" id="B2X-3H-fDr"/>
-                            <constraint firstItem="aQu-Vf-Hdi" firstAttribute="centerY" secondItem="Rst-ky-ITL" secondAttribute="centerY" id="ESV-9b-crx"/>
-                            <constraint firstItem="PlK-dA-MWC" firstAttribute="centerY" secondItem="tgM-g4-5Mw" secondAttribute="centerY" id="GU0-1d-Mh5"/>
-                            <constraint firstItem="k2k-I4-jkY" firstAttribute="centerY" secondItem="Rst-ky-ITL" secondAttribute="centerY" id="IDo-ut-FIC"/>
-                            <constraint firstItem="oq2-CS-MVR" firstAttribute="centerY" secondItem="tgM-g4-5Mw" secondAttribute="centerY" id="ILD-lD-hbA"/>
-                            <constraint firstItem="G4w-YY-t94" firstAttribute="leading" secondItem="j1S-br-rPK" secondAttribute="trailing" constant="7" id="Iey-t8-5NB"/>
-                            <constraint firstItem="9DK-D7-IBh" firstAttribute="centerX" secondItem="uQi-9D-7xP" secondAttribute="centerX" id="KXN-Lu-j7D"/>
-                            <constraint firstItem="ukZ-6v-Qq3" firstAttribute="bottom" secondItem="jA5-e3-6pa" secondAttribute="bottom" constant="7" id="L9P-wV-xdb"/>
-                            <constraint firstItem="k2k-I4-jkY" firstAttribute="leading" secondItem="sIq-kg-CN0" secondAttribute="trailing" constant="24" id="MP9-Yb-O6i"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4nW-9Q-dZF" secondAttribute="trailing" constant="319" id="OCW-Je-K0b"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Rst-ky-ITL" secondAttribute="trailing" constant="335" id="OQj-2S-1d7"/>
-                            <constraint firstItem="9DK-D7-IBh" firstAttribute="centerY" secondItem="tgM-g4-5Mw" secondAttribute="centerY" id="PTs-D7-PRl"/>
-                            <constraint firstItem="j1S-br-rPK" firstAttribute="leading" secondItem="jA5-e3-6pa" secondAttribute="trailing" constant="11.67" id="Q21-Xl-xHF"/>
-                            <constraint firstItem="Rst-ky-ITL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="26" id="RZD-kY-qGT"/>
-                            <constraint firstItem="jA5-e3-6pa" firstAttribute="leading" secondItem="4nW-9Q-dZF" secondAttribute="trailing" constant="25" id="Rlx-v5-8FE"/>
-                            <constraint firstItem="wRW-Nj-fbZ" firstAttribute="leading" secondItem="G4w-YY-t94" secondAttribute="trailing" constant="7" id="Spj-VY-FP9"/>
-                            <constraint firstItem="l5V-ip-geN" firstAttribute="centerY" secondItem="Rst-ky-ITL" secondAttribute="centerY" id="WKx-Gd-HTe"/>
-                            <constraint firstItem="VSv-Nx-rvy" firstAttribute="centerX" secondItem="wRW-Nj-fbZ" secondAttribute="centerX" id="WkO-GX-uZi"/>
                             <constraint firstItem="iGu-j5-plf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="YNc-eg-sGu"/>
-                            <constraint firstItem="PlK-dA-MWC" firstAttribute="centerX" secondItem="sIq-kg-CN0" secondAttribute="centerX" id="ZKF-ya-WYe"/>
-                            <constraint firstItem="j1S-br-rPK" firstAttribute="top" secondItem="jA5-e3-6pa" secondAttribute="top" constant="-7" id="axX-dO-ebU"/>
-                            <constraint firstItem="4nW-9Q-dZF" firstAttribute="centerY" secondItem="jA5-e3-6pa" secondAttribute="centerY" id="bGc-9K-fvm"/>
-                            <constraint firstItem="4nW-9Q-dZF" firstAttribute="top" secondItem="tgM-g4-5Mw" secondAttribute="bottom" constant="40" id="boj-Fr-2YB"/>
                             <constraint firstItem="iGu-j5-plf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dgY-vK-QcU"/>
-                            <constraint firstItem="tgM-g4-5Mw" firstAttribute="top" secondItem="Rst-ky-ITL" secondAttribute="bottom" constant="20" id="f6y-MU-p62"/>
-                            <constraint firstItem="4nW-9Q-dZF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="fAO-dm-i6q"/>
-                            <constraint firstItem="VSv-Nx-rvy" firstAttribute="centerY" secondItem="ukZ-6v-Qq3" secondAttribute="centerY" id="fI6-ot-aRf"/>
-                            <constraint firstItem="cXv-tO-hj2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fLD-XX-FA5"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tgM-g4-5Mw" secondAttribute="trailing" constant="319" id="fT0-oZ-uoq"/>
-                            <constraint firstItem="uQi-9D-7xP" firstAttribute="centerY" secondItem="Rst-ky-ITL" secondAttribute="centerY" id="ggE-fg-f1f"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Rst-ky-ITL" secondAttribute="trailing" constant="335" id="h3u-3r-8TI"/>
-                            <constraint firstItem="nmp-1Q-CVA" firstAttribute="centerY" secondItem="tgM-g4-5Mw" secondAttribute="centerY" id="hIk-Wo-Z7F"/>
-                            <constraint firstItem="sIq-kg-CN0" firstAttribute="leading" secondItem="Rst-ky-ITL" secondAttribute="trailing" constant="47" id="jDH-hO-rzz"/>
-                            <constraint firstItem="tgM-g4-5Mw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="kBa-1y-Spl"/>
-                            <constraint firstItem="Z6I-7z-uPb" firstAttribute="centerY" secondItem="4nW-9Q-dZF" secondAttribute="centerY" id="oh1-Ag-Ek8"/>
-                            <constraint firstItem="aQu-Vf-Hdi" firstAttribute="leading" secondItem="k2k-I4-jkY" secondAttribute="trailing" constant="24" id="p35-fY-aZ8"/>
-                            <constraint firstItem="uMR-nz-R11" firstAttribute="centerY" secondItem="ukZ-6v-Qq3" secondAttribute="centerY" id="r2e-oR-f6j"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Z6I-7z-uPb" secondAttribute="trailing" constant="9" id="ru5-81-0YH"/>
-                            <constraint firstItem="l5m-ZT-KQT" firstAttribute="centerY" secondItem="tgM-g4-5Mw" secondAttribute="centerY" id="sha-1O-SDl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HMS-Vr-Kn0" secondAttribute="bottom" id="umu-F1-msT"/>
-                            <constraint firstItem="bOp-N0-meU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="v1o-Qw-UcF"/>
-                            <constraint firstItem="oq2-CS-MVR" firstAttribute="centerX" secondItem="l5V-ip-geN" secondAttribute="centerX" id="wnj-M0-sky"/>
-                            <constraint firstItem="uMR-nz-R11" firstAttribute="centerX" secondItem="G4w-YY-t94" secondAttribute="centerX" id="x2z-is-oKL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HMS-Vr-Kn0" secondAttribute="trailing" id="xDl-52-GGv"/>
-                            <constraint firstItem="wRW-Nj-fbZ" firstAttribute="centerY" secondItem="j1S-br-rPK" secondAttribute="centerY" id="xFa-Ep-fsN"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="記録" image="Tab.Record" id="5I6-e6-OKl"/>
+                    <tabBarItem key="tabBarItem" title="記録" image="Tab.Record" id="GZd-kh-ac3"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="calendar" destination="iGu-j5-plf" id="C7M-IS-2Ed"/>
-                        <outlet property="calendarDate" destination="bOp-N0-meU" id="1w2-fk-pJc"/>
                         <outlet property="calendarHeight" destination="9sr-gu-cXh" id="W7e-fG-wLT"/>
                         <outlet property="changeButton" destination="EdB-Oi-QBb" id="EcJ-1E-nVn"/>
-                        <outlet property="fecesDetail1" destination="j1S-br-rPK" id="2bT-jy-hG8"/>
-                        <outlet property="fecesDetail2" destination="ukZ-6v-Qq3" id="xUH-ie-Hx1"/>
-                        <outlet property="fecesDetail3" destination="G4w-YY-t94" id="chW-LL-1wi"/>
-                        <outlet property="fecesDetail4" destination="uMR-nz-R11" id="PLq-cU-sQo"/>
-                        <outlet property="fecesDetail5" destination="wRW-Nj-fbZ" id="ibi-N9-cPR"/>
-                        <outlet property="fecesDetail6" destination="VSv-Nx-rvy" id="VBv-vO-Uqo"/>
-                        <outlet property="number01Button" destination="sIq-kg-CN0" id="4uU-re-lmH"/>
-                        <outlet property="number02Button" destination="k2k-I4-jkY" id="4WF-Hn-Zlr"/>
-                        <outlet property="number03Button" destination="aQu-Vf-Hdi" id="sBV-p1-ecC"/>
-                        <outlet property="number04Button" destination="uQi-9D-7xP" id="YgR-Ev-GAm"/>
-                        <outlet property="number05Button" destination="l5V-ip-geN" id="Cpj-eh-vdO"/>
-                        <outlet property="number1Button" destination="PlK-dA-MWC" id="oct-I2-lic"/>
-                        <outlet property="number2Button" destination="nmp-1Q-CVA" id="ZW2-lk-HC0"/>
-                        <outlet property="number3Button" destination="l5m-ZT-KQT" id="qDQ-mk-ORq"/>
-                        <outlet property="number4Button" destination="9DK-D7-IBh" id="wWu-hA-7i8"/>
-                        <outlet property="number5Button" destination="oq2-CS-MVR" id="XCv-0S-gJr"/>
-                        <outlet property="plusButton" destination="jA5-e3-6pa" id="HRO-1a-TeL"/>
                         <outlet property="tableView" destination="HMS-Vr-Kn0" id="XP6-Zn-Dfk"/>
                     </connections>
                 </viewController>
@@ -337,8 +140,7 @@
     <resources>
         <image name="Tab.Certificate" width="21.333333969116211" height="21.333333969116211"/>
         <image name="Tab.MyMedicine" width="16" height="16"/>
-        <image name="Tab.Record" width="85.333335876464844" height="85.333335876464844"/>
-        <image name="plusButton" width="16" height="16"/>
+        <image name="Tab.Record" width="21.333333969116211" height="21.333333969116211"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
