@@ -33,6 +33,9 @@
 		A64AAC282C4146BF00AE04C1 /* medicineRecordDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC252C4146BF00AE04C1 /* medicineRecordDetailCell.swift */; };
 		A64AAC2B2C41556300AE04C1 /* memoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC2A2C41556300AE04C1 /* memoCell.xib */; };
 		A64AAC2C2C41556300AE04C1 /* memoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC292C41556300AE04C1 /* memoCell.swift */; };
+		A64AAC2F2C42B87800AE04C1 /* fecesDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC2E2C42B87800AE04C1 /* fecesDetailCell.xib */; };
+		A64AAC302C42B87800AE04C1 /* fecesDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC2D2C42B87800AE04C1 /* fecesDetailCell.swift */; };
+		A64AAC332C44F5A500AE04C1 /* MyMedicineInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC322C44F5A500AE04C1 /* MyMedicineInformationViewController.swift */; };
 		ED0FE989D657E8FADDF3BE80 /* Pods_IntestinesSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 821BD2A208DED6BC34BAAE2E /* Pods_IntestinesSupport.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +91,9 @@
 		A64AAC262C4146BF00AE04C1 /* medicineRecordDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = medicineRecordDetailCell.xib; sourceTree = "<group>"; };
 		A64AAC292C41556300AE04C1 /* memoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memoCell.swift; sourceTree = "<group>"; };
 		A64AAC2A2C41556300AE04C1 /* memoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = memoCell.xib; sourceTree = "<group>"; };
+		A64AAC2D2C42B87800AE04C1 /* fecesDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fecesDetailCell.swift; sourceTree = "<group>"; };
+		A64AAC2E2C42B87800AE04C1 /* fecesDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = fecesDetailCell.xib; sourceTree = "<group>"; };
+		A64AAC322C44F5A500AE04C1 /* MyMedicineInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMedicineInformationViewController.swift; sourceTree = "<group>"; };
 		B1FC26A613D5492A6A92A954 /* Pods-IntestinesSupportTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntestinesSupportTests.release.xcconfig"; path = "Target Support Files/Pods-IntestinesSupportTests/Pods-IntestinesSupportTests.release.xcconfig"; sourceTree = "<group>"; };
 		C6BAB30AA22CD6F747063D5A /* Pods_IntestinesSupport_IntestinesSupportUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupport_IntestinesSupportUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2E464BD7D4F2F142C45DAD /* Pods_IntestinesSupportTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupportTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,7 +179,7 @@
 				A62297E02C341E7F0099F425 /* SceneDelegate.swift */,
 				A62297E42C341E7F0099F425 /* Main.storyboard */,
 				A64AAC242C4145A600AE04C1 /* CalendarRecord */,
-				A62298102C358A3F0099F425 /* MyMedicineViewController.swift */,
+				A64AAC312C44F58200AE04C1 /* MyMedicine */,
 				A62298122C358A5A0099F425 /* CertificateViewController.swift */,
 				A62298182C3825A50099F425 /* TabViewController.swift */,
 				A62297E72C341E810099F425 /* Assets.xcassets */,
@@ -210,6 +216,8 @@
 				A64AAC132C3FFCA000AE04C1 /* physicalConditionCell.xib */,
 				A64AAC1A2C4144F700AE04C1 /* fecesConditionCell.swift */,
 				A64AAC1B2C4144F700AE04C1 /* fecesConditionCell.xib */,
+				A64AAC2D2C42B87800AE04C1 /* fecesDetailCell.swift */,
+				A64AAC2E2C42B87800AE04C1 /* fecesDetailCell.xib */,
 				A64AAC1E2C41455500AE04C1 /* additionButtonCell.swift */,
 				A64AAC1F2C41455500AE04C1 /* additionButtonCell.xib */,
 				A64AAC252C4146BF00AE04C1 /* medicineRecordDetailCell.swift */,
@@ -218,6 +226,15 @@
 				A64AAC2A2C41556300AE04C1 /* memoCell.xib */,
 			);
 			path = CalendarRecord;
+			sourceTree = "<group>";
+		};
+		A64AAC312C44F58200AE04C1 /* MyMedicine */ = {
+			isa = PBXGroup;
+			children = (
+				A62298102C358A3F0099F425 /* MyMedicineViewController.swift */,
+				A64AAC322C44F5A500AE04C1 /* MyMedicineInformationViewController.swift */,
+			);
+			path = MyMedicine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,6 +346,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A64AAC2F2C42B87800AE04C1 /* fecesDetailCell.xib in Resources */,
 				A62297E82C341E810099F425 /* Assets.xcassets in Resources */,
 				A64AAC202C41455500AE04C1 /* additionButtonCell.xib in Resources */,
 				A62297EB2C341E810099F425 /* Base in Resources */,
@@ -475,8 +493,10 @@
 				A64AAC2C2C41556300AE04C1 /* memoCell.swift in Sources */,
 				A62297E12C341E7F0099F425 /* SceneDelegate.swift in Sources */,
 				A62298192C3825A50099F425 /* TabViewController.swift in Sources */,
+				A64AAC332C44F5A500AE04C1 /* MyMedicineInformationViewController.swift in Sources */,
 				A62298112C358A3F0099F425 /* MyMedicineViewController.swift in Sources */,
 				A64AAC212C41455500AE04C1 /* additionButtonCell.swift in Sources */,
+				A64AAC302C42B87800AE04C1 /* fecesDetailCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

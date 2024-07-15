@@ -26,6 +26,12 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         
         tableView.register(UINib(nibName: "calendarDateCell", bundle: nil), forCellReuseIdentifier: "calendarDateCell")
         tableView.register(UINib(nibName: "physicalConditionCell", bundle: nil), forCellReuseIdentifier: "physicalConditionCell")
+        tableView.register(UINib(nibName: "fecesConditionCell", bundle: nil), forCellReuseIdentifier: "fecesConditionCell")
+        tableView.register(UINib(nibName: "fecesDetailCell", bundle: nil), forCellReuseIdentifier: "fecesDetailCell")
+        tableView.register(UINib(nibName: "additionButtonCell", bundle: nil), forCellReuseIdentifier: "additionButtonCell")
+        tableView.register(UINib(nibName: "medicineRecordDetailCell", bundle: nil), forCellReuseIdentifier: "medicineRecordDetailCell")
+        tableView.register(UINib(nibName: "memoCell", bundle: nil), forCellReuseIdentifier: "memoCell")
+
         
         calendar.delegate = self
         calendar.dataSource = self
@@ -33,8 +39,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         tableView.dataSource = self
         configureCalendar()
         selectedDate = Date()
-        tableViewCell = ["calendarDateCell", "physicalConditionCell"]
+        tableViewCell = ["calendarDateCell", "physicalConditionCell", "fecesConditionCell", "fecesDetailCell", "additionButtonCell", "medicineRecordDetailCell", "memoCell"]
         tableView.reloadData()
+        
         // 画面を閉じた時の表示を再度表示
         let defaults = UserDefaults.standard
         if let savedScope = defaults.string(forKey: "calendarScope") {
@@ -50,13 +57,16 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
             calendar.setScope(.month, animated: false)
             changeButton.setTitle("週表示", for: .normal)
         }
-    }
+        tableView.separatorColor = UIColor.black
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    } // viewDidLoad終わり
     private func configureCalendar() {
         // ヘッダーの日付フォーマットを変更
         calendar.appearance.headerDateFormat = "yyyy年MM月"
         // 曜日と今日の色を指定
-        calendar.appearance.todayColor = .orange
-        calendar.appearance.headerTitleColor = .orange
+        calendar.appearance.todayColor = UIColor(red: 0.2, green: 0.7, blue: 0.5, alpha: 1.0)
+        calendar.appearance.headerTitleColor = UIColor(red: 0.2, green: 0.7, blue: 0.5, alpha: 1.0)
+
         calendar.appearance.weekdayTextColor = .black
         // 曜日表示内容を変更
         calendar.calendarWeekdayView.weekdayLabels[0].text = "日"
@@ -70,7 +80,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         calendar.calendarWeekdayView.weekdayLabels[0].textColor = .red
         calendar.calendarWeekdayView.weekdayLabels[6].textColor = .blue
     }
-    
     // calendarの表示形式変更
     @IBAction func changeButtonAction(_ sender: Any) {
         if calendar.scope == .month {
@@ -96,7 +105,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     }
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectedDate = date
-        tableViewCell = ["calendarDateCell", "physicalConditionCell"]
+        tableViewCell = ["calendarDateCell", "physicalConditionCell", "fecesConditionCell", "fecesDetailCell", "additionButtonCell", "medicineRecordDetailCell", "memoCell"]
         tableView.reloadData()
     }
     
@@ -112,20 +121,56 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         } else if identifier == "physicalConditionCell" {
             let physicalConditionCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! physicalConditionCell
             return physicalConditionCell
+        } else if identifier == "fecesConditionCell" {
+            let fecesConditionCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! fecesConditionCell
+            return fecesConditionCell
+        } else if identifier == "fecesDetailCell" {
+            let fecesDetailCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! fecesDetailCell
+            return fecesDetailCell
+            
+        } else if identifier == "additionButtonCell" {
+            let additionButtonCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! additionButtonCell
+            return additionButtonCell
+        } else if identifier == "medicineRecordDetailCell" {
+            let medicineRecordDetailCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! medicineRecordDetailCell
+            return medicineRecordDetailCell
+        } else if identifier == "memoCell" {
+            let memoCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! memoCell
+            memoCell.setDoneButton()
+            memoCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+            return memoCell
         } else {
             return UITableViewCell()
         }
     }
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         // 特定の行を選択不可にする
-        if indexPath.row == 1 {
+        if indexPath.row == 0 {
+            return false
+        } else if indexPath.row == 1 {
+            return false
+        } else if indexPath.row == 2 {
+            return false
+        } else if indexPath.row == 3 {
+            return false
+        } else if indexPath.row == 4 {
+            return false
+        } else if indexPath.row == 5 {
+            return false
+        } else if indexPath.row == 6 {
             return false
         } else {
-            return false
+            return true
+        }
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 3 {
+            return 80 // 4行目の高さを20に設定
+        } else {
+            return UITableView.automaticDimension
         }
     }
 }
-
 extension CalendarViewController {
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
         let weekday = Calendar.current.component(.weekday, from: date)

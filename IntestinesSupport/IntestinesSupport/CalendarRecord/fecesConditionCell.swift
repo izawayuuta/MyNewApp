@@ -9,7 +9,7 @@ import UIKit
 
 class fecesConditionCell: UITableViewCell {
 
-    @IBOutlet weak var conditionLabel: UILabel!
+    @IBOutlet weak var label: UILabel!
     @IBOutlet weak var conditionButton: UIButton!
 
     override func awakeFromNib() {

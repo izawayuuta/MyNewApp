@@ -17,31 +17,83 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPH-SI-lpf" customClass="fe">
-                        <rect key="frame" x="5" y="11.666666666666664" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="便の回数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPH-SI-lpf" customClass="fe">
+                        <rect key="frame" x="4.9999999999999964" y="11.666666666666664" width="63.666666666666657" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wmw-Le-tub">
-                        <rect key="frame" x="123" y="5" width="75" height="34"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Es3-tf-SFN">
+                        <rect key="frame" x="125.66666666666669" y="5" width="34" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="KdF-LQ-uEm"/>
+                        </constraints>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="2"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMg-IA-v3f">
+                        <rect key="frame" x="174.66666666666666" y="5" width="35" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="mae-pg-J13"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="3"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URv-aW-TNV">
+                        <rect key="frame" x="78.666666666666671" y="5" width="32" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="vaD-Wf-TeV"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="1"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nH-bQ-RZw">
+                        <rect key="frame" x="224.66666666666666" y="5" width="34.999999999999972" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="xIa-46-AZM"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="4"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1F-Na-GsI">
+                        <rect key="frame" x="274.66666666666669" y="5" width="35" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="fHu-fA-x4k"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="5"/>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Wmw-Le-tub" firstAttribute="centerY" secondItem="vPH-SI-lpf" secondAttribute="centerY" id="2zQ-Ax-MwA"/>
-                    <constraint firstItem="Wmw-Le-tub" firstAttribute="leading" secondItem="vPH-SI-lpf" secondAttribute="trailing" constant="76" id="5kV-Dh-Yka"/>
-                    <constraint firstItem="Wmw-Le-tub" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="B9h-MA-I25"/>
+                    <constraint firstItem="5nH-bQ-RZw" firstAttribute="leading" secondItem="AMg-IA-v3f" secondAttribute="trailing" constant="15" id="1AK-d9-zHQ"/>
+                    <constraint firstItem="AMg-IA-v3f" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="3aJ-Hp-hDI"/>
+                    <constraint firstItem="5nH-bQ-RZw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="3yv-L4-mL2"/>
+                    <constraint firstAttribute="bottom" secondItem="AMg-IA-v3f" secondAttribute="bottom" constant="5" id="6LO-a4-lar"/>
+                    <constraint firstItem="Es3-tf-SFN" firstAttribute="leading" secondItem="URv-aW-TNV" secondAttribute="trailing" constant="15" id="7wk-tG-kMA"/>
+                    <constraint firstItem="r1F-Na-GsI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="BJS-MT-Rxz"/>
+                    <constraint firstItem="5nH-bQ-RZw" firstAttribute="leading" secondItem="AMg-IA-v3f" secondAttribute="trailing" constant="15" id="DXU-zw-JKs"/>
+                    <constraint firstItem="Es3-tf-SFN" firstAttribute="leading" secondItem="URv-aW-TNV" secondAttribute="trailing" constant="15" id="KgE-ZM-FHM"/>
+                    <constraint firstItem="AMg-IA-v3f" firstAttribute="leading" secondItem="Es3-tf-SFN" secondAttribute="trailing" constant="15" id="PVf-dw-Rr3"/>
+                    <constraint firstItem="AMg-IA-v3f" firstAttribute="leading" secondItem="Es3-tf-SFN" secondAttribute="trailing" constant="15" id="Qp1-er-nCV"/>
+                    <constraint firstItem="URv-aW-TNV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="STf-IA-xQZ"/>
+                    <constraint firstItem="r1F-Na-GsI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="TiL-vp-unz"/>
+                    <constraint firstAttribute="bottom" secondItem="Es3-tf-SFN" secondAttribute="bottom" constant="5" id="XTW-PO-TKD"/>
+                    <constraint firstItem="AMg-IA-v3f" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Y3s-bE-BFn"/>
+                    <constraint firstItem="r1F-Na-GsI" firstAttribute="leading" secondItem="5nH-bQ-RZw" secondAttribute="trailing" constant="15" id="Z2a-EQ-MV1"/>
+                    <constraint firstItem="vPH-SI-lpf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZFf-hD-OoY"/>
+                    <constraint firstItem="5nH-bQ-RZw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bC3-Gp-RTV"/>
+                    <constraint firstItem="URv-aW-TNV" firstAttribute="leading" secondItem="vPH-SI-lpf" secondAttribute="trailing" constant="10" id="bqy-Qk-PEm"/>
+                    <constraint firstItem="Es3-tf-SFN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="f5c-jm-Lu2"/>
+                    <constraint firstAttribute="bottom" secondItem="r1F-Na-GsI" secondAttribute="bottom" constant="5" id="jV7-UM-zFC"/>
+                    <constraint firstItem="Es3-tf-SFN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="pjR-By-ZYj"/>
                     <constraint firstItem="vPH-SI-lpf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="q4B-LT-DqX"/>
-                    <constraint firstAttribute="bottom" secondItem="Wmw-Le-tub" secondAttribute="bottom" constant="5" id="vgl-eA-CcP"/>
+                    <constraint firstItem="r1F-Na-GsI" firstAttribute="leading" secondItem="5nH-bQ-RZw" secondAttribute="trailing" constant="15" id="uJM-kD-weu"/>
+                    <constraint firstItem="URv-aW-TNV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="uxm-ko-dvb"/>
+                    <constraint firstAttribute="bottom" secondItem="URv-aW-TNV" secondAttribute="bottom" constant="5" id="xZJ-kg-AAB"/>
+                    <constraint firstAttribute="bottom" secondItem="5nH-bQ-RZw" secondAttribute="bottom" constant="5" id="zJx-0q-stW"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <connections>
-                <outlet property="conditionButton" destination="Wmw-Le-tub" id="KLZ-ne-nAi"/>
-                <outlet property="conditionLabel" destination="vPH-SI-lpf" id="AjA-Ol-DDu"/>
-            </connections>
             <point key="canvasLocation" x="131" y="-33"/>
         </tableViewCell>
     </objects>

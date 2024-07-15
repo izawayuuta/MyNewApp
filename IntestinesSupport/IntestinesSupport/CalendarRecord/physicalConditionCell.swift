@@ -10,7 +10,12 @@ import UIKit
 class physicalConditionCell: UITableViewCell {
 
     @IBOutlet weak var physicalCondition: UILabel!
-    @IBOutlet weak var evaluationButton: UIButton!
+    @IBOutlet weak var evaluation1Button: UIButton!
+    @IBOutlet weak var evaluation2Button: UIButton!
+    @IBOutlet weak var evaluation3Button: UIButton!
+    @IBOutlet weak var evaluation4Button: UIButton!
+    @IBOutlet weak var evaluation5Button: UIButton!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

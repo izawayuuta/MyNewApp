@@ -15,6 +15,8 @@ class calendarDateCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         dateForMatter()
+        
+        backgroundColor = UIColor(red: 0.4, green: 0.7, blue: 0.4, alpha: 0.9)
     }
     private func dateForMatter() {
         // 日付の初期表示設定（現在の日付）
