@@ -10,7 +10,9 @@ import FSCalendar
 import SwiftUI
 import RealmSwift
 
-class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, UITableViewDelegate, UITableViewDataSource {
+class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, UITableViewDelegate, UITableViewDataSource, FecesDetailCellDelegate {
+
+    
     
     var tableViewCell: [String] = []
     var selectedDate: Date? // 選択された日付を保持するプロパティ
@@ -24,13 +26,14 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UINib(nibName: "calendarDateCell", bundle: nil), forCellReuseIdentifier: "calendarDateCell")
-        tableView.register(UINib(nibName: "physicalConditionCell", bundle: nil), forCellReuseIdentifier: "physicalConditionCell")
-        tableView.register(UINib(nibName: "fecesConditionCell", bundle: nil), forCellReuseIdentifier: "fecesConditionCell")
-        tableView.register(UINib(nibName: "fecesDetailCell", bundle: nil), forCellReuseIdentifier: "fecesDetailCell")
-        tableView.register(UINib(nibName: "additionButtonCell", bundle: nil), forCellReuseIdentifier: "additionButtonCell")
-        tableView.register(UINib(nibName: "medicineRecordDetailCell", bundle: nil), forCellReuseIdentifier: "medicineRecordDetailCell")
-        tableView.register(UINib(nibName: "memoCell", bundle: nil), forCellReuseIdentifier: "memoCell")
+        tableView.register(UINib(nibName: "CalendarDateCell", bundle: nil), forCellReuseIdentifier: "CalendarDateCell")
+        tableView.register(UINib(nibName: "PhysicalConditionCell", bundle: nil), forCellReuseIdentifier: "PhysicalConditionCell")
+        tableView.register(UINib(nibName: "FecesConditionCell", bundle: nil), forCellReuseIdentifier: "FecesConditionCell")
+        tableView.register(UINib(nibName: "FecesDetailCell", bundle: nil), forCellReuseIdentifier: "FecesDetailCell")
+        tableView.register(UINib(nibName: "AdditionButtonCell", bundle: nil), forCellReuseIdentifier: "AdditionButtonCell")
+        tableView.register(UINib(nibName: "MedicineEmptyStateCell", bundle: nil), forCellReuseIdentifier: "MedicineEmptyStateCell")
+        tableView.register(UINib(nibName: "MedicineRecordDetailCell", bundle: nil), forCellReuseIdentifier: "MedicineRecordDetailCell")
+        tableView.register(UINib(nibName: "MemoCell", bundle: nil), forCellReuseIdentifier: "MemoCell")
 
         
         calendar.delegate = self
@@ -39,7 +42,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         tableView.dataSource = self
         configureCalendar()
         selectedDate = Date()
-        tableViewCell = ["calendarDateCell", "physicalConditionCell", "fecesConditionCell", "fecesDetailCell", "additionButtonCell", "medicineRecordDetailCell", "memoCell"]
+        tableViewCell = ["CalendarDateCell", "PhysicalConditionCell", "FecesConditionCell", "FecesDetailCell", "AdditionButtonCell", "MedicineEmptyStateCell", "MedicineRecordDetailCell", "MemoCell"]
         tableView.reloadData()
         
         // 画面を閉じた時の表示を再度表示
@@ -105,37 +108,46 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     }
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectedDate = date
-        tableViewCell = ["calendarDateCell", "physicalConditionCell", "fecesConditionCell", "fecesDetailCell", "additionButtonCell", "medicineRecordDetailCell", "memoCell"]
+        tableViewCell = ["CalendarDateCell", "PhysicalConditionCell", "FecesConditionCell", "FecesDetailCell", "AdditionButtonCell", "MedicineEmptyStateCell", "MedicineRecordDetailCell", "MemoCell"]
         tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = tableViewCell[indexPath.row]
         
-        if identifier == "calendarDateCell" {
-            let calendarCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! calendarDateCell
+        if identifier == "CalendarDateCell" {
+            let calendarCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! CalendarDateCell
             if let date = selectedDate {
                 calendarCell.configure(with: date)
             }
             return calendarCell
-        } else if identifier == "physicalConditionCell" {
-            let physicalConditionCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! physicalConditionCell
+        } else if identifier == "PhysicalConditionCell" {
+            let physicalConditionCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PhysicalConditionCell
             return physicalConditionCell
-        } else if identifier == "fecesConditionCell" {
-            let fecesConditionCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! fecesConditionCell
+        } else if identifier == "FecesConditionCell" {
+            let fecesConditionCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! FecesConditionCell
             return fecesConditionCell
-        } else if identifier == "fecesDetailCell" {
-            let fecesDetailCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! fecesDetailCell
+        } else if identifier == "FecesDetailCell" {
+            let fecesDetailCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! FecesDetailCell
+            fecesDetailCell.delegate = self
             return fecesDetailCell
             
-        } else if identifier == "additionButtonCell" {
-            let additionButtonCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! additionButtonCell
+        } else if identifier == "AdditionButtonCell" {
+            let additionButtonCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AdditionButtonCell
+            additionButtonCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return additionButtonCell
-        } else if identifier == "medicineRecordDetailCell" {
-            let medicineRecordDetailCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! medicineRecordDetailCell
+        } else if identifier == "MedicineEmptyStateCell" {
+            let medicineEmptyStateCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MedicineEmptyStateCell
+            medicineEmptyStateCell.messageLabel.text = "服用はありません"
+            medicineEmptyStateCell.messageLabel.textColor = .gray // テキストの色を薄く設定
+            medicineEmptyStateCell.messageLabel.textAlignment = .center
+            medicineEmptyStateCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+            return medicineEmptyStateCell
+        } else if identifier == "MedicineRecordDetailCell" {
+            let medicineRecordDetailCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MedicineRecordDetailCell
             return medicineRecordDetailCell
-        } else if identifier == "memoCell" {
-            let memoCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! memoCell
+        } else if identifier == "MemoCell" {
+            let memoCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MemoCell
             memoCell.setDoneButton()
             memoCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return memoCell
@@ -165,11 +177,14 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 3 {
-            return 80 // 4行目の高さを20に設定
+            return 80 // 3行目の高さを80に設定
         } else {
             return UITableView.automaticDimension
         }
     }
+        func didTapHistoryButton(in cell: FecesDetailCell) {
+            performSegue(withIdentifier: "FecesHistory", sender: self)
+        }
 }
 extension CalendarViewController {
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {

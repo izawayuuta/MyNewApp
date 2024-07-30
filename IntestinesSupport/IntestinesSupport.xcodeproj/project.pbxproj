@@ -21,21 +21,39 @@
 		A62298112C358A3F0099F425 /* MyMedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62298102C358A3F0099F425 /* MyMedicineViewController.swift */; };
 		A62298132C358A5A0099F425 /* CertificateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62298122C358A5A0099F425 /* CertificateViewController.swift */; };
 		A62298192C3825A50099F425 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62298182C3825A50099F425 /* TabViewController.swift */; };
-		A64AAC142C3FFCA000AE04C1 /* physicalConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC132C3FFCA000AE04C1 /* physicalConditionCell.xib */; };
-		A64AAC152C3FFCA000AE04C1 /* physicalConditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC122C3FFCA000AE04C1 /* physicalConditionCell.swift */; };
-		A64AAC182C3FFD4300AE04C1 /* calendarDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC172C3FFD4300AE04C1 /* calendarDateCell.xib */; };
-		A64AAC192C3FFD4300AE04C1 /* calendarDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC162C3FFD4300AE04C1 /* calendarDateCell.swift */; };
-		A64AAC1C2C4144F700AE04C1 /* fecesConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC1B2C4144F700AE04C1 /* fecesConditionCell.xib */; };
-		A64AAC1D2C4144F700AE04C1 /* fecesConditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC1A2C4144F700AE04C1 /* fecesConditionCell.swift */; };
-		A64AAC202C41455500AE04C1 /* additionButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC1F2C41455500AE04C1 /* additionButtonCell.xib */; };
-		A64AAC212C41455500AE04C1 /* additionButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC1E2C41455500AE04C1 /* additionButtonCell.swift */; };
-		A64AAC272C4146BF00AE04C1 /* medicineRecordDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC262C4146BF00AE04C1 /* medicineRecordDetailCell.xib */; };
-		A64AAC282C4146BF00AE04C1 /* medicineRecordDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC252C4146BF00AE04C1 /* medicineRecordDetailCell.swift */; };
-		A64AAC2B2C41556300AE04C1 /* memoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC2A2C41556300AE04C1 /* memoCell.xib */; };
-		A64AAC2C2C41556300AE04C1 /* memoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC292C41556300AE04C1 /* memoCell.swift */; };
-		A64AAC2F2C42B87800AE04C1 /* fecesDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC2E2C42B87800AE04C1 /* fecesDetailCell.xib */; };
-		A64AAC302C42B87800AE04C1 /* fecesDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC2D2C42B87800AE04C1 /* fecesDetailCell.swift */; };
+		A64AAC182C3FFD4300AE04C1 /* CalendarDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC172C3FFD4300AE04C1 /* CalendarDateCell.xib */; };
+		A64AAC192C3FFD4300AE04C1 /* CalendarDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC162C3FFD4300AE04C1 /* CalendarDateCell.swift */; };
+		A64AAC1C2C4144F700AE04C1 /* FecesConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC1B2C4144F700AE04C1 /* FecesConditionCell.xib */; };
+		A64AAC1D2C4144F700AE04C1 /* FecesConditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC1A2C4144F700AE04C1 /* FecesConditionCell.swift */; };
+		A64AAC202C41455500AE04C1 /* AdditionButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC1F2C41455500AE04C1 /* AdditionButtonCell.xib */; };
+		A64AAC212C41455500AE04C1 /* AdditionButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC1E2C41455500AE04C1 /* AdditionButtonCell.swift */; };
+		A64AAC272C4146BF00AE04C1 /* MedicineRecordDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC262C4146BF00AE04C1 /* MedicineRecordDetailCell.xib */; };
+		A64AAC282C4146BF00AE04C1 /* MedicineRecordDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC252C4146BF00AE04C1 /* MedicineRecordDetailCell.swift */; };
+		A64AAC2B2C41556300AE04C1 /* MemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC2A2C41556300AE04C1 /* MemoCell.xib */; };
+		A64AAC2C2C41556300AE04C1 /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC292C41556300AE04C1 /* MemoCell.swift */; };
+		A64AAC2F2C42B87800AE04C1 /* FecesDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC2E2C42B87800AE04C1 /* FecesDetailCell.xib */; };
+		A64AAC302C42B87800AE04C1 /* FecesDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC2D2C42B87800AE04C1 /* FecesDetailCell.swift */; };
 		A64AAC332C44F5A500AE04C1 /* MyMedicineInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC322C44F5A500AE04C1 /* MyMedicineInformationViewController.swift */; };
+		A64AAC362C4683AB00AE04C1 /* PhysicalConditionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC352C4683AB00AE04C1 /* PhysicalConditionCell.xib */; };
+		A64AAC372C4683AB00AE04C1 /* PhysicalConditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC342C4683AB00AE04C1 /* PhysicalConditionCell.swift */; };
+		A64AAC392C4A878700AE04C1 /* FecesRecord .swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC382C4A878700AE04C1 /* FecesRecord .swift */; };
+		A64AAC3C2C4BCDBF00AE04C1 /* EmptyStateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC3B2C4BCDBF00AE04C1 /* EmptyStateCell.xib */; };
+		A64AAC3D2C4BCDBF00AE04C1 /* EmptyStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC3A2C4BCDBF00AE04C1 /* EmptyStateCell.swift */; };
+		A64AAC402C4BD06200AE04C1 /* MedicineEmptyStateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC3F2C4BD06200AE04C1 /* MedicineEmptyStateCell.xib */; };
+		A64AAC412C4BD06200AE04C1 /* MedicineEmptyStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC3E2C4BD06200AE04C1 /* MedicineEmptyStateCell.swift */; };
+		A64AAC432C4BD47600AE04C1 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC422C4BD47600AE04C1 /* History.swift */; };
+		A64AAC482C4D232E00AE04C1 /* ApplicationClassificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC472C4D232E00AE04C1 /* ApplicationClassificationCell.xib */; };
+		A64AAC492C4D232E00AE04C1 /* ApplicationClassificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC462C4D232E00AE04C1 /* ApplicationClassificationCell.swift */; };
+		A64AAC4C2C4E711800AE04C1 /* MoneyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC4B2C4E711800AE04C1 /* MoneyCell.xib */; };
+		A64AAC4D2C4E711800AE04C1 /* MoneyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC4A2C4E711800AE04C1 /* MoneyCell.swift */; };
+		A64AAC502C4E713A00AE04C1 /* HierarchyClassificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC4F2C4E713A00AE04C1 /* HierarchyClassificationCell.xib */; };
+		A64AAC512C4E713A00AE04C1 /* HierarchyClassificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC4E2C4E713A00AE04C1 /* HierarchyClassificationCell.swift */; };
+		A64AAC542C4E714D00AE04C1 /* DeadlineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC532C4E714D00AE04C1 /* DeadlineCell.xib */; };
+		A64AAC552C4E714D00AE04C1 /* DeadlineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC522C4E714D00AE04C1 /* DeadlineCell.swift */; };
+		A64AAC582C4E716300AE04C1 /* PeriodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC572C4E716300AE04C1 /* PeriodCell.xib */; };
+		A64AAC592C4E716300AE04C1 /* PeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC562C4E716300AE04C1 /* PeriodCell.swift */; };
+		A64AAC5C2C4E718200AE04C1 /* PlusButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC5B2C4E718200AE04C1 /* PlusButtonCell.xib */; };
+		A64AAC5D2C4E718200AE04C1 /* PlusButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC5A2C4E718200AE04C1 /* PlusButtonCell.swift */; };
 		ED0FE989D657E8FADDF3BE80 /* Pods_IntestinesSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 821BD2A208DED6BC34BAAE2E /* Pods_IntestinesSupport.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,21 +97,39 @@
 		A62298102C358A3F0099F425 /* MyMedicineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMedicineViewController.swift; sourceTree = "<group>"; };
 		A62298122C358A5A0099F425 /* CertificateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateViewController.swift; sourceTree = "<group>"; };
 		A62298182C3825A50099F425 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
-		A64AAC122C3FFCA000AE04C1 /* physicalConditionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = physicalConditionCell.swift; sourceTree = "<group>"; };
-		A64AAC132C3FFCA000AE04C1 /* physicalConditionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = physicalConditionCell.xib; sourceTree = "<group>"; };
-		A64AAC162C3FFD4300AE04C1 /* calendarDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendarDateCell.swift; sourceTree = "<group>"; };
-		A64AAC172C3FFD4300AE04C1 /* calendarDateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = calendarDateCell.xib; sourceTree = "<group>"; };
-		A64AAC1A2C4144F700AE04C1 /* fecesConditionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fecesConditionCell.swift; sourceTree = "<group>"; };
-		A64AAC1B2C4144F700AE04C1 /* fecesConditionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = fecesConditionCell.xib; sourceTree = "<group>"; };
-		A64AAC1E2C41455500AE04C1 /* additionButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = additionButtonCell.swift; sourceTree = "<group>"; };
-		A64AAC1F2C41455500AE04C1 /* additionButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = additionButtonCell.xib; sourceTree = "<group>"; };
-		A64AAC252C4146BF00AE04C1 /* medicineRecordDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = medicineRecordDetailCell.swift; sourceTree = "<group>"; };
-		A64AAC262C4146BF00AE04C1 /* medicineRecordDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = medicineRecordDetailCell.xib; sourceTree = "<group>"; };
-		A64AAC292C41556300AE04C1 /* memoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memoCell.swift; sourceTree = "<group>"; };
-		A64AAC2A2C41556300AE04C1 /* memoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = memoCell.xib; sourceTree = "<group>"; };
-		A64AAC2D2C42B87800AE04C1 /* fecesDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fecesDetailCell.swift; sourceTree = "<group>"; };
-		A64AAC2E2C42B87800AE04C1 /* fecesDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = fecesDetailCell.xib; sourceTree = "<group>"; };
+		A64AAC162C3FFD4300AE04C1 /* CalendarDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateCell.swift; sourceTree = "<group>"; };
+		A64AAC172C3FFD4300AE04C1 /* CalendarDateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarDateCell.xib; sourceTree = "<group>"; };
+		A64AAC1A2C4144F700AE04C1 /* FecesConditionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FecesConditionCell.swift; sourceTree = "<group>"; };
+		A64AAC1B2C4144F700AE04C1 /* FecesConditionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FecesConditionCell.xib; sourceTree = "<group>"; };
+		A64AAC1E2C41455500AE04C1 /* AdditionButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionButtonCell.swift; sourceTree = "<group>"; };
+		A64AAC1F2C41455500AE04C1 /* AdditionButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdditionButtonCell.xib; sourceTree = "<group>"; };
+		A64AAC252C4146BF00AE04C1 /* MedicineRecordDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineRecordDetailCell.swift; sourceTree = "<group>"; };
+		A64AAC262C4146BF00AE04C1 /* MedicineRecordDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MedicineRecordDetailCell.xib; sourceTree = "<group>"; };
+		A64AAC292C41556300AE04C1 /* MemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
+		A64AAC2A2C41556300AE04C1 /* MemoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemoCell.xib; sourceTree = "<group>"; };
+		A64AAC2D2C42B87800AE04C1 /* FecesDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FecesDetailCell.swift; sourceTree = "<group>"; };
+		A64AAC2E2C42B87800AE04C1 /* FecesDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FecesDetailCell.xib; sourceTree = "<group>"; };
 		A64AAC322C44F5A500AE04C1 /* MyMedicineInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMedicineInformationViewController.swift; sourceTree = "<group>"; };
+		A64AAC342C4683AB00AE04C1 /* PhysicalConditionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicalConditionCell.swift; sourceTree = "<group>"; };
+		A64AAC352C4683AB00AE04C1 /* PhysicalConditionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhysicalConditionCell.xib; sourceTree = "<group>"; };
+		A64AAC382C4A878700AE04C1 /* FecesRecord .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FecesRecord .swift"; sourceTree = "<group>"; };
+		A64AAC3A2C4BCDBF00AE04C1 /* EmptyStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateCell.swift; sourceTree = "<group>"; };
+		A64AAC3B2C4BCDBF00AE04C1 /* EmptyStateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyStateCell.xib; sourceTree = "<group>"; };
+		A64AAC3E2C4BD06200AE04C1 /* MedicineEmptyStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineEmptyStateCell.swift; sourceTree = "<group>"; };
+		A64AAC3F2C4BD06200AE04C1 /* MedicineEmptyStateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MedicineEmptyStateCell.xib; sourceTree = "<group>"; };
+		A64AAC422C4BD47600AE04C1 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		A64AAC462C4D232E00AE04C1 /* ApplicationClassificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationClassificationCell.swift; sourceTree = "<group>"; };
+		A64AAC472C4D232E00AE04C1 /* ApplicationClassificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplicationClassificationCell.xib; sourceTree = "<group>"; };
+		A64AAC4A2C4E711800AE04C1 /* MoneyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyCell.swift; sourceTree = "<group>"; };
+		A64AAC4B2C4E711800AE04C1 /* MoneyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoneyCell.xib; sourceTree = "<group>"; };
+		A64AAC4E2C4E713A00AE04C1 /* HierarchyClassificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyClassificationCell.swift; sourceTree = "<group>"; };
+		A64AAC4F2C4E713A00AE04C1 /* HierarchyClassificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HierarchyClassificationCell.xib; sourceTree = "<group>"; };
+		A64AAC522C4E714D00AE04C1 /* DeadlineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlineCell.swift; sourceTree = "<group>"; };
+		A64AAC532C4E714D00AE04C1 /* DeadlineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeadlineCell.xib; sourceTree = "<group>"; };
+		A64AAC562C4E716300AE04C1 /* PeriodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodCell.swift; sourceTree = "<group>"; };
+		A64AAC572C4E716300AE04C1 /* PeriodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeriodCell.xib; sourceTree = "<group>"; };
+		A64AAC5A2C4E718200AE04C1 /* PlusButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButtonCell.swift; sourceTree = "<group>"; };
+		A64AAC5B2C4E718200AE04C1 /* PlusButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlusButtonCell.xib; sourceTree = "<group>"; };
 		B1FC26A613D5492A6A92A954 /* Pods-IntestinesSupportTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntestinesSupportTests.release.xcconfig"; path = "Target Support Files/Pods-IntestinesSupportTests/Pods-IntestinesSupportTests.release.xcconfig"; sourceTree = "<group>"; };
 		C6BAB30AA22CD6F747063D5A /* Pods_IntestinesSupport_IntestinesSupportUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupport_IntestinesSupportUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2E464BD7D4F2F142C45DAD /* Pods_IntestinesSupportTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupportTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,7 +216,7 @@
 				A62297E42C341E7F0099F425 /* Main.storyboard */,
 				A64AAC242C4145A600AE04C1 /* CalendarRecord */,
 				A64AAC312C44F58200AE04C1 /* MyMedicine */,
-				A62298122C358A5A0099F425 /* CertificateViewController.swift */,
+				A64AAC452C4D230F00AE04C1 /* Certificate */,
 				A62298182C3825A50099F425 /* TabViewController.swift */,
 				A62297E72C341E810099F425 /* Assets.xcassets */,
 				A62297E92C341E810099F425 /* LaunchScreen.storyboard */,
@@ -210,20 +246,23 @@
 			isa = PBXGroup;
 			children = (
 				A622980E2C341F0E0099F425 /* CalendarViewController.swift */,
-				A64AAC162C3FFD4300AE04C1 /* calendarDateCell.swift */,
-				A64AAC172C3FFD4300AE04C1 /* calendarDateCell.xib */,
-				A64AAC122C3FFCA000AE04C1 /* physicalConditionCell.swift */,
-				A64AAC132C3FFCA000AE04C1 /* physicalConditionCell.xib */,
-				A64AAC1A2C4144F700AE04C1 /* fecesConditionCell.swift */,
-				A64AAC1B2C4144F700AE04C1 /* fecesConditionCell.xib */,
-				A64AAC2D2C42B87800AE04C1 /* fecesDetailCell.swift */,
-				A64AAC2E2C42B87800AE04C1 /* fecesDetailCell.xib */,
-				A64AAC1E2C41455500AE04C1 /* additionButtonCell.swift */,
-				A64AAC1F2C41455500AE04C1 /* additionButtonCell.xib */,
-				A64AAC252C4146BF00AE04C1 /* medicineRecordDetailCell.swift */,
-				A64AAC262C4146BF00AE04C1 /* medicineRecordDetailCell.xib */,
-				A64AAC292C41556300AE04C1 /* memoCell.swift */,
-				A64AAC2A2C41556300AE04C1 /* memoCell.xib */,
+				A64AAC162C3FFD4300AE04C1 /* CalendarDateCell.swift */,
+				A64AAC172C3FFD4300AE04C1 /* CalendarDateCell.xib */,
+				A64AAC342C4683AB00AE04C1 /* PhysicalConditionCell.swift */,
+				A64AAC352C4683AB00AE04C1 /* PhysicalConditionCell.xib */,
+				A64AAC1A2C4144F700AE04C1 /* FecesConditionCell.swift */,
+				A64AAC1B2C4144F700AE04C1 /* FecesConditionCell.xib */,
+				A64AAC2D2C42B87800AE04C1 /* FecesDetailCell.swift */,
+				A64AAC2E2C42B87800AE04C1 /* FecesDetailCell.xib */,
+				A64AAC1E2C41455500AE04C1 /* AdditionButtonCell.swift */,
+				A64AAC1F2C41455500AE04C1 /* AdditionButtonCell.xib */,
+				A64AAC252C4146BF00AE04C1 /* MedicineRecordDetailCell.swift */,
+				A64AAC262C4146BF00AE04C1 /* MedicineRecordDetailCell.xib */,
+				A64AAC3E2C4BD06200AE04C1 /* MedicineEmptyStateCell.swift */,
+				A64AAC3F2C4BD06200AE04C1 /* MedicineEmptyStateCell.xib */,
+				A64AAC292C41556300AE04C1 /* MemoCell.swift */,
+				A64AAC2A2C41556300AE04C1 /* MemoCell.xib */,
+				A64AAC442C4D21D700AE04C1 /* FecesRecord */,
 			);
 			path = CalendarRecord;
 			sourceTree = "<group>";
@@ -235,6 +274,37 @@
 				A64AAC322C44F5A500AE04C1 /* MyMedicineInformationViewController.swift */,
 			);
 			path = MyMedicine;
+			sourceTree = "<group>";
+		};
+		A64AAC442C4D21D700AE04C1 /* FecesRecord */ = {
+			isa = PBXGroup;
+			children = (
+				A64AAC382C4A878700AE04C1 /* FecesRecord .swift */,
+				A64AAC3A2C4BCDBF00AE04C1 /* EmptyStateCell.swift */,
+				A64AAC3B2C4BCDBF00AE04C1 /* EmptyStateCell.xib */,
+				A64AAC422C4BD47600AE04C1 /* History.swift */,
+			);
+			path = FecesRecord;
+			sourceTree = "<group>";
+		};
+		A64AAC452C4D230F00AE04C1 /* Certificate */ = {
+			isa = PBXGroup;
+			children = (
+				A62298122C358A5A0099F425 /* CertificateViewController.swift */,
+				A64AAC462C4D232E00AE04C1 /* ApplicationClassificationCell.swift */,
+				A64AAC472C4D232E00AE04C1 /* ApplicationClassificationCell.xib */,
+				A64AAC4A2C4E711800AE04C1 /* MoneyCell.swift */,
+				A64AAC4B2C4E711800AE04C1 /* MoneyCell.xib */,
+				A64AAC4E2C4E713A00AE04C1 /* HierarchyClassificationCell.swift */,
+				A64AAC4F2C4E713A00AE04C1 /* HierarchyClassificationCell.xib */,
+				A64AAC522C4E714D00AE04C1 /* DeadlineCell.swift */,
+				A64AAC532C4E714D00AE04C1 /* DeadlineCell.xib */,
+				A64AAC562C4E716300AE04C1 /* PeriodCell.swift */,
+				A64AAC572C4E716300AE04C1 /* PeriodCell.xib */,
+				A64AAC5A2C4E718200AE04C1 /* PlusButtonCell.swift */,
+				A64AAC5B2C4E718200AE04C1 /* PlusButtonCell.xib */,
+			);
+			path = Certificate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,15 +416,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A64AAC2F2C42B87800AE04C1 /* fecesDetailCell.xib in Resources */,
+				A64AAC582C4E716300AE04C1 /* PeriodCell.xib in Resources */,
+				A64AAC2F2C42B87800AE04C1 /* FecesDetailCell.xib in Resources */,
 				A62297E82C341E810099F425 /* Assets.xcassets in Resources */,
-				A64AAC202C41455500AE04C1 /* additionButtonCell.xib in Resources */,
+				A64AAC4C2C4E711800AE04C1 /* MoneyCell.xib in Resources */,
+				A64AAC202C41455500AE04C1 /* AdditionButtonCell.xib in Resources */,
+				A64AAC502C4E713A00AE04C1 /* HierarchyClassificationCell.xib in Resources */,
 				A62297EB2C341E810099F425 /* Base in Resources */,
-				A64AAC142C3FFCA000AE04C1 /* physicalConditionCell.xib in Resources */,
-				A64AAC182C3FFD4300AE04C1 /* calendarDateCell.xib in Resources */,
-				A64AAC272C4146BF00AE04C1 /* medicineRecordDetailCell.xib in Resources */,
-				A64AAC2B2C41556300AE04C1 /* memoCell.xib in Resources */,
-				A64AAC1C2C4144F700AE04C1 /* fecesConditionCell.xib in Resources */,
+				A64AAC3C2C4BCDBF00AE04C1 /* EmptyStateCell.xib in Resources */,
+				A64AAC542C4E714D00AE04C1 /* DeadlineCell.xib in Resources */,
+				A64AAC182C3FFD4300AE04C1 /* CalendarDateCell.xib in Resources */,
+				A64AAC5C2C4E718200AE04C1 /* PlusButtonCell.xib in Resources */,
+				A64AAC482C4D232E00AE04C1 /* ApplicationClassificationCell.xib in Resources */,
+				A64AAC272C4146BF00AE04C1 /* MedicineRecordDetailCell.xib in Resources */,
+				A64AAC362C4683AB00AE04C1 /* PhysicalConditionCell.xib in Resources */,
+				A64AAC2B2C41556300AE04C1 /* MemoCell.xib in Resources */,
+				A64AAC402C4BD06200AE04C1 /* MedicineEmptyStateCell.xib in Resources */,
+				A64AAC1C2C4144F700AE04C1 /* FecesConditionCell.xib in Resources */,
 				A62297E62C341E7F0099F425 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,20 +561,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A64AAC592C4E716300AE04C1 /* PeriodCell.swift in Sources */,
+				A64AAC432C4BD47600AE04C1 /* History.swift in Sources */,
+				A64AAC5D2C4E718200AE04C1 /* PlusButtonCell.swift in Sources */,
+				A64AAC492C4D232E00AE04C1 /* ApplicationClassificationCell.swift in Sources */,
 				A62298132C358A5A0099F425 /* CertificateViewController.swift in Sources */,
-				A64AAC192C3FFD4300AE04C1 /* calendarDateCell.swift in Sources */,
+				A64AAC192C3FFD4300AE04C1 /* CalendarDateCell.swift in Sources */,
 				A622980F2C341F0E0099F425 /* CalendarViewController.swift in Sources */,
-				A64AAC1D2C4144F700AE04C1 /* fecesConditionCell.swift in Sources */,
-				A64AAC152C3FFCA000AE04C1 /* physicalConditionCell.swift in Sources */,
+				A64AAC412C4BD06200AE04C1 /* MedicineEmptyStateCell.swift in Sources */,
+				A64AAC1D2C4144F700AE04C1 /* FecesConditionCell.swift in Sources */,
+				A64AAC552C4E714D00AE04C1 /* DeadlineCell.swift in Sources */,
+				A64AAC392C4A878700AE04C1 /* FecesRecord .swift in Sources */,
+				A64AAC372C4683AB00AE04C1 /* PhysicalConditionCell.swift in Sources */,
 				A62297DF2C341E7F0099F425 /* AppDelegate.swift in Sources */,
-				A64AAC282C4146BF00AE04C1 /* medicineRecordDetailCell.swift in Sources */,
-				A64AAC2C2C41556300AE04C1 /* memoCell.swift in Sources */,
+				A64AAC282C4146BF00AE04C1 /* MedicineRecordDetailCell.swift in Sources */,
+				A64AAC2C2C41556300AE04C1 /* MemoCell.swift in Sources */,
 				A62297E12C341E7F0099F425 /* SceneDelegate.swift in Sources */,
 				A62298192C3825A50099F425 /* TabViewController.swift in Sources */,
+				A64AAC4D2C4E711800AE04C1 /* MoneyCell.swift in Sources */,
 				A64AAC332C44F5A500AE04C1 /* MyMedicineInformationViewController.swift in Sources */,
 				A62298112C358A3F0099F425 /* MyMedicineViewController.swift in Sources */,
-				A64AAC212C41455500AE04C1 /* additionButtonCell.swift in Sources */,
-				A64AAC302C42B87800AE04C1 /* fecesDetailCell.swift in Sources */,
+				A64AAC212C41455500AE04C1 /* AdditionButtonCell.swift in Sources */,
+				A64AAC512C4E713A00AE04C1 /* HierarchyClassificationCell.swift in Sources */,
+				A64AAC302C42B87800AE04C1 /* FecesDetailCell.swift in Sources */,
+				A64AAC3D2C4BCDBF00AE04C1 /* EmptyStateCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

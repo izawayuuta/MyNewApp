@@ -1,5 +1,5 @@
 //
-//  additionButtonCell.swift
+//  AdditionButtonCell.swift
 //  IntestinesSupport
 //
 //  Created by 俺の MacBook Air on 2024/07/12.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class additionButtonCell: UITableViewCell {
+class AdditionButtonCell: UITableViewCell {
     
     @IBOutlet weak var additionButton: UIButton!
     override func awakeFromNib() {

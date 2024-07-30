@@ -1,5 +1,5 @@
 //
-//  medicineRecordDetailCell.swift
+//  MedicineRecordDetailCell.swift
 //  IntestinesSupport
 //
 //  Created by 俺の MacBook Air on 2024/07/12.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class medicineRecordDetailCell: UITableViewCell {
+class MedicineRecordDetailCell: UITableViewCell {
 
     @IBOutlet weak var medicineName: UILabel!
     @IBOutlet weak var date: UILabel!

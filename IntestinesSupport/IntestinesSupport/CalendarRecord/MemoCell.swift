@@ -1,5 +1,5 @@
 //
-//  memoCell.swift
+//  MemoCell.swift
 //  IntestinesSupport
 //
 //  Created by 俺の MacBook Air on 2024/07/12.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class memoCell: UITableViewCell, UITextViewDelegate {
+class MemoCell: UITableViewCell, UITextViewDelegate {
     
     @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var memo: UITextView!
@@ -21,6 +21,9 @@ class memoCell: UITableViewCell, UITextViewDelegate {
         memo.layer.borderWidth = 1.0
         memo.layer.masksToBounds = true
         
+        setDoneButton()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -28,6 +31,11 @@ class memoCell: UITableViewCell, UITextViewDelegate {
         
         // Configure the view for the selected state
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     @objc func tapDoneButton() {
         self.endEditing(true)
     }
@@ -37,19 +45,57 @@ class memoCell: UITableViewCell, UITextViewDelegate {
         toolBar.items = [commitButton]
         memo.inputAccessoryView = toolBar
     }
+    // textViewを可変
     func textViewDidChange(_ textView: UITextView) {
-            // テキストの変更を検知した際に高さを調整
-            let size = textView.sizeThatFits(CGSize(width: textView.frame.width, height: CGFloat.greatestFiniteMagnitude))
-            if let tableView = self.superview as? UITableView {
-                UIView.setAnimationsEnabled(false)
-                tableView.beginUpdates()
-                textView.constraints.forEach { (constraint) in
-                    if constraint.firstAttribute == .height {
-                        constraint.constant = size.height
+        let size = textView.sizeThatFits(CGSize(width: textView.frame.width, height: CGFloat.greatestFiniteMagnitude))
+        
+        if let tableView = self.superview as? UITableView {
+            UIView.setAnimationsEnabled(false)
+            tableView.beginUpdates()
+            
+            textView.constraints.forEach { (constraint) in
+                if constraint.firstAttribute == .height {
+                    constraint.constant = size.height
+                }
+            }
+            tableView.endUpdates()
+            
+            if let indexPath = tableView.indexPath(for: self) {
+                tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            }
+            
+            UIView.setAnimationsEnabled(true)
+        }
+    }
+    // キーボード追従
+    @objc func keyboardWillShow(_ notification: Notification) {
+        adjustForKeyboard(notification: notification, willShow: true)
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        adjustForKeyboard(notification: notification, willShow: false)
+    }
+    
+    func adjustForKeyboard(notification: Notification, willShow: Bool) {
+        guard let userInfo = notification.userInfo else { return }
+        guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        
+        let keyboardHeight = keyboardFrame.height
+        let additionalMargin: CGFloat = -60
+        let adjustmentHeight = willShow ? keyboardHeight + additionalMargin : 0
+        let adjustmentInsets = UIEdgeInsets(top: 0, left: 0, bottom: adjustmentHeight, right: 0)
+        
+        if let tableView = superview as? UITableView {
+            tableView.contentInset = adjustmentInsets
+            tableView.scrollIndicatorInsets = adjustmentInsets
+            
+            if willShow {
+                if let indexPath = tableView.indexPath(for: self) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
                     }
                 }
-                tableView.endUpdates()
-                UIView.setAnimationsEnabled(true)
             }
         }
+    }
 }

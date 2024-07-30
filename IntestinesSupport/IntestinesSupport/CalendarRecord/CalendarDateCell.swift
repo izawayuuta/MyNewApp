@@ -1,5 +1,5 @@
 //
-//  calendarDateCell.swift
+//  CalendarDateCell.swift
 //  IntestinesSupport
 //
 //  Created by 俺の MacBook Air on 2024/07/11.
@@ -9,7 +9,7 @@ import UIKit
 import FSCalendar
 import SwiftUI
 
-class calendarDateCell: UITableViewCell {
+class CalendarDateCell: UITableViewCell {
     
     @IBOutlet weak var calendarDate: UILabel!
     override func awakeFromNib() {
