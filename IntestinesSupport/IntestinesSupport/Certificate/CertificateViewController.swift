@@ -6,3 +6,9 @@
 //
 
 import Foundation
+import UIKit
+import RealmSwift
+
+class CertificateViewController: UIViewController {
+    
+}
