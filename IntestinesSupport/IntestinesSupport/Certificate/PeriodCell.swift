@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class PeriodCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField1: UITextField!
@@ -17,7 +17,7 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
     @IBOutlet weak var textField5: UITextField!
     @IBOutlet weak var pickerView: UIPickerView!
     
-    var pickerArray = ["上旬", "中旬", "下旬"]
+//    var pickerArray = ["上旬", "中旬", "下旬"]
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,8 +29,8 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
         textField3.delegate = self
         textField4.delegate = self
         textField5.delegate = self
-        pickerView.delegate = self
-        pickerView.dataSource = self
+//        pickerView.delegate = self
+//        pickerView.dataSource = self
 
         textField1.keyboardType = .numberPad
         textField2.keyboardType = .numberPad
@@ -77,19 +77,19 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
             return true
         }
     }
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-            return 1
-        }
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView == pickerView {
-            return pickerArray.count
-        }
-        return 0
-    }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == pickerView {
-            return pickerArray[row]
-        }
-        return nil
-    }
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//            return 1
+//        }
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        if pickerView == pickerView {
+//            return pickerArray.count
+//        }
+//        return 0
+//    }
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        if pickerView == pickerView {
+//            return pickerArray[row]
+//        }
+//        return nil
+//    }
 }
