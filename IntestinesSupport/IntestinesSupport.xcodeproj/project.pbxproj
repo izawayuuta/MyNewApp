@@ -54,6 +54,7 @@
 		A64AAC592C4E716300AE04C1 /* PeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC562C4E716300AE04C1 /* PeriodCell.swift */; };
 		A64AAC5C2C4E718200AE04C1 /* PlusButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC5B2C4E718200AE04C1 /* PlusButtonCell.xib */; };
 		A64AAC5D2C4E718200AE04C1 /* PlusButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC5A2C4E718200AE04C1 /* PlusButtonCell.swift */; };
+		A64AAC632C6098DB00AE04C1 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC622C6098DB00AE04C1 /* CustomTextField.swift */; };
 		ED0FE989D657E8FADDF3BE80 /* Pods_IntestinesSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 821BD2A208DED6BC34BAAE2E /* Pods_IntestinesSupport.framework */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +131,7 @@
 		A64AAC572C4E716300AE04C1 /* PeriodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeriodCell.xib; sourceTree = "<group>"; };
 		A64AAC5A2C4E718200AE04C1 /* PlusButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButtonCell.swift; sourceTree = "<group>"; };
 		A64AAC5B2C4E718200AE04C1 /* PlusButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlusButtonCell.xib; sourceTree = "<group>"; };
+		A64AAC622C6098DB00AE04C1 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		B1FC26A613D5492A6A92A954 /* Pods-IntestinesSupportTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntestinesSupportTests.release.xcconfig"; path = "Target Support Files/Pods-IntestinesSupportTests/Pods-IntestinesSupportTests.release.xcconfig"; sourceTree = "<group>"; };
 		C6BAB30AA22CD6F747063D5A /* Pods_IntestinesSupport_IntestinesSupportUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupport_IntestinesSupportUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2E464BD7D4F2F142C45DAD /* Pods_IntestinesSupportTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupportTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -272,6 +274,7 @@
 			children = (
 				A62298102C358A3F0099F425 /* MyMedicineViewController.swift */,
 				A64AAC322C44F5A500AE04C1 /* MyMedicineInformationViewController.swift */,
+				A64AAC622C6098DB00AE04C1 /* CustomTextField.swift */,
 			);
 			path = MyMedicine;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				A622980F2C341F0E0099F425 /* CalendarViewController.swift in Sources */,
 				A64AAC412C4BD06200AE04C1 /* MedicineEmptyStateCell.swift in Sources */,
 				A64AAC1D2C4144F700AE04C1 /* FecesConditionCell.swift in Sources */,
+				A64AAC632C6098DB00AE04C1 /* CustomTextField.swift in Sources */,
 				A64AAC552C4E714D00AE04C1 /* DeadlineCell.swift in Sources */,
 				A64AAC392C4A878700AE04C1 /* FecesRecord .swift in Sources */,
 				A64AAC372C4683AB00AE04C1 /* PhysicalConditionCell.swift in Sources */,

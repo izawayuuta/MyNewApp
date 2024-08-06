@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SwiftUI
 
-class PeriodCell: UITableViewCell, UITextFieldDelegate {
+class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField1: UITextField!
@@ -17,7 +18,7 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var textField5: UITextField!
     @IBOutlet weak var pickerView: UIPickerView!
     
-//    var pickerArray = ["上旬", "中旬", "下旬"]
+    let pickerData = ["上旬", "中旬", "下旬"]
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,9 +30,9 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate {
         textField3.delegate = self
         textField4.delegate = self
         textField5.delegate = self
-//        pickerView.delegate = self
-//        pickerView.dataSource = self
-
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        
         textField1.keyboardType = .numberPad
         textField2.keyboardType = .numberPad
         textField3.keyboardType = .numberPad
@@ -39,10 +40,10 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate {
         textField5.keyboardType = .numberPad
         
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     @objc func tapDoneButton() {
@@ -77,19 +78,28 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate {
             return true
         }
     }
-//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//            return 1
-//        }
-//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        if pickerView == pickerView {
-//            return pickerArray.count
-//        }
-//        return 0
-//    }
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        if pickerView == pickerView {
-//            return pickerArray[row]
-//        }
-//        return nil
-//    }
+    struct ContentView: View {
+        @State var pickerIndex: Int = 0
+        var body: some View {
+            Form {
+                Section {
+                    Picker("季節", selection: $pickerIndex) {
+                        Text("上旬").tag(0)
+                        Text("中旬").tag(1)
+                        Text("下旬").tag(2)
+                    }
+                    .pickerStyle(.menu)
+                }
+            }
+        }
+    }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 3
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
 }

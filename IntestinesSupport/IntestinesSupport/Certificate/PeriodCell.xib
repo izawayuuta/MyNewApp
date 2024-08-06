@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wsh-BR-xR4">
-                        <rect key="frame" x="113" y="47.666666666666657" width="38" height="34"/>
+                        <rect key="frame" x="113" y="49" width="38" height="34"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="38" id="0T7-mN-oFg"/>
                         </constraints>
@@ -26,7 +26,7 @@
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="apP-ve-nCG">
-                        <rect key="frame" x="177" y="108.66666666666667" width="38" height="34.000000000000014"/>
+                        <rect key="frame" x="177" y="110" width="38" height="34"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="38" id="4Jo-bD-IxU"/>
                         </constraints>
@@ -34,7 +34,7 @@
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rbd-MO-swf">
-                        <rect key="frame" x="177" y="47.666666666666657" width="38" height="34"/>
+                        <rect key="frame" x="177" y="49" width="38" height="34"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="38" id="Pqr-QU-LC5"/>
                         </constraints>
@@ -42,7 +42,7 @@
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zne-X3-UDu">
-                        <rect key="frame" x="262" y="47.666666666666657" width="38" height="34"/>
+                        <rect key="frame" x="262" y="49" width="38" height="34"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="38" id="Cof-tJ-d0U"/>
                         </constraints>
@@ -50,12 +50,12 @@
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEH-1n-UsQ">
-                        <rect key="frame" x="20" y="10" width="238" height="19"/>
+                        <rect key="frame" x="19.999999999999986" y="9.9999999999999982" width="222.66666666666663" height="20.333333333333329"/>
                         <attributedString key="attributedText">
                             <fragment content="申請受付期間と結果通知の時期">
                                 <attributes>
-                                    <font key="NSFont" size="17" name=".AppleJapaneseFont-Regular"/>
-                                    <font key="NSOriginalFont" size="17" name=".AppleJapaneseFont-Regular"/>
+                                    <font key="NSFont" metaFont="system" size="17"/>
+                                    <font key="NSOriginalFont" metaFont="system" size="17"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                     <integer key="NSUnderline" value="1"/>
                                 </attributes>
@@ -64,55 +64,55 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="受付" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBs-9r-hYb">
-                        <rect key="frame" x="36" y="54" width="32" height="21"/>
+                        <rect key="frame" x="36" y="55.333333333333343" width="32" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="結果通知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exk-XD-5N4">
-                        <rect key="frame" x="20" y="115" width="64" height="21"/>
+                        <rect key="frame" x="20" y="116.33333333333333" width="64" height="20.999999999999986"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4OZ-8Y-qs0">
-                        <rect key="frame" x="220" y="54" width="16" height="21"/>
+                        <rect key="frame" x="220" y="55.333333333333343" width="16" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEZ-mI-Vlw">
-                        <rect key="frame" x="369" y="54" width="16" height="21"/>
+                        <rect key="frame" x="369" y="55.333333333333343" width="16" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="〜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQT-PO-rjD">
-                        <rect key="frame" x="241" y="54" width="16" height="21"/>
+                        <rect key="frame" x="241" y="55.333333333333343" width="16" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="月" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8p-TS-mDE">
-                        <rect key="frame" x="156" y="54" width="16" height="21"/>
+                        <rect key="frame" x="156" y="55.333333333333343" width="16" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="月" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPT-qa-ulX">
-                        <rect key="frame" x="225" y="115" width="16" height="21"/>
+                        <rect key="frame" x="225" y="116.33333333333333" width="16" height="20.999999999999986"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="月" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mF-Ub-1qW">
-                        <rect key="frame" x="305" y="54" width="16" height="21"/>
+                        <rect key="frame" x="305" y="55.333333333333343" width="16" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hko-Nj-VEY">
-                        <rect key="frame" x="326" y="47.666666666666657" width="38" height="34"/>
+                        <rect key="frame" x="326" y="49" width="38" height="34"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="38" id="ZbG-fv-LUR"/>
                         </constraints>
@@ -120,13 +120,13 @@
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="↓" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wU6-zD-Ugp">
-                        <rect key="frame" x="242.66666666666666" y="85" width="13" height="21"/>
+                        <rect key="frame" x="242.66666666666666" y="86.333333333333329" width="13" height="21"/>
                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eW6-08-70i">
-                        <rect key="frame" x="256" y="91" width="100" height="70"/>
+                        <rect key="frame" x="256" y="92" width="100" height="70"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="70" id="PWe-37-CCf"/>
                             <constraint firstAttribute="width" constant="100" id="xfh-Ng-Oeb"/>
