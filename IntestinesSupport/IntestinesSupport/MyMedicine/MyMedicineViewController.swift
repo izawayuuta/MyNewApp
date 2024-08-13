@@ -72,6 +72,9 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         navigationController.modalPresentationStyle = .automatic
         present(navigationController, animated: true, completion: nil)
     }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
     // デリゲートメソッド
     func didSaveMedicine(_ medicine: MedicineDataModel) {
         medicineDataModel.append(medicine)
@@ -82,9 +85,6 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         try! realm.write {
             realm.add(medicine)
         }
-        // データの再読み込み
-        loadMedicines()
-        tableView.reloadData()
     }
     private func deleteMedicine(_ medicine: MedicineDataModel) {
         let realm = try! Realm()

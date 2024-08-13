@@ -68,7 +68,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         tableView.separatorColor = UIColor.black
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        saveCalendar()
         loadCalendars()
     } // viewDidLoad終わり
     func loadCalendars() {
@@ -268,23 +267,14 @@ extension CalendarViewController {
         calendarDataModel.append(calendar)
         tableView.reloadData()
     }
-    func saveCalendar() {
-        // インスタンスの作成とプロパティの設定
+    private func saveCalendar(_ calendar: CalendarDataModel) {
         let calendarData = CalendarDataModel()
-        calendarData.number01Button = 1
+        calendarData.number01Button = 2
         calendarData.memo = "Sample memo"
-        
-        // Realmインスタンスの取得
-        do {
-            let realm = try Realm()
-            
-            // データの保存
-            try realm.write {
-                realm.add(calendarData)
-            }
-            print("データが保存されました。")
-        } catch {
-            print("データの保存中にエラーが発生しました: \(error.localizedDescription)")
+
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(calendar)
         }
     }
 }
