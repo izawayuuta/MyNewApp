@@ -10,7 +10,7 @@ import UIKit
 class HierarchyClassificationCell: UITableViewCell {
     
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var textField02: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
@@ -28,6 +28,6 @@ class HierarchyClassificationCell: UITableViewCell {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
         let commitButton = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(tapDoneButton))
         toolBar.items = [commitButton]
-        textField.inputAccessoryView = toolBar
+        textField02.inputAccessoryView = toolBar
     }
 }

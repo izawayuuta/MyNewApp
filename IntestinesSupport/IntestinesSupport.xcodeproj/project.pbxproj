@@ -55,6 +55,13 @@
 		A64AAC5C2C4E718200AE04C1 /* PlusButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC5B2C4E718200AE04C1 /* PlusButtonCell.xib */; };
 		A64AAC5D2C4E718200AE04C1 /* PlusButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC5A2C4E718200AE04C1 /* PlusButtonCell.swift */; };
 		A64AAC632C6098DB00AE04C1 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC622C6098DB00AE04C1 /* CustomTextField.swift */; };
+		A64AAC662C6239DF00AE04C1 /* MedicineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC652C6239DF00AE04C1 /* MedicineTableViewCell.xib */; };
+		A64AAC672C6239DF00AE04C1 /* MedicineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC642C6239DF00AE04C1 /* MedicineTableViewCell.swift */; };
+		A64AAC6B2C6245D600AE04C1 /* MyMedicines.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC6A2C6245D600AE04C1 /* MyMedicines.swift */; };
+		A64AAC6F2C68E7ED00AE04C1 /* CertificateDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC6E2C68E7ED00AE04C1 /* CertificateDataModel.swift */; };
+		A64AAC712C695A3600AE04C1 /* Certificates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC702C695A3600AE04C1 /* Certificates.swift */; };
+		A64AAC732C6B76F900AE04C1 /* CalendarDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC722C6B76F900AE04C1 /* CalendarDataModel.swift */; };
+		A64AAC752C6B797200AE04C1 /* Calendars.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC742C6B797200AE04C1 /* Calendars.swift */; };
 		ED0FE989D657E8FADDF3BE80 /* Pods_IntestinesSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 821BD2A208DED6BC34BAAE2E /* Pods_IntestinesSupport.framework */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +139,13 @@
 		A64AAC5A2C4E718200AE04C1 /* PlusButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButtonCell.swift; sourceTree = "<group>"; };
 		A64AAC5B2C4E718200AE04C1 /* PlusButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlusButtonCell.xib; sourceTree = "<group>"; };
 		A64AAC622C6098DB00AE04C1 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		A64AAC642C6239DF00AE04C1 /* MedicineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineTableViewCell.swift; sourceTree = "<group>"; };
+		A64AAC652C6239DF00AE04C1 /* MedicineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MedicineTableViewCell.xib; sourceTree = "<group>"; };
+		A64AAC6A2C6245D600AE04C1 /* MyMedicines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMedicines.swift; sourceTree = "<group>"; };
+		A64AAC6E2C68E7ED00AE04C1 /* CertificateDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateDataModel.swift; sourceTree = "<group>"; };
+		A64AAC702C695A3600AE04C1 /* Certificates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certificates.swift; sourceTree = "<group>"; };
+		A64AAC722C6B76F900AE04C1 /* CalendarDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDataModel.swift; sourceTree = "<group>"; };
+		A64AAC742C6B797200AE04C1 /* Calendars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendars.swift; sourceTree = "<group>"; };
 		B1FC26A613D5492A6A92A954 /* Pods-IntestinesSupportTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntestinesSupportTests.release.xcconfig"; path = "Target Support Files/Pods-IntestinesSupportTests/Pods-IntestinesSupportTests.release.xcconfig"; sourceTree = "<group>"; };
 		C6BAB30AA22CD6F747063D5A /* Pods_IntestinesSupport_IntestinesSupportUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupport_IntestinesSupportUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2E464BD7D4F2F142C45DAD /* Pods_IntestinesSupportTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupportTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,6 +262,8 @@
 			isa = PBXGroup;
 			children = (
 				A622980E2C341F0E0099F425 /* CalendarViewController.swift */,
+				A64AAC722C6B76F900AE04C1 /* CalendarDataModel.swift */,
+				A64AAC742C6B797200AE04C1 /* Calendars.swift */,
 				A64AAC162C3FFD4300AE04C1 /* CalendarDateCell.swift */,
 				A64AAC172C3FFD4300AE04C1 /* CalendarDateCell.xib */,
 				A64AAC342C4683AB00AE04C1 /* PhysicalConditionCell.swift */,
@@ -274,7 +290,10 @@
 			children = (
 				A62298102C358A3F0099F425 /* MyMedicineViewController.swift */,
 				A64AAC322C44F5A500AE04C1 /* MyMedicineInformationViewController.swift */,
+				A64AAC6A2C6245D600AE04C1 /* MyMedicines.swift */,
 				A64AAC622C6098DB00AE04C1 /* CustomTextField.swift */,
+				A64AAC642C6239DF00AE04C1 /* MedicineTableViewCell.swift */,
+				A64AAC652C6239DF00AE04C1 /* MedicineTableViewCell.xib */,
 			);
 			path = MyMedicine;
 			sourceTree = "<group>";
@@ -294,6 +313,8 @@
 			isa = PBXGroup;
 			children = (
 				A62298122C358A5A0099F425 /* CertificateViewController.swift */,
+				A64AAC6E2C68E7ED00AE04C1 /* CertificateDataModel.swift */,
+				A64AAC702C695A3600AE04C1 /* Certificates.swift */,
 				A64AAC462C4D232E00AE04C1 /* ApplicationClassificationCell.swift */,
 				A64AAC472C4D232E00AE04C1 /* ApplicationClassificationCell.xib */,
 				A64AAC4A2C4E711800AE04C1 /* MoneyCell.swift */,
@@ -420,6 +441,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A64AAC582C4E716300AE04C1 /* PeriodCell.xib in Resources */,
+				A64AAC662C6239DF00AE04C1 /* MedicineTableViewCell.xib in Resources */,
 				A64AAC2F2C42B87800AE04C1 /* FecesDetailCell.xib in Resources */,
 				A62297E82C341E810099F425 /* Assets.xcassets in Resources */,
 				A64AAC4C2C4E711800AE04C1 /* MoneyCell.xib in Resources */,
@@ -574,14 +596,19 @@
 				A64AAC412C4BD06200AE04C1 /* MedicineEmptyStateCell.swift in Sources */,
 				A64AAC1D2C4144F700AE04C1 /* FecesConditionCell.swift in Sources */,
 				A64AAC632C6098DB00AE04C1 /* CustomTextField.swift in Sources */,
+				A64AAC752C6B797200AE04C1 /* Calendars.swift in Sources */,
 				A64AAC552C4E714D00AE04C1 /* DeadlineCell.swift in Sources */,
+				A64AAC732C6B76F900AE04C1 /* CalendarDataModel.swift in Sources */,
 				A64AAC392C4A878700AE04C1 /* FecesRecord .swift in Sources */,
 				A64AAC372C4683AB00AE04C1 /* PhysicalConditionCell.swift in Sources */,
+				A64AAC6B2C6245D600AE04C1 /* MyMedicines.swift in Sources */,
 				A62297DF2C341E7F0099F425 /* AppDelegate.swift in Sources */,
 				A64AAC282C4146BF00AE04C1 /* MedicineRecordDetailCell.swift in Sources */,
 				A64AAC2C2C41556300AE04C1 /* MemoCell.swift in Sources */,
 				A62297E12C341E7F0099F425 /* SceneDelegate.swift in Sources */,
 				A62298192C3825A50099F425 /* TabViewController.swift in Sources */,
+				A64AAC712C695A3600AE04C1 /* Certificates.swift in Sources */,
+				A64AAC6F2C68E7ED00AE04C1 /* CertificateDataModel.swift in Sources */,
 				A64AAC4D2C4E711800AE04C1 /* MoneyCell.swift in Sources */,
 				A64AAC332C44F5A500AE04C1 /* MyMedicineInformationViewController.swift in Sources */,
 				A62298112C358A3F0099F425 /* MyMedicineViewController.swift in Sources */,
@@ -589,6 +616,7 @@
 				A64AAC512C4E713A00AE04C1 /* HierarchyClassificationCell.swift in Sources */,
 				A64AAC302C42B87800AE04C1 /* FecesDetailCell.swift in Sources */,
 				A64AAC3D2C4BCDBF00AE04C1 /* EmptyStateCell.swift in Sources */,
+				A64AAC672C6239DF00AE04C1 /* MedicineTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,13 +10,13 @@ import UIKit
 class MoneyCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var textField: UITextField!
-    
+    @IBOutlet weak var textField01: UITextField!
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        textField.delegate = self
+        textField01.delegate = self
         
-        textField.keyboardType = UIKeyboardType.numberPad
+        textField01.keyboardType = UIKeyboardType.numberPad
         
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
     }
@@ -33,7 +33,7 @@ class MoneyCell: UITableViewCell, UITextFieldDelegate {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
         let commitButton = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(tapDoneButton))
         toolBar.items = [commitButton]
-        textField.inputAccessoryView = toolBar
+        textField01.inputAccessoryView = toolBar
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // 各フィールドの最大文字数

@@ -10,7 +10,7 @@ import UIKit
 class ApplicationClassificationCell: UITableViewCell {
     
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var textField0: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
@@ -28,6 +28,6 @@ class ApplicationClassificationCell: UITableViewCell {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
         let commitButton = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(tapDoneButton))
         toolBar.items = [commitButton]
-        textField.inputAccessoryView = toolBar
+        textField0.inputAccessoryView = toolBar
     }
 }

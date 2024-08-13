@@ -18,12 +18,12 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4HH-zG-HUU">
-                        <rect key="frame" x="20" y="12.666666666666664" width="68" height="19"/>
+                        <rect key="frame" x="19.999999999999996" y="11.999999999999998" width="63.666666666666657" height="20.333333333333329"/>
                         <attributedString key="attributedText">
                             <fragment content="適用区分">
                                 <attributes>
                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <font key="NSFont" size="17" name=".HiraKakuInterface-W3"/>
+                                    <font key="NSFont" metaFont="system" size="17"/>
                                     <font key="NSOriginalFont" metaFont="system" size="17"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                     <integer key="NSUnderline" value="1"/>
@@ -51,7 +51,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="label" destination="4HH-zG-HUU" id="z2z-yc-Qd5"/>
-                <outlet property="textField" destination="6Qf-sT-6sh" id="Xpa-HO-JoX"/>
+                <outlet property="textField0" destination="6Qf-sT-6sh" id="JzT-Cm-dcK"/>
             </connections>
             <point key="canvasLocation" x="129.7709923664122" y="-33.098591549295776"/>
         </tableViewCell>

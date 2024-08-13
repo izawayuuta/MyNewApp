@@ -6,13 +6,39 @@
 //
 
 import UIKit
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let config = Realm.Configuration(
+                schemaVersion: 3, // スキーマバージョンを更新
+                migrationBlock: { migration, oldSchemaVersion in
+                    if oldSchemaVersion < 2 {
+                        // すべての既存オブジェクトに対してマイグレーションを実行
+                        migration.enumerateObjects(ofType: MedicineDataModel.className()) { oldObject, newObject in
+                            // もし `textField` プロパティが Int 型から String 型に変更された場合
+                            if let oldIntValue = oldObject?["textField"] as? Int {
+                                newObject?["textField"] = String(oldIntValue)
+                            }
+                            
+                            // もし `customPickerTextField` プロパティが Int 型から String 型に変更された場合
+                            if let oldIntValue = oldObject?["customPickerTextField"] as? Int {
+                                newObject?["customPickerTextField"] = String(oldIntValue)
+                            }
+                            
+                            // `label` プロパティの初期化
+                            newObject?["label"] = newObject?["label"] as? String ?? ""
+                        }
+                    }
+                }
+            )
+
+                Realm.Configuration.defaultConfiguration = config
+
         // Override point for customization after application launch.
         return true
     }
