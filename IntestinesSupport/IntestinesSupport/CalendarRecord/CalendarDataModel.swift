@@ -8,25 +8,26 @@
 import RealmSwift
 
 protocol CalendarViewControllerDelegate: AnyObject {
-    func didSaveCalendar(_ calendar: CalendarDataModel)
+    func saveCalendarData(_ calendar: CalendarDataModel)
 }
 
 class CalendarDataModel: Object {
-    @objc dynamic var number01Button: Int = 0
-    @objc dynamic var number02Button: Int = 0
-    @objc dynamic var number03Button: Int = 0
-    @objc dynamic var number04Button: Int = 0
-    @objc dynamic var number05Button: Int = 0
-    @objc dynamic var number1Button: Int = 0
-    @objc dynamic var number2Button: Int = 0
-    @objc dynamic var number3Button: Int = 0
-    @objc dynamic var number4Button: Int = 0
-    @objc dynamic var number5Button: Int = 0
-    @objc dynamic var fecesDetail1: Int = 0
-    @objc dynamic var fecesDetail2: Int = 0
-    @objc dynamic var fecesDetail3: Int = 0
-    @objc dynamic var fecesDetail4: Int = 0
-    @objc dynamic var fecesDetail5: Int = 0
-    @objc dynamic var fecesDetail6: Int = 0
+    @objc dynamic var id: String = UUID().uuidString
+    @objc dynamic var date: Date = Date()
+    // 99の番号は未選択状態を表す
+    @objc dynamic var selectedPhysicalConditionIndex: Int = 99
+    @objc dynamic var selectedFecesConditionIndex: Int = 99
+    @objc dynamic var selectedFecesDetailIndex: Int = 99
     @objc dynamic var memo: String = ""
+    
+    convenience init(id: String, date: Date, selectedPhysicalConditionIndex: Int, selectedFecesConditionIndex: Int, selectedFecesDetailIndex: Int, memo: String) {
+        // まずself.init()を呼び出して、デフォルトの初期化を行う
+        self.init()
+        self.id = id
+        self.date = date
+        self.selectedPhysicalConditionIndex = selectedPhysicalConditionIndex
+        self.selectedFecesConditionIndex = selectedFecesConditionIndex
+        self.selectedFecesDetailIndex = selectedFecesDetailIndex
+        self.memo = memo
+    }
 }
