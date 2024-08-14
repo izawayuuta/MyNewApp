@@ -10,12 +10,12 @@ import FSCalendar
 import SwiftUI
 import RealmSwift
 
-class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, UITableViewDelegate, UITableViewDataSource, FecesDetailCellDelegate, CalendarViewControllerDelegate {
+
+class CalendarViewController: UIViewController, FecesDetailCellDelegate {
     
+    private let tableViewCell: [String] = ["CalendarDateCell", "PhysicalConditionCell", "FecesConditionCell", "FecesDetailCell", "AdditionButtonCell", "MedicineEmptyStateCell", "MedicineRecordDetailCell", "MemoCell"]
     
-    
-    var tableViewCell: [String] = []
-    var selectedDate: Date? // 選択された日付を保持するプロパティ
+    private var selectedDate: Date?
     private var calendarDataModel: [CalendarDataModel] = []
     weak var delegate: CalendarViewControllerDelegate?
     
@@ -31,6 +31,11 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        calendar.delegate = self
+        calendar.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         tableView.register(UINib(nibName: "CalendarDateCell", bundle: nil), forCellReuseIdentifier: "CalendarDateCell")
         tableView.register(UINib(nibName: "PhysicalConditionCell", bundle: nil), forCellReuseIdentifier: "PhysicalConditionCell")
         tableView.register(UINib(nibName: "FecesConditionCell", bundle: nil), forCellReuseIdentifier: "FecesConditionCell")
@@ -40,16 +45,15 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         tableView.register(UINib(nibName: "MedicineRecordDetailCell", bundle: nil), forCellReuseIdentifier: "MedicineRecordDetailCell")
         tableView.register(UINib(nibName: "MemoCell", bundle: nil), forCellReuseIdentifier: "MemoCell")
         
+        tableView.separatorColor = UIColor.black
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        calendar.delegate = self
-        calendar.dataSource = self
-        tableView.delegate = self
-        tableView.dataSource = self
+        loadCalendars()
         configureCalendar()
-        selectedDate = Date()
-        tableViewCell = ["CalendarDateCell", "PhysicalConditionCell", "FecesConditionCell", "FecesDetailCell", "AdditionButtonCell", "MedicineEmptyStateCell", "MedicineRecordDetailCell", "MemoCell"]
-        tableView.reloadData()
-        
+        setupCalendarScope()
+    }
+    
+    private func setupCalendarScope() {
         // 画面を閉じた時の表示を再度表示
         let defaults = UserDefaults.standard
         if let savedScope = defaults.string(forKey: "calendarScope") {
@@ -65,16 +69,15 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
             calendar.setScope(.month, animated: false)
             changeButton.setTitle("週表示", for: .normal)
         }
-        tableView.separatorColor = UIColor.black
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
-        loadCalendars()
-    } // viewDidLoad終わり
-    func loadCalendars() {
+    }
+    
+    // viewDidLoad終わり
+   private func loadCalendars() {
         let realm = try! Realm()
         let calendars = realm.objects(CalendarDataModel.self)
         calendarDataModel = Array(calendars)
     }
+    
     private func configureCalendar() {
         // ヘッダーの日付フォーマットを変更
         calendar.appearance.headerDateFormat = "yyyy年MM月"
@@ -95,6 +98,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         calendar.calendarWeekdayView.weekdayLabels[0].textColor = .red
         calendar.calendarWeekdayView.weekdayLabels[6].textColor = .blue
     }
+    
     // calendarの表示形式変更
     @IBAction func changeButtonAction(_ sender: Any) {
         if calendar.scope == .month {
@@ -110,81 +114,60 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         }
     }
     
-    
     private func saveCalendarScope(scope: FSCalendarScope) {
         let defaults = UserDefaults.standard
         defaults.set(scope == .month ? "month" : "week", forKey: "calendarScope")
     }
+    
+    // FIXME: 遷移するとクラッシュする
+    func didTapHistoryButton(in cell: FecesDetailCell) {
+        performSegue(withIdentifier: "FecesHistory", sender: self)
+    }
+    
+    private func refreshData() {
+        loadCalendars()
+        tableView.reloadData()
+    }
+}
+
+// MARK: tableView関連
+extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableViewCell.count
     }
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        selectedDate = date
-        tableViewCell = ["CalendarDateCell", "PhysicalConditionCell", "FecesConditionCell", "FecesDetailCell", "AdditionButtonCell", "MedicineEmptyStateCell", "MedicineRecordDetailCell", "MemoCell"]
-        tableView.reloadData()
-    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // 選択された日付がないとそもそもデータの保存ができないため、日付が選択していない場合は空のCellを返却する
+        // 今は適当なCellを使用したので、ボーダーが表示されないような工夫をお願いします
+        // ユーザーに日付の選択を促すCellを実装しても良いでしょう
+        guard let selectedDate else { return EmptyStateCell() }
+        
         let identifier = tableViewCell[indexPath.row]
+        // 日付に紐づくcalendarDataModelを取得する
+        let filteredCalendarDataModel = calendarDataModel.filter { $0.date == selectedDate }.first
         
         if identifier == "CalendarDateCell" {
             let calendarCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! CalendarDateCell
-            if let date = selectedDate {
-                calendarCell.configure(with: date)
-            }
+            calendarCell.configure(with: selectedDate)
             return calendarCell
         } else if identifier == "PhysicalConditionCell" {
             let physicalConditionCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PhysicalConditionCell
-            if indexPath.row < calendarDataModel.count {
-                let data = calendarDataModel[indexPath.row]
-                physicalConditionCell.number01Button.tag = data.number01Button
-                physicalConditionCell.number02Button.tag = data.number02Button
-                physicalConditionCell.number03Button.tag = data.number03Button
-                physicalConditionCell.number04Button.tag = data.number04Button
-                physicalConditionCell.number05Button.tag = data.number05Button
-                
-                physicalConditionCell.number01Button.setTitle(String(data.number01Button), for: .normal)
-                physicalConditionCell.number02Button.setTitle(String(data.number02Button), for: .normal)
-                physicalConditionCell.number03Button.setTitle(String(data.number03Button), for: .normal)
-                physicalConditionCell.number04Button.setTitle(String(data.number04Button), for: .normal)
-                physicalConditionCell.number05Button.setTitle(String(data.number05Button), for: .normal)
+            physicalConditionCell.delegate = self
+            // CalendarDataModelがnilの場合は早期リターンする
+            guard let model = filteredCalendarDataModel else {
+                // nilの場合は日付だけ必要なのでそれをセットする
+                physicalConditionCell.configure(selectedDate: selectedDate)
+                return physicalConditionCell
             }
+            physicalConditionCell.configure(selectedIndex: model.selectedPhysicalConditionIndex, model: model , selectedDate: selectedDate)
             return physicalConditionCell
         } else if identifier == "FecesConditionCell" {
             let fecesConditionCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! FecesConditionCell
             if indexPath.row < calendarDataModel.count {
-                let data = calendarDataModel[indexPath.row]
-                fecesConditionCell.number1Button.tag = data.number1Button
-                fecesConditionCell.number2Button.tag = data.number2Button
-                fecesConditionCell.number3Button.tag = data.number3Button
-                fecesConditionCell.number4Button.tag = data.number4Button
-                fecesConditionCell.number5Button.tag = data.number5Button
-                
-                fecesConditionCell.number1Button.setTitle(String(data.number1Button), for: .normal)
-                fecesConditionCell.number2Button.setTitle(String(data.number2Button), for: .normal)
-                fecesConditionCell.number3Button.setTitle(String(data.number3Button), for: .normal)
-                fecesConditionCell.number4Button.setTitle(String(data.number4Button), for: .normal)
-                fecesConditionCell.number5Button.setTitle(String(data.number5Button), for: .normal)
             }
             return fecesConditionCell
         } else if identifier == "FecesDetailCell" {
             let fecesDetailCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! FecesDetailCell
-            if indexPath.row < calendarDataModel.count {
-                let data = calendarDataModel[indexPath.row]
-                fecesDetailCell.fecesDetail1.tag = data.fecesDetail1
-                fecesDetailCell.fecesDetail2.tag = data.fecesDetail2
-                fecesDetailCell.fecesDetail3.tag = data.fecesDetail3
-                fecesDetailCell.fecesDetail4.tag = data.fecesDetail4
-                fecesDetailCell.fecesDetail5.tag = data.fecesDetail5
-                fecesDetailCell.fecesDetail6.tag = data.fecesDetail6
-                
-                fecesDetailCell.fecesDetail1.setTitle(String(data.fecesDetail1), for: .normal)
-                fecesDetailCell.fecesDetail2.setTitle(String(data.fecesDetail2), for: .normal)
-                fecesDetailCell.fecesDetail3.setTitle(String(data.fecesDetail3), for: .normal)
-                fecesDetailCell.fecesDetail4.setTitle(String(data.fecesDetail4), for: .normal)
-                fecesDetailCell.fecesDetail5.setTitle(String(data.fecesDetail5), for: .normal)
-                fecesDetailCell.fecesDetail6.setTitle(String(data.fecesDetail6), for: .normal)
-            }
             fecesDetailCell.delegate = self
             return fecesDetailCell
             
@@ -215,26 +198,12 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
             return UITableViewCell()
         }
     }
+    
+    /// 全てのCellの選択を不可にする
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        // 特定の行を選択不可にする
-        if indexPath.row == 0 {
-            return false
-        } else if indexPath.row == 1 {
-            return false
-        } else if indexPath.row == 2 {
-            return false
-        } else if indexPath.row == 3 {
-            return false
-        } else if indexPath.row == 4 {
-            return false
-        } else if indexPath.row == 5 {
-            return false
-        } else if indexPath.row == 6 {
-            return false
-        } else {
-            return true
-        }
+        return false
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 3 {
             return 80 // 3行目の高さを80に設定
@@ -242,39 +211,60 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
             return UITableView.automaticDimension
         }
     }
-    func didTapHistoryButton(in cell: FecesDetailCell) {
-        performSegue(withIdentifier: "FecesHistory", sender: self)
+}
+
+// MARK: CalendarViewControllerDelegate関連 / RealmDataの保存を行う
+extension CalendarViewController: CalendarViewControllerDelegate {
+    func saveCalendarData(_ newData: CalendarDataModel) {
+        let realm = try! Realm()
+        // Realmのデータの中に同じidが存在するならそれをもとに更新する
+        if let object = realm.objects(CalendarDataModel.self).filter("id == %@", newData.id).first {
+            try! realm.write {
+                object.date = newData.date
+                object.selectedPhysicalConditionIndex = newData.selectedPhysicalConditionIndex
+                object.selectedFecesConditionIndex = newData.selectedFecesConditionIndex
+                object.selectedFecesDetailIndex = newData.selectedFecesDetailIndex
+                object.memo = newData.memo
+            }
+        } else {
+            // idが一致しない場合は新規で保存する
+            try! realm.write {
+                realm.add(newData)
+            }
+        }
+        // Realmの保存が完了した後TableViewをリロードする
+        refreshData()
     }
 }
-extension CalendarViewController {
+
+// MARK: FSCalendarDelegate関連
+extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
+    
+    // 日付が選択されたときに呼び出されるメソッド
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        selectedDate = date
+        tableView.reloadData() // 選択された日付に関連するデータを表示するためにテーブルビューをリロード
+    }
+
+    // カレンダーの日付のタイトルの色をカスタマイズするメソッド
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
         let weekday = Calendar.current.component(.weekday, from: date)
         
-        // 土曜を青、日曜を赤
+        // 土曜日の場合、タイトルの色を青にする
         if weekday == 7 {
             return .blue
+        // 日曜日の場合、タイトルの色を赤にする
         } else if weekday == 1 {
             return .red
         }
-        return nil
+        return nil // その他の日はデフォルトの色を使用
     }
-    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
-        calendarHeight.constant = bounds.height
-        self.view.layoutIfNeeded()
-    }
-    // デリゲートメソッド
-    func didSaveCalendar(_ calendar: CalendarDataModel) {
-        calendarDataModel.append(calendar)
-        tableView.reloadData()
-    }
-    private func saveCalendar(_ calendar: CalendarDataModel) {
-        let calendarData = CalendarDataModel()
-        calendarData.number01Button = 2
-        calendarData.memo = "Sample memo"
 
-        let realm = try! Realm()
-        try! realm.write {
-            realm.add(calendar)
-        }
+    // カレンダーの高さが変更されるときに呼び出されるメソッド
+    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+        // カレンダーの高さ制約を更新
+        calendarHeight.constant = bounds.height
+        // レイアウトの更新を即時反映
+        self.view.layoutIfNeeded()
     }
 }
