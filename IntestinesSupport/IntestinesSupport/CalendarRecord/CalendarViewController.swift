@@ -96,6 +96,28 @@ class CalendarViewController: UIViewController, FecesDetailCellDelegate {
         // 土日の色を変更
         calendar.calendarWeekdayView.weekdayLabels[0].textColor = .red
         calendar.calendarWeekdayView.weekdayLabels[6].textColor = .blue
+        
+        // 現在のUTC時間を取得
+        let now = Date()
+        // カレンダーを取得
+        let calendarCurrent = Calendar.current
+        // おそらく、FSCalendarの日付が世界標準時間をもとに計算されているので、時差を考慮して当日を基準にマイナス1日する
+        guard let previousDay = calendarCurrent.date(byAdding: .day, value: -1, to: now) else { return }
+        // 現在の年、月、日を取得
+        let components = calendarCurrent.dateComponents([.year, .month, .day], from: previousDay)
+        // UTCの15:00を設定
+        var utcComponents = DateComponents()
+        utcComponents.year = components.year
+        utcComponents.month = components.month
+        utcComponents.day = components.day
+        utcComponents.hour = 15
+        utcComponents.timeZone = TimeZone(abbreviation: "UTC")
+        // UTCの15:00の日付を取得
+        guard let utcDate = calendarCurrent.date(from: utcComponents) else { return }
+        // 現在の日付を初期値としてセットする
+        selectedDate = utcDate
+        // カレンダーの日付を選択される
+        calendar.select(utcDate)
     }
     
     // calendarの表示形式変更
@@ -136,9 +158,9 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // 選択された日付がないとそもそもデータの保存ができないため、日付が選択していない場合は空のCellを返却する
-        // 今は適当なCellを使用したので、ボーダーが表示されないような工夫をお願いします
-        // ユーザーに日付の選択を促すCellを実装しても良いでしょう
+        // 基本的には selectedDateがnilならない(なっている場合はバグが発生している)
+        // selectedDateのロジックが成立していない状態でCellの選択をさせ、保存させてしまうと保存データがおかしくなるのでEmptyStateCell自体は個人的にはあっても良いかなと思います
+        // 最終的な判断はお任せします
         guard let selectedDate else { return EmptyStateCell() }
         
         let identifier = tableViewCell[indexPath.row]
