@@ -62,6 +62,8 @@
 		A64AAC712C695A3600AE04C1 /* Certificates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC702C695A3600AE04C1 /* Certificates.swift */; };
 		A64AAC732C6B76F900AE04C1 /* CalendarDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC722C6B76F900AE04C1 /* CalendarDataModel.swift */; };
 		A64AAC752C6B797200AE04C1 /* Calendars.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC742C6B797200AE04C1 /* Calendars.swift */; };
+		A64AAC782C6C249D00AE04C1 /* FecesRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC772C6C249D00AE04C1 /* FecesRecordTableViewCell.xib */; };
+		A64AAC792C6C249D00AE04C1 /* FecesRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC762C6C249D00AE04C1 /* FecesRecordTableViewCell.swift */; };
 		ED0FE989D657E8FADDF3BE80 /* Pods_IntestinesSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 821BD2A208DED6BC34BAAE2E /* Pods_IntestinesSupport.framework */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +148,8 @@
 		A64AAC702C695A3600AE04C1 /* Certificates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certificates.swift; sourceTree = "<group>"; };
 		A64AAC722C6B76F900AE04C1 /* CalendarDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDataModel.swift; sourceTree = "<group>"; };
 		A64AAC742C6B797200AE04C1 /* Calendars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendars.swift; sourceTree = "<group>"; };
+		A64AAC762C6C249D00AE04C1 /* FecesRecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FecesRecordTableViewCell.swift; sourceTree = "<group>"; };
+		A64AAC772C6C249D00AE04C1 /* FecesRecordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FecesRecordTableViewCell.xib; sourceTree = "<group>"; };
 		B1FC26A613D5492A6A92A954 /* Pods-IntestinesSupportTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntestinesSupportTests.release.xcconfig"; path = "Target Support Files/Pods-IntestinesSupportTests/Pods-IntestinesSupportTests.release.xcconfig"; sourceTree = "<group>"; };
 		C6BAB30AA22CD6F747063D5A /* Pods_IntestinesSupport_IntestinesSupportUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupport_IntestinesSupportUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2E464BD7D4F2F142C45DAD /* Pods_IntestinesSupportTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupportTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -305,6 +309,8 @@
 				A64AAC3A2C4BCDBF00AE04C1 /* EmptyStateCell.swift */,
 				A64AAC3B2C4BCDBF00AE04C1 /* EmptyStateCell.xib */,
 				A64AAC422C4BD47600AE04C1 /* History.swift */,
+				A64AAC762C6C249D00AE04C1 /* FecesRecordTableViewCell.swift */,
+				A64AAC772C6C249D00AE04C1 /* FecesRecordTableViewCell.xib */,
 			);
 			path = FecesRecord;
 			sourceTree = "<group>";
@@ -449,6 +455,7 @@
 				A64AAC502C4E713A00AE04C1 /* HierarchyClassificationCell.xib in Resources */,
 				A62297EB2C341E810099F425 /* Base in Resources */,
 				A64AAC3C2C4BCDBF00AE04C1 /* EmptyStateCell.xib in Resources */,
+				A64AAC782C6C249D00AE04C1 /* FecesRecordTableViewCell.xib in Resources */,
 				A64AAC542C4E714D00AE04C1 /* DeadlineCell.xib in Resources */,
 				A64AAC182C3FFD4300AE04C1 /* CalendarDateCell.xib in Resources */,
 				A64AAC5C2C4E718200AE04C1 /* PlusButtonCell.xib in Resources */,
@@ -587,6 +594,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A64AAC592C4E716300AE04C1 /* PeriodCell.swift in Sources */,
+				A64AAC792C6C249D00AE04C1 /* FecesRecordTableViewCell.swift in Sources */,
 				A64AAC432C4BD47600AE04C1 /* History.swift in Sources */,
 				A64AAC5D2C4E718200AE04C1 /* PlusButtonCell.swift in Sources */,
 				A64AAC492C4D232E00AE04C1 /* ApplicationClassificationCell.swift in Sources */,

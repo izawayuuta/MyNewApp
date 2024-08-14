@@ -78,7 +78,7 @@
                         <outlet property="calendarHeight" destination="9sr-gu-cXh" id="W7e-fG-wLT"/>
                         <outlet property="changeButton" destination="EdB-Oi-QBb" id="EcJ-1E-nVn"/>
                         <outlet property="tableView" destination="HMS-Vr-Kn0" id="XP6-Zn-Dfk"/>
-                        <segue destination="8cv-Ev-t44" kind="presentation" identifier="FecesHistory" id="pGC-bX-5iL"/>
+                        <segue destination="8cv-Ev-t44" kind="presentation" identifier="FecesRecord" id="pGC-bX-5iL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -86,10 +86,10 @@
             </objects>
             <point key="canvasLocation" x="207" y="-632"/>
         </scene>
-        <!--Feces History View Controller-->
+        <!--Feces Record View Controller-->
         <scene sceneID="7ko-G8-o0H">
             <objects>
-                <viewController storyboardIdentifier="FecesHistory" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8cv-Ev-t44" customClass="FecesHistoryViewController" customModule="IntestinesSupport" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FecesRecord" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8cv-Ev-t44" customClass="FecesRecordViewController" customModule="IntestinesSupport" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="94G-rw-riq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -135,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zAC-aO-lwR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="997.70992366412213" y="-632.3943661971831"/>
+            <point key="canvasLocation" x="998" y="-633"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="OGf-fy-ya3">

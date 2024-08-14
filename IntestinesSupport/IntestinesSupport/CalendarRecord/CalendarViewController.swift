@@ -10,7 +10,6 @@ import FSCalendar
 import SwiftUI
 import RealmSwift
 
-
 class CalendarViewController: UIViewController, FecesDetailCellDelegate {
     
     private let tableViewCell: [String] = ["CalendarDateCell", "PhysicalConditionCell", "FecesConditionCell", "FecesDetailCell", "AdditionButtonCell", "MedicineEmptyStateCell", "MedicineRecordDetailCell", "MemoCell"]
@@ -72,7 +71,7 @@ class CalendarViewController: UIViewController, FecesDetailCellDelegate {
     }
     
     // viewDidLoad終わり
-   private func loadCalendars() {
+    private func loadCalendars() {
         let realm = try! Realm()
         let calendars = realm.objects(CalendarDataModel.self)
         calendarDataModel = Array(calendars)
@@ -120,7 +119,7 @@ class CalendarViewController: UIViewController, FecesDetailCellDelegate {
     }
     
     // FIXME: 遷移するとクラッシュする
-    func didTapHistoryButton(in cell: FecesDetailCell) {
+    func didTapRecordButton(in cell: FecesDetailCell) {
         performSegue(withIdentifier: "FecesHistory", sender: self)
     }
     
@@ -234,6 +233,10 @@ extension CalendarViewController: CalendarViewControllerDelegate {
         }
         // Realmの保存が完了した後TableViewをリロードする
         refreshData()
+        
+        func didTapRecordButton(in cell: FecesDetailCell) {
+            performSegue(withIdentifier: "FecesRecord", sender: self)
+        }
     }
 }
 
@@ -245,7 +248,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         selectedDate = date
         tableView.reloadData() // 選択された日付に関連するデータを表示するためにテーブルビューをリロード
     }
-
+    
     // カレンダーの日付のタイトルの色をカスタマイズするメソッド
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
         let weekday = Calendar.current.component(.weekday, from: date)
@@ -253,13 +256,13 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         // 土曜日の場合、タイトルの色を青にする
         if weekday == 7 {
             return .blue
-        // 日曜日の場合、タイトルの色を赤にする
+            // 日曜日の場合、タイトルの色を赤にする
         } else if weekday == 1 {
             return .red
         }
         return nil // その他の日はデフォルトの色を使用
     }
-
+    
     // カレンダーの高さが変更されるときに呼び出されるメソッド
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         // カレンダーの高さ制約を更新
@@ -268,3 +271,4 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         self.view.layoutIfNeeded()
     }
 }
+
