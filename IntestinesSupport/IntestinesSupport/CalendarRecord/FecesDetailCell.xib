@@ -24,7 +24,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuG-DG-6uO">
-                        <rect key="frame" x="93" y="15.666666666666666" width="50" height="50"/>
+                        <rect key="frame" x="93" y="15.666666666666664" width="50" height="49.999999999999993"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="kXl-q6-A3c"/>
                             <constraint firstAttribute="width" constant="50" id="nrO-RM-Lxm"/>
@@ -44,7 +44,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="historyButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Lfo-3d-4AD"/>
+                            <action selector="RecordButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ejq-8m-Ksn"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LcX-2F-A7c">
@@ -128,7 +128,7 @@
                 <outlet property="history" destination="y3R-m0-8JJ" id="4Fi-yB-fay"/>
                 <outlet property="plusButton" destination="cuG-DG-6uO" id="ZdI-C9-Gib"/>
             </connections>
-            <point key="canvasLocation" x="105" y="-19"/>
+            <point key="canvasLocation" x="103.81679389312977" y="-19.366197183098592"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -10,7 +10,8 @@ import FSCalendar
 import SwiftUI
 import RealmSwift
 
-class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, UITableViewDelegate, UITableViewDataSource, FecesDetailCellDelegate, CalendarViewControllerDelegate {
+class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, UITableViewDelegate, UITableViewDataSource, CalendarViewControllerDelegate, FecesDetailCellDelegate{
+    
     
     
     
@@ -242,8 +243,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
             return UITableView.automaticDimension
         }
     }
-    func didTapHistoryButton(in cell: FecesDetailCell) {
-        performSegue(withIdentifier: "FecesHistory", sender: self)
+    func didTapRecordButton(in cell: FecesDetailCell) {
+        performSegue(withIdentifier: "FecesRecord", sender: self)
     }
 }
 extension CalendarViewController {

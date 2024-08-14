@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol FecesDetailCellDelegate: AnyObject {
+    func didTapRecordButton(in cell: FecesDetailCell)
+}
+
 class FecesDetailCell: UITableViewCell {
     
     @IBOutlet weak var fecesDetail1: UIButton!
@@ -18,15 +22,15 @@ class FecesDetailCell: UITableViewCell {
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var history: UIButton!
     
-    weak var delegate: FecesDetailCellDelegate?
     var selectedButtons: [UIButton] = []
+    weak var delegate: FecesDetailCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         let fecesDetail: [UIButton] = [fecesDetail1, fecesDetail2, fecesDetail3, fecesDetail4, fecesDetail5, fecesDetail6]
         fecesDetailButtons(fecesDetail)
         plusButton(plusButton)
-        history.addTarget(self, action: #selector(historyButtonTapped), for: .touchUpInside)
+        history.addTarget(self, action: #selector(RecordButtonTapped), for: .touchUpInside)
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -124,14 +128,7 @@ class FecesDetailCell: UITableViewCell {
             }
         }
     }
-//    @objc func historyButtonTapped() {
-//            delegate?.didTapHistoryButton(in: self)
-//        }
-    @IBAction func historyButtonTapped(_ sender: UIButton) {
-           delegate?.didTapHistoryButton(in: self)
-       }
-}
-
-protocol FecesDetailCellDelegate: AnyObject {
-    func didTapHistoryButton(in cell: FecesDetailCell)
+    @IBAction func RecordButtonTapped(_ sender: UIButton) {
+        delegate?.didTapRecordButton(in: self)
+    }
 }
