@@ -22,15 +22,23 @@ class FecesDetailCell: UITableViewCell {
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var history: UIButton!
     
-    var selectedButtons: [UIButton] = []
-    weak var delegate: FecesDetailCellDelegate?
+    private var buttons: [UIButton] {
+        return [fecesDetail1, fecesDetail2, fecesDetail3, fecesDetail4, fecesDetail5, fecesDetail6]
+    }
     
+    private var selectedButtons: [UIButton] = []
+    private var model: CalendarDataModel?
+    private var selectedDate: Date?
+    weak var delegate: FecesDetailCellDelegate?
+    weak var delegate2: CalendarViewControllerDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         let fecesDetail: [UIButton] = [fecesDetail1, fecesDetail2, fecesDetail3, fecesDetail4, fecesDetail5, fecesDetail6]
         fecesDetailButtons(fecesDetail)
         plusButton(plusButton)
-        history.addTarget(self, action: #selector(RecordButtonTapped), for: .touchUpInside)
+        //        history.addTarget(self, action: #selector(RecordButtonTapped), for: .touchUpInside)
+        history.addTarget(self, action: #selector(RecordButtonTapped(_:)), for: .touchUpInside)
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -78,14 +86,26 @@ class FecesDetailCell: UITableViewCell {
         plusButton.layer.shadowOpacity = 0.3
         plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
     }
-    @objc func plusButtonTapped() {
+//    @objc func plusButtonTapped() {
+//        for button in selectedButtons {
+//            button.layer.borderColor = UIColor(white: 0.9, alpha: 1.0).cgColor
+//            button.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
+//        }
+//        selectedButtons.removeAll()
+//        showBannerMessage()
+//        delegate?.didTapRecordButton(in: self)
+//    }
+    @IBAction func plusButtonTapped(_ sender: UIButton) {
         for button in selectedButtons {
             button.layer.borderColor = UIColor(white: 0.9, alpha: 1.0).cgColor
             button.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
         }
         selectedButtons.removeAll()
         showBannerMessage()
+        delegate?.didTapRecordButton(in: self)
+        print("plusButtonが押されました。")
     }
+
     // メッセージ
     private func showBannerMessage() {
         guard let parentView = self.superview?.superview else { return }
@@ -130,5 +150,48 @@ class FecesDetailCell: UITableViewCell {
     }
     @IBAction func RecordButtonTapped(_ sender: UIButton) {
         delegate?.didTapRecordButton(in: self)
+        print("ボタンが押されました。")
+    }
+    private func saveData(selectedIndex: Int) {
+        // modelがnilではない場合(Realmデータの編集)
+        if let model {
+            // indexを更新して保存する
+            let editModel = makeEditCalendarDataModel(selectedIndex: selectedIndex, model: model)
+            delegate2?.saveCalendarData(editModel)
+        } else {
+            guard let selectedDate else { return }
+            // modelがnilの場合は新規作成ため、ここでModelを作成してそれを保存する
+            let newModel = makeNewCalendarDataModel(selectedDate: selectedDate, selectedIndex: selectedIndex)
+            delegate2?.saveCalendarData(newModel)
+        }
+    }
+    
+    private func makeEditCalendarDataModel(selectedIndex: Int, model: CalendarDataModel) -> CalendarDataModel {
+        return CalendarDataModel(
+            id: model.id,
+            date: model.date,
+            selectedPhysicalConditionIndex: selectedIndex,
+            selectedFecesConditionIndex: model.selectedFecesConditionIndex,
+            selectedFecesDetailIndex: model.selectedFecesDetailIndex,
+            memo: model.memo
+        )
+    }
+    
+    private func makeNewCalendarDataModel(selectedDate: Date, selectedIndex: Int) -> CalendarDataModel {
+        // 日付とButtonのIndexをセットする
+        let newModel = CalendarDataModel()
+        newModel.selectedPhysicalConditionIndex = selectedIndex
+        newModel.date = selectedDate
+        return newModel
+    }
+    
+    func configure(selectedIndex: Int = 99, model: CalendarDataModel? = nil, selectedDate: Date) {
+        self.model = model
+        self.selectedDate = selectedDate
+        
+        for (index, button) in buttons.enumerated() {
+            // indexを取得し、保存していたselectedIndexと一致する場合backgroundColorをYellowにする
+            button.backgroundColor = index == selectedIndex ? .systemYellow : .white
+        }
     }
 }

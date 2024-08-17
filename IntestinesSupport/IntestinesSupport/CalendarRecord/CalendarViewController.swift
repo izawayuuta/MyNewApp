@@ -51,6 +51,11 @@ class CalendarViewController: UIViewController, FecesDetailCellDelegate {
         configureCalendar()
         setupCalendarScope()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadCalendars()
+        calendar.reloadData()
+    }
     
     private func setupCalendarScope() {
         // 画面を閉じた時の表示を再度表示
@@ -70,7 +75,6 @@ class CalendarViewController: UIViewController, FecesDetailCellDelegate {
         }
     }
     
-    // viewDidLoad終わり
     private func loadCalendars() {
         let realm = try! Realm()
         let calendars = realm.objects(CalendarDataModel.self)
@@ -142,7 +146,7 @@ class CalendarViewController: UIViewController, FecesDetailCellDelegate {
     
     // FIXME: 遷移するとクラッシュする
     func didTapRecordButton(in cell: FecesDetailCell) {
-        performSegue(withIdentifier: "FecesHistory", sender: self)
+        performSegue(withIdentifier: "FecesRecord", sender: self)
     }
     
     private func refreshData() {
@@ -184,12 +188,25 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
             return physicalConditionCell
         } else if identifier == "FecesConditionCell" {
             let fecesConditionCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! FecesConditionCell
-            if indexPath.row < calendarDataModel.count {
+            fecesConditionCell.delegate = self
+            // CalendarDataModelがnilの場合は早期リターンする
+            guard let model = filteredCalendarDataModel else {
+                // nilの場合は日付だけ必要なのでそれをセットする
+                fecesConditionCell.configure(selectedDate: selectedDate)
+                return fecesConditionCell
             }
+            fecesConditionCell.configure(selectedIndex: model.selectedFecesConditionIndex, model: model , selectedDate: selectedDate)
             return fecesConditionCell
         } else if identifier == "FecesDetailCell" {
             let fecesDetailCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! FecesDetailCell
             fecesDetailCell.delegate = self
+            // CalendarDataModelがnilの場合は早期リターンする
+            guard let model = filteredCalendarDataModel else {
+                // nilの場合は日付だけ必要なのでそれをセットする
+                fecesDetailCell.configure(selectedDate: selectedDate)
+                return fecesDetailCell
+            }
+            fecesDetailCell.configure(selectedIndex: model.selectedFecesDetailIndex, model: model , selectedDate: selectedDate)
             return fecesDetailCell
             
         } else if identifier == "AdditionButtonCell" {
@@ -208,10 +225,13 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
             return medicineRecordDetailCell
         } else if identifier == "MemoCell" {
             let memoCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MemoCell
-            if indexPath.row < calendarDataModel.count {
-                let data = calendarDataModel[indexPath.row]
-                memoCell.memo.text = data.memo
+            memoCell.delegate = self
+            guard let model = filteredCalendarDataModel else {
+                // nilの場合は日付だけ必要なのでそれをセットする
+                memoCell.configure(selectedIndex: "", selectedDate: selectedDate)
+                return memoCell
             }
+            memoCell.configure(selectedIndex: model.memo, model: model , selectedDate: selectedDate)
             memoCell.setDoneButton()
             memoCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return memoCell
@@ -231,6 +251,23 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
         } else {
             return UITableView.automaticDimension
         }
+    }
+    // 記録のある日付の下に点を表示
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        let dateList = calendarDataModel.map({ $0.date.zeroclock })
+                // 比較対象のDate型の年月日が一致していた場合にtrueとなる
+                let isEqualDate = dateList.contains(date.zeroclock)
+                return isEqualDate ? 1 : 0
+    }
+    // 点の色を設定
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
+        let dateList = calendarDataModel.map { $0.date.zeroclock }
+        let isEqualDate = dateList.contains(date.zeroclock)
+        // 記録がある日付に特定の色を設定
+        if isEqualDate {
+            return [UIColor.red] // 点の色を赤に設定
+        }
+        return nil
     }
 }
 

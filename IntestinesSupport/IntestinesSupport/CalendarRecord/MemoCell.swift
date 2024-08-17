@@ -12,6 +12,10 @@ class MemoCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var memo: UITextView!
     
+    private var model: CalendarDataModel?
+    private var selectedDate: Date?
+    weak var delegate: CalendarViewControllerDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         memo.delegate = self
@@ -96,6 +100,56 @@ class MemoCell: UITableViewCell, UITextViewDelegate {
                     }
                 }
             }
+        }
+    }
+    private func saveData(selectedIndex: Int) {
+        if let model = model {
+                // 既存のモデルを更新
+                let editModel = makeEditCalendarDataModel(memo: "", model: model)
+                delegate?.saveCalendarData(editModel)
+            } else {
+                // 新しいモデルを作成
+                guard let selectedDate = selectedDate else { return }
+                let newModel = makeNewCalendarDataModel(selectedDate: selectedDate, selectedIndex: "")
+                delegate?.saveCalendarData(newModel)
+            }
+    }
+    private func makeEditCalendarDataModel(memo: String, model: CalendarDataModel) -> CalendarDataModel {
+       return CalendarDataModel(
+            id: model.id,
+            date: model.date,
+            selectedPhysicalConditionIndex: model.selectedPhysicalConditionIndex,
+            selectedFecesConditionIndex: model.selectedFecesConditionIndex,
+            selectedFecesDetailIndex: model.selectedFecesConditionIndex,
+            memo: memo
+        )
+    }
+    
+    private func makeNewCalendarDataModel(selectedDate: Date, selectedIndex: String) -> CalendarDataModel {
+        // 日付とButtonのIndexをセットする
+        let newModel = CalendarDataModel()
+        newModel.memo = String(selectedIndex)
+        newModel.date = selectedDate
+        return newModel
+    }
+    func configure(selectedIndex: String, model: CalendarDataModel? = nil, selectedDate: Date) {
+        self.model = model
+        self.selectedDate = selectedDate
+        
+//        // テキストビューにselectedIndexを表示
+//        if let memoTextView = memo {
+//            memoTextView.text = "\(selectedIndex)"
+//        }
+        
+        /// モデルがある場合は保存されているmemoに値を設定
+        if let model = model {
+            memo.text = model.memo // 保存されているメモを表示
+        } else if selectedIndex.isEmpty {
+            // selectedIndex が空の場合は新規作成のため、テキストビューを空にする
+            memo.text = ""
+        } else {
+            // それ以外の場合は selectedIndex をテキストビューに設定
+            memo.text = selectedIndex
         }
     }
 }
