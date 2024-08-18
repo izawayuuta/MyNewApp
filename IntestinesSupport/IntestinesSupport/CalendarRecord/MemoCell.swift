@@ -42,10 +42,11 @@ class MemoCell: UITableViewCell, UITextViewDelegate {
     
     @objc func tapDoneButton() {
         self.endEditing(true)
+        saveData()
     }
     func setDoneButton() {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
-        let commitButton = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(tapDoneButton))
+        let commitButton = UIBarButtonItem(title: "保存", style: .done, target: self, action: #selector(tapDoneButton))
         toolBar.items = [commitButton]
         memo.inputAccessoryView = toolBar
     }
@@ -102,20 +103,19 @@ class MemoCell: UITableViewCell, UITextViewDelegate {
             }
         }
     }
-    private func saveData(selectedIndex: Int) {
+    private func saveData(selectedIndex: String = "") {
         if let model = model {
-                // 既存のモデルを更新
-                let editModel = makeEditCalendarDataModel(memo: "", model: model)
-                delegate?.saveCalendarData(editModel)
-            } else {
-                // 新しいモデルを作成
-                guard let selectedDate = selectedDate else { return }
-                let newModel = makeNewCalendarDataModel(selectedDate: selectedDate, selectedIndex: "")
-                delegate?.saveCalendarData(newModel)
-            }
+            let editModel = makeEditCalendarDataModel(memo: memo.text, model: model)
+            delegate?.saveCalendarData(editModel)
+        } else {
+            // 新しいモデルを作成
+            guard let selectedDate = selectedDate else { return }
+            let newModel = makeNewCalendarDataModel(selectedDate: selectedDate, selectedIndex: memo.text)
+            delegate?.saveCalendarData(newModel)
+        }
     }
     private func makeEditCalendarDataModel(memo: String, model: CalendarDataModel) -> CalendarDataModel {
-       return CalendarDataModel(
+        return CalendarDataModel(
             id: model.id,
             date: model.date,
             selectedPhysicalConditionIndex: model.selectedPhysicalConditionIndex,
@@ -136,20 +136,10 @@ class MemoCell: UITableViewCell, UITextViewDelegate {
         self.model = model
         self.selectedDate = selectedDate
         
-//        // テキストビューにselectedIndexを表示
-//        if let memoTextView = memo {
-//            memoTextView.text = "\(selectedIndex)"
-//        }
-        
-        /// モデルがある場合は保存されているmemoに値を設定
         if let model = model {
             memo.text = model.memo // 保存されているメモを表示
-        } else if selectedIndex.isEmpty {
-            // selectedIndex が空の場合は新規作成のため、テキストビューを空にする
-            memo.text = ""
         } else {
-            // それ以外の場合は selectedIndex をテキストビューに設定
-            memo.text = selectedIndex
+            memo.text = ""
         }
     }
 }

@@ -18,19 +18,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（薬の名前）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hi7-cd-EQ8">
-                        <rect key="frame" x="0.0" y="11.666666666666664" width="79.666666666666671" height="21"/>
+                        <rect key="frame" x="5" y="11.666666666666664" width="79.666666666666671" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="単位" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XbC-NH-dPF">
-                        <rect key="frame" x="288" y="11.666666666666664" width="32" height="21"/>
+                        <rect key="frame" x="283" y="11.666666666666664" width="32" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="数字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJx-8t-1Gf">
-                        <rect key="frame" x="255" y="11.666666666666664" width="32" height="21"/>
+                        <rect key="frame" x="245" y="11.666666666666664" width="32" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -45,12 +45,12 @@
                 <constraints>
                     <constraint firstItem="TJx-8t-1Gf" firstAttribute="centerY" secondItem="Hi7-cd-EQ8" secondAttribute="centerY" id="5Dg-84-QFW"/>
                     <constraint firstItem="lkw-QW-8SR" firstAttribute="centerY" secondItem="Hi7-cd-EQ8" secondAttribute="centerY" id="6fI-eX-zwc"/>
-                    <constraint firstAttribute="trailing" secondItem="XbC-NH-dPF" secondAttribute="trailing" id="SGA-ze-MXW"/>
+                    <constraint firstAttribute="trailing" secondItem="XbC-NH-dPF" secondAttribute="trailing" constant="5" id="SGA-ze-MXW"/>
                     <constraint firstItem="lkw-QW-8SR" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Vfh-4O-D4O"/>
-                    <constraint firstItem="XbC-NH-dPF" firstAttribute="leading" secondItem="TJx-8t-1Gf" secondAttribute="trailing" constant="1" id="ruz-90-dYq"/>
+                    <constraint firstItem="XbC-NH-dPF" firstAttribute="leading" secondItem="TJx-8t-1Gf" secondAttribute="trailing" constant="6" id="ruz-90-dYq"/>
                     <constraint firstItem="Hi7-cd-EQ8" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="sKb-BX-huB"/>
                     <constraint firstItem="XbC-NH-dPF" firstAttribute="centerY" secondItem="Hi7-cd-EQ8" secondAttribute="centerY" id="tRg-Pa-rBq"/>
-                    <constraint firstItem="Hi7-cd-EQ8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="uci-w1-79R"/>
+                    <constraint firstItem="Hi7-cd-EQ8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="uci-w1-79R"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

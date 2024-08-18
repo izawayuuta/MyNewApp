@@ -12,7 +12,7 @@ import RealmSwift
 
 class CalendarViewController: UIViewController, FecesDetailCellDelegate {
     
-    private let tableViewCell: [String] = ["CalendarDateCell", "PhysicalConditionCell", "FecesConditionCell", "FecesDetailCell", "AdditionButtonCell", "MedicineEmptyStateCell", "MedicineRecordDetailCell", "MemoCell"]
+    private var tableViewCell: [String] = ["CalendarDateCell", "PhysicalConditionCell", "FecesConditionCell", "FecesDetailCell", "AdditionButtonCell", "MedicineEmptyStateCell", "MedicineRecordDetailCell", "MemoCell"]
     
     private var selectedDate: Date?
     private var calendarDataModel: [CalendarDataModel] = []
@@ -160,7 +160,6 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableViewCell.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 基本的には selectedDateがnilならない(なっている場合はバグが発生している)
         // selectedDateのロジックが成立していない状態でCellの選択をさせ、保存させてしまうと保存データがおかしくなるのでEmptyStateCell自体は個人的にはあっても良いかなと思います
@@ -222,6 +221,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
             return medicineEmptyStateCell
         } else if identifier == "MedicineRecordDetailCell" {
             let medicineRecordDetailCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MedicineRecordDetailCell
+            medicineRecordDetailCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return medicineRecordDetailCell
         } else if identifier == "MemoCell" {
             let memoCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MemoCell
@@ -268,6 +268,25 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
             return [UIColor.red] // 点の色を赤に設定
         }
         return nil
+    }
+    // 特定のセルだけ削除
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.row == 6
+    }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if indexPath.row == 6 {
+            return .delete
+        }
+        return .none
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // データソースからセルを削除する
+            tableViewCell.remove(at: indexPath.row)
+            
+            // テーブルビューからセルを削除する
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 }
 

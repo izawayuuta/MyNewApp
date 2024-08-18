@@ -45,10 +45,6 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        //        medicineDataModel.remove(at: indexPath.row)
-        //
-        //        let indexPaths = [indexPath]
-        //        tableView.deleteRows(at: indexPaths, with: .automatic)
         if editingStyle == .delete {
             let medicineToDelete = medicineDataModel[indexPath.row]
             deleteMedicine(medicineToDelete)

@@ -282,10 +282,10 @@
 				A64AAC2E2C42B87800AE04C1 /* FecesDetailCell.xib */,
 				A64AAC1E2C41455500AE04C1 /* AdditionButtonCell.swift */,
 				A64AAC1F2C41455500AE04C1 /* AdditionButtonCell.xib */,
-				A64AAC252C4146BF00AE04C1 /* MedicineRecordDetailCell.swift */,
-				A64AAC262C4146BF00AE04C1 /* MedicineRecordDetailCell.xib */,
 				A64AAC3E2C4BD06200AE04C1 /* MedicineEmptyStateCell.swift */,
 				A64AAC3F2C4BD06200AE04C1 /* MedicineEmptyStateCell.xib */,
+				A64AAC252C4146BF00AE04C1 /* MedicineRecordDetailCell.swift */,
+				A64AAC262C4146BF00AE04C1 /* MedicineRecordDetailCell.xib */,
 				A64AAC292C41556300AE04C1 /* MemoCell.swift */,
 				A64AAC2A2C41556300AE04C1 /* MemoCell.xib */,
 			);
