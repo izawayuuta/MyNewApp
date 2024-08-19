@@ -148,7 +148,25 @@ class CalendarViewController: UIViewController, FecesDetailCellDelegate {
     func didTapRecordButton(in cell: FecesDetailCell) {
         performSegue(withIdentifier: "FecesRecord", sender: self)
     }
-    
+    func didTapPlusButton(in cell: FecesDetailCell) {
+        // 例: 新しいレコードを作成
+            let newRecord = CalendarDataModel()
+            newRecord.date = selectedDate ?? Date() // 選択された日付がなければ現在の日付を使用
+//                newRecord.selectedFecesDetailIndex = 0 // 必要に応じて適切な値に設定
+            
+            // Realmに保存
+            let realm = try! Realm()
+            try! realm.write {
+                realm.add(newRecord)
+            }
+            
+            // データのリフレッシュ
+            loadCalendars()
+            tableView.reloadData()
+            
+            // カレンダーに新しいレコードを反映
+            calendar.reloadData()
+    }
     private func refreshData() {
         loadCalendars()
         tableView.reloadData()
@@ -311,10 +329,6 @@ extension CalendarViewController: CalendarViewControllerDelegate {
         }
         // Realmの保存が完了した後TableViewをリロードする
         refreshData()
-        
-        func didTapRecordButton(in cell: FecesDetailCell) {
-            performSegue(withIdentifier: "FecesRecord", sender: self)
-        }
     }
 }
 
