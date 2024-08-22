@@ -12,6 +12,7 @@ protocol CertificateViewControllerDelegate: AnyObject {
 }
 
 class CertificateDataModel: Object {
+    @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var textField0: String = ""
     @objc dynamic var textField01: Int = 0
     @objc dynamic var textField02: String = ""
@@ -27,4 +28,8 @@ class CertificateDataModel: Object {
     @objc dynamic var textField4: Int = 0
     @objc dynamic var textField5: Int = 0
     @objc dynamic var pickerView: Int = 0
+    
+    override static func primaryKey() -> String? {
+           return "id"
+       }
 }

@@ -6,13 +6,17 @@
 //
 
 import UIKit
+import RealmSwift
 
-class ApplicationClassificationCell: UITableViewCell {
+class ApplicationClassificationCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField0: UITextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        textField0.delegate = self
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
     }
 
@@ -30,4 +34,14 @@ class ApplicationClassificationCell: UITableViewCell {
         toolBar.items = [commitButton]
         textField0.inputAccessoryView = toolBar
     }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+            // Realmにデータを保存するロジック
+            let realm = try! Realm()
+            try! realm.write {
+                // 保存するデータモデルの取得
+                let certificate = CertificateDataModel()
+                certificate.textField0 = textField.text ?? ""
+                realm.add(certificate, update: .modified)
+            }
+        }
 }

@@ -11,6 +11,7 @@ import RealmSwift
 
 protocol MedicineViewControllerDelegate: AnyObject {
     func didSaveMedicine(_ medicine: MedicineDataModel)
+    func didDeleteMedicine(_ medicine: MedicineDataModel)
 }
 
 class MedicineDataModel: Object {
@@ -371,6 +372,33 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil) // モーダル画面を閉じる
     }
+    @IBAction func deleteButton(_ sender: UIButton) {
+        let medicineData = MedicineDataModel()
+        let alertMessage = UIAlertController(title: "このページを削除しますか", message: nil, preferredStyle: .alert)
+        let deleteButton = UIAlertAction(title: "削除", style: .destructive) { [weak self] _ in
+            guard let self = self else { return }
+            resetFields()
+            resetPickerView2()
+            
+            if let medicine = selectedMedicine {
+                let realm = try! Realm()
+                try! realm.write {
+                    realm.delete(medicine)
+                }
+                delegate?.didDeleteMedicine(medicine)
+                
+                navigationController?.popViewController(animated: true)
+                dismiss(animated: true, completion: nil) // モーダル画面を閉じる
+            }
+        }
+        
+        let cancelButton = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+        
+        alertMessage.addAction(deleteButton)
+        alertMessage.addAction(cancelButton)
+        
+        present(alertMessage, animated: true, completion: nil)
+    }
     func loadLatestMedicine() {
         let realm = try! Realm()
         let medicines = realm.objects(MedicineDataModel.self)
@@ -424,23 +452,6 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
     private func validateInput() {
         let isMedicineNameEmpty = medicineName.text?.isEmpty ?? true
         saveButton.isEnabled = !isMedicineNameEmpty
-    }
-    @IBAction func deleteButton(_ sender: UIButton) {
-        let alertMessage = UIAlertController(title: "このページを削除しますか", message: nil, preferredStyle: .alert)
-        let deleteButton = UIAlertAction(title: "削除", style: .destructive) { [weak self] _ in
-            guard let self = self else { return }
-            resetFields()
-            resetPickerView2()
-            
-            dismiss(animated: true, completion: nil) // モーダル画面を閉じる
-        }
-        
-        let cancelButton = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
-        
-        alertMessage.addAction(deleteButton)
-        alertMessage.addAction(cancelButton)
-        
-        present(alertMessage, animated: true, completion: nil)
     }
     // 入力されていなかったら削除ボタンを非活性
     func textFieldDidChangeSelection(_ textField: UITextField) {

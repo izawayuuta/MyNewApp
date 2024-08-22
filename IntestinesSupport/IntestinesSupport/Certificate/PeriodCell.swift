@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import RealmSwift
 
 class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -19,6 +20,7 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
     @IBOutlet weak var pickerView: UIPickerView!
     
     let pickerData = ["上旬", "中旬", "下旬"]
+    var currentCertificate: CertificateDataModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +41,8 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
         textField4.keyboardType = .numberPad
         textField5.keyboardType = .numberPad
         
+        let realm = try! Realm()
+        currentCertificate = realm.objects(CertificateDataModel.self).first
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -102,4 +106,39 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerData[row]
     }
-}
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // Realm のインスタンスを取得
+        let realm = try! Realm()
+
+        // 既存のデータモデルがあるか確認
+        if let certificate = realm.objects(CertificateDataModel.self).first {
+            // 既存のデータがあれば更新
+            try! realm.write {
+                certificate.pickerView = row
+                realm.add(certificate, update: .modified)
+            }
+        } else {
+            // 新しいデータモデルを作成
+            let newCertificate = CertificateDataModel()
+            newCertificate.pickerView = row
+            
+            try! realm.write {
+                realm.add(newCertificate)
+            }
+        }
+    }
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            // Realmにデータを保存するロジック
+            let realm = try! Realm()
+            try! realm.write {
+                // 保存するデータモデルの取得
+                let certificate = CertificateDataModel()
+                certificate.textField1 = Int(textField.text ?? "") ?? 0
+                certificate.textField2 = Int(textField.text ?? "") ?? 0
+                certificate.textField3 = Int(textField.text ?? "") ?? 0
+                certificate.textField4 = Int(textField.text ?? "") ?? 0
+                certificate.textField5 = Int(textField.text ?? "") ?? 0
+                realm.add(certificate, update: .modified)
+            }
+        }
+    }

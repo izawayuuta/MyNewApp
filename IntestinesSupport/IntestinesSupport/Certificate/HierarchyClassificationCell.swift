@@ -6,13 +6,17 @@
 //
 
 import UIKit
+import RealmSwift
 
-class HierarchyClassificationCell: UITableViewCell {
+class HierarchyClassificationCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField02: UITextField!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        textField02.delegate = self
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
     }
 
@@ -30,4 +34,14 @@ class HierarchyClassificationCell: UITableViewCell {
         toolBar.items = [commitButton]
         textField02.inputAccessoryView = toolBar
     }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+            // Realmにデータを保存するロジック
+            let realm = try! Realm()
+            try! realm.write {
+                // 保存するデータモデルの取得
+                let certificate = CertificateDataModel()
+                certificate.textField02 = textField.text ?? ""
+                realm.add(certificate, update: .modified)
+            }
+        }
 }

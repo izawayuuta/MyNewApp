@@ -74,6 +74,7 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
     // デリゲートメソッド
     func didSaveMedicine(_ medicine: MedicineDataModel) {
         medicineDataModel.append(medicine)
+                loadMedicines()
         tableView.reloadData()
     }
     private func saveMedicine(_ medicine: MedicineDataModel) {
@@ -81,19 +82,47 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         try! realm.write {
             realm.add(medicine)
         }
+        loadMedicines()
+        tableView.reloadData()
     }
-    private func deleteMedicine(_ medicine: MedicineDataModel) {
-        let realm = try! Realm()
+    func didDeleteMedicine(_ medicine: MedicineDataModel) {
+        medicineDataModel.append(medicine)
+        tableView.reloadData()
+        loadMedicines()
+    }
+//    private func deleteMedicine() {
+//        let realm = try! Realm()
+//        try! realm.write {
+//            realm.delete(medicine)
+//        }
+//        loadMedicines()
+//        tableView.reloadData()
+//    }
+//    private func deleteMedicine(_ medicine: MedicineDataModel) {
+//        let realm = try! Realm()
+//        do {
+//            try realm.write {
+//                realm.delete(medicine)
+//            }
+//                    // データの再読み込み
+//                    loadMedicines()
+//                    tableView.reloadData()
+//                    
+//                } catch {
+//                    print("Failed to delete medicine: \(error)")
+//                }
+//    }
+    func deleteMedicine(_ medicine: MedicineDataModel) {
         do {
-            try realm.write {
+            let realm = try! Realm()
+            try realm.write ({
                 realm.delete(medicine)
-            }
-                    // データの再読み込み
-                    loadMedicines()
-                    tableView.reloadData()
-                    
-                } catch {
-                    print("Failed to delete medicine: \(error)")
-                }
+            })
+                loadMedicines()
+            tableView.reloadData()
+                             }catch {
+                                 print("Failed to delete medicine: \(error)")
+
+        }
     }
 }

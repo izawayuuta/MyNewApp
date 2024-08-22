@@ -36,8 +36,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="qw4-f3-o6e"/>
                         </constraints>
-                        <nil key="textColor"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>

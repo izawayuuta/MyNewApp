@@ -161,17 +161,14 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                     let certificate = CertificateDataModel()
                     certificate.textField0 = cell.textField0.text ?? ""
                     realm.add(certificate, update: .modified)
-                    print("Saved ApplicationClassificationCell: \(certificate.textField0)")
                 } else if let cell = tableView.cellForRow(at: indexPath) as? MoneyCell {
                     let certificate = CertificateDataModel()
                     certificate.textField01 = Int(cell.textField01.text ?? "") ?? 0
                     realm.add(certificate, update: .modified)
-                    print("Saved MoneyCell: \(certificate.textField01)")
                 } else if let cell = tableView.cellForRow(at: indexPath) as? HierarchyClassificationCell {
                     let certificate = CertificateDataModel()
                     certificate.textField02 = cell.textField02.text ?? ""
                     realm.add(certificate, update: .modified)
-                    print("Saved HierarchyClassificationCell: \(certificate.textField02)")
                 } else if let cell = tableView.cellForRow(at: indexPath) as? DeadlineCell {
                     let certificate = CertificateDataModel()
                     certificate.year = Int(cell.year.text ?? "") ?? 0
@@ -181,7 +178,6 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                     certificate.month2 = Int(cell.month2.text ?? "") ?? 0
                     certificate.day2 = Int(cell.day2.text ?? "") ?? 0
                     realm.add(certificate, update: .modified)
-                    print("Saved DeadlineCell: \(certificate.year)-\(certificate.month)-\(certificate.day) to \(certificate.year2)-\(certificate.month2)-\(certificate.day2)")
                 } else if let cell = tableView.cellForRow(at: indexPath) as? PeriodCell {
                     let certificate = CertificateDataModel()
                     certificate.textField1 = Int(cell.textField1.text ?? "") ?? 0
@@ -191,7 +187,6 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                     certificate.textField5 = Int(cell.textField5.text ?? "") ?? 0
                     certificate.pickerView = cell.pickerView.selectedRow(inComponent: 0)
                     realm.add(certificate, update: .modified)
-                    print("Saved PeriodCell: \(certificate.textField1), \(certificate.textField2), \(certificate.textField3), \(certificate.textField4), \(certificate.textField5), PickerView Index: \(certificate.pickerView)")
                 }
             }
         }

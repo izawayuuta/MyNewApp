@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class DeadlineCell: UITableViewCell, UITextFieldDelegate {
     
@@ -79,4 +80,19 @@ class DeadlineCell: UITableViewCell, UITextFieldDelegate {
             return true
         }
     }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+            // Realmにデータを保存するロジック
+            let realm = try! Realm()
+            try! realm.write {
+                // 保存するデータモデルの取得
+                let certificate = CertificateDataModel()
+                certificate.year = Int(year.text ?? "") ?? 0
+                certificate.month = Int(month.text ?? "") ?? 0
+                certificate.day = Int(day.text ?? "") ?? 0
+                certificate.year2 = Int(year2.text ?? "") ?? 0
+                certificate.month2 = Int(month.text ?? "") ?? 0
+                certificate.day2 = Int(day.text ?? "") ?? 0
+                realm.add(certificate, update: .modified)
+            }
+        }
 }

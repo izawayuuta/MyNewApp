@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MoneyCell: UITableViewCell, UITextFieldDelegate {
     
@@ -51,4 +52,14 @@ class MoneyCell: UITableViewCell, UITextFieldDelegate {
             return true
         }
     }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+            // Realmにデータを保存するロジック
+            let realm = try! Realm()
+            try! realm.write {
+                // 保存するデータモデルの取得
+                let certificate = CertificateDataModel()
+                certificate.textField01 = Int(textField01.text ?? "") ?? 0
+                realm.add(certificate, update: .modified)
+            }
+        }
 }
