@@ -75,7 +75,6 @@ class FecesConditionCell: UITableViewCell {
             date: model.date,
             selectedPhysicalConditionIndex: model.selectedPhysicalConditionIndex,
             selectedFecesConditionIndex: selectedIndex,
-            selectedFecesDetailIndex: model.selectedFecesDetailIndex,
             memo: model.memo
         )
     }

@@ -9,32 +9,66 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FecesDetailCellDelegate {
-    
-    
+enum FecesDetailType: Int {
+    case hardFeces
+    case normalFeces
+    case diarrhea
+    case constipation
+    case softFeces
+    case bloodyFeces
+}
+
+class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
 
     private var records: [Int] = []
-    var fecesDetails: [String] = ["", "", "", "", "", ""]  // 受け取るデータ用のプロパティ
+    
+    private var fecesDetails: [FecesDetailDataModel] = []  // 受け取るデータ用のプロパティ
+    var selectedDate: Date?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "EmptyStateCell", bundle: nil), forCellReuseIdentifier: "EmptyStateCell")
         tableView.register(UINib(nibName: "FecesRecordTableViewCell", bundle: nil), forCellReuseIdentifier: "FecesRecordTableViewCell")
+        setup()
     }
+    
+    
+    private func setup() {
+        guard let selectedDate else { return }
+        
+        let realm = try! Realm()
+        
+        // selectedDateを東京時間に変換
+        let tokyoTimeZone = TimeZone(identifier: "Asia/Tokyo")!
+        let calendar = Calendar.current
+        var components = calendar.dateComponents([.year, .month, .day], from: selectedDate)
+        components.timeZone = tokyoTimeZone
+        let tokyoSelectedDate = calendar.date(from: components)!
+        
+        // 同じ日付のFecesDetailDataModelをフィルタリング
+        let startOfDay = calendar.startOfDay(for: tokyoSelectedDate)
+        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+        
+        let predicate = NSPredicate(format: "date >= %@ AND date < %@", startOfDay as NSDate, endOfDay as NSDate)
+        let results = realm.objects(FecesDetailDataModel.self).filter(predicate)
+        
+        fecesDetails = Array(results)
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if records.isEmpty {
+        if fecesDetails.isEmpty {
             return 1
         } else {
-            return records.count
+            return fecesDetails.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if records.isEmpty {
+        if fecesDetails.isEmpty {
             let emptyCell = tableView.dequeueReusableCell(withIdentifier: "EmptyStateCell", for: indexPath) as! EmptyStateCell
             emptyCell.messageLabel.text = "記録はありません"
             emptyCell.messageLabel.textColor = .gray
@@ -42,51 +76,30 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
             emptyCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return emptyCell
         } else {
-//            let recordCell = tableView.dequeueReusableCell(withIdentifier: "FecesRecordTableViewCell", for: indexPath) as! FecesRecordTableViewCell
-//            let count = records[indexPath.row]
-//            recordCell.configure(with: count)
-//            return recordCell
             let recordCell = tableView.dequeueReusableCell(withIdentifier: "FecesRecordTableViewCell", for: indexPath) as! FecesRecordTableViewCell
-                    
-                    // fecesDetails のデータを使ってラベルを設定する
-                    recordCell.label1.text = fecesDetails[0]
-                    recordCell.label2.text = fecesDetails[1]
-                    recordCell.label3.text = fecesDetails[2]
-                    recordCell.label4.text = fecesDetails[3]
-                    recordCell.label5.text = fecesDetails[4]
-                    recordCell.label6.text = fecesDetails[5]
-                    
-                    return recordCell
-                
+            var type: [FecesDetailType] = [] // 空の配列として初期化
+
+            let types = fecesDetails[indexPath.row].fecesDetailTypeObject
+            types.forEach {
+                if let fecesDetailType = FecesDetailType(rawValue: $0.fecesDetailConditionIndex) {
+                    type.append(fecesDetailType)
+                } else {
+                    print("Invalid fecesDetailConditionIndex: \($0.fecesDetailConditionIndex)")
+                }
+            }
+            
+            
+            recordCell.configure(with: type)
+            
+            return recordCell
         }
     }
     @IBAction func backButtonAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-    }
-    //    func addRecord(_ record: String) {
-    //            records.append(record)
-    //            tableView.reloadData()
-    //        }
-    func didTapRecordButton(in cell: FecesDetailCell) {
     }
     
     func addRecord(_ count: Int) {
         records.append(count)  // 新しいカウントを追加
         tableView.reloadData()
     }
-
-    func didTapPlusButton(in cell: FecesDetailCell) {
-            // StoryboardからViewControllerを取得して遷移する
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let fecesRecordVC = storyboard.instantiateViewController(withIdentifier: "FecesRecordViewController") as? FecesRecordViewController {
-                // cellからfecesDetailsのデータを渡す
-                fecesRecordVC.fecesDetails = cell.selectedFecesDetails
-                navigationController?.pushViewController(fecesRecordVC, animated: true)
-            }
-        let nextCount = records.count + 1  // カウントを増加
-        addRecord(nextCount)
-        
-        fecesDetails = cell.selectedFecesDetails  // データを更新する
-        tableView.reloadData()  // テーブルビューを更新
-        }
 }
