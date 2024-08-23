@@ -56,10 +56,23 @@ class FecesRecordTableViewCell: UITableViewCell {
             verticalLine.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16) // 左端からの距離
         ])
     }
-    func configure(with record: Int) {
-        // recordのデータを使用してUI要素を設定する
-        //            label1.text = record
-        label1.text = "\(record)"
-        // 他のラベルやUI要素も必要に応じて設定
+    func configure(with recorda: [FecesDetailType]) {
+        
+        recorda.forEach { record in
+            switch record {
+            case .hardFeces:
+                label1.textColor = .red
+            case .normalFeces:
+                label2.textColor = .red
+            case .diarrhea:
+                label3.textColor = .red
+            case .constipation:
+                label4.textColor = .red
+            case .softFeces:
+                label5.textColor = .red
+            case .bloodyFeces:
+                label6.textColor = .red
+            }
+        }
     }
 }

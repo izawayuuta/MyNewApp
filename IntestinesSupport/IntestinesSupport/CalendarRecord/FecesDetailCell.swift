@@ -8,8 +8,8 @@
 import UIKit
 
 protocol FecesDetailCellDelegate: AnyObject {
+    func didTapPlusButton(indexes: [Int])
     func didTapRecordButton(in cell: FecesDetailCell)
-    func didTapPlusButton(in cell: FecesDetailCell)
 }
 
 class FecesDetailCell: UITableViewCell {
@@ -101,22 +101,25 @@ class FecesDetailCell: UITableViewCell {
         plusButton.layer.shadowOpacity = 0.3
         plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
     }
+    
     @IBAction func plusButtonTapped(_ sender: UIButton) {
         // `FecesRecordTableViewCell`のラベルにテキストを設定　追加分
-                fecesRecordCell?.label1.text = selectedFecesDetails[0]
-                fecesRecordCell?.label2.text = selectedFecesDetails[1]
-                fecesRecordCell?.label3.text = selectedFecesDetails[2]
-                fecesRecordCell?.label4.text = selectedFecesDetails[3]
-                fecesRecordCell?.label5.text = selectedFecesDetails[4]
-                fecesRecordCell?.label6.text = selectedFecesDetails[5]
+        fecesRecordCell?.label1.text = selectedFecesDetails[0]
+        fecesRecordCell?.label2.text = selectedFecesDetails[1]
+        fecesRecordCell?.label3.text = selectedFecesDetails[2]
+        fecesRecordCell?.label4.text = selectedFecesDetails[3]
+        fecesRecordCell?.label5.text = selectedFecesDetails[4]
+        fecesRecordCell?.label6.text = selectedFecesDetails[5]
         
+        var indexes: [Int] = []
         for button in selectedButtons {
             button.layer.borderColor = UIColor(white: 0.9, alpha: 1.0).cgColor
             button.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
+            indexes.append(button.tag)
         }
-        selectedButtons.removeAll()
+        delegate?.didTapPlusButton(indexes: indexes)
         showBannerMessage()
-//        delegate?.didTapRecordButton(in: self)
+        selectedButtons.removeAll()
         selectedFecesDetails = ["", "", "", "", "", ""] // 追加分
 
         print("plusButtonが押されました。")
@@ -188,7 +191,6 @@ class FecesDetailCell: UITableViewCell {
             date: model.date,
             selectedPhysicalConditionIndex: model.selectedPhysicalConditionIndex,
             selectedFecesConditionIndex: model.selectedFecesConditionIndex,
-            selectedFecesDetailIndex: selectedIndex,
             memo: model.memo
         )
     }
@@ -196,7 +198,6 @@ class FecesDetailCell: UITableViewCell {
     private func makeNewCalendarDataModel(selectedDate: Date, selectedIndex: Int) -> CalendarDataModel {
         // 日付とButtonのIndexをセットする
         let newModel = CalendarDataModel()
-        newModel.selectedFecesDetailIndex = selectedIndex
         newModel.date = selectedDate
         return newModel
     }

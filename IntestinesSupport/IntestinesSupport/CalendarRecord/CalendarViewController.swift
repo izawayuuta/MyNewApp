@@ -10,8 +10,8 @@ import FSCalendar
 import SwiftUI
 import RealmSwift
 
-class CalendarViewController: UIViewController, FecesDetailCellDelegate {
-    
+class CalendarViewController: UIViewController {
+
     private var tableViewCell: [String] = ["CalendarDateCell", "PhysicalConditionCell", "FecesConditionCell", "FecesDetailCell", "AdditionButtonCell", "MedicineEmptyStateCell", "MedicineRecordDetailCell", "MemoCell"]
     
     private var selectedDate: Date?
@@ -148,6 +148,17 @@ class CalendarViewController: UIViewController, FecesDetailCellDelegate {
     func didTapRecordButton(in cell: FecesDetailCell) {
         performSegue(withIdentifier: "FecesRecord", sender: self)
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // segueのIDを確認して特定のsegueのときのみ動作させる
+        if segue.identifier == "FecesRecord" {
+            // 2. 遷移先のViewControllerを取得
+            let next = segue.destination as? FecesRecordViewController
+            // 3. １で用意した遷移先の変数に値を渡す
+            next?.selectedDate = selectedDate
+        }
+    }
+    
+    
     func didTapPlusButton(in cell: FecesDetailCell) {
         // 例: 新しいレコードを作成
             let newRecord = CalendarDataModel()
@@ -223,7 +234,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
                 fecesDetailCell.configure(selectedDate: selectedDate)
                 return fecesDetailCell
             }
-            fecesDetailCell.configure(selectedIndex: model.selectedFecesDetailIndex, model: model , selectedDate: selectedDate)
+            // fecesDetailCell.configure(selectedIndex: model.selectedFecesDetailIndex, model: model , selectedDate: selectedDate)
             return fecesDetailCell
             
         } else if identifier == "AdditionButtonCell" {
@@ -308,6 +319,25 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
     }
 }
 
+extension CalendarViewController: FecesDetailCellDelegate {
+    func didTapPlusButton(indexes: [Int]) {
+        guard let selectedDate else { return }
+        
+        let realm = try! Realm()
+        let model = realm.objects(FecesDetailDataModel.self)
+        
+        let newData = FecesDetailDataModel(
+           date: selectedDate,
+           number: model.count,
+           fecesDetailTypeRowValues: indexes
+        )
+        
+       try! realm.write {
+           realm.add(newData)
+       }
+    }
+}
+
 // MARK: CalendarViewControllerDelegate関連 / RealmDataの保存を行う
 extension CalendarViewController: CalendarViewControllerDelegate {
     func saveCalendarData(_ newData: CalendarDataModel) {
@@ -318,7 +348,6 @@ extension CalendarViewController: CalendarViewControllerDelegate {
                 object.date = newData.date
                 object.selectedPhysicalConditionIndex = newData.selectedPhysicalConditionIndex
                 object.selectedFecesConditionIndex = newData.selectedFecesConditionIndex
-                object.selectedFecesDetailIndex = newData.selectedFecesDetailIndex
                 object.memo = newData.memo
             }
         } else {

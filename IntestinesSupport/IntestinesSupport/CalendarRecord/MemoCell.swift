@@ -120,7 +120,6 @@ class MemoCell: UITableViewCell, UITextViewDelegate {
             date: model.date,
             selectedPhysicalConditionIndex: model.selectedPhysicalConditionIndex,
             selectedFecesConditionIndex: model.selectedFecesConditionIndex,
-            selectedFecesDetailIndex: model.selectedFecesConditionIndex,
             memo: memo
         )
     }
