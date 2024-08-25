@@ -23,9 +23,11 @@ class FecesDetailCell: UITableViewCell {
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var history: UIButton!
     
-        var selectedFecesDetails: [String] = ["", "", "", "", "", ""] // 追加分
     
-        private var fecesDetails: [String] = ["硬便", "便秘", "普通便", "軟便", "下痢", "血便"] // 追加分
+    
+    var selectedFecesDetails: [String] = ["", "", "", "", "", ""] // 追加分
+    
+    private var fecesDetails: [String] = ["硬便", "便秘", "普通便", "軟便", "下痢", "血便"] // 追加分
     
     private var buttons: [UIButton] {
         return [fecesDetail1, fecesDetail2, fecesDetail3, fecesDetail4, fecesDetail5, fecesDetail6]
@@ -37,7 +39,7 @@ class FecesDetailCell: UITableViewCell {
     weak var delegate: FecesDetailCellDelegate?
     weak var delegate2: CalendarViewControllerDelegate?
     weak var fecesRecordCell: FecesRecordTableViewCell? // 追加分
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         let fecesDetail: [UIButton] = [fecesDetail1, fecesDetail2, fecesDetail3, fecesDetail4, fecesDetail5, fecesDetail6]
@@ -52,7 +54,7 @@ class FecesDetailCell: UITableViewCell {
         // Configure the view for the selected state
     }
     private func fecesDetailButtons(_ buttons: [UIButton]) {
-//        for button in buttons {
+        //        for button in buttons {
         for (index, button) in buttons.enumerated() { // 追加分
             button.setTitleColor(.black, for: .normal)
             button.backgroundColor = .white
@@ -63,19 +65,19 @@ class FecesDetailCell: UITableViewCell {
             
             button.layer.cornerRadius = 5.0
             button.tag = index  // ボタンにインデックスを付与　追加分
-
+            
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         }
     }
     @objc func buttonTapped(_ sender: UIButton) {
         let index = sender.tag
-
+        
         if sender.layer.borderColor == UIColor(white: 0.9, alpha: 1.0).cgColor {
             sender.layer.borderColor = UIColor(red: 0.23, green: 0.55, blue: 0.35, alpha: 1.0).cgColor
             sender.tintColor = .black
             selectedButtons.append(sender)
             selectedFecesDetails[index] = fecesDetails[index]  // ボタンが押されたら対応するテキストを保存　追加分
-
+            
         } else {
             sender.layer.borderColor = UIColor(white: 0.9, alpha: 1.0).cgColor
             sender.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
@@ -83,7 +85,7 @@ class FecesDetailCell: UITableViewCell {
                 selectedButtons.remove(at: index)
             }
             selectedFecesDetails[index] = ""  // ボタンが解除されたらテキストをクリア　追加分
-
+            
         }
     }
     
@@ -101,15 +103,44 @@ class FecesDetailCell: UITableViewCell {
         plusButton.layer.shadowOpacity = 0.3
         plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
     }
-    
     @IBAction func plusButtonTapped(_ sender: UIButton) {
-        // `FecesRecordTableViewCell`のラベルにテキストを設定　追加分
-        fecesRecordCell?.label1.text = selectedFecesDetails[0]
-        fecesRecordCell?.label2.text = selectedFecesDetails[1]
-        fecesRecordCell?.label3.text = selectedFecesDetails[2]
-        fecesRecordCell?.label4.text = selectedFecesDetails[3]
-        fecesRecordCell?.label5.text = selectedFecesDetails[4]
-        fecesRecordCell?.label6.text = selectedFecesDetails[5]
+        // 現在の日付と時刻を取得
+        let currentDate = Date()
+        print("Current Date: \(currentDate) > 現在の日付")
+        
+        // 日付と時刻をフォーマット
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ja_JP")
+        dateFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
+        dateFormatter.dateFormat = "HH:mm"
+        let dateString = dateFormatter.string(from: currentDate)
+        print("Formatted Date String: \(dateString) > 取得成功")
+        
+        fecesRecordCell?.dateLabel.text = dateString
+        
+        if let dateLabelText = fecesRecordCell?.dateLabel.text {
+            print("dateLabel.text: \(dateLabelText) > dateLabel表示成功")
+        } else {
+            print("dateLabel.text is nil > dateLabel表示失敗")
+        }
+        
+//        fecesRecordCell?.label1.text = selectedFecesDetails[0]
+//        fecesRecordCell?.label2.text = selectedFecesDetails[1]
+//        fecesRecordCell?.label3.text = selectedFecesDetails[2]
+//        fecesRecordCell?.label4.text = selectedFecesDetails[3]
+//        fecesRecordCell?.label5.text = selectedFecesDetails[4]
+//        fecesRecordCell?.label6.text = selectedFecesDetails[5]
+        if let cell = fecesRecordCell {
+                cell.dateLabel.text = dateString
+                cell.label1.text = selectedFecesDetails[0]
+                cell.label2.text = selectedFecesDetails[1]
+                cell.label3.text = selectedFecesDetails[2]
+                cell.label4.text = selectedFecesDetails[3]
+                cell.label5.text = selectedFecesDetails[4]
+                cell.label6.text = selectedFecesDetails[5]
+                cell.updateCount()
+            } else {
+            }
         
         var indexes: [Int] = []
         for button in selectedButtons {
@@ -117,14 +148,12 @@ class FecesDetailCell: UITableViewCell {
             button.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
             indexes.append(button.tag)
         }
+        //        delegate?.didTapPlusButton(indexes: selectedFecesDetails)
         delegate?.didTapPlusButton(indexes: indexes)
         showBannerMessage()
         selectedButtons.removeAll()
         selectedFecesDetails = ["", "", "", "", "", ""] // 追加分
-
-        print("plusButtonが押されました。")
     }
-
     // メッセージ
     private func showBannerMessage() {
         guard let parentView = self.superview?.superview else { return }
@@ -169,7 +198,6 @@ class FecesDetailCell: UITableViewCell {
     }
     @IBAction func RecordButtonTapped(_ sender: UIButton) { // 履歴ボタン
         delegate?.didTapRecordButton(in: self)
-        print("ボタンが押されました。")
     }
     private func saveData(selectedIndex: Int) {
         // modelがnilではない場合(Realmデータの編集)

@@ -320,6 +320,17 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
 }
 
 extension CalendarViewController: FecesDetailCellDelegate {
+    func didTapPlusButton(indexes: [String]) {
+        
+    }
+    
+    func didTapPlusButton(with details: [String]) {
+    }
+    
+    func updateDatePicker(with date: Date) {
+    }
+    
+    
     func didTapPlusButton(indexes: [Int]) {
         guard let selectedDate else { return }
         
