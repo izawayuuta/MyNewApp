@@ -73,9 +73,11 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     // デリゲートメソッド
     func didSaveMedicine(_ medicine: MedicineDataModel) {
+        print("Did save medicine called")
         medicineDataModel.append(medicine)
-                loadMedicines()
+        loadMedicines()
         tableView.reloadData()
+        print("Successfully saved medicine: \(medicine)")
     }
     private func saveMedicine(_ medicine: MedicineDataModel) {
         let realm = try! Realm()
@@ -87,42 +89,20 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     func didDeleteMedicine(_ medicine: MedicineDataModel) {
         medicineDataModel.append(medicine)
-        tableView.reloadData()
         loadMedicines()
+        tableView.reloadData()
+        print("Successfully deleted medicine: \(medicine)")
     }
-//    private func deleteMedicine() {
-//        let realm = try! Realm()
-//        try! realm.write {
-//            realm.delete(medicine)
-//        }
-//        loadMedicines()
-//        tableView.reloadData()
-//    }
-//    private func deleteMedicine(_ medicine: MedicineDataModel) {
-//        let realm = try! Realm()
-//        do {
-//            try realm.write {
-//                realm.delete(medicine)
-//            }
-//                    // データの再読み込み
-//                    loadMedicines()
-//                    tableView.reloadData()
-//                    
-//                } catch {
-//                    print("Failed to delete medicine: \(error)")
-//                }
-//    }
     func deleteMedicine(_ medicine: MedicineDataModel) {
         do {
             let realm = try! Realm()
             try realm.write ({
                 realm.delete(medicine)
             })
-                loadMedicines()
+            loadMedicines()
             tableView.reloadData()
-                             }catch {
-                                 print("Failed to delete medicine: \(error)")
-
+        }catch {
+            print("Failed to delete medicine: \(error)")
         }
     }
 }
