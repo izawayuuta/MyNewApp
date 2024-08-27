@@ -106,32 +106,21 @@ class FecesDetailCell: UITableViewCell {
     @IBAction func plusButtonTapped(_ sender: UIButton) {
         // 現在の日付と時刻を取得
         let currentDate = Date()
-        print("Current Date: \(currentDate) > 現在の日付")
         
         // 日付と時刻をフォーマット
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ja_JP")
         dateFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
         dateFormatter.dateFormat = "HH:mm"
-        let dateString = dateFormatter.string(from: currentDate)
-        print("Formatted Date String: \(dateString) > 取得成功")
+        let timeString = dateFormatter.string(from: currentDate)
         
-        fecesRecordCell?.dateLabel.text = dateString
-        
-        if let dateLabelText = fecesRecordCell?.dateLabel.text {
-            print("dateLabel.text: \(dateLabelText) > dateLabel表示成功")
+        if let timeDate = dateFormatter.date(from: timeString) {
+            fecesRecordCell?.timePicker.date = timeDate
         } else {
-            print("dateLabel.text is nil > dateLabel表示失敗")
+            fecesRecordCell?.timePicker.date = Date()
         }
         
-//        fecesRecordCell?.label1.text = selectedFecesDetails[0]
-//        fecesRecordCell?.label2.text = selectedFecesDetails[1]
-//        fecesRecordCell?.label3.text = selectedFecesDetails[2]
-//        fecesRecordCell?.label4.text = selectedFecesDetails[3]
-//        fecesRecordCell?.label5.text = selectedFecesDetails[4]
-//        fecesRecordCell?.label6.text = selectedFecesDetails[5]
         if let cell = fecesRecordCell {
-                cell.dateLabel.text = dateString
                 cell.label1.text = selectedFecesDetails[0]
                 cell.label2.text = selectedFecesDetails[1]
                 cell.label3.text = selectedFecesDetails[2]
@@ -148,7 +137,6 @@ class FecesDetailCell: UITableViewCell {
             button.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1.0)
             indexes.append(button.tag)
         }
-        //        delegate?.didTapPlusButton(indexes: selectedFecesDetails)
         delegate?.didTapPlusButton(indexes: indexes)
         showBannerMessage()
         selectedButtons.removeAll()

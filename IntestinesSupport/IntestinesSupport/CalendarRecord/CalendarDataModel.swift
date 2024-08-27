@@ -33,15 +33,17 @@ class CalendarDataModel: Object {
 class FecesDetailDataModel: Object {
     @objc dynamic var id: String = ""
     @objc dynamic var date: Date = Date()
+    @objc dynamic var time: Date = Date()
     // 1回目とかのNo
-    @objc dynamic var number: Int = 0
+//    @objc dynamic var number: Int = 0
     let fecesDetailTypeObject = List<FecesDetailTypeObject>()
     
-    convenience init(date: Date, number: Int, fecesDetailTypeRowValues: [Int]) {
+    convenience init(date: Date, fecesDetailTypeRowValues: [Int], time: Date) {
         self.init()
         self.id = UUID().uuidString
         self.date = date
-        self.number = number
+        self.time = time
+//        self.number = number
         let object = fecesDetailTypeRowValues.map({ FecesDetailTypeObject(index: $0) })
         self.fecesDetailTypeObject.append(objectsIn: object)
     }

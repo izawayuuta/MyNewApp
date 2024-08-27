@@ -99,16 +99,12 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
             dateFormatter.locale = Locale(identifier: "ja_JP")
             dateFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
             dateFormatter.dateFormat = "HH:mm"
-            let dateString = dateFormatter.string(from: fecesDetail.date)
+
+            let timeString = dateFormatter.string(from: fecesDetail.time)
             
             // セルを設定する
-            recordCell.configure(with: type, date: dateString)
+            recordCell.configure(with: type, time: timeString, count: [indexPath.row + 1])
             
-            if recordCell.dateLabel != nil {
-                print("dateLabel is not nil in cellForRowAt > 成功")
-            } else {
-                print("dateLabel is nil in cellForRowAt > 失敗")
-            }
             
             return recordCell
         }

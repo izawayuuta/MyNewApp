@@ -9,14 +9,14 @@ import UIKit
 
 class FecesRecordTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var count: UILabel!
+    @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var label1: UILabel!
     @IBOutlet weak var label2: UILabel!
     @IBOutlet weak var label3: UILabel!
     @IBOutlet weak var label4: UILabel!
     @IBOutlet weak var label5: UILabel!
     @IBOutlet weak var label6: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var timePicker: UIDatePicker!
     
     weak var delegate: FecesDetailCellDelegate?
     private var currentCount: Int = 0
@@ -24,11 +24,6 @@ class FecesRecordTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        if dateLabel == nil {
-            print("dateLabel is nil in awakeFromNib > dateLabel初期化失敗")
-        } else {
-            print("dateLabel is initialized in awakeFromNib > dateLabel初期化成功")
-        }
         updateCount()
     }
     
@@ -88,7 +83,7 @@ class FecesRecordTableViewCell: UITableViewCell {
         return line
     }
     
-    func configure(with record: [FecesDetailType], date: String) {
+    func configure(with record: [FecesDetailType], time: String, count: [Int]) {
         
         record.forEach { record in
             switch record {
@@ -106,11 +101,18 @@ class FecesRecordTableViewCell: UITableViewCell {
                 label6.textColor = .red
             }
         }
-        dateLabel.text = date
-        print("dateLabel.text: \(dateLabel.text ?? "nil")")  // 設定された日付を確認
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm"
+            if let timeDate = dateFormatter.date(from: time) {
+                timePicker.date = timeDate
+            } else {
+                timePicker.date = Date()
+            }
+        let countString = count.map { String($0) }.joined(separator: ", ")
+            countLabel.text = countString
     }
     func updateCount() {
         currentCount += 1
-        count.text = "\(currentCount)"
+        countLabel.text = "\(currentCount)"
     } 
 }

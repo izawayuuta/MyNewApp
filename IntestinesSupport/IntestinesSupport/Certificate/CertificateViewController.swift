@@ -180,7 +180,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                     realm.add(certificate, update: .modified)
                 } else if let cell = tableView.cellForRow(at: indexPath) as? PeriodCell {
                     let certificate = CertificateDataModel()
-                    certificate.textField1 = Int(cell.textField1.text ?? "") ?? 0
+                    certificate.textField1 = Int(cell.textField1.text ?? "")!
                     certificate.textField2 = Int(cell.textField2.text ?? "") ?? 0
                     certificate.textField3 = Int(cell.textField3.text ?? "") ?? 0
                     certificate.textField4 = Int(cell.textField4.text ?? "") ?? 0
@@ -191,7 +191,6 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
     }
-
     // データ更新
     func didSaveCertificate(_ certificate: CertificateDataModel) {
         certificateDataModel.append(certificate)

@@ -337,10 +337,13 @@ extension CalendarViewController: FecesDetailCellDelegate {
         let realm = try! Realm()
         let model = realm.objects(FecesDetailDataModel.self)
         
+        let currentTime = Date()
+        
         let newData = FecesDetailDataModel(
            date: selectedDate,
-           number: model.count,
-           fecesDetailTypeRowValues: indexes
+//           number: model.count,
+           fecesDetailTypeRowValues: indexes,
+           time: currentTime
         )
         
        try! realm.write {
