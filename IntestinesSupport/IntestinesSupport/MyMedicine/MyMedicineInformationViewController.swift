@@ -90,7 +90,6 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 35))
         let doneItem = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(done))
-        //                        toolbar.setItems([doneItem], animated: true)
         let customItem = UIBarButtonItem(title: "編集", style: .plain, target: self, action: #selector(showCustomOption))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbar.setItems([doneItem, flexibleSpace, customItem], animated: true)

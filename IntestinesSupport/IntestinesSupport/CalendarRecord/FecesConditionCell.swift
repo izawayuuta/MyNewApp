@@ -48,7 +48,7 @@ class FecesConditionCell: UITableViewCell {
         }
     }
     @objc func buttonTapped(_ sender: UIButton) {
-        sender.backgroundColor = .systemYellow
+        sender.backgroundColor = .systemOrange
         
         if let selectedButton, selectedButton != sender {
             selectedButton.backgroundColor = .white
@@ -91,7 +91,7 @@ class FecesConditionCell: UITableViewCell {
         
         for (index, button) in buttons.enumerated() {
             // indexを取得し、保存していたselectedIndexと一致する場合backgroundColorをYellowにする
-            button.backgroundColor = index == selectedIndex ? .systemYellow : .white
+            button.backgroundColor = index == selectedIndex ? .systemOrange : .white
         }
     }
 }

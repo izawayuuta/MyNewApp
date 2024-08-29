@@ -42,7 +42,7 @@ class PhysicalConditionCell: UITableViewCell {
     }
     
     @objc private func buttonTapped(_ sender: UIButton) {
-        sender.backgroundColor = .systemYellow
+        sender.backgroundColor = .orange
         
         if let selectedButton, selectedButton != sender {
             selectedButton.backgroundColor = .white
@@ -89,7 +89,7 @@ class PhysicalConditionCell: UITableViewCell {
         
         for (index, button) in buttons.enumerated() {
             // indexを取得し、保存していたselectedIndexと一致する場合backgroundColorをYellowにする
-            button.backgroundColor = index == selectedIndex ? .systemYellow : .white
+            button.backgroundColor = index == selectedIndex ? .systemOrange : .white
         }
     }
 }

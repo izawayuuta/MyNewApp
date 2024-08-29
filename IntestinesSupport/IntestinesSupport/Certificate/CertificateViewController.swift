@@ -163,7 +163,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                     realm.add(certificate, update: .modified)
                 } else if let cell = tableView.cellForRow(at: indexPath) as? MoneyCell {
                     let certificate = CertificateDataModel()
-                    certificate.textField01 = Int(cell.textField01.text ?? "") ?? 0
+                    certificate.textField01 = Int(cell.textField01.text ?? "") ?? 3
                     realm.add(certificate, update: .modified)
                 } else if let cell = tableView.cellForRow(at: indexPath) as? HierarchyClassificationCell {
                     let certificate = CertificateDataModel()
@@ -180,7 +180,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                     realm.add(certificate, update: .modified)
                 } else if let cell = tableView.cellForRow(at: indexPath) as? PeriodCell {
                     let certificate = CertificateDataModel()
-                    certificate.textField1 = Int(cell.textField1.text ?? "")!
+                    certificate.textField1 = Int(cell.textField1.text ?? "") ?? 0
                     certificate.textField2 = Int(cell.textField2.text ?? "") ?? 0
                     certificate.textField3 = Int(cell.textField3.text ?? "") ?? 0
                     certificate.textField4 = Int(cell.textField4.text ?? "") ?? 0

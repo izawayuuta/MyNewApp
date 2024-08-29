@@ -59,3 +59,26 @@ class FecesDetailTypeObject: Object {
         fecesDetailConditionIndex = index
     }
 }
+
+class MedicineRecordDataModel: Object {
+    @objc dynamic var id: String = UUID().uuidString
+    @objc dynamic var medicineName: String = ""
+    @objc dynamic var timePicker: Date = Date()
+    @objc dynamic var textField: Int = 99
+    @objc dynamic var unit: String = ""
+    
+    override init() {
+            super.init()
+        }
+    override static func primaryKey() -> String? {
+            return "id" // プライマリーキーの指定
+        }
+    
+    init(id: String, medicineName: String, timePicker: Date, textField: Int, unit: String) {
+        self.id = id
+        self.medicineName = medicineName
+        self.timePicker = timePicker
+        self.textField = textField
+        self.unit = unit
+    }
+}

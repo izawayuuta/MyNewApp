@@ -13,7 +13,7 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var medicineDataModel: [MedicineDataModel] = []
+    var medicineDataModel: [MedicineDataModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         let realm = try! Realm()
         let MyMedicines = realm.objects(MedicineDataModel.self)
         medicineDataModel = Array(MyMedicines)
-        tableView.reloadData()
+//        tableView.reloadData()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return medicineDataModel.count
@@ -39,7 +39,7 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! MedicineTableViewCell
         let medicine = medicineDataModel[indexPath.row]
         cell.medicineNameLabel.text = medicine.medicineName
-        //                cell.stockLabel.text = medicine.stock
+//                        cell.stockLabel.text = medicine.stock
         cell.stockNumberLabel.text = "\(medicine.stock)"
         cell.stockUnitLabel.text = medicine.label
         return cell
@@ -73,25 +73,22 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     // デリゲートメソッド
     func didSaveMedicine(_ medicine: MedicineDataModel) {
-        print("Did save medicine called")
         medicineDataModel.append(medicine)
         loadMedicines()
         tableView.reloadData()
-        print("Successfully saved medicine: \(medicine)")
     }
     private func saveMedicine(_ medicine: MedicineDataModel) {
         let realm = try! Realm()
         try! realm.write {
             realm.add(medicine)
         }
-        loadMedicines()
+//        loadMedicines()
         tableView.reloadData()
     }
     func didDeleteMedicine(_ medicine: MedicineDataModel) {
         medicineDataModel.append(medicine)
         loadMedicines()
         tableView.reloadData()
-        print("Successfully deleted medicine: \(medicine)")
     }
     func deleteMedicine(_ medicine: MedicineDataModel) {
         do {
@@ -99,10 +96,9 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
             try realm.write ({
                 realm.delete(medicine)
             })
-            loadMedicines()
+//            loadMedicines()
             tableView.reloadData()
         }catch {
-            print("Failed to delete medicine: \(error)")
         }
     }
 }

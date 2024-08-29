@@ -8,21 +8,26 @@
 import UIKit
 
 class MedicineRecordDetailCell: UITableViewCell {
-
+    
     @IBOutlet weak var medicineName: UILabel!
-    @IBOutlet weak var date: UILabel!
-    @IBOutlet weak var number: UILabel!
+    @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var unit: UILabel!
+    
+    var selectedTime: Date {
+        return timePicker.date
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         layoutSubviews()
         setupCell()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     // 枠線
@@ -37,9 +42,8 @@ class MedicineRecordDetailCell: UITableViewCell {
     }
     private func setupCell() {
         contentView.layer.borderWidth = 1.5
-        contentView.layer.borderColor = UIColor.blue.cgColor
+        contentView.layer.borderColor = UIColor.orange.cgColor
         contentView.layer.cornerRadius = 8.0
         contentView.clipsToBounds = true
     }
-
 }

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" id="KGk-i7-Jjw" customClass="MedicineAdditionTableViewCell" customModule="IntestinesSupport" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wux-WW-MRN">
+                        <rect key="frame" x="5" y="11.666666666666664" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwK-pz-3Ae">
+                        <rect key="frame" x="273" y="11.666666666666664" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3mW-bC-tg0">
+                        <rect key="frame" x="236" y="5" width="32" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="SL1-Ta-sF1"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5jW-uO-h7S">
+                        <rect key="frame" x="118" y="5" width="85" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="REw-gT-uSe"/>
+                            <constraint firstAttribute="width" constant="85" id="Yzh-nc-jny"/>
+                        </constraints>
+                    </datePicker>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="gwK-pz-3Ae" secondAttribute="trailing" constant="5" id="6wV-Cc-Pf5"/>
+                    <constraint firstItem="gwK-pz-3Ae" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="CVC-Yf-4Xe"/>
+                    <constraint firstItem="Wux-WW-MRN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="GH6-km-oyx"/>
+                    <constraint firstItem="5jW-uO-h7S" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="KUt-Ll-XUZ"/>
+                    <constraint firstItem="5jW-uO-h7S" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="XIU-86-hWT"/>
+                    <constraint firstItem="gwK-pz-3Ae" firstAttribute="leading" secondItem="3mW-bC-tg0" secondAttribute="trailing" constant="5" id="YG2-2e-qQn"/>
+                    <constraint firstItem="Wux-WW-MRN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="gU4-8Z-4Mk"/>
+                    <constraint firstItem="3mW-bC-tg0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="tYY-G6-xGe"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="medicineName" destination="Wux-WW-MRN" id="aJD-Bp-lE5"/>
+                <outlet property="textField" destination="3mW-bC-tg0" id="ilR-WL-cCf"/>
+                <outlet property="timePicker" destination="5jW-uO-h7S" id="HLz-ts-x3U"/>
+                <outlet property="unitLabel" destination="gwK-pz-3Ae" id="xR5-uH-PnF"/>
+            </connections>
+            <point key="canvasLocation" x="82.44274809160305" y="-32.394366197183103"/>
+        </tableViewCell>
+    </objects>
+</document>

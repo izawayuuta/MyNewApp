@@ -35,6 +35,7 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.dataSource = self
         tableView.register(UINib(nibName: "EmptyStateCell", bundle: nil), forCellReuseIdentifier: "EmptyStateCell")
         tableView.register(UINib(nibName: "FecesRecordTableViewCell", bundle: nil), forCellReuseIdentifier: "FecesRecordTableViewCell")
+        tableView.separatorColor = UIColor.black
         setup()
     }
     private func setup() {
@@ -78,8 +79,15 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
             emptyCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return emptyCell
         } else {
-            // `FecesRecordTableViewCell` を使用する場合
             let recordCell = tableView.dequeueReusableCell(withIdentifier: "FecesRecordTableViewCell", for: indexPath) as! FecesRecordTableViewCell
+            
+            
+            recordCell.label1.textColor = .lightGray
+            recordCell.label2.textColor = .lightGray
+            recordCell.label3.textColor = .lightGray
+            recordCell.label4.textColor = .lightGray
+            recordCell.label5.textColor = .lightGray
+            recordCell.label6.textColor = .lightGray
             
             // データを取得する
             let fecesDetail = fecesDetails[indexPath.row]
@@ -99,12 +107,13 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
             dateFormatter.locale = Locale(identifier: "ja_JP")
             dateFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
             dateFormatter.dateFormat = "HH:mm"
-
+            
             let timeString = dateFormatter.string(from: fecesDetail.time)
             
             // セルを設定する
             recordCell.configure(with: type, time: timeString, count: [indexPath.row + 1])
             
+            recordCell.selectionStyle = .none // セルを選択したときに色が変わらないようにする
             
             return recordCell
         }
@@ -127,9 +136,12 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
-    @IBAction func backButtonAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    private func tableView(_ tableView: UITableView, shouldSelectRowAt indexPath: IndexPath) -> Bool {
+        return false // すべての行を選択不可にする
     }
+//    @IBAction func backButtonAction(_ sender: Any) {
+//        self.dismiss(animated: true, completion: nil)
+//    }
 }
 extension FecesRecordViewController: FecesDetailCellDelegate {
     func didTapPlusButton(indexes: [Int]) {
