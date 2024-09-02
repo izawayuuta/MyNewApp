@@ -14,6 +14,8 @@ class MedicineRecordDetailCell: UITableViewCell {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var unit: UILabel!
     
+    weak var delegate: CalendarViewControllerDelegate?
+    
     var selectedTime: Date {
         return timePicker.date
     }
@@ -21,6 +23,7 @@ class MedicineRecordDetailCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+//        delegateSelf()
         layoutSubviews()
         setupCell()
     }
@@ -46,4 +49,8 @@ class MedicineRecordDetailCell: UITableViewCell {
         contentView.layer.cornerRadius = 8.0
         contentView.clipsToBounds = true
     }
+//    func delegateSelf() {
+//        let viewController = MedicineAdditionViewController()
+//        viewController.delegate = self
+//    }
 }

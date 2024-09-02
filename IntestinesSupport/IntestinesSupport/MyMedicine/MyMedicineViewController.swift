@@ -74,7 +74,7 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
     // デリゲートメソッド
     func didSaveMedicine(_ medicine: MedicineDataModel) {
         medicineDataModel.append(medicine)
-        loadMedicines()
+//        loadMedicines()
         tableView.reloadData()
     }
     private func saveMedicine(_ medicine: MedicineDataModel) {

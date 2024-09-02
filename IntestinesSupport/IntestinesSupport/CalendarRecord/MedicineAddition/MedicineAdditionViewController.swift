@@ -20,6 +20,8 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var medicineAdditionButton: UIButton!
     
     weak var delegate: MedicineAdditionViewControllerDelegate?
+    var myMedicineInformation: MyMedicineInformation?
+
     private var medicineDataModel: [MedicineDataModel] = []
     private var medicineRecordDataModel: [MedicineRecordDataModel] = []
     // 選択されたセルのインデックスパスを保持する配列
@@ -50,7 +52,6 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
         cell.medicineName.text = medicine.medicineName
         cell.unitLabel.text = medicine.label
         cell.textField.text = "\(medicine.doseNumber)"
-        
         
         
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
@@ -103,7 +104,7 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
                 
                 let savedData = realm.objects(MedicineRecordDataModel.self).filter("medicineName = %@ AND timePicker = %@", recordData.medicineName, recordData.timePicker)
                 for data in savedData {
-                    print("😡Saved MedicineRecordDataModel: \(data) 保存完了")
+                    print("Saved MedicineRecordDataModel: \(data) 保存完了")
                 }
                 
                 if let calendarVC = self.storyboard?.instantiateViewController(withIdentifier: "CalendarViewController") as? CalendarViewController {
@@ -114,6 +115,24 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
         }
         delegate?.didSaveMedicineRecord(recordData)
         dismiss(animated: true, completion: nil) // モーダル画面を閉じる
+        
+        guard let myMedicineInfo = myMedicineInformation else { return }
+                
+                // テーブルビューから `MedicineAdditionTableViewCell` を取得
+        if let indexPath = tableView.indexPathForSelectedRow {
+            if let cell = tableView.cellForRow(at: indexPath) as? MedicineAdditionTableViewCell {
+                let addedAmount = cell.addedAmount // 追加量の取得
+                
+                // `stock` を更新
+                if let stockText = myMedicineInfo.stock.text, let currentStock = Int(stockText) {
+                    let updatedStock = currentStock - addedAmount
+                    // 更新後の `stock` を表示するなどの処理を追加する
+                    print("Updated stock: \(String(describing: myMedicineInfo.stock))")
+                    myMedicineInfo.stock.text = "\(updatedStock)"
+                }
+            }
+        }
+
     }
     private func selectedCellButton() {
         medicineAdditionButton.isEnabled = !selectedIndexPaths.isEmpty
@@ -142,4 +161,12 @@ extension MedicineAdditionViewController: MedicineViewControllerDelegate {
         loadMedicines()
         tableView.reloadData()
     }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "FecesRecord" {
+//            // 2. 遷移先のViewControllerを取得
+//            let next = segue.destination as? FecesRecordViewController
+//            // 3. １で用意した遷移先の変数に値を渡す
+//            next?.selectedDate = selectedDate
+//        }
+//    }
 }

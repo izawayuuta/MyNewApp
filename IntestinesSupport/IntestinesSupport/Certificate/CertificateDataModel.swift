@@ -14,7 +14,7 @@ protocol CertificateViewControllerDelegate: AnyObject {
 class CertificateDataModel: Object {
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var textField0: String?
-    @objc dynamic var textField01: Int = 0
+    @objc dynamic var textField01: Int = 2
     @objc dynamic var textField02: String?
     @objc dynamic var year: Int = 0
     @objc dynamic var month: Int = 0

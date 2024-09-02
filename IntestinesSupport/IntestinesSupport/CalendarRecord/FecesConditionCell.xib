@@ -11,10 +11,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="FecesConditionCell" customModule="IntestinesSupport" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <rect key="frame" x="0.0" y="0.0" width="399" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" customClass="fecesConditionCell" customModule="IntestinesSupport" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" customClass="fecesConditionCell" customModule="IntestinesSupport" customModuleProvider="target">
+                <rect key="frame" x="0.0" y="0.0" width="399" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="便の調子" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPH-SI-lpf" customClass="fe">
@@ -71,6 +71,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="Es3-tf-SFN" firstAttribute="leading" secondItem="URv-aW-TNV" secondAttribute="trailing" constant="22" id="4ne-t5-X1U"/>
+                    <constraint firstItem="URv-aW-TNV" firstAttribute="leading" secondItem="vPH-SI-lpf" secondAttribute="trailing" constant="34.329999999999998" id="CCX-Yg-N35"/>
                     <constraint firstItem="Es3-tf-SFN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Fo1-Sy-VTk"/>
                     <constraint firstItem="5nH-bQ-RZw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="FqB-dB-mMR"/>
                     <constraint firstItem="r1F-Na-GsI" firstAttribute="leading" secondItem="5nH-bQ-RZw" secondAttribute="trailing" constant="22" id="O6P-de-Gmu"/>
@@ -80,6 +81,7 @@
                     <constraint firstItem="URv-aW-TNV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="113" id="ZUZ-Yy-X6k"/>
                     <constraint firstItem="URv-aW-TNV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="a43-Sq-4sr"/>
                     <constraint firstItem="vPH-SI-lpf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="egK-Ws-tim"/>
+                    <constraint firstAttribute="trailing" secondItem="r1F-Na-GsI" secondAttribute="trailing" constant="18" id="fKu-13-bjv"/>
                     <constraint firstItem="AMg-IA-v3f" firstAttribute="leading" secondItem="Es3-tf-SFN" secondAttribute="trailing" constant="22" id="htS-TJ-TNU"/>
                     <constraint firstItem="AMg-IA-v3f" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wR4-4i-C7p"/>
                 </constraints>
@@ -92,7 +94,7 @@
                 <outlet property="number4Button" destination="5nH-bQ-RZw" id="nHT-bL-7Xu"/>
                 <outlet property="number5Button" destination="r1F-Na-GsI" id="QBW-g3-rTu"/>
             </connections>
-            <point key="canvasLocation" x="131" y="-33"/>
+            <point key="canvasLocation" x="190.07633587786259" y="-33.098591549295776"/>
         </tableViewCell>
     </objects>
 </document>

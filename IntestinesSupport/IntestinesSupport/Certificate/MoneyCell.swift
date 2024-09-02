@@ -12,7 +12,7 @@ class MoneyCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField01: UITextField!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         textField01.delegate = self
@@ -21,10 +21,10 @@ class MoneyCell: UITableViewCell, UITextFieldDelegate {
         
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     @objc func tapDoneButton() {
@@ -53,13 +53,29 @@ class MoneyCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-            // Realmにデータを保存するロジック
-            let realm = try! Realm()
-            try! realm.write {
-                // 保存するデータモデルの取得
-                let certificate = CertificateDataModel()
-                certificate.textField01 = Int(textField01.text ?? "") ?? 0
-                realm.add(certificate, update: .modified)
-            }
+        let inputValue = textField01.text ?? ""
+        let convertedValue = Int(inputValue) ?? 0
+        // Realmにデータを保存するロジック
+        let realm = try! Realm()
+        try! realm.write {
+            // 保存するデータモデルの取得
+            let certificate = CertificateDataModel()
+            certificate.textField01 = Int(textField01.text ?? "") ?? 3
+            realm.add(certificate, update: .modified)
         }
+        //        let realm = try! Realm()
+        //
+        //            try! realm.write {
+        //                if let existingCertificate = realm.objects(CertificateDataModel.self).first {
+        //                    existingCertificate.textField01 = convertedValue
+        //                } else {
+        //                    let certificate = CertificateDataModel()
+        //                    certificate.textField01 = convertedValue
+        //                    realm.add(certificate, update: .modified)
+        //                }
+        //            }
+        //        print("💾 保存された値: \(convertedValue)")
+        //
+        //        }
+    }
 }

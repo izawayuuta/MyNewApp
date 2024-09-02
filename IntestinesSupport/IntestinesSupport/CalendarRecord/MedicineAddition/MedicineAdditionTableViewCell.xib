@@ -17,20 +17,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wux-WW-MRN">
-                        <rect key="frame" x="5" y="11.666666666666664" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwK-pz-3Ae">
                         <rect key="frame" x="273" y="11.666666666666664" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3mW-bC-tg0">
-                        <rect key="frame" x="236" y="5" width="32" height="34"/>
+                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3mW-bC-tg0">
+                        <rect key="frame" x="201" y="5" width="69" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="SL1-Ta-sF1"/>
                         </constraints>
@@ -38,27 +32,34 @@
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5jW-uO-h7S">
-                        <rect key="frame" x="118" y="5" width="85" height="34"/>
+                        <rect key="frame" x="113" y="5" width="85" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="REw-gT-uSe"/>
                             <constraint firstAttribute="width" constant="85" id="Yzh-nc-jny"/>
                         </constraints>
                     </datePicker>
+                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8ri-Po-jzl">
+                        <rect key="frame" x="3" y="5" width="107" height="34"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="gwK-pz-3Ae" secondAttribute="trailing" constant="5" id="6wV-Cc-Pf5"/>
+                    <constraint firstItem="5jW-uO-h7S" firstAttribute="leading" secondItem="8ri-Po-jzl" secondAttribute="trailing" constant="3" id="BzS-0I-ell"/>
                     <constraint firstItem="gwK-pz-3Ae" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="CVC-Yf-4Xe"/>
-                    <constraint firstItem="Wux-WW-MRN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="GH6-km-oyx"/>
+                    <constraint firstItem="gwK-pz-3Ae" firstAttribute="leading" secondItem="5jW-uO-h7S" secondAttribute="trailing" constant="75" id="EKf-kH-QmN"/>
                     <constraint firstItem="5jW-uO-h7S" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="KUt-Ll-XUZ"/>
-                    <constraint firstItem="5jW-uO-h7S" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="XIU-86-hWT"/>
-                    <constraint firstItem="gwK-pz-3Ae" firstAttribute="leading" secondItem="3mW-bC-tg0" secondAttribute="trailing" constant="5" id="YG2-2e-qQn"/>
-                    <constraint firstItem="Wux-WW-MRN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="gU4-8Z-4Mk"/>
+                    <constraint firstItem="3mW-bC-tg0" firstAttribute="leading" secondItem="5jW-uO-h7S" secondAttribute="trailing" constant="3" id="P8G-fs-7rq"/>
+                    <constraint firstItem="gwK-pz-3Ae" firstAttribute="leading" secondItem="3mW-bC-tg0" secondAttribute="trailing" constant="3" id="YG2-2e-qQn"/>
+                    <constraint firstItem="8ri-Po-jzl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="aYJ-Sr-5Es"/>
+                    <constraint firstItem="8ri-Po-jzl" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="nNn-HN-zwl"/>
                     <constraint firstItem="3mW-bC-tg0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="tYY-G6-xGe"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="medicineName" destination="Wux-WW-MRN" id="aJD-Bp-lE5"/>
+                <outlet property="medicineName" destination="8ri-Po-jzl" id="kcS-Qv-1iq"/>
                 <outlet property="textField" destination="3mW-bC-tg0" id="ilR-WL-cCf"/>
                 <outlet property="timePicker" destination="5jW-uO-h7S" id="HLz-ts-x3U"/>
                 <outlet property="unitLabel" destination="gwK-pz-3Ae" id="xR5-uH-PnF"/>

@@ -36,8 +36,8 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
         
         
         tableViewCell = ["ApplicationClassificationCell", "MoneyCell", "HierarchyClassificationCell", "DeadlineCell", "PeriodCell", "PlusButtonCell"]
-        saveData()
         loadCertificates()
+        saveData()
     }
     // 読み込み
     func loadCertificates() {
@@ -65,7 +65,10 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
             let moneyCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MoneyCell
             if indexPath.row < certificateDataModel.count {
                         let data = certificateDataModel[indexPath.row]
-                        moneyCell.textField01.text = String(data.textField01)
+                // textField01 を String に変換し、空文字を表示できるようにする
+                   let displayValue = data.textField01 == 0 ? "" : String(data.textField01)
+                   moneyCell.textField01.text = displayValue
+                print("📊 表示される値: \(data.textField01)")
                     }
             moneyCell.setDoneButton()
             return moneyCell
@@ -163,8 +166,9 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                     realm.add(certificate, update: .modified)
                 } else if let cell = tableView.cellForRow(at: indexPath) as? MoneyCell {
                     let certificate = CertificateDataModel()
-                    certificate.textField01 = Int(cell.textField01.text ?? "") ?? 3
-                    realm.add(certificate, update: .modified)
+//                    certificate.textField01 = Int(cell.textField01.text ?? "") ?? 1
+                    certificate.textField01 = Int(cell.textField01.text ?? "") ?? 0
+                        realm.add(certificate, update: .modified)
                 } else if let cell = tableView.cellForRow(at: indexPath) as? HierarchyClassificationCell {
                     let certificate = CertificateDataModel()
                     certificate.textField02 = cell.textField02.text ?? ""

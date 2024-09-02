@@ -9,14 +9,18 @@ import UIKit
 
 class MedicineAdditionTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var medicineName: UILabel!
+    @IBOutlet weak var medicineName: UITextField!
     @IBOutlet weak var unitLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var timePicker: UIDatePicker!
     
+    var addedAmount: Int {
+        return Int(textField.text ?? "") ?? 0
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        setupTextField()
         doneButton()
         setupCell()
     }
@@ -26,6 +30,26 @@ class MedicineAdditionTableViewCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
+    private func setupTextField() {
+        let textFields: [UITextField] = [medicineName, textField]
+        
+        for textField in textFields {
+            if textField == medicineName {
+                textField.adjustsFontSizeToFitWidth = true
+                textField.minimumFontSize = 10
+                textField.backgroundColor = UIColor.clear
+                textField.borderStyle = .none
+                textField.isEnabled = false
+            } else if textField == textField {
+                textField.adjustsFontSizeToFitWidth = true
+                textField.minimumFontSize = 15
+                textField.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+                textField.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
+                textField.isEnabled = true
+            }
+            
+        }
+        }
     private func doneButton() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()

@@ -42,10 +42,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EdB-Oi-QBb">
-                                <rect key="frame" x="303" y="53" width="74" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EdB-Oi-QBb">
+                                <rect key="frame" x="296" y="22" width="74" height="25"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="AiG-ga-RyB"/>
+                                    <constraint firstAttribute="width" constant="74" id="Q9H-Ty-Cfh"/>
+                                </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain"/>
@@ -67,6 +70,8 @@
                             <constraint firstItem="iGu-j5-plf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="98V-Se-Q5Q"/>
                             <constraint firstItem="iGu-j5-plf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="YNc-eg-sGu"/>
                             <constraint firstItem="iGu-j5-plf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dgY-vK-QcU"/>
+                            <constraint firstAttribute="trailing" secondItem="EdB-Oi-QBb" secondAttribute="trailing" constant="5" id="gwE-gh-UCo"/>
+                            <constraint firstItem="iGu-j5-plf" firstAttribute="top" secondItem="EdB-Oi-QBb" secondAttribute="bottom" constant="3" id="j4a-zc-bcH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HMS-Vr-Kn0" secondAttribute="bottom" id="umu-F1-msT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HMS-Vr-Kn0" secondAttribute="trailing" id="xDl-52-GGv"/>
                         </constraints>
@@ -79,13 +84,13 @@
                         <outlet property="changeButton" destination="EdB-Oi-QBb" id="EcJ-1E-nVn"/>
                         <outlet property="tableView" destination="HMS-Vr-Kn0" id="XP6-Zn-Dfk"/>
                         <segue destination="8cv-Ev-t44" kind="presentation" identifier="FecesRecord" id="pGC-bX-5iL"/>
-                        <segue destination="kF4-6a-DzG" kind="presentation" identifier="next" id="QUf-gm-AFa"/>
+                        <segue destination="kF4-6a-DzG" kind="presentation" identifier="MedicineAddition" id="QUf-gm-AFa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tabBarItem title="Item" id="zI3-1f-vUk"/>
             </objects>
-            <point key="canvasLocation" x="207" y="-632"/>
+            <point key="canvasLocation" x="205.59999999999999" y="-632.83358320839591"/>
         </scene>
         <!--Medicine Addition View Controller-->
         <scene sceneID="gcm-3Q-ydV">
@@ -152,7 +157,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="U1h-j7-bwA">
                                 <rect key="frame" x="0.0" y="10" width="375" height="637"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="l6Q-tS-pSF">
                                         <rect key="frame" x="0.0" y="50" width="375" height="44.5"/>
@@ -255,7 +260,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLP-Vy-qjZ">
-                                <rect key="frame" x="268" y="20" width="104" height="35"/>
+                                <rect key="frame" x="268" y="17" width="104" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="お薬を追加"/>
                                 <connections>
@@ -263,7 +268,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Fyk-3M-k0X">
-                                <rect key="frame" x="0.0" y="55" width="375" height="563"/>
+                                <rect key="frame" x="0.0" y="52" width="375" height="566"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -282,7 +287,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Fyk-3M-k0X" firstAttribute="leading" secondItem="thW-UB-xdS" secondAttribute="leading" id="9WU-yV-GPv"/>
-                            <constraint firstItem="gLP-Vy-qjZ" firstAttribute="top" secondItem="thW-UB-xdS" secondAttribute="top" id="WXG-XP-2xa"/>
+                            <constraint firstItem="gLP-Vy-qjZ" firstAttribute="top" secondItem="thW-UB-xdS" secondAttribute="top" constant="-3" id="WXG-XP-2xa"/>
                             <constraint firstItem="thW-UB-xdS" firstAttribute="trailing" secondItem="Fyk-3M-k0X" secondAttribute="trailing" id="YXK-md-7Sy"/>
                             <constraint firstItem="thW-UB-xdS" firstAttribute="bottom" secondItem="Fyk-3M-k0X" secondAttribute="bottom" id="bKX-8l-Z1q"/>
                             <constraint firstItem="Fyk-3M-k0X" firstAttribute="top" secondItem="gLP-Vy-qjZ" secondAttribute="bottom" id="gha-fY-HCU"/>

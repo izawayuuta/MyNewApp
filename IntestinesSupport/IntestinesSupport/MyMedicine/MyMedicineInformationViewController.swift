@@ -49,6 +49,17 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
     let datePicker = UIDatePicker()
     var pickerData1 = ["起床時", "食前", "食直前", "食直後", "食後", "食間", "就寝前", "頓服"]
     var pickerData2 = ["錠", "包", "個", "ml", "mg"]
+    var stockValue: Int
+    
+    init(stockValue: Int) {
+            self.stockValue = stockValue
+            super.init(nibName: nil, bundle: nil)
+        }
+
+        required init?(coder: NSCoder) {
+            self.stockValue = 0 // デフォルト値を設定
+            super.init(coder: coder)
+        }
     
     
     override func viewDidLoad() {

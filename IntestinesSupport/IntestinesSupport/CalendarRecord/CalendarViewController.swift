@@ -12,7 +12,7 @@ import RealmSwift
 
 class CalendarViewController: UIViewController {
     
-    private var tableViewCell: [String] = ["CalendarDateCell", "PhysicalConditionCell", "FecesConditionCell", "FecesDetailCell", "AdditionButtonCell", "MedicineEmptyStateCell", "MedicineRecordDetailCell", "MemoCell"]
+    private var tableViewCell: [String] = ["CalendarDateCell", "PhysicalConditionCell", "FecesConditionCell", "FecesDetailCell", "AdditionButtonCell", "MedicineEmptyStateCell", "MemoCell"]
     
     var selectedDate: Date?
     private var calendarDataModel: [CalendarDataModel] = []
@@ -158,12 +158,15 @@ class CalendarViewController: UIViewController {
             let next = segue.destination as? FecesRecordViewController
             // 3. １で用意した遷移先の変数に値を渡す
             next?.selectedDate = selectedDate
+        } else if segue.identifier == "MedicineAddition" {
+            if let nextVC = segue.destination as? MedicineAdditionViewController {
+                nextVC.delegate = self
+            }
         }
     }
     func didTapAdditionButton(in cell: AdditionButtonCell) {
-        performSegue(withIdentifier: "next", sender: self)
+        performSegue(withIdentifier: "MedicineAddition", sender: self)
     }
-    
     func didTapPlusButton(in cell: FecesDetailCell) {
         // 例: 新しいレコードを作成
         let newRecord = CalendarDataModel()
@@ -195,6 +198,12 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
         let realm = try! Realm()
         medicineRecordDataModel = Array(realm.objects(MedicineRecordDataModel.self))
         tableView.reloadData()
+    }
+    func updateTableViewCells(with medicineRecordCount: Int) {
+        // `MedicineRecordDetailCell` を複数追加する
+        var cells = tableViewCell.filter { $0 != "MedicineRecordDetailCell" }
+        cells.append(contentsOf: Array(repeating: "MedicineRecordDetailCell", count: medicineRecordCount))
+        tableViewCell = cells
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableViewCell.count
@@ -265,6 +274,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
             return medicineEmptyStateCell
         } else if identifier == "MedicineRecordDetailCell" {
             let medicineRecordDetailCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MedicineRecordDetailCell
+//            medicineRecordDetailCell.delegate = self
             print("① Dequeueing MedicineRecordDetailCell for row \(indexPath.row)")
             //            return cell // インデックス範囲のチェック
             if indexPath.row < medicineRecordDataModel.count {
@@ -356,22 +366,30 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
         // 既存データと重複しないようにチェック
                if !medicineRecordDataModel.contains(where: { $0.medicineName == record.medicineName && $0.timePicker == record.timePicker }) {
                    medicineRecordDataModel.append(record)
+                   tableView.beginUpdates()
                    // データの追加が成功した場合、特定の行のみをリロードする（例: 最後に追加された行）
                    let newIndexPath = IndexPath(row: medicineRecordDataModel.count - 1, section: 0)
                    tableView.insertRows(at: [newIndexPath], with: .automatic)
+                   tableView.endUpdates()
                } else {
                    // 重複するデータがある場合の処理（例: ユーザーに通知）
                    print("Error: The record with the same medicine name and time already exists.")
                }
+//        tableViewCell = tableViewCell.filter { $0 != "MedicineEmptyStateCell" }
+//            
+//            // MedicineRecordDetailCell を追加する
+//            tableViewCell.append("MedicineRecordDetailCell")
+//            
+//            // テーブルビューの更新
+//            let indexPathToAdd = IndexPath(row: tableViewCell.count - 1, section: 0)
+//            
+//            tableView.beginUpdates()
+//            tableView.insertRows(at: [indexPathToAdd], with: .automatic)
+//            tableView.endUpdates()
            }
-    
-    //    func didTapAdditionButton(in cell: AdditionButtonCell) {
-    //        
-    //    }
     
     func updateDatePicker(with date: Date) {
     }
-    
     
     func didTapPlusButton(indexes: [Int]) {
         guard let selectedDate else { return }
