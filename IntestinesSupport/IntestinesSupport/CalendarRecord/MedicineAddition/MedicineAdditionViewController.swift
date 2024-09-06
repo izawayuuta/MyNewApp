@@ -84,6 +84,20 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
         let recordData = MedicineRecordDataModel()
         let realm = try! Realm()
         
+        let currentDate = Date()
+        
+        let dateFormatter = DateFormatter()
+           dateFormatter.locale = Locale(identifier: "ja_JP")
+           dateFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
+           dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+           
+           // 現在日時をフォーマットした文字列に変換
+        let timeString = dateFormatter.string(from: currentDate)
+           
+        let formattedDate = dateFormatter.date(from: timeString)!
+
+        print("👹currentDate: \(currentDate), timeString:  \(timeString), formatterDate: \(formattedDate)")
+        
         // 選択されたインデックスパスからセルを取得
         for indexPath in selectedIndexPaths {
             if let cell = tableView.cellForRow(at: indexPath) as? MedicineAdditionTableViewCell {
@@ -95,8 +109,7 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
                 if let doseNumber = Int(cell.textField.text ?? "") {
                     recordData.textField = doseNumber
                 }
-                recordData.timePicker = cell.timePicker.date
-                
+                recordData.timePicker = formattedDate
                 // Realm に変更を保存
                 try! realm.write {
                     realm.add(recordData, update: .modified)
@@ -106,6 +119,8 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
                 for data in savedData {
                     print("Saved MedicineRecordDataModel: \(data) 保存完了")
                 }
+                
+                
                 
                 if let calendarVC = self.storyboard?.instantiateViewController(withIdentifier: "CalendarViewController") as? CalendarViewController {
                     calendarVC.selectedDate = cell.timePicker.date
@@ -132,7 +147,6 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
                 }
             }
         }
-
     }
     private func selectedCellButton() {
         medicineAdditionButton.isEnabled = !selectedIndexPaths.isEmpty

@@ -13,7 +13,7 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="FecesConditionCell" customModule="IntestinesSupport" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="399" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" customClass="fecesConditionCell" customModule="IntestinesSupport" customModuleProvider="target">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" customClass="fecesConditionCell" customModule="IntestinesSupport" customModuleProvider="target">
                 <rect key="frame" x="0.0" y="0.0" width="399" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -24,46 +24,41 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Es3-tf-SFN">
-                        <rect key="frame" x="170" y="5" width="35" height="34"/>
+                        <rect key="frame" x="176" y="5" width="34" height="34"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="35" id="9ij-JN-7bB"/>
                             <constraint firstAttribute="height" constant="34" id="XYk-cU-EZS"/>
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="2"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMg-IA-v3f">
-                        <rect key="frame" x="227" y="5" width="35" height="34"/>
+                        <rect key="frame" x="232" y="5" width="35" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="4p4-Q7-JPd"/>
-                            <constraint firstAttribute="width" constant="35" id="slT-xF-q6f"/>
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="3"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nH-bQ-RZw">
-                        <rect key="frame" x="284" y="5" width="35" height="34"/>
+                        <rect key="frame" x="289" y="5" width="35" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="1sI-Bm-7Fi"/>
-                            <constraint firstAttribute="width" constant="35" id="8P0-H3-1yO"/>
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="4"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1F-Na-GsI">
-                        <rect key="frame" x="341" y="5" width="35" height="34"/>
+                        <rect key="frame" x="346" y="5" width="35" height="34"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="35" id="ALW-Wz-wbx"/>
                             <constraint firstAttribute="height" constant="34" id="hUO-Fy-3Qs"/>
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="5"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URv-aW-TNV">
-                        <rect key="frame" x="113" y="5" width="35" height="34"/>
+                        <rect key="frame" x="122.33333333333333" y="5" width="31.666666666666671" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="cw6-4U-hFC"/>
-                            <constraint firstAttribute="width" constant="35" id="dg6-9B-xku"/>
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="1"/>
@@ -71,18 +66,16 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="Es3-tf-SFN" firstAttribute="leading" secondItem="URv-aW-TNV" secondAttribute="trailing" constant="22" id="4ne-t5-X1U"/>
-                    <constraint firstItem="URv-aW-TNV" firstAttribute="leading" secondItem="vPH-SI-lpf" secondAttribute="trailing" constant="34.329999999999998" id="CCX-Yg-N35"/>
                     <constraint firstItem="Es3-tf-SFN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Fo1-Sy-VTk"/>
                     <constraint firstItem="5nH-bQ-RZw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="FqB-dB-mMR"/>
                     <constraint firstItem="r1F-Na-GsI" firstAttribute="leading" secondItem="5nH-bQ-RZw" secondAttribute="trailing" constant="22" id="O6P-de-Gmu"/>
                     <constraint firstItem="r1F-Na-GsI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="QIo-65-GZL"/>
                     <constraint firstItem="5nH-bQ-RZw" firstAttribute="leading" secondItem="AMg-IA-v3f" secondAttribute="trailing" constant="22" id="TSV-2d-dQz"/>
                     <constraint firstItem="vPH-SI-lpf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XfI-2B-aWD"/>
-                    <constraint firstItem="URv-aW-TNV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="113" id="ZUZ-Yy-X6k"/>
                     <constraint firstItem="URv-aW-TNV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="a43-Sq-4sr"/>
                     <constraint firstItem="vPH-SI-lpf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="egK-Ws-tim"/>
-                    <constraint firstAttribute="trailing" secondItem="r1F-Na-GsI" secondAttribute="trailing" constant="18" id="fKu-13-bjv"/>
                     <constraint firstItem="AMg-IA-v3f" firstAttribute="leading" secondItem="Es3-tf-SFN" secondAttribute="trailing" constant="22" id="htS-TJ-TNU"/>
+                    <constraint firstAttribute="trailing" secondItem="r1F-Na-GsI" secondAttribute="trailing" constant="18" id="idu-uN-VCy"/>
                     <constraint firstItem="AMg-IA-v3f" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wR4-4i-C7p"/>
                 </constraints>
             </tableViewCellContentView>

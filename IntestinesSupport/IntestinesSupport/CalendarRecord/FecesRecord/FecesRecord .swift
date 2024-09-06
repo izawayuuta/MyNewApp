@@ -81,7 +81,6 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
         } else {
             let recordCell = tableView.dequeueReusableCell(withIdentifier: "FecesRecordTableViewCell", for: indexPath) as! FecesRecordTableViewCell
             
-            
             recordCell.label1.textColor = .lightGray
             recordCell.label2.textColor = .lightGray
             recordCell.label3.textColor = .lightGray
@@ -109,6 +108,7 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
             dateFormatter.dateFormat = "HH:mm"
             
             let timeString = dateFormatter.string(from: fecesDetail.time)
+            print("😈\(timeString)")
             
             // セルを設定する
             recordCell.configure(with: type, time: timeString, count: [indexPath.row + 1])

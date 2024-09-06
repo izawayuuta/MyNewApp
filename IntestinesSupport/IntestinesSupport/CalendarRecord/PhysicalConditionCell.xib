@@ -13,7 +13,7 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="PhysicalConditionCell" customModule="IntestinesSupport" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="402" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="402" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -24,63 +24,56 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MbR-YB-Uat">
-                        <rect key="frame" x="113" y="5" width="35" height="34"/>
+                        <rect key="frame" x="125.33333333333333" y="5" width="31.666666666666671" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="Z52-4g-eSu"/>
-                            <constraint firstAttribute="width" constant="35" id="gPx-Fg-wdf"/>
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="1"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBu-sw-JcJ">
-                        <rect key="frame" x="170" y="5" width="35" height="34"/>
+                        <rect key="frame" x="179" y="5" width="34" height="34"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="35" id="a3j-k3-7w2"/>
                             <constraint firstAttribute="height" constant="34" id="lVg-6H-8Zr"/>
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="2"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZEY-mU-l5n">
-                        <rect key="frame" x="227" y="5" width="35" height="34"/>
+                        <rect key="frame" x="235" y="5" width="35" height="34"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="35" id="imI-tL-RyJ"/>
                             <constraint firstAttribute="height" constant="34" id="qlO-VJ-a2l"/>
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="3"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVN-4U-QZ3">
-                        <rect key="frame" x="284" y="5" width="35" height="34"/>
+                        <rect key="frame" x="292" y="5" width="35" height="34"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="35" id="NEw-Sg-rbH"/>
                             <constraint firstAttribute="height" constant="34" id="jn2-MM-Re5"/>
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="4"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glW-Kg-8Nq">
-                        <rect key="frame" x="341" y="5" width="35" height="34"/>
+                        <rect key="frame" x="349" y="5" width="35" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="FkK-40-FSh"/>
-                            <constraint firstAttribute="width" constant="35" id="Pgs-PW-zan"/>
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="5"/>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="MbR-YB-Uat" firstAttribute="leading" secondItem="x3p-dK-CAa" secondAttribute="trailing" constant="51" id="AA2-Th-8IG"/>
                     <constraint firstItem="ZVN-4U-QZ3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="C9P-70-cOm"/>
                     <constraint firstItem="ZEY-mU-l5n" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Kif-AZ-9M3"/>
                     <constraint firstItem="ZEY-mU-l5n" firstAttribute="leading" secondItem="RBu-sw-JcJ" secondAttribute="trailing" constant="22" id="Knt-ci-M7e"/>
                     <constraint firstItem="glW-Kg-8Nq" firstAttribute="leading" secondItem="ZVN-4U-QZ3" secondAttribute="trailing" constant="22" id="LFE-zB-LSa"/>
+                    <constraint firstItem="x3p-dK-CAa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="OY0-FK-TJv"/>
                     <constraint firstItem="MbR-YB-Uat" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Pl2-J9-Lfr"/>
                     <constraint firstItem="glW-Kg-8Nq" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VGm-Lm-Hh3"/>
-                    <constraint firstItem="x3p-dK-CAa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="ZWk-eJ-6Zh"/>
-                    <constraint firstItem="MbR-YB-Uat" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="113" id="fcJ-A3-ZZN"/>
+                    <constraint firstAttribute="trailing" secondItem="glW-Kg-8Nq" secondAttribute="trailing" constant="18" id="hje-WL-wNE"/>
                     <constraint firstItem="ZVN-4U-QZ3" firstAttribute="leading" secondItem="ZEY-mU-l5n" secondAttribute="trailing" constant="22" id="ken-yh-UiS"/>
-                    <constraint firstAttribute="trailing" secondItem="glW-Kg-8Nq" secondAttribute="trailing" constant="18" id="q6l-ap-dwi"/>
                     <constraint firstItem="RBu-sw-JcJ" firstAttribute="leading" secondItem="MbR-YB-Uat" secondAttribute="trailing" constant="22" id="ug6-y2-pev"/>
                     <constraint firstItem="RBu-sw-JcJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vcc-TU-xJB"/>
                     <constraint firstItem="x3p-dK-CAa" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vfR-Cz-hIl"/>
@@ -94,7 +87,7 @@
                 <outlet property="number04Button" destination="ZVN-4U-QZ3" id="2fI-vT-Sbg"/>
                 <outlet property="number05Button" destination="glW-Kg-8Nq" id="Oph-iF-2jX"/>
             </connections>
-            <point key="canvasLocation" x="170.99236641221373" y="-33.098591549295776"/>
+            <point key="canvasLocation" x="-56" y="75"/>
         </tableViewCell>
     </objects>
 </document>

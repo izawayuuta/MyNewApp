@@ -12,7 +12,7 @@ import RealmSwift
 
 class CalendarViewController: UIViewController {
     
-    private var tableViewCell: [String] = ["CalendarDateCell", "PhysicalConditionCell", "FecesConditionCell", "FecesDetailCell", "AdditionButtonCell", "MedicineEmptyStateCell", "MemoCell"]
+    private var tableViewCell: [String] = ["CalendarDateCell", "PhysicalConditionCell", "FecesConditionCell", "FecesDetailCell", "AdditionButtonCell", "MemoCell"]
     
     var selectedDate: Date?
     private var calendarDataModel: [CalendarDataModel] = []
@@ -31,6 +31,7 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //        print("Initial number of rows: \(tableView.numberOfRows(inSection: 0))")
         
         calendar.delegate = self
         calendar.dataSource = self
@@ -54,6 +55,7 @@ class CalendarViewController: UIViewController {
         configureCalendar()
         setupCalendarScope()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadCalendars()
@@ -83,7 +85,6 @@ class CalendarViewController: UIViewController {
         let calendars = realm.objects(CalendarDataModel.self)
         calendarDataModel = Array(calendars)
     }
-    
     private func configureCalendar() {
         // ヘッダーの日付フォーマットを変更
         calendar.appearance.headerDateFormat = "yyyy年MM月"
@@ -196,14 +197,32 @@ class CalendarViewController: UIViewController {
 extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
     func loadMedicinesData() {
         let realm = try! Realm()
-        medicineRecordDataModel = Array(realm.objects(MedicineRecordDataModel.self))
+        let medicineRecords = realm.objects(MedicineRecordDataModel.self)
         tableView.reloadData()
+        for record in medicineRecords {
+            print("🧤MedicineRecordDataModel:")
+            print("🧤Name: \(record.medicineName)")
+            print("🧤Unit: \(record.unit)")
+            print("🧤Dose Number: \(record.textField)")
+            print("🧤Time Picker: \(record.timePicker)")
+        }
     }
     func updateTableViewCells(with medicineRecordCount: Int) {
-        // `MedicineRecordDetailCell` を複数追加する
-        var cells = tableViewCell.filter { $0 != "MedicineRecordDetailCell" }
-        cells.append(contentsOf: Array(repeating: "MedicineRecordDetailCell", count: medicineRecordCount))
-        tableViewCell = cells
+        // MedicineEmptyStateCell を削除または追加するための条件分岐
+        if medicineRecordCount > 0 {
+            // MedicineRecordDetailCell を追加する
+            let detailCells = Array(repeating: "MedicineRecordDetailCell", count: medicineRecordCount)
+            let insertIndex = min(5, tableViewCell.count)
+            tableViewCell.removeAll { $0 == "MedicineEmptyStateCell" }
+            tableViewCell.insert(contentsOf: detailCells, at: insertIndex)
+        } else {
+            // MedicineRecordDetailCell を削除し、MedicineEmptyStateCell を追加する
+            tableViewCell.removeAll { $0 == "MedicineRecordDetailCell" }
+            if !tableViewCell.contains("MedicineEmptyStateCell") {
+                tableViewCell.append("MedicineEmptyStateCell")
+            }
+        }
+        tableView.reloadData()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableViewCell.count
@@ -274,25 +293,20 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
             return medicineEmptyStateCell
         } else if identifier == "MedicineRecordDetailCell" {
             let medicineRecordDetailCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MedicineRecordDetailCell
-//            medicineRecordDetailCell.delegate = self
-            print("① Dequeueing MedicineRecordDetailCell for row \(indexPath.row)")
-            //            return cell // インデックス範囲のチェック
             if indexPath.row < medicineRecordDataModel.count {
                 let medicine = medicineRecordDataModel[indexPath.row]
                 medicineRecordDetailCell.medicineName.text = medicine.medicineName
                 medicineRecordDetailCell.unit.text = medicine.unit
                 medicineRecordDetailCell.textField.text = "\(medicine.textField)"
-                //                if selectedTime == selectedDate {
-                //                    medicineRecordDetailCell.timePicker.setDate(selectedTime, animated: false)
-                //                }
-                print("②    Medicine Name: \(medicine.medicineName)")
-                print("③    Unit: \(medicine.unit)")
-                print("④    TextField Value: \(medicine.textField)")
                 if selectedDate != nil {
                     medicineRecordDetailCell.timePicker.setDate(selectedDate, animated: false)
-                    print("⑤    Time Picker Date: \(selectedDate)")
                 }
+                print("🐱medicineName: \(String(describing: medicineRecordDetailCell.medicineName.text))")
+                print("🐱unit: \(String(describing: medicineRecordDetailCell.unit.text))")
+                print("🐱textField: \(String(describing: medicineRecordDetailCell.textField.text))")
+                print("🐱selectedDate: \(selectedDate)")
             }
+            medicineRecordDetailCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return medicineRecordDetailCell
         } else if identifier == "MemoCell" {
             let memoCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MemoCell
@@ -363,30 +377,22 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
 
 extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDelegate, MedicineAdditionViewControllerDelegate {
     func didSaveMedicineRecord(_ record: MedicineRecordDataModel) {
+        
         // 既存データと重複しないようにチェック
-               if !medicineRecordDataModel.contains(where: { $0.medicineName == record.medicineName && $0.timePicker == record.timePicker }) {
-                   medicineRecordDataModel.append(record)
-                   tableView.beginUpdates()
-                   // データの追加が成功した場合、特定の行のみをリロードする（例: 最後に追加された行）
-                   let newIndexPath = IndexPath(row: medicineRecordDataModel.count - 1, section: 0)
-                   tableView.insertRows(at: [newIndexPath], with: .automatic)
-                   tableView.endUpdates()
-               } else {
-                   // 重複するデータがある場合の処理（例: ユーザーに通知）
-                   print("Error: The record with the same medicine name and time already exists.")
-               }
-//        tableViewCell = tableViewCell.filter { $0 != "MedicineEmptyStateCell" }
-//            
-//            // MedicineRecordDetailCell を追加する
-//            tableViewCell.append("MedicineRecordDetailCell")
-//            
-//            // テーブルビューの更新
-//            let indexPathToAdd = IndexPath(row: tableViewCell.count - 1, section: 0)
-//            
-//            tableView.beginUpdates()
-//            tableView.insertRows(at: [indexPathToAdd], with: .automatic)
-//            tableView.endUpdates()
-           }
+        if !medicineRecordDataModel.contains(where: { $0.medicineName == record.medicineName && $0.timePicker == record.timePicker }) {
+            medicineRecordDataModel.append(record)
+            print("🥶Appending record: \(record)")
+            
+            let medicineRecordCount = medicineRecordDataModel.count
+            updateTableViewCells(with: medicineRecordCount)
+            
+            tableView.reloadData()
+            
+        } else {
+            // 重複するデータがある場合の処理（例: ユーザーに通知）
+            print("Error: The record with the same medicine name and time already exists.")
+        }
+    }
     
     func updateDatePicker(with date: Date) {
     }

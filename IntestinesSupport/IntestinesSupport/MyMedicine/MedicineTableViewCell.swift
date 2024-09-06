@@ -12,7 +12,7 @@ class MedicineTableViewCell: UITableViewCell {
     @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var stockNumberLabel: UILabel!
     @IBOutlet weak var stockUnitLabel: UILabel!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

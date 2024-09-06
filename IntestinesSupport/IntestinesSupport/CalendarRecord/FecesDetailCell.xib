@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
@@ -24,7 +24,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuG-DG-6uO">
-                        <rect key="frame" x="93" y="15.666666666666664" width="50" height="49.999999999999993"/>
+                        <rect key="frame" x="93" y="15.5" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="kXl-q6-A3c"/>
                             <constraint firstAttribute="width" constant="50" id="nrO-RM-Lxm"/>
@@ -36,7 +36,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3R-m0-8JJ">
-                        <rect key="frame" x="262" y="23.333333333333332" width="56" height="34.333333333333343"/>
+                        <rect key="frame" x="262" y="23.5" width="56" height="34"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="Button"/>
@@ -51,21 +51,21 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LcX-2F-A7c">
-                        <rect key="frame" x="156" y="8.6666666666666661" width="48.333333333333343" height="30.333333333333336"/>
+                        <rect key="frame" x="156" y="8.5" width="48.5" height="30"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="硬便">
                             <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
                         </buttonConfiguration>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3A-de-Vpi">
-                        <rect key="frame" x="156" y="43" width="48.333333333333343" height="29.666666666666671"/>
+                        <rect key="frame" x="156" y="42.5" width="48.5" height="30"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="便秘">
                             <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
                         </buttonConfiguration>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lt9-2j-nWA">
-                        <rect key="frame" x="217.33333333333334" y="8.6666666666666661" width="48.333333333333343" height="30.333333333333336"/>
+                        <rect key="frame" x="217.5" y="8.5" width="48.5" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="48.329999999999998" id="TEI-YT-omA"/>
                             <constraint firstAttribute="height" constant="30.329999999999998" id="mDt-mT-HTA"/>
@@ -76,21 +76,21 @@
                         </buttonConfiguration>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgN-Bq-yDj">
-                        <rect key="frame" x="278.66666666666669" y="43" width="48.333333333333314" height="29.666666666666671"/>
+                        <rect key="frame" x="279" y="42.5" width="48.5" height="30"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="血便">
                             <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
                         </buttonConfiguration>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rde-Qq-uJV">
-                        <rect key="frame" x="278.66666666666669" y="8.6666666666666661" width="48.333333333333314" height="30.333333333333336"/>
+                        <rect key="frame" x="279" y="8.5" width="48.5" height="30"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="下痢">
                             <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
                         </buttonConfiguration>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGq-i4-66R">
-                        <rect key="frame" x="217.33333333333334" y="43" width="48.333333333333343" height="29.666666666666671"/>
+                        <rect key="frame" x="217.5" y="42.5" width="48" height="30"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="軟便">
                             <fontDescription key="titleFontDescription" type="system" pointSize="13"/>

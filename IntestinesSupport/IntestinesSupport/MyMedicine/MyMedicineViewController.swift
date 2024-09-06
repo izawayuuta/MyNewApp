@@ -23,12 +23,12 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         
         tableView.register(UINib(nibName: "MedicineTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         loadMedicines()
+//        showMedicineInformation()
     }
     func loadMedicines() {
         let realm = try! Realm()
         let MyMedicines = realm.objects(MedicineDataModel.self)
         medicineDataModel = Array(MyMedicines)
-//        tableView.reloadData()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return medicineDataModel.count
@@ -47,7 +47,7 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let medicineToDelete = medicineDataModel[indexPath.row]
-            deleteMedicine(medicineToDelete)
+//            deleteMedicine(medicineToDelete)
             medicineDataModel.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             loadMedicines()
@@ -71,34 +71,43 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return false
     }
+//    func showMedicineInformation() {
+//            // MedicineInformationViewController をインスタンス化
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            guard let medicineInfoVC = storyboard.instantiateViewController(withIdentifier: "MyMedicineInformation") as? MyMedicineInformation else {
+//                return
+//            }
+//            
+//            // デリゲートを設定
+//            medicineInfoVC.delegate = self
+//            
+//            // モーダル表示
+//            self.present(medicineInfoVC, animated: true, completion: nil)
+//        }
     // デリゲートメソッド
     func didSaveMedicine(_ medicine: MedicineDataModel) {
         medicineDataModel.append(medicine)
-//        loadMedicines()
         tableView.reloadData()
     }
-    private func saveMedicine(_ medicine: MedicineDataModel) {
-        let realm = try! Realm()
-        try! realm.write {
-            realm.add(medicine)
-        }
-//        loadMedicines()
-        tableView.reloadData()
-    }
+//    private func saveMedicine(_ medicine: MedicineDataModel) {
+//        let realm = try! Realm()
+//        try! realm.write {
+//            realm.add(medicine)
+//        }
+//        tableView.reloadData()
+//    }
     func didDeleteMedicine(_ medicine: MedicineDataModel) {
         medicineDataModel.append(medicine)
-        loadMedicines()
         tableView.reloadData()
     }
-    func deleteMedicine(_ medicine: MedicineDataModel) {
-        do {
-            let realm = try! Realm()
-            try realm.write ({
-                realm.delete(medicine)
-            })
-//            loadMedicines()
-            tableView.reloadData()
-        }catch {
-        }
-    }
+//    func deleteMedicine(_ medicine: MedicineDataModel) {
+//        do {
+//            let realm = try! Realm()
+//            try realm.write ({
+//                realm.delete(medicine)
+//            })
+//            tableView.reloadData()
+//        }catch {
+//        }
+//    }
 }

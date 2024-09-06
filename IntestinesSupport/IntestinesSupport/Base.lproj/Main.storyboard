@@ -116,7 +116,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5y-rd-kM4">
-                                <rect key="frame" x="144.5" y="609" width="86.5" height="38"/>
+                                <rect key="frame" x="144.5" y="609" width="86" height="38"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="服用✔️">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
@@ -281,6 +281,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="nR3-aE-GoE" id="6Di-Bp-Ldr"/>
+                                    <outlet property="delegate" destination="nR3-aE-GoE" id="DpU-YB-d25"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="thW-UB-xdS"/>

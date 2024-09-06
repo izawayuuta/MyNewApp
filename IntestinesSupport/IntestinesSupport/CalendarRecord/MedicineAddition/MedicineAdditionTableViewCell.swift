@@ -14,6 +14,8 @@ class MedicineAdditionTableViewCell: UITableViewCell {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var timePicker: UIDatePicker!
     
+    weak var delegate: MedicineAdditionViewControllerDelegate?
+    
     var addedAmount: Int {
         return Int(textField.text ?? "") ?? 0
     }

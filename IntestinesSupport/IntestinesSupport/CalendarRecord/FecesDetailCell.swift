@@ -119,7 +119,7 @@ class FecesDetailCell: UITableViewCell {
         } else {
             fecesRecordCell?.timePicker.date = Date()
         }
-        
+        print("👿\(currentDate), \(timeString)")
         if let cell = fecesRecordCell {
                 cell.label1.text = selectedFecesDetails[0]
                 cell.label2.text = selectedFecesDetails[1]
