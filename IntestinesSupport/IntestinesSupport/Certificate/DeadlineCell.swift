@@ -18,8 +18,11 @@ class DeadlineCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var month2: UITextField!
     @IBOutlet weak var day2: UITextField!
     
+    var certificateId: String?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        year.tag = 1
         
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
         
@@ -49,7 +52,7 @@ class DeadlineCell: UITableViewCell, UITextFieldDelegate {
     }
     func setDoneButton() {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
-        let commitButton = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(tapDoneButton))
+        let commitButton = UIBarButtonItem(title: "保存", style: .done, target: self, action: #selector(tapDoneButton))
         toolBar.items = [commitButton]
         year.inputAccessoryView = toolBar
         month.inputAccessoryView = toolBar
@@ -81,18 +84,57 @@ class DeadlineCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-            // Realmにデータを保存するロジック
-            let realm = try! Realm()
-            try! realm.write {
-                // 保存するデータモデルの取得
-                let certificate = CertificateDataModel()
-                certificate.year = Int(year.text ?? "") ?? 0
-                certificate.month = Int(month.text ?? "") ?? 0
-                certificate.day = Int(day.text ?? "") ?? 0
-                certificate.year2 = Int(year2.text ?? "") ?? 0
-                certificate.month2 = Int(month.text ?? "") ?? 0
-                certificate.day2 = Int(day.text ?? "") ?? 0
-                realm.add(certificate, update: .modified)
+        guard let inputValue = textField.text, let convertedValue = Int(inputValue) else { return }
+
+        let realm = try! Realm()
+
+        try! realm.write {
+            if let id = certificateId {
+                // id で既存のデータを検索
+                if let certificate = realm.object(ofType: CertificateDataModel.self, forPrimaryKey: id) {
+                    // テキストフィールドによって異なるプロパティを更新
+                    switch textField {
+                    case year:
+                        certificate.year = convertedValue
+                    case month:
+                        certificate.month = convertedValue
+                    case day:
+                        certificate.day = convertedValue
+                    case year2:
+                        certificate.year2 = convertedValue
+                    case month2:
+                        certificate.month2 = convertedValue
+                    case day2:
+                        certificate.day2 = convertedValue
+                    default:
+                        break
+                    }
+                } else {
+                    // データが存在しない場合は新規作成
+                    let newCertificate = CertificateDataModel()
+                    newCertificate.id = id // 既存の ID を設定
+                    
+                    // テキストフィールドによって異なるプロパティを設定
+                    switch textField {
+                    case year:
+                        newCertificate.year = convertedValue
+                    case month:
+                        newCertificate.month = convertedValue
+                    case day:
+                        newCertificate.day = convertedValue
+                    case year2:
+                        newCertificate.year2 = convertedValue
+                    case month2:
+                        newCertificate.month2 = convertedValue
+                    case day2:
+                        newCertificate.day2 = convertedValue
+                    default:
+                        break
+                    }
+                    
+                    realm.add(newCertificate, update: .modified)
+                }
             }
         }
+    }
 }

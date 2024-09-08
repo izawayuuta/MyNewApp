@@ -13,6 +13,8 @@ class MoneyCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField01: UITextField!
     
+    var certificateId: String?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         textField01.delegate = self
@@ -32,7 +34,7 @@ class MoneyCell: UITableViewCell, UITextFieldDelegate {
     }
     func setDoneButton() {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
-        let commitButton = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(tapDoneButton))
+        let commitButton = UIBarButtonItem(title: "保存", style: .done, target: self, action: #selector(tapDoneButton))
         toolBar.items = [commitButton]
         textField01.inputAccessoryView = toolBar
     }
@@ -53,29 +55,24 @@ class MoneyCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        let inputValue = textField01.text ?? ""
-        let convertedValue = Int(inputValue) ?? 0
-        // Realmにデータを保存するロジック
+        guard let inputValue = textField.text, let convertedValue = Int(inputValue) else { return }
+        
         let realm = try! Realm()
+        
         try! realm.write {
-            // 保存するデータモデルの取得
-            let certificate = CertificateDataModel()
-            certificate.textField01 = Int(textField01.text ?? "") ?? 3
-            realm.add(certificate, update: .modified)
+            if let id = certificateId {
+                // id で既存のデータを検索
+                if let certificate = realm.object(ofType: CertificateDataModel.self, forPrimaryKey: id) {
+                    // データが存在する場合は更新
+                    certificate.textField01 = convertedValue
+                } else {
+                    // データが存在しない場合は新規作成
+                    let newCertificate = CertificateDataModel()
+                    newCertificate.id = id // 既存の ID を設定
+                    newCertificate.textField01 = convertedValue
+                    realm.add(newCertificate, update: .modified)
+                }
+            }
         }
-        //        let realm = try! Realm()
-        //
-        //            try! realm.write {
-        //                if let existingCertificate = realm.objects(CertificateDataModel.self).first {
-        //                    existingCertificate.textField01 = convertedValue
-        //                } else {
-        //                    let certificate = CertificateDataModel()
-        //                    certificate.textField01 = convertedValue
-        //                    realm.add(certificate, update: .modified)
-        //                }
-        //            }
-        //        print("💾 保存された値: \(convertedValue)")
-        //
-        //        }
     }
 }

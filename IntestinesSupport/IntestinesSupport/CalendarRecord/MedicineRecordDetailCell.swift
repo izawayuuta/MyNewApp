@@ -45,12 +45,22 @@ class MedicineRecordDetailCell: UITableViewCell {
     }
     private func setupCell() {
         contentView.layer.borderWidth = 1.5
-        contentView.layer.borderColor = UIColor.orange.cgColor
+        contentView.layer.borderColor = UIColor.magenta.cgColor
         contentView.layer.cornerRadius = 8.0
         contentView.clipsToBounds = true
     }
-//    func delegateSelf() {
-//        let viewController = MedicineAdditionViewController()
-//        viewController.delegate = self
-//    }
+    func configure(with record: MedicineRecordDataModel) {
+        // データモデルのプロパティを使ってセルを設定
+        medicineName.text = record.medicineName
+        unit.text = record.unit// 数量と単位の表示
+        textField.text = "\(String(describing: textField))"
+        timePicker.date = record.timePicker
+    }
+    private func formatDate(_ date: Date?) -> String {
+        guard let date = date else { return "" } // 日付が nil の場合は空文字を返す
+        let formatter = DateFormatter()          // DateFormatter のインスタンスを作成
+        formatter.dateFormat = "HH:mm" // 日付のフォーマットを設定（例: 2024-09-06 14:30）
+        return formatter.string(from: date)      // 指定されたフォーマットで日付を文字列に変換して返す
+    }
+
 }

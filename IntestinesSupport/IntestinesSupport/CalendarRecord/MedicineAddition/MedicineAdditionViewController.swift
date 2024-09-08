@@ -81,7 +81,7 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
         return 50.0 // セルの高さ
     }
     @IBAction func medicineAdditionButton(_ sender: UIButton) {
-        let recordData = MedicineRecordDataModel()
+        let record = MedicineRecordDataModel()
         let realm = try! Realm()
         
         let currentDate = Date()
@@ -101,23 +101,27 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
         // 選択されたインデックスパスからセルを取得
         for indexPath in selectedIndexPaths {
             if let cell = tableView.cellForRow(at: indexPath) as? MedicineAdditionTableViewCell {
-                let recordData = MedicineRecordDataModel()
+//                let record = MedicineRecordDataModel()
                 
                 // セルの情報をデータモデルに保存
-                recordData.medicineName = cell.medicineName.text ?? ""
-                recordData.unit = cell.unitLabel.text ?? ""
+                record.medicineName = cell.medicineName.text ?? ""
+                record.unit = cell.unitLabel.text ?? ""
                 if let doseNumber = Int(cell.textField.text ?? "") {
-                    recordData.textField = doseNumber
+                    record.textField = doseNumber
                 }
-                recordData.timePicker = formattedDate
+                record.timePicker = formattedDate
+                print("Debug: record.medicineName = \(record.medicineName)") // 正常
+                print("Debug: record.unit = \(record.unit)") // 正常
+                print("Debug: record.textField = \(record.textField)") // 正常
+                print("Debug: record.timePicker = \(record.timePicker)") // 正常
                 // Realm に変更を保存
                 try! realm.write {
-                    realm.add(recordData, update: .modified)
+                    realm.add(record, update: .modified)
                 }
                 
-                let savedData = realm.objects(MedicineRecordDataModel.self).filter("medicineName = %@ AND timePicker = %@", recordData.medicineName, recordData.timePicker)
+                let savedData = realm.objects(MedicineRecordDataModel.self).filter("medicineName = %@ AND timePicker = %@", record.medicineName, record.timePicker)
                 for data in savedData {
-                    print("Saved MedicineRecordDataModel: \(data) 保存完了")
+                    print("Saved MedicineRecordDataModel: \(data) 保存完了") // 正常
                 }
                 
                 
@@ -128,7 +132,7 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
                 }
             }
         }
-        delegate?.didSaveMedicineRecord(recordData)
+        delegate?.didSaveMedicineRecord(record)
         dismiss(animated: true, completion: nil) // モーダル画面を閉じる
         
         guard let myMedicineInfo = myMedicineInformation else { return }

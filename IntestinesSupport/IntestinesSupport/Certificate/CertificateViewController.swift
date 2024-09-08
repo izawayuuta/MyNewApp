@@ -16,9 +16,10 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var tableView: UITableView!
     
     var tableViewCell: [String] = []
+//    var certificateIds: [String] = []
     private var certificateDataModel: [CertificateDataModel] = []
     weak var delegate: CertificateViewControllerDelegate?
-
+    
     let realm = try! Realm()
     
     override func viewDidLoad() {
@@ -56,56 +57,64 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
         if identifier == "ApplicationClassificationCell" {
             let applicationClassificationCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! ApplicationClassificationCell
             if indexPath.row < certificateDataModel.count {
-                        let data = certificateDataModel[indexPath.row]
-                        applicationClassificationCell.textField0.text = data.textField0
-                    }
+                    let data = certificateDataModel[indexPath.row]
+                applicationClassificationCell.textField0.text = data.textField0
+                applicationClassificationCell.certificateId = data.id
+                }
             applicationClassificationCell.setDoneButton()
-            return applicationClassificationCell
+                return applicationClassificationCell
         } else if identifier == "MoneyCell" {
             let moneyCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MoneyCell
             if indexPath.row < certificateDataModel.count {
-                        let data = certificateDataModel[indexPath.row]
-                // textField01 を String に変換し、空文字を表示できるようにする
-                   let displayValue = data.textField01 == 0 ? "" : String(data.textField01)
-                   moneyCell.textField01.text = displayValue
-                print("📊 表示される値: \(data.textField01)")
-                    }
-            moneyCell.setDoneButton()
-            return moneyCell
+                    let data = certificateDataModel[indexPath.row]
+                    // textField01 を String に変換し、空文字を表示できるようにする
+                    let displayValue = data.textField01 == 0 ? "" : String(data.textField01)
+                    moneyCell.textField01.text = displayValue
+                    moneyCell.certificateId = data.id
+                }
+                moneyCell.setDoneButton()
+                return moneyCell
         } else if identifier == "HierarchyClassificationCell" {
             let hierarchyClassificationCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! HierarchyClassificationCell
             if indexPath.row < certificateDataModel.count {
-                        let data = certificateDataModel[indexPath.row]
-                        hierarchyClassificationCell.textField02.text = data.textField02
-                    }
-            hierarchyClassificationCell.setDoneButton()
-            return hierarchyClassificationCell
+                    let data = certificateDataModel[indexPath.row]
+                    hierarchyClassificationCell.textField02.text = data.textField02
+                    hierarchyClassificationCell.certificateId = data.id 
+                }
+                hierarchyClassificationCell.setDoneButton()
+                return hierarchyClassificationCell
         } else if identifier == "DeadlineCell" {
             let deadlineCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! DeadlineCell
             if indexPath.row < certificateDataModel.count {
-                        let data = certificateDataModel[indexPath.row]
-                        deadlineCell.year.text = String(data.year)
-                        deadlineCell.month.text = String(data.month)
-                        deadlineCell.day.text = String(data.day)
-                        deadlineCell.year2.text = String(data.year2)
-                        deadlineCell.month2.text = String(data.month2)
-                        deadlineCell.day2.text = String(data.day2)
-                    }
-            deadlineCell.setDoneButton()
-            return deadlineCell
+                    let data = certificateDataModel[indexPath.row]
+                    // 各フィールドにデータを設定
+                    deadlineCell.year.text = data.year != 0 ? String(data.year) : ""
+                    deadlineCell.month.text = data.month != 0 ? String(data.month) : ""
+                    deadlineCell.day.text = data.day != 0 ? String(data.day) : ""
+                    deadlineCell.year2.text = data.year2 != 0 ? String(data.year2) : ""
+                    deadlineCell.month2.text = data.month2 != 0 ? String(data.month2) : ""
+                    deadlineCell.day2.text = data.day2 != 0 ? String(data.day2) : ""
+                    deadlineCell.certificateId = data.id
+                }
+                deadlineCell.setDoneButton()
+                return deadlineCell
         } else if identifier == "PeriodCell" {
             let periodCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PeriodCell
             if indexPath.row < certificateDataModel.count {
-                        let data = certificateDataModel[indexPath.row]
-                        periodCell.textField1.text = String(data.textField1)
-                        periodCell.textField2.text = String(data.textField2)
-                        periodCell.textField3.text = String(data.textField3)
-                        periodCell.textField4.text = String(data.textField4)
-                        periodCell.textField5.text = String(data.textField5)
-                        periodCell.pickerView.selectRow(data.pickerView, inComponent: 0, animated: false)
-                    }
+                let data = certificateDataModel[indexPath.row]
+                // 各フィールドにデータを設定
+                periodCell.textField1.text = data.year != 0 ? String(data.year) : ""
+                periodCell.textField2.text = data.month != 0 ? String(data.month) : ""
+                periodCell.textField3.text = data.day != 0 ? String(data.day) : ""
+                periodCell.textField4.text = data.year2 != 0 ? String(data.year2) : ""
+                periodCell.textField5.text = data.month2 != 0 ? String(data.month2) : ""
+                periodCell.certificateId = data.id
+//                periodCell.pickerView.selectRow(index, inComponent: 0, animated: false)
+            }
+//            let id = certificateIds[indexPath.row]
+//            periodCell.configure(with: id)
             periodCell.setDoneButton()
-            return periodCell
+                return periodCell
         } else if identifier == "PlusButtonCell" {
             let plusButtonCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PlusButtonCell
             plusButtonCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
@@ -166,9 +175,8 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                     realm.add(certificate, update: .modified)
                 } else if let cell = tableView.cellForRow(at: indexPath) as? MoneyCell {
                     let certificate = CertificateDataModel()
-//                    certificate.textField01 = Int(cell.textField01.text ?? "") ?? 1
                     certificate.textField01 = Int(cell.textField01.text ?? "") ?? 0
-                        realm.add(certificate, update: .modified)
+                    realm.add(certificate, update: .modified)
                 } else if let cell = tableView.cellForRow(at: indexPath) as? HierarchyClassificationCell {
                     let certificate = CertificateDataModel()
                     certificate.textField02 = cell.textField02.text ?? ""
@@ -189,7 +197,6 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                     certificate.textField3 = Int(cell.textField3.text ?? "") ?? 0
                     certificate.textField4 = Int(cell.textField4.text ?? "") ?? 0
                     certificate.textField5 = Int(cell.textField5.text ?? "") ?? 0
-                    certificate.pickerView = cell.pickerView.selectedRow(inComponent: 0)
                     realm.add(certificate, update: .modified)
                 }
             }

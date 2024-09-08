@@ -12,7 +12,7 @@ import RealmSwift
 
 class CalendarViewController: UIViewController {
     
-    private var tableViewCell: [String] = ["CalendarDateCell", "PhysicalConditionCell", "FecesConditionCell", "FecesDetailCell", "AdditionButtonCell", "MemoCell"]
+    private var tableViewCell: [String] = ["CalendarDateCell", "PhysicalConditionCell", "FecesConditionCell", "FecesDetailCell", "AdditionButtonCell", "MedicineEmptyStateCell", "MemoCell"]
     
     var selectedDate: Date?
     private var calendarDataModel: [CalendarDataModel] = []
@@ -31,7 +31,6 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        print("Initial number of rows: \(tableView.numberOfRows(inSection: 0))")
         
         calendar.delegate = self
         calendar.dataSource = self
@@ -199,13 +198,6 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
         let realm = try! Realm()
         let medicineRecords = realm.objects(MedicineRecordDataModel.self)
         tableView.reloadData()
-        for record in medicineRecords {
-            print("🧤MedicineRecordDataModel:")
-            print("🧤Name: \(record.medicineName)")
-            print("🧤Unit: \(record.unit)")
-            print("🧤Dose Number: \(record.textField)")
-            print("🧤Time Picker: \(record.timePicker)")
-        }
     }
     func updateTableViewCells(with medicineRecordCount: Int) {
         // MedicineEmptyStateCell を削除または追加するための条件分岐
@@ -216,12 +208,15 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
             tableViewCell.removeAll { $0 == "MedicineEmptyStateCell" }
             tableViewCell.insert(contentsOf: detailCells, at: insertIndex)
         } else {
-            // MedicineRecordDetailCell を削除し、MedicineEmptyStateCell を追加する
-            tableViewCell.removeAll { $0 == "MedicineRecordDetailCell" }
-            if !tableViewCell.contains("MedicineEmptyStateCell") {
-                tableViewCell.append("MedicineEmptyStateCell")
-            }
-        }
+               // `MedicineRecordDetailCell` を削除し、`MedicineEmptyStateCell` を追加する
+               tableViewCell.removeAll { $0 == "MedicineRecordDetailCell" }
+               // `MedicineEmptyStateCell` を 5 行目に追加する（存在しない場合）
+               if !tableViewCell.contains("MedicineEmptyStateCell") {
+                   // 現在のセル数を基に挿入位置を決定
+                   let insertIndex = min(5, tableViewCell.count)
+                   tableViewCell.insert("MedicineEmptyStateCell", at: insertIndex)
+               }
+           }
         tableView.reloadData()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -354,16 +349,19 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
         }
         return nil
     }
-    // 特定のセルだけ削除
+    // MedicineRecordDetailCellだけ削除
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.row == 6
-    }
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        if indexPath.row == 6 {
-            return .delete
-        }
-        return .none
-    }
+           let tableViewCell = tableViewCell[indexPath.row]
+           return tableViewCell == "MedicineRecordDetailCell"
+       }
+
+       func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+           let tableViewCell = tableViewCell[indexPath.row]
+           if tableViewCell == "MedicineRecordDetailCell" {
+               return .delete
+           }
+           return .none
+       }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // データソースからセルを削除する
@@ -381,8 +379,9 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
         // 既存データと重複しないようにチェック
         if !medicineRecordDataModel.contains(where: { $0.medicineName == record.medicineName && $0.timePicker == record.timePicker }) {
             medicineRecordDataModel.append(record)
-            print("🥶Appending record: \(record)")
-            
+            print("🤡🤡record:::\(record)") // 正常
+            print("🤡medicineRecordDataModel:::\(medicineRecordDataModel)") // 正常
+
             let medicineRecordCount = medicineRecordDataModel.count
             updateTableViewCells(with: medicineRecordCount)
             
