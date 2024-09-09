@@ -45,7 +45,7 @@ class MedicineRecordDetailCell: UITableViewCell {
     }
     private func setupCell() {
         contentView.layer.borderWidth = 1.5
-        contentView.layer.borderColor = UIColor.magenta.cgColor
+        contentView.layer.borderColor = UIColor.gray.cgColor
         contentView.layer.cornerRadius = 8.0
         contentView.clipsToBounds = true
     }
@@ -57,10 +57,9 @@ class MedicineRecordDetailCell: UITableViewCell {
         timePicker.date = record.timePicker
     }
     private func formatDate(_ date: Date?) -> String {
-        guard let date = date else { return "" } // 日付が nil の場合は空文字を返す
-        let formatter = DateFormatter()          // DateFormatter のインスタンスを作成
-        formatter.dateFormat = "HH:mm" // 日付のフォーマットを設定（例: 2024-09-06 14:30）
-        return formatter.string(from: date)      // 指定されたフォーマットで日付を文字列に変換して返す
+        guard let date = date else { return "" }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: date)
     }
-
 }

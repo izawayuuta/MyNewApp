@@ -76,7 +76,7 @@ class MedicineAdditionTableViewCell: UITableViewCell {
     private func setupCell() {
         contentView.layer.borderWidth = 1.5
         contentView.backgroundColor = UIColor.clear
-        contentView.layer.borderColor = UIColor.brown.cgColor
+        contentView.layer.borderColor = UIColor.gray.cgColor
         contentView.layer.cornerRadius = 10.0
     }
 }

@@ -106,39 +106,44 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerData[row]
     }
-//    func configure(with id: String) {
-//            self.certificateId = id
-//            loadPickerSelection()
-//        }
-//        
-//        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//            let realm = try! Realm()
-//            guard let id = certificateId else { return }
-//            
-//            if let certificate = realm.object(ofType: CertificateDataModel.self, forPrimaryKey: id) {
-//                try! realm.write {
-//                    certificate.pickerView = row
-//                    realm.add(certificate, update: .modified)
-//                }
-//            } else {
-//                let newCertificate = CertificateDataModel()
-//                newCertificate.id = id
-//                newCertificate.pickerView = row
-//                
-//                try! realm.write {
-//                    realm.add(newCertificate)
-//                }
-//            }
-//        }
-//        
-//        func loadPickerSelection() {
-//            let realm = try! Realm()
-//            guard let id = certificateId else { return }
-//            
-//            if let certificate = realm.object(ofType: CertificateDataModel.self, forPrimaryKey: id) {
-//                pickerView.selectRow(certificate.pickerView, inComponent: 0, animated: false)
-//            }
-//        }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+           let realm = try! Realm()
+           
+           guard let id = certificateId else {
+               return
+           }
+           
+           if let certificate = realm.object(ofType: CertificateDataModel.self, forPrimaryKey: id) {
+               // 既存のデータモデルがある場合は更新
+               try! realm.write {
+                   certificate.pickerView = row
+                   realm.add(certificate, update: .modified)
+               }
+           } else {
+               // 新しいデータモデルを作成し保存
+               let newCertificate = CertificateDataModel()
+               newCertificate.id = id
+               newCertificate.pickerView = row
+               
+               try! realm.write {
+                   realm.add(newCertificate)
+               }
+           }
+       }
+       func loadPickerSelection() {
+           let realm = try! Realm()
+           
+           // certificateIdの確認
+           guard let id = certificateId else {
+               return
+           }
+           
+           // データモデルの読み込み
+           if let certificate = realm.object(ofType: CertificateDataModel.self, forPrimaryKey: id) {
+               // UIPickerViewの選択状態を設定
+               pickerView.selectRow(certificate.pickerView, inComponent: 0, animated: false)
+           }
+       }
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let inputValue = textField.text, let convertedValue = Int(inputValue) else { return }
 

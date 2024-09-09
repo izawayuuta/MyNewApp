@@ -13,10 +13,11 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
     
     
     
+    
     @IBOutlet weak var tableView: UITableView!
     
     var tableViewCell: [String] = []
-//    var certificateIds: [String] = []
+    //    var certificateIds: [String] = []
     private var certificateDataModel: [CertificateDataModel] = []
     weak var delegate: CertificateViewControllerDelegate?
     
@@ -57,47 +58,47 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
         if identifier == "ApplicationClassificationCell" {
             let applicationClassificationCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! ApplicationClassificationCell
             if indexPath.row < certificateDataModel.count {
-                    let data = certificateDataModel[indexPath.row]
+                let data = certificateDataModel[indexPath.row]
                 applicationClassificationCell.textField0.text = data.textField0
                 applicationClassificationCell.certificateId = data.id
-                }
+            }
             applicationClassificationCell.setDoneButton()
-                return applicationClassificationCell
+            return applicationClassificationCell
         } else if identifier == "MoneyCell" {
             let moneyCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MoneyCell
             if indexPath.row < certificateDataModel.count {
-                    let data = certificateDataModel[indexPath.row]
-                    // textField01 を String に変換し、空文字を表示できるようにする
-                    let displayValue = data.textField01 == 0 ? "" : String(data.textField01)
-                    moneyCell.textField01.text = displayValue
-                    moneyCell.certificateId = data.id
-                }
-                moneyCell.setDoneButton()
-                return moneyCell
+                let data = certificateDataModel[indexPath.row]
+                // textField01 を String に変換し、空文字を表示できるようにする
+                let displayValue = data.textField01 == 0 ? "" : String(data.textField01)
+                moneyCell.textField01.text = displayValue
+                moneyCell.certificateId = data.id
+            }
+            moneyCell.setDoneButton()
+            return moneyCell
         } else if identifier == "HierarchyClassificationCell" {
             let hierarchyClassificationCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! HierarchyClassificationCell
             if indexPath.row < certificateDataModel.count {
-                    let data = certificateDataModel[indexPath.row]
-                    hierarchyClassificationCell.textField02.text = data.textField02
-                    hierarchyClassificationCell.certificateId = data.id 
-                }
-                hierarchyClassificationCell.setDoneButton()
-                return hierarchyClassificationCell
+                let data = certificateDataModel[indexPath.row]
+                hierarchyClassificationCell.textField02.text = data.textField02
+                hierarchyClassificationCell.certificateId = data.id
+            }
+            hierarchyClassificationCell.setDoneButton()
+            return hierarchyClassificationCell
         } else if identifier == "DeadlineCell" {
             let deadlineCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! DeadlineCell
             if indexPath.row < certificateDataModel.count {
-                    let data = certificateDataModel[indexPath.row]
-                    // 各フィールドにデータを設定
-                    deadlineCell.year.text = data.year != 0 ? String(data.year) : ""
-                    deadlineCell.month.text = data.month != 0 ? String(data.month) : ""
-                    deadlineCell.day.text = data.day != 0 ? String(data.day) : ""
-                    deadlineCell.year2.text = data.year2 != 0 ? String(data.year2) : ""
-                    deadlineCell.month2.text = data.month2 != 0 ? String(data.month2) : ""
-                    deadlineCell.day2.text = data.day2 != 0 ? String(data.day2) : ""
-                    deadlineCell.certificateId = data.id
-                }
-                deadlineCell.setDoneButton()
-                return deadlineCell
+                let data = certificateDataModel[indexPath.row]
+                // 各フィールドにデータを設定
+                deadlineCell.year.text = data.year != 0 ? String(data.year) : ""
+                deadlineCell.month.text = data.month != 0 ? String(data.month) : ""
+                deadlineCell.day.text = data.day != 0 ? String(data.day) : ""
+                deadlineCell.year2.text = data.year2 != 0 ? String(data.year2) : ""
+                deadlineCell.month2.text = data.month2 != 0 ? String(data.month2) : ""
+                deadlineCell.day2.text = data.day2 != 0 ? String(data.day2) : ""
+                deadlineCell.certificateId = data.id
+            }
+            deadlineCell.setDoneButton()
+            return deadlineCell
         } else if identifier == "PeriodCell" {
             let periodCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PeriodCell
             if indexPath.row < certificateDataModel.count {
@@ -109,12 +110,13 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                 periodCell.textField4.text = data.year2 != 0 ? String(data.year2) : ""
                 periodCell.textField5.text = data.month2 != 0 ? String(data.month2) : ""
                 periodCell.certificateId = data.id
-//                periodCell.pickerView.selectRow(index, inComponent: 0, animated: false)
+                //                periodCell.pickerView.selectRow(index, inComponent: 0, animated: false)
             }
-//            let id = certificateIds[indexPath.row]
-//            periodCell.configure(with: id)
+            periodCell.loadPickerSelection()
+            //            let id = certificateIds[indexPath.row]
+            //            periodCell.configure(with: id)
             periodCell.setDoneButton()
-                return periodCell
+            return periodCell
         } else if identifier == "PlusButtonCell" {
             let plusButtonCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PlusButtonCell
             plusButtonCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
@@ -155,56 +157,84 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            // CertificateDataModelから削除する
+            let realm = try! Realm()
+            let dataToDelete = certificateDataModel[indexPath.row]
+            
+            try! realm.write {
+                realm.delete(dataToDelete)
+            }
+            // TableViewのデータソースから削除
             tableViewCell.remove(at: indexPath.row)
+            certificateDataModel.remove(at: indexPath.row)
+            // TableViewからセルを削除
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
-    func didTapPlusButton(in cell: PlusButtonCell) {
-        tableViewCell.insert("PeriodCell", at: tableViewCell.count - 1)
-        let newIndexPath = IndexPath(row: tableViewCell.count - 2, section: 0)
-        tableView.insertRows(at: [newIndexPath], with: .automatic)
-    }
-    func saveData() {
-        try! realm.write {
-            // すべてのセルからデータを取得
-            for i in 0..<tableViewCell.count {
-                let indexPath = IndexPath(row: i, section: 0)
-                if let cell = tableView.cellForRow(at: indexPath) as? ApplicationClassificationCell {
-                    let certificate = CertificateDataModel()
-                    certificate.textField0 = cell.textField0.text ?? ""
-                    realm.add(certificate, update: .modified)
-                } else if let cell = tableView.cellForRow(at: indexPath) as? MoneyCell {
-                    let certificate = CertificateDataModel()
-                    certificate.textField01 = Int(cell.textField01.text ?? "") ?? 0
-                    realm.add(certificate, update: .modified)
-                } else if let cell = tableView.cellForRow(at: indexPath) as? HierarchyClassificationCell {
-                    let certificate = CertificateDataModel()
-                    certificate.textField02 = cell.textField02.text ?? ""
-                    realm.add(certificate, update: .modified)
-                } else if let cell = tableView.cellForRow(at: indexPath) as? DeadlineCell {
-                    let certificate = CertificateDataModel()
-                    certificate.year = Int(cell.year.text ?? "") ?? 0
-                    certificate.month = Int(cell.month.text ?? "") ?? 0
-                    certificate.day = Int(cell.day.text ?? "") ?? 0
-                    certificate.year2 = Int(cell.year2.text ?? "") ?? 0
-                    certificate.month2 = Int(cell.month2.text ?? "") ?? 0
-                    certificate.day2 = Int(cell.day2.text ?? "") ?? 0
-                    realm.add(certificate, update: .modified)
-                } else if let cell = tableView.cellForRow(at: indexPath) as? PeriodCell {
-                    let certificate = CertificateDataModel()
-                    certificate.textField1 = Int(cell.textField1.text ?? "") ?? 0
-                    certificate.textField2 = Int(cell.textField2.text ?? "") ?? 0
-                    certificate.textField3 = Int(cell.textField3.text ?? "") ?? 0
-                    certificate.textField4 = Int(cell.textField4.text ?? "") ?? 0
-                    certificate.textField5 = Int(cell.textField5.text ?? "") ?? 0
-                    realm.add(certificate, update: .modified)
+        //    }
+        //    func didTapPlusButton(in cell: PlusButtonCell) {
+        //        tableViewCell.insert("PeriodCell", at: tableViewCell.count - 1)
+        //        let newIndexPath = IndexPath(row: tableViewCell.count - 2, section: 0)
+        //        tableView.insertRows(at: [newIndexPath], with: .automatic)
+        //    }
+        func didTapPlusButton(in cell: PlusButtonCell) {
+            let newId = UUID().uuidString // 新しいユニークなIDを生成
+            tableViewCell.insert("PeriodCell", at: tableViewCell.count - 1)
+            
+            // 新しいデータモデルを作成し、IDを設定
+            let newCertificate = CertificateDataModel()
+            newCertificate.id = newId
+            
+            // データモデルのリストに追加
+            certificateDataModel.append(newCertificate)
+            
+            // TableViewに新しい行を追加
+            let newIndexPath = IndexPath(row: tableViewCell.count - 2, section: 0)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
+        func saveData() {
+            try! realm.write {
+                // すべてのセルからデータを取得
+                for i in 0..<tableViewCell.count {
+                    let indexPath = IndexPath(row: i, section: 0)
+                    let certificate = certificateDataModel[i]
+                    
+                    if let cell = tableView.cellForRow(at: indexPath) as? ApplicationClassificationCell {
+                        let certificate = CertificateDataModel()
+                        certificate.textField0 = cell.textField0.text ?? ""
+                        realm.add(certificate, update: .modified)
+                    } else if let cell = tableView.cellForRow(at: indexPath) as? MoneyCell {
+                        let certificate = CertificateDataModel()
+                        certificate.textField01 = Int(cell.textField01.text ?? "") ?? 0
+                        realm.add(certificate, update: .modified)
+                    } else if let cell = tableView.cellForRow(at: indexPath) as? HierarchyClassificationCell {
+                        let certificate = CertificateDataModel()
+                        certificate.textField02 = cell.textField02.text ?? ""
+                        realm.add(certificate, update: .modified)
+                    } else if let cell = tableView.cellForRow(at: indexPath) as? DeadlineCell {
+                        let certificate = CertificateDataModel()
+                        certificate.year = Int(cell.year.text ?? "") ?? 0
+                        certificate.month = Int(cell.month.text ?? "") ?? 0
+                        certificate.day = Int(cell.day.text ?? "") ?? 0
+                        certificate.year2 = Int(cell.year2.text ?? "") ?? 0
+                        certificate.month2 = Int(cell.month2.text ?? "") ?? 0
+                        certificate.day2 = Int(cell.day2.text ?? "") ?? 0
+                        realm.add(certificate, update: .modified)
+                    } else if let cell = tableView.cellForRow(at: indexPath) as? PeriodCell {
+                        let certificate = CertificateDataModel()
+                        certificate.textField1 = Int(cell.textField1.text ?? "") ?? 0
+                        certificate.textField2 = Int(cell.textField2.text ?? "") ?? 0
+                        certificate.textField3 = Int(cell.textField3.text ?? "") ?? 0
+                        certificate.textField4 = Int(cell.textField4.text ?? "") ?? 0
+                        certificate.textField5 = Int(cell.textField5.text ?? "") ?? 0
+                        realm.add(certificate, update: .modified)
+                    }
                 }
             }
         }
+        // データ更新
+        func didSaveCertificate(_ certificate: CertificateDataModel) {
+            certificateDataModel.append(certificate)
+            tableView.reloadData()
+        }
     }
-    // データ更新
-    func didSaveCertificate(_ certificate: CertificateDataModel) {
-        certificateDataModel.append(certificate)
-        tableView.reloadData()
-    }
-}

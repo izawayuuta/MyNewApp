@@ -89,14 +89,12 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
         let dateFormatter = DateFormatter()
            dateFormatter.locale = Locale(identifier: "ja_JP")
            dateFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
-           dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+           dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
            
            // 現在日時をフォーマットした文字列に変換
         let timeString = dateFormatter.string(from: currentDate)
            
         let formattedDate = dateFormatter.date(from: timeString)!
-
-        print("👹currentDate: \(currentDate), timeString:  \(timeString), formatterDate: \(formattedDate)")
         
         // 選択されたインデックスパスからセルを取得
         for indexPath in selectedIndexPaths {
@@ -109,19 +107,15 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
                 if let doseNumber = Int(cell.textField.text ?? "") {
                     record.textField = doseNumber
                 }
-                record.timePicker = formattedDate
-                print("Debug: record.medicineName = \(record.medicineName)") // 正常
-                print("Debug: record.unit = \(record.unit)") // 正常
-                print("Debug: record.textField = \(record.textField)") // 正常
-                print("Debug: record.timePicker = \(record.timePicker)") // 正常
-                // Realm に変更を保存
+                record.timePicker = cell.timePicker.date
+                
                 try! realm.write {
                     realm.add(record, update: .modified)
                 }
                 
                 let savedData = realm.objects(MedicineRecordDataModel.self).filter("medicineName = %@ AND timePicker = %@", record.medicineName, record.timePicker)
                 for data in savedData {
-                    print("Saved MedicineRecordDataModel: \(data) 保存完了") // 正常
+//                    print("Saved MedicineRecordDataModel: \(data) 保存完了") // 正常
                 }
                 
                 
