@@ -99,8 +99,8 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
         // 選択されたインデックスパスからセルを取得
         for indexPath in selectedIndexPaths {
             if let cell = tableView.cellForRow(at: indexPath) as? MedicineAdditionTableViewCell {
-//                let record = MedicineRecordDataModel()
                 
+                try! realm.write {
                 // セルの情報をデータモデルに保存
                 record.medicineName = cell.medicineName.text ?? ""
                 record.unit = cell.unitLabel.text ?? ""
@@ -109,7 +109,6 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
                 }
                 record.timePicker = cell.timePicker.date
                 
-                try! realm.write {
                     realm.add(record, update: .modified)
                 }
                 

@@ -114,7 +114,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
             } 
             if indexPath.row < certificateIds.count {
                 let id = certificateIds[indexPath.row]
-                                periodCell.certificateId = id
+                periodCell.certificateId = id
             }
             periodCell.loadPickerSelection()
             periodCell.setDoneButton()

@@ -202,24 +202,52 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
         tableView.reloadData()
     }
     func updateTableViewCells(with medicineRecordCount: Int) {
-        // MedicineEmptyStateCell を削除または追加するための条件分岐
+        // 現在のセル数を取得
+        let currentCellCount = tableViewCell.count
+        
         if medicineRecordCount > 0 {
-            // MedicineRecordDetailCell を追加する
             let detailCells = Array(repeating: "MedicineRecordDetailCell", count: medicineRecordCount)
-            let insertIndex = min(5, tableViewCell.count)
-            tableViewCell.removeAll { $0 == "MedicineEmptyStateCell" }
-            tableViewCell.insert(contentsOf: detailCells, at: insertIndex)
-        } else {
-            // `MedicineRecordDetailCell` を削除し、`MedicineEmptyStateCell` を追加する
-            tableViewCell.removeAll { $0 == "MedicineRecordDetailCell" }
-            // `MedicineEmptyStateCell` を 5 行目に追加する（存在しない場合）
-            if !tableViewCell.contains("MedicineEmptyStateCell") {
-                // 現在のセル数を基に挿入位置を決定
-                let insertIndex = min(5, tableViewCell.count)
-                tableViewCell.insert("MedicineEmptyStateCell", at: insertIndex)
+            
+            // MedicineEmptyStateCell を削除
+            if let emptyStateIndex = tableViewCell.firstIndex(of: "MedicineEmptyStateCell") {
+                tableViewCell.remove(at: emptyStateIndex)
             }
+            let numberOfDetailCells = tableViewCell.filter { $0 == "MedicineRecordDetailCell" }.count
+            let cellsToAdd = max(0, medicineRecordCount - numberOfDetailCells)
+            let insertIndex = min(5, tableViewCell.count)
+            
+            if cellsToAdd > 0 {
+                tableViewCell.insert(contentsOf: Array(repeating: "MedicineRecordDetailCell", count: cellsToAdd), at: insertIndex)
+            }
+        } else {
+            removeMedicineRecordDetailCell()
         }
         tableView.reloadData()
+        print("🌕 tableViewCell : \(tableViewCell)")
+    }
+    private func removeMedicineRecordDetailCell() {
+        // 削除対象のインデックスを収集
+        let indicesToRemove = getIndicesToRemove(for: "MedicineRecordDetailCell")
+        for index in indicesToRemove.reversed() {
+            removeCell(at: index)
+        }
+        if !tableViewCell.contains("MedicineEmptyStateCell") {
+            let insertIndex = min(5, tableViewCell.count)
+            tableViewCell.insert("MedicineEmptyStateCell", at: insertIndex)
+        }
+    }
+    private func getIndicesToRemove(for cellType: String) -> [Int] {
+        return tableViewCell.enumerated()
+            .filter { $0.element == cellType }
+            .map { $0.offset }
+    }
+    private func removeCell(at index: Int) {
+        if index < tableViewCell.count {
+            tableViewCell.remove(at: index)
+        }
+        if index < medicineRecordDataModel.count {
+            medicineRecordDataModel.remove(at: index)
+        }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableViewCell.count
@@ -290,11 +318,11 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
             return medicineEmptyStateCell
         } else if identifier == "MedicineRecordDetailCell" {
             let medicineRecordDetailCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MedicineRecordDetailCell
-            print("💬 medicineRecordIndex: \(medicineRecordIndex)")
-            print("💬 medicineRecordDataModel: \(medicineRecordDataModel)")
+            print("🌕 medicineRecordIndex: \(medicineRecordIndex)")
+            print("🌕 medicineRecordDataModel: \(medicineRecordDataModel)　‼️終了‼️")
             if medicineRecordIndex < medicineRecordDataModel.count {
                 let medicine = medicineRecordDataModel[medicineRecordIndex]
-//                print("💬 Displaying medicine record: \(medicine)")
+                //                print("💬 Displaying medicine record: \(medicine)")
                 let realm = try! Realm()
                 try! realm.write {
                     medicineRecordDetailCell.medicineName.text = medicine.medicineName
@@ -375,22 +403,38 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // データソースからセルを削除する
+            let tableViewCellIdentifier = tableViewCell[indexPath.row]
+            
+            let realm = try! Realm()
+            if tableViewCellIdentifier == "MedicineRecordDetailCell" {
+                if medicineRecordIndex < medicineRecordDataModel.count {
+                    let medicineRecord = medicineRecordDataModel[medicineRecordIndex]
+                    try! realm.write {
+                        realm.delete(medicineRecord)
+                    }
+                }
+            }
             tableViewCell.remove(at: indexPath.row)
             
-            // テーブルビューからセルを削除する
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            print("❓❓削除❓❓ tableViewCell : \(tableViewCell)")
+            
+            removeMedicineRecordDetailCell()
+            
+            print("❓❓削除❓❓ medicineRecordDataModel: \(medicineRecordDataModel)")
+            
+            tableView.reloadData()
         }
     }
 }
-
 extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDelegate, MedicineAdditionViewControllerDelegate {
     func didSaveMedicineRecord(_ record: MedicineRecordDataModel) {
         
         // 既存データと重複しないようにチェック
         if !medicineRecordDataModel.contains(where: { $0.medicineName == record.medicineName && $0.timePicker == record.timePicker }) {
             medicineRecordDataModel.append(record)
-            print("didSaveMedicineRecord : record : \(record)") // 正常
+            print("‼️開始‼️　didSaveMedicineRecord : record : \(record)") // 正常
             
             medicineRecordIndex = medicineRecordDataModel.count - 1
             

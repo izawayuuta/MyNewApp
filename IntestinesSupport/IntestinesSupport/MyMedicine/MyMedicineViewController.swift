@@ -23,7 +23,6 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         
         tableView.register(UINib(nibName: "MedicineTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         loadMedicines()
-//        showMedicineInformation()
     }
     func loadMedicines() {
         let realm = try! Realm()
@@ -42,6 +41,9 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
 //                        cell.stockLabel.text = medicine.stock
         cell.stockNumberLabel.text = "\(medicine.stock)"
         cell.stockUnitLabel.text = medicine.label
+        
+        cell.selectionStyle = .none // セル選択時の色の変化を無効化
+
         return cell
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -63,6 +65,7 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         guard let infoVC = storyboard.instantiateViewController(withIdentifier: "MyMedicineInformation") as? MyMedicineInformation else {
             return
         }
+        infoVC.delegate = self
         infoVC.selectedMedicine = selectedMedicine
         let navigationController = UINavigationController(rootViewController: infoVC)
         navigationController.modalPresentationStyle = .automatic
@@ -71,19 +74,6 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return false
     }
-//    func showMedicineInformation() {
-//            // MedicineInformationViewController をインスタンス化
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            guard let medicineInfoVC = storyboard.instantiateViewController(withIdentifier: "MyMedicineInformation") as? MyMedicineInformation else {
-//                return
-//            }
-//            
-//            // デリゲートを設定
-//            medicineInfoVC.delegate = self
-//            
-//            // モーダル表示
-//            self.present(medicineInfoVC, animated: true, completion: nil)
-//        }
     // デリゲートメソッド
     func didSaveMedicine(_ medicine: MedicineDataModel) {
         medicineDataModel.append(medicine)
