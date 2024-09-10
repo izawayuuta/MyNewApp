@@ -17,7 +17,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var tableView: UITableView!
     
     var tableViewCell: [String] = []
-    //    var certificateIds: [String] = []
+    var certificateIds: [String] = []
     private var certificateDataModel: [CertificateDataModel] = []
     weak var delegate: CertificateViewControllerDelegate?
     
@@ -46,6 +46,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
         let realm = try! Realm()
         let certificates = realm.objects(CertificateDataModel.self)
         certificateDataModel = Array(certificates)
+        certificateIds = certificateDataModel.map { $0.id } // IDの配列を更新
         tableView.reloadData()
     }
     // 行数を返す
@@ -110,11 +111,12 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                 periodCell.textField4.text = data.year2 != 0 ? String(data.year2) : ""
                 periodCell.textField5.text = data.month2 != 0 ? String(data.month2) : ""
                 periodCell.certificateId = data.id
-                //                periodCell.pickerView.selectRow(index, inComponent: 0, animated: false)
+            } 
+            if indexPath.row < certificateIds.count {
+                let id = certificateIds[indexPath.row]
+                                periodCell.certificateId = id
             }
             periodCell.loadPickerSelection()
-            //            let id = certificateIds[indexPath.row]
-            //            periodCell.configure(with: id)
             periodCell.setDoneButton()
             return periodCell
         } else if identifier == "PlusButtonCell" {
@@ -171,26 +173,19 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
-        //    }
-        //    func didTapPlusButton(in cell: PlusButtonCell) {
-        //        tableViewCell.insert("PeriodCell", at: tableViewCell.count - 1)
-        //        let newIndexPath = IndexPath(row: tableViewCell.count - 2, section: 0)
-        //        tableView.insertRows(at: [newIndexPath], with: .automatic)
-        //    }
-        func didTapPlusButton(in cell: PlusButtonCell) {
-            let newId = UUID().uuidString // 新しいユニークなIDを生成
-            tableViewCell.insert("PeriodCell", at: tableViewCell.count - 1)
-            
-            // 新しいデータモデルを作成し、IDを設定
+    func didTapPlusButton(in cell: PlusButtonCell) {
+            let realm = try! Realm()
             let newCertificate = CertificateDataModel()
-            newCertificate.id = newId
             
-            // データモデルのリストに追加
-            certificateDataModel.append(newCertificate)
+            try! realm.write {
+                realm.add(newCertificate)
+            }
             
-            // TableViewに新しい行を追加
-            let newIndexPath = IndexPath(row: tableViewCell.count - 2, section: 0)
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
+            certificateIds.append(newCertificate.id)
+//            tableViewCell.append("PeriodCell")
+        tableViewCell.insert("PeriodCell", at: tableViewCell.count - 1)
+            
+            tableView.reloadData()
         }
         func saveData() {
             try! realm.write {
@@ -233,8 +228,16 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         // データ更新
-        func didSaveCertificate(_ certificate: CertificateDataModel) {
-            certificateDataModel.append(certificate)
-            tableView.reloadData()
+    func didSaveCertificate(_ certificate: CertificateDataModel) {
+            if let index = certificateIds.firstIndex(of: certificate.id) {
+                certificateDataModel[index] = certificate
+                tableView.reloadData()
+            } else {
+                certificateDataModel.append(certificate)
+                certificateIds.append(certificate.id)
+//                tableViewCell.append("PeriodCell")
+                tableViewCell.insert("PeriodCell", at: tableViewCell.count - 1) // PlusButtonCell の前に追加
+                tableView.reloadData()
+            }
         }
     }

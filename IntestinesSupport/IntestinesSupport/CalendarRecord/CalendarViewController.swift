@@ -19,7 +19,7 @@ class CalendarViewController: UIViewController {
     private var medicineDataModel: [MedicineDataModel] = []
     private var medicineRecordDataModel: [MedicineRecordDataModel] = []
     weak var delegate: CalendarViewControllerDelegate?
-    private var medicineRecordIndex = 0 // medicineRecordDataModelが追加されるたびにindexを管理
+    private var medicineRecordIndex = 0
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -198,6 +198,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
     func loadMedicinesData() {
         let realm = try! Realm()
         let medicineRecords = realm.objects(MedicineRecordDataModel.self)
+        medicineRecordIndex += 1
         tableView.reloadData()
     }
     func updateTableViewCells(with medicineRecordCount: Int) {
@@ -293,7 +294,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
             print("💬 medicineRecordDataModel: \(medicineRecordDataModel)")
             if medicineRecordIndex < medicineRecordDataModel.count {
                 let medicine = medicineRecordDataModel[medicineRecordIndex]
-                print("💬 Displaying medicine record: \(medicine)")
+//                print("💬 Displaying medicine record: \(medicine)")
                 let realm = try! Realm()
                 try! realm.write {
                     medicineRecordDetailCell.medicineName.text = medicine.medicineName
@@ -390,6 +391,8 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
         if !medicineRecordDataModel.contains(where: { $0.medicineName == record.medicineName && $0.timePicker == record.timePicker }) {
             medicineRecordDataModel.append(record)
             print("didSaveMedicineRecord : record : \(record)") // 正常
+            
+            medicineRecordIndex = medicineRecordDataModel.count - 1
             
             let medicineRecordCount = medicineRecordDataModel.count
             updateTableViewCells(with: medicineRecordCount)
