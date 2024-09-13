@@ -186,14 +186,20 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
         tableViewCell.insert("PeriodCell", at: tableViewCell.count - 1)
             
             tableView.reloadData()
+        
+        saveData()
+            print("☀️Data saved after adding new PeriodCell.")
         }
         func saveData() {
             try! realm.write {
+                var periodCellIndex = 0 // PeriodCellのインデックスを追跡
                 // すべてのセルからデータを取得
                 for i in 0..<tableViewCell.count {
                     let indexPath = IndexPath(row: i, section: 0)
-                    let certificate = certificateDataModel[i]
-                    
+//                    guard i < certificateDataModel.count else { continue }
+//                    let certificate = certificateDataModel[i]
+                    var certificate: CertificateDataModel
+
                     if let cell = tableView.cellForRow(at: indexPath) as? ApplicationClassificationCell {
                         let certificate = CertificateDataModel()
                         certificate.textField0 = cell.textField0.text ?? ""
@@ -215,13 +221,29 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                         certificate.month2 = Int(cell.month2.text ?? "") ?? 0
                         certificate.day2 = Int(cell.day2.text ?? "") ?? 0
                         realm.add(certificate, update: .modified)
-                    } else if let cell = tableView.cellForRow(at: indexPath) as? PeriodCell {
-                        let certificate = CertificateDataModel()
-                        certificate.textField1 = Int(cell.textField1.text ?? "") ?? 0
-                        certificate.textField2 = Int(cell.textField2.text ?? "") ?? 0
-                        certificate.textField3 = Int(cell.textField3.text ?? "") ?? 0
-                        certificate.textField4 = Int(cell.textField4.text ?? "") ?? 0
-                        certificate.textField5 = Int(cell.textField5.text ?? "") ?? 0
+                    } else if tableViewCell[i] == "PeriodCell" {
+                        // PeriodCellに対応するデータが存在するか確認
+                        if periodCellIndex < certificateDataModel.count {
+                            certificate = certificateDataModel[periodCellIndex]
+                        } else {
+                            // 新しいデータモデルを作成
+                            certificate = CertificateDataModel()
+                            certificateDataModel.append(certificate)
+                            certificateIds.append(certificate.id)
+                        }
+                        
+                        // PeriodCellの保存処理
+                        if let cell = tableView.cellForRow(at: indexPath) as? PeriodCell {
+                            certificate.textField1 = Int(cell.textField1.text ?? "") ?? 0
+                            certificate.textField2 = Int(cell.textField2.text ?? "") ?? 0
+                            certificate.textField3 = Int(cell.textField3.text ?? "") ?? 0
+                            certificate.textField4 = Int(cell.textField4.text ?? "") ?? 0
+                            certificate.textField5 = Int(cell.textField5.text ?? "") ?? 0
+                            print("Saving PeriodCell CertificateDataModel with ID: \(certificate.id), Data: [\(certificate.textField1), \(certificate.textField2), \(certificate.textField3), \(certificate.textField4), \(certificate.textField5)]")
+                        }
+                        
+                        periodCellIndex += 1 // 次のPeriodCell用にインデックスを更新
+                        // CertificateDataModelをRealmに保存
                         realm.add(certificate, update: .modified)
                     }
                 }

@@ -16,12 +16,11 @@ protocol MedicineAdditionViewControllerDelegate: AnyObject {
 class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var medicineAdditionButton: UIButton!
     
     weak var delegate: MedicineAdditionViewControllerDelegate?
-    var myMedicineInformation: MyMedicineInformation?
-
     private var medicineDataModel: [MedicineDataModel] = []
     private var medicineRecordDataModel: [MedicineRecordDataModel] = []
     // 選択されたセルのインデックスパスを保持する配列
@@ -80,71 +79,60 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0 // セルの高さ
     }
+    func didRequestSaveData(from cell: MedicineRecordDetailCell) {
+            cell.saveData()
+        }
     @IBAction func medicineAdditionButton(_ sender: UIButton) {
         let record = MedicineRecordDataModel()
+        var recordsToSave: [MedicineRecordDataModel] = []
         let realm = try! Realm()
         
         let currentDate = Date()
         
         let dateFormatter = DateFormatter()
-           dateFormatter.locale = Locale(identifier: "ja_JP")
-           dateFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
-           dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-           
-           // 現在日時をフォーマットした文字列に変換
+        dateFormatter.locale = Locale(identifier: "ja_JP")
+        dateFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        // 現在日時をフォーマットした文字列に変換
         let timeString = dateFormatter.string(from: currentDate)
-           
+        
         let formattedDate = dateFormatter.date(from: timeString)!
         
         // 選択されたインデックスパスからセルを取得
         for indexPath in selectedIndexPaths {
             if let cell = tableView.cellForRow(at: indexPath) as? MedicineAdditionTableViewCell {
-                
+                let record = MedicineRecordDataModel()
                 try! realm.write {
-                // セルの情報をデータモデルに保存
-                record.medicineName = cell.medicineName.text ?? ""
-                record.unit = cell.unitLabel.text ?? ""
-                if let doseNumber = Int(cell.textField.text ?? "") {
-                    record.textField = doseNumber
-                }
-                record.timePicker = cell.timePicker.date
-                
+                    // セルの情報をデータモデルに保存
+                    record.medicineName = cell.medicineName.text ?? ""
+                    record.unit = cell.unitLabel.text ?? ""
+                    if let doseNumber = Int(cell.textField.text ?? "") {
+                        record.textField = doseNumber
+                    }
+                    record.timePicker = cell.timePicker.date
                     realm.add(record, update: .modified)
                 }
-                
-                let savedData = realm.objects(MedicineRecordDataModel.self).filter("medicineName = %@ AND timePicker = %@", record.medicineName, record.timePicker)
-                for data in savedData {
-//                    print("Saved MedicineRecordDataModel: \(data) 保存完了") // 正常
-                }
-                
-                
                 
                 if let calendarVC = self.storyboard?.instantiateViewController(withIdentifier: "CalendarViewController") as? CalendarViewController {
                     calendarVC.selectedDate = cell.timePicker.date
                     self.navigationController?.pushViewController(calendarVC, animated: true)
                 }
+                recordsToSave.append(record)
             }
         }
-        delegate?.didSaveMedicineRecord(record)
-        dismiss(animated: true, completion: nil) // モーダル画面を閉じる
-        
-        guard let myMedicineInfo = myMedicineInformation else { return }
-                
-                // テーブルビューから `MedicineAdditionTableViewCell` を取得
-        if let indexPath = tableView.indexPathForSelectedRow {
-            if let cell = tableView.cellForRow(at: indexPath) as? MedicineAdditionTableViewCell {
-                let addedAmount = cell.addedAmount // 追加量の取得
-                
-                // `stock` を更新
-                if let stockText = myMedicineInfo.stock.text, let currentStock = Int(stockText) {
-                    let updatedStock = currentStock - addedAmount
-                    // 更新後の `stock` を表示するなどの処理を追加する
-                    print("Updated stock: \(String(describing: myMedicineInfo.stock))")
-                    myMedicineInfo.stock.text = "\(updatedStock)"
-                }
-            }
-        }
-    }
+           
+           for record in recordsToSave {
+               delegate?.didSaveMedicineRecord(record)
+           }
+           
+           dismiss(animated: true, completion: nil) // モーダル画面を閉じる
+           
+           // カレンダー画面への遷移
+           if let calendarVC = self.storyboard?.instantiateViewController(withIdentifier: "CalendarViewController") as? CalendarViewController {
+               self.navigationController?.pushViewController(calendarVC, animated: true)
+           }
+       }
     private func selectedCellButton() {
         medicineAdditionButton.isEnabled = !selectedIndexPaths.isEmpty
     }
@@ -172,12 +160,12 @@ extension MedicineAdditionViewController: MedicineViewControllerDelegate {
         loadMedicines()
         tableView.reloadData()
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "FecesRecord" {
-//            // 2. 遷移先のViewControllerを取得
-//            let next = segue.destination as? FecesRecordViewController
-//            // 3. １で用意した遷移先の変数に値を渡す
-//            next?.selectedDate = selectedDate
-//        }
-//    }
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        if segue.identifier == "FecesRecord" {
+    //            // 2. 遷移先のViewControllerを取得
+    //            let next = segue.destination as? FecesRecordViewController
+    //            // 3. １で用意した遷移先の変数に値を渡す
+    //            next?.selectedDate = selectedDate
+    //        }
+    //    }
 }
