@@ -55,6 +55,7 @@ class CalendarViewController: UIViewController {
         loadCalendars()
         configureCalendar()
         setupCalendarScope()
+        loadSelectedDate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -335,10 +336,10 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
         } else if identifier == "MedicineRecordDetailCell" {
             let medicineRecordDetailCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MedicineRecordDetailCell
             medicineRecordDetailCell.delegate = self
-            guard let model = filteredCalendarDataModel else {
-                medicineRecordDetailCell.configure(medicineRecord: nil,selectedDate: selectedDate)
-                return medicineRecordDetailCell
-            }
+//            guard let model = filteredCalendarDataModel else {
+//                medicineRecordDetailCell.configure(medicineRecord: nil,selectedDate: selectedDate)
+//                return medicineRecordDetailCell
+//            }
             if medicineRecordIndex < medicineRecordDataModel.count {
                 let medicine = medicineRecordDataModel[medicineRecordIndex]
                 medicineRecordDetailCell.medicineName.text = medicine.medicineName
@@ -357,7 +358,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
                 medicineRecordDetailCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
                 medicineRecordIndex += 1
             }
-            medicineRecordDetailCell.configure(medicineRecord: model.medicineRecord, model: model , selectedDate: selectedDate)
+//            medicineRecordDetailCell.configure(medicineRecord: model.medicineRecord, model: model , selectedDate: selectedDate)
             return medicineRecordDetailCell
         } else if identifier == "MemoCell" {
             let memoCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MemoCell
@@ -447,6 +448,31 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
         let realm = try! Realm()
         return Array(realm.objects(MedicineRecordDataModel.self))
     }
+    func loadSelectedDate() {
+            let realm = try! Realm()
+            if let medicineRecord = realm.objects(MedicineRecordDataModel.self).first {
+                selectedDate = medicineRecord.date
+            }
+        }
+    func saveSelectedDate(date: Date) {
+        guard let selectedDate else { return }
+
+        let realm = try! Realm()
+        // 既存のレコードを取得または新しいレコードを作成
+        if let existingRecord = realm.objects(MedicineRecordDataModel.self).first {
+            try! realm.write {
+                existingRecord.date = date
+                realm.add(existingRecord, update: .modified)
+            }
+        } else {
+            let newRecord = MedicineRecordDataModel()
+            newRecord.date = date
+            
+            try! realm.write {
+                realm.add(newRecord)
+            }
+        }
+    }
 }
 extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDelegate, MedicineAdditionViewControllerDelegate {
     func didSaveMedicineRecord(_ record: MedicineRecordDataModel) {
@@ -459,6 +485,8 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
             
             let medicineRecordCount = medicineRecordDataModel.count
             updateTableViewCells(with: medicineRecordCount)
+            
+            saveSelectedDate(date: Date())
             
             reloadData()
             
@@ -502,7 +530,7 @@ extension CalendarViewController: CalendarViewControllerDelegate {
                 object.date = newData.date
                 object.selectedPhysicalConditionIndex = newData.selectedPhysicalConditionIndex
                 object.selectedFecesConditionIndex = newData.selectedFecesConditionIndex
-                object.medicineRecord = newData.medicineRecord
+//                object.medicineRecord = newData.medicineRecord
                 object.memo = newData.memo
             }
         } else {

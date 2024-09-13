@@ -79,9 +79,9 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0 // セルの高さ
     }
-    func didRequestSaveData(from cell: MedicineRecordDetailCell) {
-            cell.saveData()
-        }
+//    func didRequestSaveData(from cell: MedicineRecordDetailCell) {
+//            cell.saveData()
+//        }
     @IBAction func medicineAdditionButton(_ sender: UIButton) {
         let record = MedicineRecordDataModel()
         var recordsToSave: [MedicineRecordDataModel] = []

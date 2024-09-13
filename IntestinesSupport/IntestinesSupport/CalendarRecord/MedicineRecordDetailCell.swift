@@ -14,8 +14,8 @@ class MedicineRecordDetailCell: UITableViewCell {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var unit: UILabel!
     
-    private var model: CalendarDataModel?
-    private var selectedDate: Date?
+//    private var model: CalendarDataModel?
+//    private var selectedDate: Date?
     weak var delegate: CalendarViewControllerDelegate?
     
     var selectedTime: Date {
@@ -26,7 +26,7 @@ class MedicineRecordDetailCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         //        delegateSelf()
-        saveData()
+//        saveData()
         layoutSubviews()
         setupCell()
     }
@@ -58,64 +58,65 @@ class MedicineRecordDetailCell: UITableViewCell {
         formatter.dateFormat = "HH:mm"
         return formatter.string(from: date)
     }
-    func saveData() { // ok
-        print("Model: \(String(describing: model))") // nil
-        print("SelectedDate: \(String(describing: selectedDate))") // nil
-        // modelがnilではない場合(Realmデータの編集)
-        if let model = model { // ok
-            // 更新したデータを保存する
-            let editModel = makeEditCalendarDataModel(medicineName: medicineName.text ?? "", selectedTime: selectedTime, model: model)
-            delegate?.saveCalendarData(editModel)
-            print("EditModel: \(editModel)")
-        } else {
-            // modelがnilの場合は新規作成のため、ここでModelを作成してそれを保存する
-            guard let selectedDate = selectedDate else { return } // ok
-            let newModel = makeNewCalendarDataModel(selectedDate: selectedDate, medicineName: medicineName.text ?? "", selectedTime: selectedTime)
-            delegate?.saveCalendarData(newModel)
-            print("NewModel: \(newModel)")
-        }
-    }
     
-    private func makeEditCalendarDataModel(medicineName: String, selectedTime: Date, model: CalendarDataModel) -> CalendarDataModel {
-        // 既存モデルの編集
-        return CalendarDataModel(
-            id: model.id,
-            date: model.date,
-            selectedPhysicalConditionIndex: model.selectedPhysicalConditionIndex,
-            selectedFecesConditionIndex: model.selectedFecesConditionIndex,
-            medicineRecord: MedicineRecordDataModel(id: model.medicineRecord?.id ?? UUID().uuidString, medicineName: medicineName, timePicker: selectedTime, textField: Int(textField.text ?? "0") ?? 0, unit: unit.text ?? ""),
-            memo: model.memo
-        )
-    }
-    
-    private func makeNewCalendarDataModel(selectedDate: Date, medicineName: String, selectedTime: Date) -> CalendarDataModel {
-        // 新しいモデルを作成
-        let newModel = CalendarDataModel()
-        newModel.date = selectedDate
-        newModel.medicineRecord = MedicineRecordDataModel(id: UUID().uuidString, medicineName: medicineName, timePicker: selectedTime, textField: Int(textField.text ?? "0") ?? 0, unit: unit.text ?? "")
-        return newModel
-    }
-    
-    func configure(medicineRecord: MedicineRecordDataModel?, model: CalendarDataModel? = nil, selectedDate: Date) {
-        self.model = model
-        self.selectedDate = selectedDate
-        
-        if let medicineRecord = medicineRecord { // ok
-            print("Medicine Name: \(medicineRecord.medicineName)")
-            print("Text Field: \(medicineRecord.textField)")
-            print("Unit: \(medicineRecord.unit)")
-            print("Time Picker Date: \(medicineRecord.timePicker)")
-            // 保存された薬の名前と時間を表示
-            medicineName.text = medicineRecord.medicineName
-            textField.text = "\(medicineRecord.textField)"
-            unit.text = medicineRecord.unit
-            timePicker.date = medicineRecord.timePicker
-            //        } else {
-            //            // 新規の場合の初期設定
-            //            medicineName.text = ""
-            //            textField.text = ""
-            //            unit.text = ""
-            //            timePicker.date = Date() // デフォルトの時間を設定
-        }
-    }
+//    func saveData() { // ok
+//        print("Model: \(String(describing: model))") // nil
+//        print("SelectedDate: \(String(describing: selectedDate))") // nil
+//        // modelがnilではない場合(Realmデータの編集)
+//        if let model = model { // ok
+//            // 更新したデータを保存する
+//            let editModel = makeEditCalendarDataModel(medicineName: medicineName.text ?? "", selectedTime: selectedTime, model: model)
+//            delegate?.saveCalendarData(editModel)
+//            print("EditModel: \(editModel)")
+//        } else {
+//            // modelがnilの場合は新規作成のため、ここでModelを作成してそれを保存する
+//            guard let selectedDate = selectedDate else { return } // ok
+//            let newModel = makeNewCalendarDataModel(selectedDate: selectedDate, medicineName: medicineName.text ?? "", selectedTime: selectedTime)
+//            delegate?.saveCalendarData(newModel)
+//            print("NewModel: \(newModel)")
+//        }
+//    }
+//    
+//    private func makeEditCalendarDataModel(medicineName: String, selectedTime: Date, model: CalendarDataModel) -> CalendarDataModel {
+//        // 既存モデルの編集
+//        return CalendarDataModel(
+//            id: model.id,
+//            date: model.date,
+//            selectedPhysicalConditionIndex: model.selectedPhysicalConditionIndex,
+//            selectedFecesConditionIndex: model.selectedFecesConditionIndex,
+//            medicineRecord: MedicineRecordDataModel(id: model.medicineRecord?.id ?? UUID().uuidString, date: Date(), medicineName: medicineName, timePicker: selectedTime, textField: Int(textField.text ?? "0") ?? 0, unit: unit.text ?? ""),
+//            memo: model.memo
+//        )
+//    }
+//    
+//    private func makeNewCalendarDataModel(selectedDate: Date, medicineName: String, selectedTime: Date) -> CalendarDataModel {
+//        // 新しいモデルを作成
+//        let newModel = CalendarDataModel()
+//        newModel.date = selectedDate
+//        newModel.medicineRecord = MedicineRecordDataModel(id: UUID().uuidString, date: Date(), medicineName: medicineName, timePicker: selectedTime, textField: Int(textField.text ?? "0") ?? 0, unit: unit.text ?? "")
+//        return newModel
+//    }
+//    
+//    func configure(medicineRecord: MedicineRecordDataModel?, model: CalendarDataModel? = nil, selectedDate: Date) {
+//        self.model = model
+//        self.selectedDate = selectedDate
+//        
+//        if let medicineRecord = medicineRecord { // ok
+//            print("Medicine Name: \(medicineRecord.medicineName)")
+//            print("Text Field: \(medicineRecord.textField)")
+//            print("Unit: \(medicineRecord.unit)")
+//            print("Time Picker Date: \(medicineRecord.timePicker)")
+//            // 保存された薬の名前と時間を表示
+//            medicineName.text = medicineRecord.medicineName
+//            textField.text = "\(medicineRecord.textField)"
+//            unit.text = medicineRecord.unit
+//            timePicker.date = medicineRecord.timePicker
+//            //        } else {
+//            //            // 新規の場合の初期設定
+//            //            medicineName.text = ""
+//            //            textField.text = ""
+//            //            unit.text = ""
+//            //            timePicker.date = Date() // デフォルトの時間を設定
+//        }
+//    }
 }

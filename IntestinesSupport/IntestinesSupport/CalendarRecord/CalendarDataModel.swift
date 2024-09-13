@@ -17,17 +17,17 @@ class CalendarDataModel: Object {
     // 99の番号は未選択状態を表す
     @objc dynamic var selectedPhysicalConditionIndex: Int = 99
     @objc dynamic var selectedFecesConditionIndex: Int = 99
-    @objc dynamic var medicineRecord: MedicineRecordDataModel? // このプロパティを追加
+//    @objc dynamic var medicineRecord: MedicineRecordDataModel? // このプロパティを追加
     @objc dynamic var memo: String = ""
     
-    convenience init(id: String, date: Date, selectedPhysicalConditionIndex: Int, selectedFecesConditionIndex: Int, medicineRecord: MedicineRecordDataModel? = nil, memo: String) {
+    convenience init(id: String, date: Date, selectedPhysicalConditionIndex: Int, selectedFecesConditionIndex: Int, memo: String) {
         // まずself.init()を呼び出して、デフォルトの初期化を行う
         self.init()
         self.id = id
         self.date = date
         self.selectedPhysicalConditionIndex = selectedPhysicalConditionIndex
         self.selectedFecesConditionIndex = selectedFecesConditionIndex
-        self.medicineRecord = medicineRecord
+//        self.medicineRecord = medicineRecord
         self.memo = memo
     }
 }
@@ -68,6 +68,7 @@ class FecesDetailTypeObject: Object {
 
 class MedicineRecordDataModel: Object {
     @objc dynamic var id: String = UUID().uuidString
+    @objc dynamic var date: Date = Date()
     @objc dynamic var medicineName: String = ""
     @objc dynamic var timePicker: Date = Date()
     @objc dynamic var textField: Int = 0
@@ -80,9 +81,10 @@ class MedicineRecordDataModel: Object {
             return "id" // プライマリーキーの指定
         }
     
-    convenience init(id: String, medicineName: String, timePicker: Date, textField: Int, unit: String) {
+    convenience init(id: String,date: Date, medicineName: String, timePicker: Date, textField: Int, unit: String) {
         self.init()
         self.id = id
+        self.date = date
         self.medicineName = medicineName
         self.timePicker = timePicker
         self.textField = textField
