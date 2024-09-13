@@ -33,12 +33,16 @@ class CalendarDataModel: Object {
 }
 
 class FecesDetailDataModel: Object {
-    @objc dynamic var id: String = ""
+    @objc dynamic var id: String = UUID().uuidString // プライマリキー用のフィールド
     @objc dynamic var date: Date = Date()
     @objc dynamic var time: Date = Date()
     // 1回目とかのNo
 //    @objc dynamic var number: Int = 0
     let fecesDetailTypeObject = List<FecesDetailTypeObject>()
+    
+    override static func primaryKey() -> String? {
+           return "id" // プライマリキーとして使用するフィールド名
+       }
     
     convenience init(date: Date, fecesDetailTypeRowValues: [Int], time: Date) {
         self.init()

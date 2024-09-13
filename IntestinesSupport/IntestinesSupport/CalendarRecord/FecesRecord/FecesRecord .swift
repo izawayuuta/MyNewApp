@@ -27,6 +27,7 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
     private var fecesDetails: [FecesDetailDataModel] = []  // 受け取るデータ用のプロパティ
     var selectedDate: Date?
     var fecesDetailCell: FecesDetailCell?
+    weak var delegate: FecesDetailTableViewCellDelegate?
     
     
     override func viewDidLoad() {
@@ -57,7 +58,6 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
         let results = realm.objects(FecesDetailDataModel.self).filter(predicate)
         
         fecesDetails = Array(results)
-        
         // records 配列の初期値を設定
         records = Array(repeating: 1, count: fecesDetails.count)
     }
@@ -77,9 +77,12 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
             emptyCell.messageLabel.textColor = .gray
             emptyCell.messageLabel.textAlignment = .center
             emptyCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+            emptyCell.selectionStyle = .none
             return emptyCell
         } else {
             let recordCell = tableView.dequeueReusableCell(withIdentifier: "FecesRecordTableViewCell", for: indexPath) as! FecesRecordTableViewCell
+            
+            recordCell.delegate2 = self
             
             recordCell.label1.textColor = .lightGray
             recordCell.label2.textColor = .lightGray
@@ -139,11 +142,11 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
     private func tableView(_ tableView: UITableView, shouldSelectRowAt indexPath: IndexPath) -> Bool {
         return false // すべての行を選択不可にする
     }
-//    @IBAction func backButtonAction(_ sender: Any) {
-//        self.dismiss(animated: true, completion: nil)
-//    }
+    //    @IBAction func backButtonAction(_ sender: Any) {
+    //        self.dismiss(animated: true, completion: nil)
+    //    }
 }
-extension FecesRecordViewController: FecesDetailCellDelegate {
+extension FecesRecordViewController: FecesDetailCellDelegate, FecesDetailTableViewCellDelegate {
     func didTapPlusButton(indexes: [Int]) {
         // Handle plus button action
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
@@ -155,5 +158,17 @@ extension FecesRecordViewController: FecesDetailCellDelegate {
     
     func didTapRecordButton(in cell: FecesDetailCell) {
         // Handle record button action
+    }
+    func didChangeTime(for cell: FecesRecordTableViewCell, newTime: Date) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        
+        let fecesDetail = fecesDetails[indexPath.row]
+        let realm = try! Realm()
+        
+        try! realm.write {
+            fecesDetail.time = newTime
+            realm.add(fecesDetail, update: .modified)
+        }
+        tableView.reloadData()
     }
 }

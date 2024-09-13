@@ -6,6 +6,9 @@
 //
 
 import UIKit
+protocol FecesDetailTableViewCellDelegate: AnyObject {
+    func didChangeTime(for cell: FecesRecordTableViewCell, newTime: Date)
+}
 
 class FecesRecordTableViewCell: UITableViewCell {
     
@@ -19,12 +22,15 @@ class FecesRecordTableViewCell: UITableViewCell {
     @IBOutlet weak var timePicker: UIDatePicker!
     
     weak var delegate: FecesDetailCellDelegate?
+    weak var delegate2: FecesDetailTableViewCellDelegate?
     private var currentCount: Int = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         updateCount()
+        loadTimePickerDate() // 保存された時間を読み込む
+        timePicker.addTarget(self, action: #selector(timePickerChanged(_:)), for: .valueChanged) // 値が変更された時のアクションを追加
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -101,18 +107,42 @@ class FecesRecordTableViewCell: UITableViewCell {
                 label6.textColor = .red
             }
         }
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm"
-            if let timeDate = dateFormatter.date(from: time) {
-                timePicker.date = timeDate
-            } else {
-                timePicker.date = Date()
-            }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        if let timeDate = dateFormatter.date(from: time) {
+            timePicker.date = timeDate
+        } else {
+            timePicker.date = Date()
+        }
         let countString = count.map { String($0) }.joined(separator: ", ")
-            countLabel.text = countString
+        countLabel.text = countString
+        
+        print("Configured cell with time: \(time), count: \(count)")
     }
     func updateCount() {
         currentCount += 1
         countLabel.text = "\(currentCount)"
-    } 
+    }
+    @objc private func timePickerChanged(_ sender: UIDatePicker) {
+        saveTimePickerDate(sender.date) // 時間を保存する
+        delegate2?.didChangeTime(for: self, newTime: sender.date) // デリゲートメソッドを呼び出す
+    }
+    private func saveTimePickerDate(_ date: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let timeString = dateFormatter.string(from: date)
+        UserDefaults.standard.set(timeString, forKey: "savedTime")
+    }
+    // 保存された時間を読み込むメソッド
+    private func loadTimePickerDate() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        if let timeString = UserDefaults.standard.string(forKey: "savedTime"),
+           let savedDate = dateFormatter.date(from: timeString) {
+            timePicker.date = savedDate
+            print("変更された時間: \(timeString)")
+        } else {
+            timePicker.date = Date() // 保存された時間がない場合は現在の時間をセット
+        }
+    }
 }
