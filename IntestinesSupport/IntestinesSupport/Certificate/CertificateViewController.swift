@@ -159,7 +159,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         // セルが１つしかない時は削除を無効
         let periodCellsCount = tableViewCell.filter { $0 == "PeriodCell" }.count
-        if tableViewCell[indexPath.row] == "PeriodCell" && periodCellsCount > 1 {
+        if tableViewCell[indexPath.row] == "PeriodCell" && periodCellsCount > 2 {
             return .delete
         }
         return .none

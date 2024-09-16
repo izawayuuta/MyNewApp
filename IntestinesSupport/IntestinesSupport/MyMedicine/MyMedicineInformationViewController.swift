@@ -52,7 +52,7 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
     let pickerView1 = UIPickerView()
     let pickerView2 = UIPickerView()
     let datePicker = UIDatePicker()
-    var pickerData1 = ["起床時", "食前", "食直前", "食直後", "食後", "食間", "就寝前", "頓服"]
+    let pickerData1 = ["起床時", "食前", "食直前", "食直後", "食後", "食間", "就寝前", "頓服"]
     var pickerData2 = ["錠", "包", "個", "ml", "mg"]
     var stockValue: Int
     
@@ -308,6 +308,9 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
     }
     
     func showDeleteCustomOptionAlert() {
+        guard pickerData2.count > 1 else {
+            return
+        }
         let selectedRow = pickerView2.selectedRow(inComponent: 0)
         let selectedOption = pickerData2[selectedRow]
         guard selectedRow < pickerData2.count else {
