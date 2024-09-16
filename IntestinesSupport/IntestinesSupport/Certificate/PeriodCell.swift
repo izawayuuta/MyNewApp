@@ -107,48 +107,48 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
         return pickerData[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-           let realm = try! Realm()
-           
-           guard let id = certificateId else {
-               return
-           }
-           
-           if let certificate = realm.object(ofType: CertificateDataModel.self, forPrimaryKey: id) {
-               // 既存のデータモデルがある場合は更新
-               try! realm.write {
-                   certificate.pickerView = row
-                   realm.add(certificate, update: .modified)
-               }
-           } else {
-               // 新しいデータモデルを作成し保存
-               let newCertificate = CertificateDataModel()
-               newCertificate.id = id
-               newCertificate.pickerView = row
-               
-               try! realm.write {
-                   realm.add(newCertificate)
-               }
-           }
-       }
-       func loadPickerSelection() {
-           let realm = try! Realm()
-           
-           // certificateIdの確認
-           guard let id = certificateId else {
-               return
-           }
-           
-           // データモデルの読み込み
-           if let certificate = realm.object(ofType: CertificateDataModel.self, forPrimaryKey: id) {
-               // UIPickerViewの選択状態を設定
-               pickerView.selectRow(certificate.pickerView, inComponent: 0, animated: false)
-           }
-       }
+        let realm = try! Realm()
+        
+        guard let id = certificateId else {
+            return
+        }
+        
+        if let certificate = realm.object(ofType: CertificateDataModel.self, forPrimaryKey: id) {
+            // 既存のデータモデルがある場合は更新
+            try! realm.write {
+                certificate.pickerView = row
+                realm.add(certificate, update: .modified)
+            }
+        } else {
+            // 新しいデータモデルを作成し保存
+            let newCertificate = CertificateDataModel()
+            newCertificate.id = id
+            newCertificate.pickerView = row
+            
+            try! realm.write {
+                realm.add(newCertificate)
+            }
+        }
+    }
+    func loadPickerSelection() {
+        let realm = try! Realm()
+        
+        // certificateIdの確認
+        guard let id = certificateId else {
+            return
+        }
+        
+        // データモデルの読み込み
+        if let certificate = realm.object(ofType: CertificateDataModel.self, forPrimaryKey: id) {
+            // UIPickerViewの選択状態を設定
+            pickerView.selectRow(certificate.pickerView, inComponent: 0, animated: false)
+        }
+    }
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let inputValue = textField.text, let convertedValue = Int(inputValue) else { return }
-
+        
         let realm = try! Realm()
-
+        
         try! realm.write {
             if let id = certificateId {
                 // id で既存のデータを検索
@@ -156,15 +156,15 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
                     // テキストフィールドによって異なるプロパティを更新
                     switch textField {
                     case textField1:
-                        certificate.year = convertedValue
+                        certificate.textField1 = convertedValue
                     case textField2:
-                        certificate.month = convertedValue
+                        certificate.textField2 = convertedValue
                     case textField3:
-                        certificate.day = convertedValue
+                        certificate.textField3 = convertedValue
                     case textField4:
-                        certificate.year2 = convertedValue
+                        certificate.textField4 = convertedValue
                     case textField5:
-                        certificate.month2 = convertedValue
+                        certificate.textField5 = convertedValue
                     default:
                         break
                     }
@@ -176,15 +176,15 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
                     // テキストフィールドによって異なるプロパティを設定
                     switch textField {
                     case textField1:
-                        newCertificate.year = convertedValue
+                        newCertificate.textField1 = convertedValue
                     case textField2:
-                        newCertificate.month = convertedValue
+                        newCertificate.textField2 = convertedValue
                     case textField3:
-                        newCertificate.day = convertedValue
+                        newCertificate.textField3 = convertedValue
                     case textField4:
-                        newCertificate.year2 = convertedValue
+                        newCertificate.textField4 = convertedValue
                     case textField5:
-                        newCertificate.month2 = convertedValue
+                        newCertificate.textField5 = convertedValue
                     default:
                         break
                     }

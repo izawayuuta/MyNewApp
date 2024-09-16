@@ -55,6 +55,7 @@ class CalendarViewController: UIViewController {
         loadCalendars()
         configureCalendar()
         setupCalendarScope()
+        //                loadMedicineRecords()
         loadSelectedDate()
     }
     
@@ -336,10 +337,10 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
         } else if identifier == "MedicineRecordDetailCell" {
             let medicineRecordDetailCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MedicineRecordDetailCell
             medicineRecordDetailCell.delegate = self
-//            guard let model = filteredCalendarDataModel else {
-//                medicineRecordDetailCell.configure(medicineRecord: nil,selectedDate: selectedDate)
-//                return medicineRecordDetailCell
-//            }
+            //            guard let model = filteredCalendarDataModel else {
+            //                medicineRecordDetailCell.configure(medicineRecord: nil,selectedDate: selectedDate)
+            //                return medicineRecordDetailCell
+            //            }
             if medicineRecordIndex < medicineRecordDataModel.count {
                 let medicine = medicineRecordDataModel[medicineRecordIndex]
                 medicineRecordDetailCell.medicineName.text = medicine.medicineName
@@ -358,7 +359,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
                 medicineRecordDetailCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
                 medicineRecordIndex += 1
             }
-//            medicineRecordDetailCell.configure(medicineRecord: model.medicineRecord, model: model , selectedDate: selectedDate)
+//                        medicineRecordDetailCell.configure(medicineRecord: model.medicineRecord, model: model , selectedDate: selectedDate)
             return medicineRecordDetailCell
         } else if identifier == "MemoCell" {
             let memoCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MemoCell
@@ -438,39 +439,47 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
         updateTableViewCells(with: medicineRecordDataModel.count)
         reloadData()
     }
-    func saveMedicineRecord(_ record: MedicineRecordDataModel) {
-        let realm = try! Realm()
-        try! realm.write {
-            realm.add(record, update: .modified)
-        }
-    }
-    func loadMedicineRecords() -> [MedicineRecordDataModel] {
-        let realm = try! Realm()
-        return Array(realm.objects(MedicineRecordDataModel.self))
-    }
+    //        func saveMedicineRecord(_ record: MedicineRecordDataModel) {
+    //            let realm = try! Realm()
+    //            try! realm.write {
+    //                realm.add(record, update: .modified)
+    //            }
+    //        }
+    //        func loadMedicineRecords() -> [MedicineRecordDataModel] {
+    //            let realm = try! Realm()
+    //            return Array(realm.objects(MedicineRecordDataModel.self))
+    //        }
     func loadSelectedDate() {
-            let realm = try! Realm()
-            if let medicineRecord = realm.objects(MedicineRecordDataModel.self).first {
-                selectedDate = medicineRecord.date
-            }
-        }
-    func saveSelectedDate(date: Date) {
-        guard let selectedDate else { return }
-
         let realm = try! Realm()
-        // 既存のレコードを取得または新しいレコードを作成
+        if let medicineRecord = realm.objects(MedicineRecordDataModel.self).first {
+            selectedDate = medicineRecord.date
+            print("❗️読み込んだ日付 : \(selectedDate ?? Date())❗️")
+        } else {
+            selectedDate = nil
+            print("recordが存在しません。selectedDateはnilです。")
+        }
+    }
+    
+    func saveSelectedDate(date: Date) {
+        let realm = try! Realm()
+        print("選択した日付 : \(date)")
+        
         if let existingRecord = realm.objects(MedicineRecordDataModel.self).first {
+            // 既存のレコードがある場合は、日付を更新する
             try! realm.write {
                 existingRecord.date = date
                 realm.add(existingRecord, update: .modified)
             }
+            print("保存した日付 : \(existingRecord.date)")
         } else {
+            // 既存のレコードがない場合は、新しいレコードを作成する
             let newRecord = MedicineRecordDataModel()
             newRecord.date = date
             
             try! realm.write {
                 realm.add(newRecord)
             }
+            print("保存した日付（新規） : \(newRecord.date)")
         }
     }
 }
@@ -485,7 +494,7 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
             
             let medicineRecordCount = medicineRecordDataModel.count
             updateTableViewCells(with: medicineRecordCount)
-            
+            //            saveMedicineRecord(record)
             saveSelectedDate(date: Date())
             
             reloadData()
@@ -530,7 +539,7 @@ extension CalendarViewController: CalendarViewControllerDelegate {
                 object.date = newData.date
                 object.selectedPhysicalConditionIndex = newData.selectedPhysicalConditionIndex
                 object.selectedFecesConditionIndex = newData.selectedFecesConditionIndex
-//                object.medicineRecord = newData.medicineRecord
+                //                object.medicineRecord = newData.medicineRecord
                 object.memo = newData.memo
             }
         } else {
@@ -542,6 +551,23 @@ extension CalendarViewController: CalendarViewControllerDelegate {
         // Realmの保存が完了した後TableViewをリロードする
         refreshData()
     }
+    //    func saveMedicineRecordData(_ newData: MedicineRecordDataModel) {
+    //        let realm = try! Realm()
+    //
+    //        if let data = realm.objects(MedicineRecordDataModel.self).filter("id == %@", newData.id).first {
+    //            try!realm.write {
+    //                data.date = newData.date
+    //                data.medicineName = newData.medicineName
+    //                data.textField = newData.textField
+    //                data.unit = newData.unit
+    //                data.timePicker = newData.timePicker
+    //            }
+    //        } else {
+    //            try! realm.write {
+    //                realm.add(newData)
+    //            }
+    //        }
+    //    }
 }
 
 // MARK: FSCalendarDelegate関連

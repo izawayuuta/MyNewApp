@@ -173,10 +173,10 @@
                         <viewLayoutGuide key="safeArea" id="ZrW-5m-ENG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="U1h-j7-bwA" firstAttribute="bottom" secondItem="ZrW-5m-ENG" secondAttribute="bottom" id="N7C-kw-22m"/>
                             <constraint firstItem="U1h-j7-bwA" firstAttribute="centerX" secondItem="94G-rw-riq" secondAttribute="centerX" id="XB4-rH-Wza"/>
                             <constraint firstItem="U1h-j7-bwA" firstAttribute="leading" secondItem="ZrW-5m-ENG" secondAttribute="leading" id="ZOO-Ku-5Kr"/>
                             <constraint firstItem="U1h-j7-bwA" firstAttribute="top" secondItem="ZrW-5m-ENG" secondAttribute="top" constant="10" id="lwg-b7-QXZ"/>
-                            <constraint firstItem="U1h-j7-bwA" firstAttribute="bottom" secondItem="ZrW-5m-ENG" secondAttribute="bottom" id="rsp-M1-1pp"/>
                             <constraint firstItem="U1h-j7-bwA" firstAttribute="trailing" secondItem="ZrW-5m-ENG" secondAttribute="trailing" id="z7m-hY-3Zj"/>
                         </constraints>
                     </view>
@@ -514,6 +514,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <navigationItem key="navigationItem" id="fm8-Fo-npp"/>
                     <connections>
                         <outlet property="customPickerTextField" destination="zMP-x2-EqE" id="Mne-rB-UFm"/>
                         <outlet property="datePickerTextField" destination="nL0-oA-OXa" id="3PD-1P-1Za"/>

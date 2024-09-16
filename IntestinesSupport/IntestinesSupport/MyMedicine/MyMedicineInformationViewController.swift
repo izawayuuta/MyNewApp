@@ -15,6 +15,7 @@ protocol MedicineViewControllerDelegate: AnyObject {
 }
 
 class MedicineDataModel: Object {
+    @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var medicineName: String = ""
     @objc dynamic var doseNumber: Int = 0
     @objc dynamic var stock: Int = 0
@@ -27,6 +28,10 @@ class MedicineDataModel: Object {
     @objc dynamic var pickerView1: Int = 0
     @objc dynamic var pickerView2: String = ""
     @objc dynamic var datePicker: Date = Date()
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
 class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var medicineName: UITextField!
@@ -52,14 +57,14 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
     var stockValue: Int
     
     init(stockValue: Int) {
-            self.stockValue = stockValue
-            super.init(nibName: nil, bundle: nil)
-        }
-
-        required init?(coder: NSCoder) {
-            self.stockValue = 0 // デフォルト値を設定
-            super.init(coder: coder)
-        }
+        self.stockValue = stockValue
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.stockValue = 0 // デフォルト値を設定
+        super.init(coder: coder)
+    }
     
     
     override func viewDidLoad() {
@@ -117,16 +122,16 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         updateDeleteButtonState()
         saveButton.isEnabled = false
         deleteButton.isEnabled = false
-
+        
         medicineName.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         displayMedicineData()
         if let medicine = selectedMedicine {
-//                    updateUI(with: medicine)
-                    
-                    // ボタンを有効化
-                    saveButton.isEnabled = true
-                    deleteButton.isEnabled = true
-                }
+            //                    updateUI(with: medicine)
+            
+            // ボタンを有効化
+            saveButton.isEnabled = true
+            deleteButton.isEnabled = true
+        }
     }
     func defaultDisplay() {
         // pickerの初期表示を設定
@@ -347,39 +352,37 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         }
     }
     @IBAction func saveButton(_ sender: UIButton) {
-
-        
-        let medicineData = MedicineDataModel()
-        medicineData.medicineName = medicineName.text ?? ""
+        let medicine = MedicineDataModel()
+        medicine.medicineName = medicineName.text ?? ""
         if let doseNumberText = doseNumber.text, let doseNumberValue = Int(doseNumberText) {
-            medicineData.doseNumber = doseNumberValue
+            medicine.doseNumber = doseNumberValue
         } else {
-            medicineData.doseNumber = 0
+            medicine.doseNumber = 0
         }
         if let stockText = stock.text, let stockValue = Int(stockText) {
-            medicineData.stock = stockValue
+            medicine.stock = stockValue
         } else {
-            medicineData.stock = 0
+            medicine.stock = 0
         }
-        medicineData.url = url.text ?? ""
-        medicineData.memo = memo.text ?? ""
-        medicineData.datePickerTextField = datePickerTextField.text ?? ""
-        medicineData.textField =  textField.text ?? ""
-        medicineData.customPickerTextField =  customPickerTextField.text ?? ""
-        medicineData.label = label.text ?? ""
+        medicine.url = url.text ?? ""
+        medicine.memo = memo.text ?? ""
+        medicine.datePickerTextField = datePickerTextField.text ?? ""
+        medicine.textField =  textField.text ?? ""
+        medicine.customPickerTextField =  customPickerTextField.text ?? ""
+        medicine.label = label.text ?? ""
         let selectedRow1 = pickerView1.selectedRow(inComponent: 0)
-        medicineData.pickerView1 = selectedRow1
+        medicine.pickerView1 = selectedRow1
         
         let selectedRow2 = pickerView2.selectedRow(inComponent: 0)
         let selectedValue = pickerData2[selectedRow2]
-        medicineData.pickerView2 = selectedValue
-        medicineData.datePicker = datePicker.date
+        medicine.pickerView2 = selectedValue
+        medicine.datePicker = datePicker.date
         
         let realm = try! Realm()
         try! realm.write {
-            realm.add(medicineData)
+            realm.add(medicine)
         }
-        delegate?.didSaveMedicine(medicineData)
+        delegate?.didSaveMedicine(medicine)
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil) // モーダル画面を閉じる
     }
@@ -483,24 +486,24 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
     }
     // 保存されたデータを表示
     private func displayMedicineData() {
-            guard let medicine = selectedMedicine else { return }
-
-            medicineName.text = medicine.medicineName
-            doseNumber.text = "\(medicine.doseNumber)"
-            stock.text = "\(medicine.stock)"
-            url.text = medicine.url
-            memo.text = medicine.memo
-            datePickerTextField.text = medicine.datePickerTextField
-            textField.text = medicine.textField
-            customPickerTextField.text = medicine.customPickerTextField
-            label.text = medicine.label
-
-            pickerView1.selectRow(medicine.pickerView1, inComponent: 0, animated: false)
-
-            if let index = pickerData2.firstIndex(of: medicine.pickerView2) {
-                pickerView2.selectRow(index, inComponent: 0, animated: false)
-            }
-
-            datePicker.setDate(medicine.datePicker, animated: false)
+        guard let medicine = selectedMedicine else { return }
+        
+        medicineName.text = medicine.medicineName
+        doseNumber.text = "\(medicine.doseNumber)"
+        stock.text = "\(medicine.stock)"
+        url.text = medicine.url
+        memo.text = medicine.memo
+        datePickerTextField.text = medicine.datePickerTextField
+        textField.text = medicine.textField
+        customPickerTextField.text = medicine.customPickerTextField
+        label.text = medicine.label
+        
+        pickerView1.selectRow(medicine.pickerView1, inComponent: 0, animated: false)
+        
+        if let index = pickerData2.firstIndex(of: medicine.pickerView2) {
+            pickerView2.selectRow(index, inComponent: 0, animated: false)
         }
+        
+        datePicker.setDate(medicine.datePicker, animated: false)
+    }
 }

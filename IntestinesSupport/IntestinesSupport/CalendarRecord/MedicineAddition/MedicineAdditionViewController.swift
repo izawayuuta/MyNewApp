@@ -125,7 +125,6 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
            for record in recordsToSave {
                delegate?.didSaveMedicineRecord(record)
            }
-           
            dismiss(animated: true, completion: nil) // モーダル画面を閉じる
            
            // カレンダー画面への遷移
@@ -144,12 +143,9 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
         medicineAdditionButton.tintColor = UIColor.blue
     }
 }
-
-extension MedicineAdditionViewController: AdditionButtonCellDelegate {
+extension MedicineAdditionViewController: AdditionButtonCellDelegate, MedicineViewControllerDelegate {
     func didTapAdditionButton(in cell: AdditionButtonCell) {
     }
-}
-extension MedicineAdditionViewController: MedicineViewControllerDelegate {
     func didSaveMedicine(_ medicine: MedicineDataModel) {
         medicineDataModel.append(medicine)
         loadMedicines()
@@ -160,12 +156,4 @@ extension MedicineAdditionViewController: MedicineViewControllerDelegate {
         loadMedicines()
         tableView.reloadData()
     }
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        if segue.identifier == "FecesRecord" {
-    //            // 2. 遷移先のViewControllerを取得
-    //            let next = segue.destination as? FecesRecordViewController
-    //            // 3. １で用意した遷移先の変数に値を渡す
-    //            next?.selectedDate = selectedDate
-    //        }
-    //    }
 }
