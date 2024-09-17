@@ -165,6 +165,7 @@ class CalendarViewController: UIViewController {
         } else if segue.identifier == "MedicineAddition" {
             if let nextVC = segue.destination as? MedicineAdditionViewController {
                 nextVC.delegate = self
+                nextVC.selectDate = selectedDate
             }
         }
     }
@@ -205,9 +206,14 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
     func loadMedicinesData() {
         let realm = try! Realm()
         let medicineRecords = realm.objects(MedicineRecordDataModel.self)
-        medicineRecordIndex += 1
-        tableView.reloadData()
+        medicineRecordDataModel = Array(medicineRecords).filter({ $0.date == selectedDate })
+        
+        let medicineRecordCount = medicineRecordDataModel.count
+        updateTableViewCells(with: medicineRecordCount)
+        
+        reloadData()
     }
+    
     func updateTableViewCells(with medicineRecordCount: Int) {
         // 現在のセル数を取得
         let currentCellCount = tableViewCell.count
@@ -335,6 +341,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
             medicineEmptyStateCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return medicineEmptyStateCell
         } else if identifier == "MedicineRecordDetailCell" {
+
             let medicineRecordDetailCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MedicineRecordDetailCell
             medicineRecordDetailCell.delegate = self
             //            guard let model = filteredCalendarDataModel else {
@@ -494,8 +501,8 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
             
             let medicineRecordCount = medicineRecordDataModel.count
             updateTableViewCells(with: medicineRecordCount)
-            //            saveMedicineRecord(record)
-            saveSelectedDate(date: Date())
+            // saveMedicineRecord(record)
+            // saveSelectedDate(date: Date())
             
             reloadData()
             
@@ -576,7 +583,16 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     // 日付が選択されたときに呼び出されるメソッド
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectedDate = date
-        tableView.reloadData() // 選択された日付に関連するデータを表示するためにテーブルビューをリロード
+        
+        let realm = try! Realm()
+        let medicineRecords = realm.objects(MedicineRecordDataModel.self)
+        medicineRecordDataModel = Array(medicineRecords).filter({
+            return $0.date == selectedDate
+        })
+        
+        let medicineRecordCount = medicineRecordDataModel.count
+        updateTableViewCells(with: medicineRecordCount)
+        reloadData() // 選択された日付に関連するデータを表示するためにテーブルビューをリロード
     }
     
     // カレンダーの日付のタイトルの色をカスタマイズするメソッド

@@ -26,6 +26,7 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
     // 選択されたセルのインデックスパスを保持する配列
     private var selectedIndexPaths: [IndexPath] = []
     var additionButtonCell: AdditionButtonCell?
+    var selectDate: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,6 +108,9 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
                     // セルの情報をデータモデルに保存
                     record.medicineName = cell.medicineName.text ?? ""
                     record.unit = cell.unitLabel.text ?? ""
+                    if let selectDate {
+                        record.date = selectDate
+                    }
                     if let doseNumber = Int(cell.textField.text ?? "") {
                         record.textField = doseNumber
                     }
