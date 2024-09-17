@@ -26,6 +26,7 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
     // 選択されたセルのインデックスパスを保持する配列
     private var selectedIndexPaths: [IndexPath] = []
     var additionButtonCell: AdditionButtonCell?
+    var selectDate: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,9 +80,9 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0 // セルの高さ
     }
-//    func didRequestSaveData(from cell: MedicineRecordDetailCell) {
-//            cell.saveData()
-//        }
+    //    func didRequestSaveData(from cell: MedicineRecordDetailCell) {
+    //            cell.saveData()
+    //        }
     @IBAction func medicineAdditionButton(_ sender: UIButton) {
         let record = MedicineRecordDataModel()
         var recordsToSave: [MedicineRecordDataModel] = []
@@ -110,6 +111,9 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
                     if let doseNumber = Int(cell.textField.text ?? "") {
                         record.textField = doseNumber
                     }
+                    if let selectDate {
+                        record.date = selectDate
+                    }
                     record.timePicker = cell.timePicker.date
                     realm.add(record, update: .modified)
                 }
@@ -121,17 +125,17 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
                 recordsToSave.append(record)
             }
         }
-           
-           for record in recordsToSave {
-               delegate?.didSaveMedicineRecord(record)
-           }
-           dismiss(animated: true, completion: nil) // モーダル画面を閉じる
-           
-           // カレンダー画面への遷移
-           if let calendarVC = self.storyboard?.instantiateViewController(withIdentifier: "CalendarViewController") as? CalendarViewController {
-               self.navigationController?.pushViewController(calendarVC, animated: true)
-           }
-       }
+        
+        for record in recordsToSave {
+            delegate?.didSaveMedicineRecord(record)
+        }
+        dismiss(animated: true, completion: nil) // モーダル画面を閉じる
+        
+        // カレンダー画面への遷移
+        if let calendarVC = self.storyboard?.instantiateViewController(withIdentifier: "CalendarViewController") as? CalendarViewController {
+            self.navigationController?.pushViewController(calendarVC, animated: true)
+        }
+    }
     private func selectedCellButton() {
         medicineAdditionButton.isEnabled = !selectedIndexPaths.isEmpty
     }
