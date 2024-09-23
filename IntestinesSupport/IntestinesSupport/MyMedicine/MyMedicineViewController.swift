@@ -24,14 +24,17 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         
         tableView.register(UINib(nibName: "MedicineTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         loadMedicines()
-        print("MedicineDataModel : \(medicineDataModel)")
     }
     func loadMedicines() {
         let realm = try! Realm()
         let MyMedicines = realm.objects(MedicineDataModel.self)
         medicineDataModel.removeAll()
         medicineDataModel = Array(MyMedicines)
+        for medicine in medicineDataModel {
+            print("MedicineDataModel : \(medicine.medicineName)")
+        }
         tableView.reloadData()
+
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return medicineDataModel.filter { !$0.isInvalidated }.count
@@ -129,4 +132,12 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
     //        }catch {
     //        }
     //    }
+    // 遷移
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "next" {
+            if let next = segue.destination as? MyMedicineInformation {
+                next.delegate = self
+            }
+        }
+    }
 }

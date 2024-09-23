@@ -51,7 +51,7 @@ class MedicineAdditionTableViewCell: UITableViewCell {
             }
             
         }
-        }
+    }
     private func doneButton() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()

@@ -111,8 +111,6 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
             dateFormatter.dateFormat = "HH:mm"
             
             let timeString = dateFormatter.string(from: fecesDetail.time)
-            print("😈\(timeString)")
-            
             // セルを設定する
             recordCell.configure(with: type, time: timeString, count: [indexPath.row + 1])
             
@@ -142,13 +140,9 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
     private func tableView(_ tableView: UITableView, shouldSelectRowAt indexPath: IndexPath) -> Bool {
         return false // すべての行を選択不可にする
     }
-    //    @IBAction func backButtonAction(_ sender: Any) {
-    //        self.dismiss(animated: true, completion: nil)
-    //    }
 }
 extension FecesRecordViewController: FecesDetailCellDelegate, FecesDetailTableViewCellDelegate {
     func didTapPlusButton(indexes: [Int]) {
-        // Handle plus button action
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         
         if let cell = tableView.cellForRow(at: indexPath) as? FecesRecordTableViewCell {
@@ -157,7 +151,6 @@ extension FecesRecordViewController: FecesDetailCellDelegate, FecesDetailTableVi
     }
     
     func didTapRecordButton(in cell: FecesDetailCell) {
-        // Handle record button action
     }
     func didChangeTime(for cell: FecesRecordTableViewCell, newTime: Date) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
@@ -169,6 +162,7 @@ extension FecesRecordViewController: FecesDetailCellDelegate, FecesDetailTableVi
             fecesDetail.time = newTime
             realm.add(fecesDetail, update: .modified)
         }
-        tableView.reloadData()
+        // 指定したインデックスパスのみを再読み込み
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }

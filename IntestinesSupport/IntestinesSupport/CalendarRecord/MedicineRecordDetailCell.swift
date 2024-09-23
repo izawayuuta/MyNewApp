@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol MedicineRecordDetailCellDelegate: AnyObject {
+    func didChangeData(for cell: MedicineRecordDetailCell, newTime: Date)
+    func didChangeTextData(for cell: MedicineRecordDetailCell, newText: Int)
+}
+
 class MedicineRecordDetailCell: UITableViewCell {
     
     @IBOutlet weak var medicineName: UILabel!
@@ -17,6 +22,7 @@ class MedicineRecordDetailCell: UITableViewCell {
 //    private var model: CalendarDataModel?
 //    private var selectedDate: Date?
     weak var delegate: CalendarViewControllerDelegate?
+    weak var delegate2: MedicineRecordDetailCellDelegate?
     
     var selectedTime: Date {
         return timePicker.date
@@ -29,6 +35,11 @@ class MedicineRecordDetailCell: UITableViewCell {
 //        saveData()
         layoutSubviews()
         setupCell()
+        loadTimePickerDate()
+        loadTextFieldDate()
+        doneButton()
+        timePicker.addTarget(self, action: #selector(timePickerChanged(_:)), for: .valueChanged) // 値が変更された時のアクションを追加
+        textField.addTarget(self, action: #selector(textFieldChanged(_:)), for: .editingChanged)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -58,65 +69,50 @@ class MedicineRecordDetailCell: UITableViewCell {
         formatter.dateFormat = "HH:mm"
         return formatter.string(from: date)
     }
-    
-//    func saveData() { // ok
-//        print("Model: \(String(describing: model))") // nil
-//        print("SelectedDate: \(String(describing: selectedDate))") // nil
-//        // modelがnilではない場合(Realmデータの編集)
-//        if let model = model { // ok
-//            // 更新したデータを保存する
-//            let editModel = makeEditCalendarDataModel(medicineName: medicineName.text ?? "", selectedTime: selectedTime, model: model)
-//            delegate?.saveCalendarData(editModel)
-//            print("EditModel: \(editModel)")
-//        } else {
-//            // modelがnilの場合は新規作成のため、ここでModelを作成してそれを保存する
-//            guard let selectedDate = selectedDate else { return } // ok
-//            let newModel = makeNewCalendarDataModel(selectedDate: selectedDate, medicineName: medicineName.text ?? "", selectedTime: selectedTime)
-//            delegate?.saveCalendarData(newModel)
-//            print("NewModel: \(newModel)")
-//        }
-//    }
-//    
-//    private func makeEditCalendarDataModel(medicineName: String, selectedTime: Date, model: CalendarDataModel) -> CalendarDataModel {
-//        // 既存モデルの編集
-//        return CalendarDataModel(
-//            id: model.id,
-//            date: model.date,
-//            selectedPhysicalConditionIndex: model.selectedPhysicalConditionIndex,
-//            selectedFecesConditionIndex: model.selectedFecesConditionIndex,
-//            medicineRecord: MedicineRecordDataModel(id: model.medicineRecord?.id ?? UUID().uuidString, date: Date(), medicineName: medicineName, timePicker: selectedTime, textField: Int(textField.text ?? "0") ?? 0, unit: unit.text ?? ""),
-//            memo: model.memo
-//        )
-//    }
-//    
-//    private func makeNewCalendarDataModel(selectedDate: Date, medicineName: String, selectedTime: Date) -> CalendarDataModel {
-//        // 新しいモデルを作成
-//        let newModel = CalendarDataModel()
-//        newModel.date = selectedDate
-//        newModel.medicineRecord = MedicineRecordDataModel(id: UUID().uuidString, date: Date(), medicineName: medicineName, timePicker: selectedTime, textField: Int(textField.text ?? "0") ?? 0, unit: unit.text ?? "")
-//        return newModel
-//    }
-//    
-//    func configure(medicineRecord: MedicineRecordDataModel?, model: CalendarDataModel? = nil, selectedDate: Date) {
-//        self.model = model
-//        self.selectedDate = selectedDate
-//        
-//        if let medicineRecord = medicineRecord { // ok
-//            print("Medicine Name: \(medicineRecord.medicineName)")
-//            print("Text Field: \(medicineRecord.textField)")
-//            print("Unit: \(medicineRecord.unit)")
-//            print("Time Picker Date: \(medicineRecord.timePicker)")
-//            // 保存された薬の名前と時間を表示
-//            medicineName.text = medicineRecord.medicineName
-//            textField.text = "\(medicineRecord.textField)"
-//            unit.text = medicineRecord.unit
-//            timePicker.date = medicineRecord.timePicker
-//            //        } else {
-//            //            // 新規の場合の初期設定
-//            //            medicineName.text = ""
-//            //            textField.text = ""
-//            //            unit.text = ""
-//            //            timePicker.date = Date() // デフォルトの時間を設定
-//        }
-//    }
+    @objc private func timePickerChanged(_ sender: UIDatePicker) {
+        saveTimePickerDate(sender.date) // 時間を保存する
+        delegate2?.didChangeData(for: self, newTime: sender.date)
+    }
+    private func saveTimePickerDate(_ date: Date) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let timeString = dateFormatter.string(from: date)
+        UserDefaults.standard.set(timeString, forKey: "savedTime") // 軽量な永続ストレージ（保存）
+    }
+    private func loadTimePickerDate() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        if let timeString = UserDefaults.standard.string(forKey: "savedTime"),
+           let savedDate = dateFormatter.date(from: timeString) {
+            timePicker.date = savedDate
+        } else {
+            timePicker.date = Date() // 保存された時間がない場合は現在の時間をセット
+        }
+    }
+    @objc private func textFieldChanged(_ sender: UITextField) {
+        if let text = sender.text, let newText = Int(text) {
+            saveTextFieldDate(newText)
+            delegate2?.didChangeTextData(for: self, newText: newText)
+        }
+    }
+    private func saveTextFieldDate(_ text: Int) {
+        UserDefaults.standard.set(text, forKey: "savedText") // 軽量な永続ストレージ（保存）
+    }
+    private func loadTextFieldDate() {
+        if let savedText = UserDefaults.standard.string(forKey: "savedText") as? Int {
+                textField.text = "\(savedText)"
+            } else {
+                textField.text = "" // 保存されたテキストがない場合は空にする
+            }
+    }
+    private func doneButton() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let closeButton = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(dismissKeyboard))
+        toolbar.items = [closeButton]
+        textField.inputAccessoryView = toolbar
+    }
+    @objc private func dismissKeyboard() {
+        textField.resignFirstResponder()
+    }
 }
