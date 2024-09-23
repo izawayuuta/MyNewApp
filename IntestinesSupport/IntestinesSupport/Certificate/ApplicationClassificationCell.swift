@@ -21,11 +21,9 @@ class ApplicationClassificationCell: UITableViewCell, UITextFieldDelegate {
         textField0.delegate = self
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     @objc func tapDoneButton() {
         self.endEditing(true)
@@ -37,22 +35,22 @@ class ApplicationClassificationCell: UITableViewCell, UITextFieldDelegate {
         textField0.inputAccessoryView = toolBar
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-            guard let text = textField.text, let id = certificateId else { return }
-            
-            let realm = try! Realm()
-            
-            if let certificate = realm.object(ofType: CertificateDataModel.self, forPrimaryKey: id) {
-                try! realm.write {
-                    certificate.textField0 = text
-                }
-            } else {
-                // データが存在しない場合は新しく作成
-                let newCertificate = CertificateDataModel()
-                newCertificate.id = id
-                newCertificate.textField0 = text
-                try! realm.write {
-                    realm.add(newCertificate)
-                }
+        guard let text = textField.text, let id = certificateId else { return }
+        
+        let realm = try! Realm()
+        
+        if let certificate = realm.object(ofType: CertificateDataModel.self, forPrimaryKey: id) {
+            try! realm.write {
+                certificate.textField0 = text
+            }
+        } else {
+            // データが存在しない場合は新しく作成
+            let newCertificate = CertificateDataModel()
+            newCertificate.id = id
+            newCertificate.textField0 = text
+            try! realm.write {
+                realm.add(newCertificate)
             }
         }
+    }
 }

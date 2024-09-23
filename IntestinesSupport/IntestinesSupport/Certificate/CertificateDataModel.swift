@@ -30,6 +30,6 @@ class CertificateDataModel: Object {
     @objc dynamic var pickerView: Int = 0
     
     override static func primaryKey() -> String? {
-           return "id"
-       }
+        return "id"
+    }
 }

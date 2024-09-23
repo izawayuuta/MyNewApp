@@ -61,7 +61,7 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
         // records 配列の初期値を設定
         records = Array(repeating: 1, count: fecesDetails.count)
     }
-    
+    // 行数を返す
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if fecesDetails.isEmpty {
             return 1
@@ -69,6 +69,7 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
             return fecesDetails.count
         }
     }
+    // 各行の内容を設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // `fecesDetails` が空の場合は EmptyStateCell を使用
         if fecesDetails.isEmpty {
@@ -119,7 +120,6 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
             return recordCell
         }
     }
-    
     // スライドして削除
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -137,8 +137,9 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
+    // 行の選択
     private func tableView(_ tableView: UITableView, shouldSelectRowAt indexPath: IndexPath) -> Bool {
-        return false // すべての行を選択不可にする
+        return false
     }
 }
 extension FecesRecordViewController: FecesDetailCellDelegate, FecesDetailTableViewCellDelegate {

@@ -13,7 +13,6 @@ protocol MedicineViewControllerDelegate: AnyObject {
     func didSaveMedicine(_ medicine: MedicineDataModel)
     func didDeleteMedicine(_ medicine: MedicineDataModel)
 }
-
 class MedicineDataModel: Object {
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var medicineName: String = ""
@@ -48,13 +47,13 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
     weak var delegate: MedicineViewControllerDelegate?
     var selectedMedicine: MedicineDataModel?
     
-    //    var selectedOption: String?
     let pickerView1 = UIPickerView()
     let pickerView2 = UIPickerView()
     let datePicker = UIDatePicker()
     let pickerData1 = ["起床時", "食前", "食直前", "食直後", "食後", "食間", "就寝前", "頓服"]
     var pickerData2 = ["錠", "包", "個", "ml", "mg"]
     var stockValue: Int
+    var isEditingExistingMedicine = false // 編集中のフラグを設定
     
     init(stockValue: Int) {
         self.stockValue = stockValue
@@ -65,8 +64,6 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         self.stockValue = 0 // デフォルト値を設定
         super.init(coder: coder)
     }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -126,8 +123,6 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         medicineName.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         displayMedicineData()
         if let medicine = selectedMedicine {
-            //                    updateUI(with: medicine)
-            
             // ボタンを有効化
             saveButton.isEnabled = true
             deleteButton.isEnabled = true
@@ -155,9 +150,7 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         stock.inputAccessoryView = toolBar
         url.inputAccessoryView = toolBar
         memo.inputAccessoryView = toolBar
-        //        datePickerTextField.inputAccessoryView = toolBar
         textField.inputAccessoryView = toolBar
-        //        customPickerTextField.inputAccessoryView = toolBar
     }
     // キーボード追従
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -166,7 +159,6 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         }
     }
-    
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView == memo {
             NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -174,16 +166,13 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
             textView.scrollRangeToVisible(NSRange(location: 0, length: 0))
         }
     }
-    
     // キーボード追従
     @objc func keyboardWillShow(_ notification: Notification) {
         adjustForKeyboard(notification: notification, willShow: true)
     }
-    
     @objc func keyboardWillHide(_ notification: Notification) {
         adjustForKeyboard(notification: notification, willShow: false)
     }
-    
     func adjustForKeyboard(notification: Notification, willShow: Bool) {
         guard let userInfo = notification.userInfo else { return }
         guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
@@ -212,7 +201,7 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         let toolbar3 = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 35))
         let resetItem3 = UIBarButtonItem(title: "クリア", style: .plain, target: self, action: #selector(resetOption))
         let flexibleSpace3 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        //         Doneボタンを設定(押下時doneClickedが起動)
+        // Doneボタンを設定(押下時doneClickedが起動)
         let doneButton = UIBarButtonItem(title: "完了", style: .done, target: self, action: #selector(doneClicked))
         // Doneボタンを追加
         toolbar3.setItems([doneButton, flexibleSpace3, resetItem3], animated: true)
@@ -232,7 +221,6 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == pickerView1 {
             return pickerData1.count
@@ -242,7 +230,6 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
             return 0
         }
     }
-    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == pickerView1 {
             return pickerData1[row]
@@ -252,7 +239,6 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
             return nil
         }
     }
-    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == pickerView1 {
             self.textField.text = pickerData1[row]
@@ -284,7 +270,6 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         
         present(alert, animated: true, completion: nil)
     }
-    
     func showAddCustomOptionAlert() {
         let alert = UIAlertController(title: "新規追加", message: "オプションを追加してください", preferredStyle: .alert)
         alert.addTextField { textField in
@@ -306,7 +291,6 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
-    
     func showDeleteCustomOptionAlert() {
         guard pickerData2.count > 1 else {
             return
@@ -335,13 +319,11 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
     @objc func done() {
         self.view.endEditing(true)
     }
-    
     func CGRectMake(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
         return CGRect(x: x, y: y, width: width, height: height)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     @objc func resetOption() {
         datePickerTextField? .text = ""
@@ -382,12 +364,29 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         medicine.datePicker = datePicker.date
         
         let realm = try! Realm()
+        
+        // 重複チェック
+        let existingMedicine = realm.objects(MedicineDataModel.self).filter("medicineName == %@", medicineName.text ?? "").first
+        
+        if !isEditingExistingMedicine {
+                let existingMedicine = realm.objects(MedicineDataModel.self).filter("medicineName == %@", medicine.medicineName).first
+                if existingMedicine != nil {
+                    // アラートを表示
+                    let alert = UIAlertController(title: "エラー", message: "同じ名前の薬が保存されています。\n別の名前を入力してください。", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    present(alert, animated: true, completion: nil)
+                    return
+                }
+            }
+        
         try! realm.write {
             realm.add(medicine)
         }
         delegate?.didSaveMedicine(medicine)
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil) // モーダル画面を閉じる
+        
+        isEditingExistingMedicine = false // 保存後にフラグをリセット
     }
     @IBAction func deleteButton(_ sender: UIButton) {
         let medicineData = MedicineDataModel()

@@ -43,9 +43,11 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
         medicineDataModel = Array(realm.objects(MedicineDataModel.self))
         tableView.reloadData()
     }
+    // 行図鵜を返す
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return medicineDataModel.count
     }
+    // 各行の内容を設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! MedicineAdditionTableViewCell
         let medicine = medicineDataModel[indexPath.row]
@@ -60,6 +62,7 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
         
         return cell
     }
+    // 行が選択された時の処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             // 新しく選択された場合はチェックマークを付ける
@@ -68,7 +71,7 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
             selectedCellButton()
         }
     }
-    
+    // 行が選択解除された時の処理
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             // 選択が解除された場合はチェックマークを外す
@@ -77,12 +80,10 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
             selectedCellButton()
         }
     }
+    // 行の高さを設定
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0 // セルの高さ
     }
-    //    func didRequestSaveData(from cell: MedicineRecordDetailCell) {
-    //            cell.saveData()
-    //        }
     @IBAction func medicineAdditionButton(_ sender: UIButton) {
         let record = MedicineRecordDataModel()
         var recordsToSave: [MedicineRecordDataModel] = []

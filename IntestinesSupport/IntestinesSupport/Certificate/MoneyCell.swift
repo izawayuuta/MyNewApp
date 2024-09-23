@@ -23,11 +23,8 @@ class MoneyCell: UITableViewCell, UITextFieldDelegate {
         
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
     }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     @objc func tapDoneButton() {
         self.endEditing(true)
@@ -41,11 +38,9 @@ class MoneyCell: UITableViewCell, UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // 各フィールドの最大文字数
         let maxMoneyLength = 5
-        
         // 入力済みの文字と入力された文字を合わせて取得.
         let currentText = (textField.text ?? "") as NSString
         let updatedText = currentText.replacingCharacters(in: range, with: string)
-        
         // テキストフィールドごとの文字数制限
         switch textField {
         case textField:

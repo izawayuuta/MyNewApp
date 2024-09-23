@@ -42,13 +42,9 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
         textField3.keyboardType = .numberPad
         textField4.keyboardType = .numberPad
         textField5.keyboardType = .numberPad
-        
     }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     @objc func tapDoneButton() {
         self.endEditing(true)
@@ -109,9 +105,7 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let realm = try! Realm()
         
-        guard let id = certificateId else {
-            return
-        }
+        guard let id = certificateId else { return }
         
         if let certificate = realm.object(ofType: CertificateDataModel.self, forPrimaryKey: id) {
             // 既存のデータモデルがある場合は更新
@@ -132,12 +126,10 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
     }
     func loadPickerSelection() {
         let realm = try! Realm()
-        
         // certificateIdの確認
         guard let id = certificateId else {
             return
         }
-        
         // データモデルの読み込み
         if let certificate = realm.object(ofType: CertificateDataModel.self, forPrimaryKey: id) {
             // UIPickerViewの選択状態を設定
@@ -172,7 +164,6 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
                     // データが存在しない場合は新規作成
                     let newCertificate = CertificateDataModel()
                     newCertificate.id = id // 既存の ID を設定
-                    
                     // テキストフィールドによって異なるプロパティを設定
                     switch textField {
                     case textField1:

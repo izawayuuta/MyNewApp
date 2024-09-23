@@ -280,9 +280,11 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
             medicineRecordDataModel.remove(at: index)
         }
     }
+    // 行数を返す
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableViewCell.count
     }
+    // 各行の内容を設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //        print("🍏indexPath : \(indexPath.row)")
         
@@ -353,7 +355,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
             medicineRecordDetailCell.delegate2 = self
             
             if medicineRecordIndex < medicineRecordDataModel.count {
-//                print("\(medicineRecordIndex)🍋")
+                //                print("\(medicineRecordIndex)🍋")
                 let medicine = medicineRecordDataModel[medicineRecordIndex]
                 
                 medicineRecordDetailCell.medicineName.text = medicine.medicineName
@@ -391,12 +393,11 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
             return UITableViewCell()
         }
     }
-    
-    /// 全てのCellの選択を不可にする
+    // 全てのCellの選択を不可にする
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return true
+        return false
     }
-    
+    // 行の高さを設定
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 3 {
             return 80 // 3行目の高さを80に設定
@@ -427,7 +428,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
         let tableViewCell = tableViewCell[indexPath.row]
         return tableViewCell == "MedicineRecordDetailCell"
     }
-    
+    // 削除の設定
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         let tableViewCell = tableViewCell[indexPath.row]
         if tableViewCell == "MedicineRecordDetailCell" {
@@ -435,6 +436,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
         }
         return .none
     }
+    // 行の編集操作
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         // 対象のtableViewCellのStringを削除
         tableViewCell.remove(at: indexPath.row)
@@ -453,11 +455,6 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
         // 最新のmedicineRecordDataModelからupdateTableViewCellsを呼んでtableViewCellを作り直す
         updateTableViewCells(with: medicineRecordDataModel.count)
         reloadData()
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("タップしたセル : \(indexPath.row)")
-//        medicineRecordIndex = indexPath.row
-        print("タップしたセル : \(medicineRecordIndex)")
     }
     //        func saveMedicineRecord(_ record: MedicineRecordDataModel) {
     //            let realm = try! Realm()
@@ -493,39 +490,39 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
     }
 }
 extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDelegate, MedicineAdditionViewControllerDelegate, MedicineRecordDetailCellDelegate {
-//    func didChangeData(for cell: MedicineRecordDetailCell, newTime: Date) {
-//                print("①medicineRecordIndex: \(medicineRecordIndex)")
-//
-//        guard let indexPath = tableView.indexPath(for: cell) else { return }
-//                print("②medicineRecordIndex: \(medicineRecordIndex)")
-//
-////        let medicineRecordIndex = indexPath.row
-//        let medicineRecordIndex = medicineRecordIndex - 1
-//        print("\(indexPath)")
-//                print("③medicineRecordIndex: \(medicineRecordIndex)")
-//
-//        print("medicineRecordDataModel.count: \(medicineRecordDataModel.count)")
-//        if medicineRecordIndex < medicineRecordDataModel.count {
-//            let medicine = medicineRecordDataModel[medicineRecordIndex]
-//            let realm = try! Realm()
-//            
-//            try! realm.write {
-//                medicine.timePicker = newTime
-//                realm.add(medicine, update: .modified)
-//            }
-//            // セルの位置が変わらないようにする
-//            if let updatedCell = tableView.cellForRow(at: indexPath) as? MedicineRecordDetailCell {
-//                updatedCell.timePicker.setDate(newTime, animated: true)
-//            }
-//        }
-//    }
+    //    func didChangeData(for cell: MedicineRecordDetailCell, newTime: Date) {
+    //                print("①medicineRecordIndex: \(medicineRecordIndex)")
+    //
+    //        guard let indexPath = tableView.indexPath(for: cell) else { return }
+    //                print("②medicineRecordIndex: \(medicineRecordIndex)")
+    //
+    ////        let medicineRecordIndex = indexPath.row
+    //        let medicineRecordIndex = medicineRecordIndex - 1
+    //        print("\(indexPath)")
+    //                print("③medicineRecordIndex: \(medicineRecordIndex)")
+    //
+    //        print("medicineRecordDataModel.count: \(medicineRecordDataModel.count)")
+    //        if medicineRecordIndex < medicineRecordDataModel.count {
+    //            let medicine = medicineRecordDataModel[medicineRecordIndex]
+    //            let realm = try! Realm()
+    //
+    //            try! realm.write {
+    //                medicine.timePicker = newTime
+    //                realm.add(medicine, update: .modified)
+    //            }
+    //            // セルの位置が変わらないようにする
+    //            if let updatedCell = tableView.cellForRow(at: indexPath) as? MedicineRecordDetailCell {
+    //                updatedCell.timePicker.setDate(newTime, animated: true)
+    //            }
+    //        }
+    //    }
     func didChangeData(for cell: MedicineRecordDetailCell, newTime: Date) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-
+        
         // indexPath.rowを使って、タップしたセルの正しいインデックスを取得
-//        let medicineRecordIndex = indexPath.row
-                let medicineRecordIndex = medicineRecordIndex - 1
-
+        //        let medicineRecordIndex = indexPath.row
+        let medicineRecordIndex = medicineRecordIndex - 1
+        
         print("タップしたセルのインデックス: \(medicineRecordIndex)")
         
         print("medicineRecordDataModel.count: \(medicineRecordDataModel.count)")
@@ -539,7 +536,7 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
                 medicine.timePicker = newTime
                 realm.add(medicine, update: .modified)
             }
-
+            
             // セルの位置が変わらないようにする
             if let updatedCell = tableView.cellForRow(at: indexPath) as? MedicineRecordDetailCell {
                 updatedCell.timePicker.setDate(newTime, animated: true)
@@ -548,14 +545,14 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
             print("Error: インデックスが範囲外です。")
         }
     }
-
+    
     //        guard let indexPath = tableView.indexPath(for: cell) else { return }
     //        print("\(indexPath)")
     //        let indexPath = IndexPath(row: medicineRecordIndex, section: 0)
     //            if indexPath.row < medicineRecordDataModel.count {
     //                let medicine = medicineRecordDataModel[indexPath.row]
     func didChangeTextData(for cell: MedicineRecordDetailCell, newText: Int) {
-//        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        //        guard let indexPath = tableView.indexPath(for: cell) else { return }
         let indexPath = IndexPath(row: medicineRecordIndex, section: 0)
         
         if medicineRecordIndex < medicineRecordDataModel.count {
@@ -577,13 +574,13 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
             medicineRecordDataModel.append(record)
             
             let newIndex = medicineRecordDataModel.count - 1
-                   print("☠️追加されたデータのインデックス: \(newIndex)")
+            print("☠️追加されたデータのインデックス: \(newIndex)")
             let medicineRecordCount = medicineRecordDataModel.count
             updateTableViewCells(with: medicineRecordCount)
             
             reloadData()
-//            print("☠️medicineRecordIndex: \(medicineRecordIndex)")
-
+            //            print("☠️medicineRecordIndex: \(medicineRecordIndex)")
+            
         } else {
             print("Error: The record with the same medicine name and time already exists.")
         }
@@ -659,7 +656,6 @@ extension CalendarViewController: CalendarViewControllerDelegate {
 
 // MARK: FSCalendarDelegate関連
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
-    
     // 日付が選択されたときに呼び出されるメソッド
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         //        print("☀️選択した日付 : \(String(describing: selectedDate))")
@@ -671,10 +667,9 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         })
         let medicineRecordCount = medicineRecordDataModel.count
         updateTableViewCells(with: medicineRecordCount)
-//        print("🔥medicineRecordDataModel : \(medicineRecordDataModel)")
+        //        print("🔥medicineRecordDataModel : \(medicineRecordDataModel)")
         reloadData() // 選択された日付に関連するデータを表示するためにテーブルビューをリロード
     }
-    
     // カレンダーの日付のタイトルの色をカスタマイズするメソッド
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
         let weekday = Calendar.current.component(.weekday, from: date)

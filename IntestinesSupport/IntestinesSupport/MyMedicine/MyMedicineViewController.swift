@@ -24,21 +24,20 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         
         tableView.register(UINib(nibName: "MedicineTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         loadMedicines()
+        print("⓪\(medicineDataModel)")
     }
     func loadMedicines() {
         let realm = try! Realm()
         let MyMedicines = realm.objects(MedicineDataModel.self)
         medicineDataModel.removeAll()
         medicineDataModel = Array(MyMedicines)
-        for medicine in medicineDataModel {
-            print("MedicineDataModel : \(medicine.medicineName)")
-        }
         tableView.reloadData()
-
     }
+    // 行数を返す
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return medicineDataModel.filter { !$0.isInvalidated }.count
     }
+    // 各行の内容を設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! MedicineTableViewCell
         let filteredData = medicineDataModel.filter { !$0.isInvalidated }
@@ -54,6 +53,7 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.selectionStyle = .none // セル選択時の色の変化を無効化
         return cell
     }
+    // 行の編集操作
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let realm = try! Realm()
@@ -73,6 +73,7 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
+    // 選択された時の処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 選択されたセルのデータを取得
         let selectedMedicine = medicineDataModel[indexPath.row]
@@ -82,12 +83,14 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         guard let infoVC = storyboard.instantiateViewController(withIdentifier: "MyMedicineInformation") as? MyMedicineInformation else {
             return
         }
+        infoVC.isEditingExistingMedicine = true  // 編集中であることを示すフラグを設定
         infoVC.delegate = self
         infoVC.selectedMedicine = selectedMedicine
         let navigationController = UINavigationController(rootViewController: infoVC)
         navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true, completion: nil)
     }
+    // 行が編集可能かどうか
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return false
     }
@@ -110,28 +113,13 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
             realm.add(medicine, update: .modified)
         }
         tableView.reloadData()
+        print("\(medicineDataModel)")
     }
-    //    private func saveMedicine(_ medicine: MedicineDataModel) {
-    //        let realm = try! Realm()
-    //        try! realm.write {
-    //            realm.add(medicine)
-    //        }
-    //        tableView.reloadData()
-    //    }
     func didDeleteMedicine(_ medicine: MedicineDataModel) {
         medicineDataModel.append(medicine)
         tableView.reloadData()
+        print("\(medicineDataModel)")
     }
-    //    func deleteMedicine(_ medicine: MedicineDataModel) {
-    //        do {
-    //            let realm = try! Realm()
-    //            try realm.write ({
-    //                realm.delete(medicine)
-    //            })
-    //            tableView.reloadData()
-    //        }catch {
-    //        }
-    //    }
     // 遷移
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "next" {

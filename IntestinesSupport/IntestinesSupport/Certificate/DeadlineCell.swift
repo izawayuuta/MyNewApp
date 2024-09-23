@@ -41,11 +41,8 @@ class DeadlineCell: UITableViewCell, UITextFieldDelegate {
         day2.keyboardType = UIKeyboardType.numberPad
         
     }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     @objc func tapDoneButton() {
         self.endEditing(true)
@@ -85,9 +82,9 @@ class DeadlineCell: UITableViewCell, UITextFieldDelegate {
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let inputValue = textField.text, let convertedValue = Int(inputValue) else { return }
-
+        
         let realm = try! Realm()
-
+        
         try! realm.write {
             if let id = certificateId {
                 // id で既存のデータを検索

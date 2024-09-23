@@ -15,17 +15,13 @@ class MedicineTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         medicineNameLabel.numberOfLines = 1 // 1行で表示する
         stockLabel.numberOfLines = 1 // 1行で表示する
         stockNumberLabel.numberOfLines = 1 // 1行で表示する
         stockUnitLabel.numberOfLines = 1 // 1行で表示する
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }

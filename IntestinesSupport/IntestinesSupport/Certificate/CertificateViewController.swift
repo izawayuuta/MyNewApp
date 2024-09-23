@@ -11,17 +11,12 @@ import RealmSwift
 
 class CertificateViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PlusButtonCellDelegate, CertificateViewControllerDelegate {
     
-    
-    
-    
     @IBOutlet weak var tableView: UITableView!
     
     var tableViewCell: [String] = []
     var certificateIds: [String] = []
     private var certificateDataModel: [CertificateDataModel] = []
     weak var delegate: CertificateViewControllerDelegate?
-    
-    let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +31,6 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.register(UINib(nibName: "PeriodCell", bundle: nil), forCellReuseIdentifier: "PeriodCell")
         tableView.register(UINib(nibName: "PlusButtonCell", bundle: nil), forCellReuseIdentifier: "PlusButtonCell")
         
-        
         tableViewCell = ["ApplicationClassificationCell", "MoneyCell", "HierarchyClassificationCell", "DeadlineCell", "PeriodCell", "PlusButtonCell"]
         loadCertificates()
         saveData()
@@ -47,8 +41,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
         let certificates = realm.objects(CertificateDataModel.self)
         certificateDataModel = Array(certificates)
         certificateIds = certificateDataModel.map { $0.id } // IDの配列を更新
-        
-        // 保存されたデータに基づいて PeriodCell を追加
+        // 保存されたデータに基づいてPeriodCellを追加
         var periodCellAdded = false
         for _ in certificateDataModel {
             if !periodCellAdded {
@@ -56,20 +49,20 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                 periodCellAdded = true
             }
         }
-        
         tableView.reloadData()
     }
     // 行数を返す
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableViewCell.count
     }
-    
+    // 各行の内容を設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = tableViewCell[indexPath.row]
         if identifier == "ApplicationClassificationCell" {
             let applicationClassificationCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! ApplicationClassificationCell
             if indexPath.row < certificateDataModel.count {
                 let data = certificateDataModel[indexPath.row]
+                // 各フィールドにデータを設定
                 applicationClassificationCell.textField0.text = data.textField0
                 applicationClassificationCell.certificateId = data.id
             }
@@ -79,7 +72,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
             let moneyCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MoneyCell
             if indexPath.row < certificateDataModel.count {
                 let data = certificateDataModel[indexPath.row]
-                // textField01 を String に変換し、空文字を表示できるようにする
+                // 各フィールドにデータを設定
                 let displayValue = data.textField01 == 0 ? "" : String(data.textField01)
                 moneyCell.textField01.text = displayValue
                 moneyCell.certificateId = data.id
@@ -90,6 +83,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
             let hierarchyClassificationCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! HierarchyClassificationCell
             if indexPath.row < certificateDataModel.count {
                 let data = certificateDataModel[indexPath.row]
+                // 各フィールドにデータを設定
                 hierarchyClassificationCell.textField02.text = data.textField02
                 hierarchyClassificationCell.certificateId = data.id
             }
@@ -129,15 +123,15 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
             return periodCell
         } else if identifier == "PlusButtonCell" {
             let plusButtonCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PlusButtonCell
-            plusButtonCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+            plusButtonCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude) // 下辺の線を消す
             plusButtonCell.delegate = self
             return plusButtonCell
         } else {
             return UITableViewCell()
         }
     }
+    // 行の高さを設定
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // 各セルの高さを設定
         let identifier = tableViewCell[indexPath.row]
         switch identifier {
         case "ApplicationClassificationCell":
@@ -156,21 +150,20 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
             return 70
         }
     }
+    // 削除の設定
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        // セルが１つしかない時は削除を無効
+        // セルが２つしかない時は削除を無効
         let periodCellsCount = tableViewCell.filter { $0 == "PeriodCell" }.count
         if tableViewCell[indexPath.row] == "PeriodCell" && periodCellsCount > 2 {
             return .delete
         }
         return .none
     }
+    // 編集操作
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            guard indexPath.row < certificateDataModel.count && indexPath.row < tableViewCell.count else {
-                print("Error: index out of range")
-                return
-            }
-            // CertificateDataModelから削除する
+            guard indexPath.row < certificateDataModel.count && indexPath.row < tableViewCell.count else { return }
+            
             let realm = try! Realm()
             let dataToDelete = certificateDataModel[indexPath.row]
             
@@ -179,6 +172,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
             }
             // TableViewのデータソースから削除
             tableViewCell.remove(at: indexPath.row)
+            // CertificateDataModelから削除する
             certificateDataModel.remove(at: indexPath.row)
             // TableViewからセルを削除
             tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -194,7 +188,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
         }
         
         certificateIds.append(newCertificate.id)
-        tableViewCell.insert("PeriodCell", at: tableViewCell.count - 1)
+        tableViewCell.insert("PeriodCell", at: tableViewCell.count - 1) // PlusButtonCell の前に追加
         
         didSaveCertificate(newCertificate)
         
@@ -203,13 +197,12 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
         saveData()
     }
     private func saveData() {
+        let realm = try! Realm()
         try! realm.write {
-            var periodCellIndex = 0 // PeriodCellのインデックスを追跡
+            var periodCellIndex = 0
             // すべてのセルからデータを取得
             for i in 0..<tableViewCell.count {
                 let indexPath = IndexPath(row: i, section: 0)
-                //                    guard i < certificateDataModel.count else { continue }
-                //                    let certificate = certificateDataModel[i]
                 var certificate: CertificateDataModel
                 
                 if let cell = tableView.cellForRow(at: indexPath) as? ApplicationClassificationCell {
@@ -256,7 +249,6 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
     func didSaveCertificate(_ certificate: CertificateDataModel) {
         // certificateIds に id が存在するか確認
         if let index = certificateIds.firstIndex(of: certificate.id) {
-            // index が範囲内であることを確認してからアクセス
             if index < certificateDataModel.count {
                 certificateDataModel[index] = certificate
             }
