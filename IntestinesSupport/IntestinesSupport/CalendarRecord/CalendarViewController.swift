@@ -408,20 +408,32 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
     // 記録のある日付の下に点を表示
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         let dateList = calendarDataModel.map({ $0.date.zeroclock })
-        let dateList2 = medicineRecordDataModel.map({ $0.date.zeroclock })
-        // 比較対象のDate型の年月日が一致していた場合にtrueとなる
-        let isEqualDate = dateList.contains(date.zeroclock) || dateList2.contains(date.zeroclock)
-        return isEqualDate ? 1 : 0
+        let dateList2 = medicineRecordDataModel.map { $0.date.zeroclock }
+        
+        let CalendarData = dateList.contains(date.zeroclock)
+        let MedicineRecordData = dateList2.contains(date.zeroclock)
+
+        // 両方のデータが存在する場合、2つの点を表示
+        return (CalendarData ? 1 : 0) + (MedicineRecordData ? 1 : 0)
     }
     // 点の色を設定
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
         let dateList = calendarDataModel.map { $0.date.zeroclock }
-        let isEqualDate = dateList.contains(date.zeroclock)
-        // 記録がある日付に特定の色を設定
-        if isEqualDate {
-            return [UIColor.red] // 点の色を赤に設定
-        }
-        return nil
+        let dateList2 = medicineRecordDataModel.map { $0.date.zeroclock }
+        
+            let CalendarData = dateList.contains(date.zeroclock)
+            let MedicineRecordData = dateList2.contains(date.zeroclock)
+        
+            var colors: [UIColor] = []
+        
+            if CalendarData {
+                colors.append(UIColor.red) // 赤色の点
+            }
+            if MedicineRecordData {
+                colors.append(UIColor.blue) // 青色の点
+            }
+
+            return colors.isEmpty ? nil : colors // 点の色を返す
     }
     // MedicineRecordDetailCellだけ削除
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
