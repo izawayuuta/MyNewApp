@@ -10,6 +10,11 @@ import FSCalendar
 import SwiftUI
 import RealmSwift
 
+struct SampleIndex {
+    var medicineRecordIndex: Int
+    var tableViewIndex: Int
+}
+
 class CalendarViewController: UIViewController {
     
     private var tableViewCell: [String] = ["CalendarDateCell", "PhysicalConditionCell", "FecesConditionCell", "FecesDetailCell", "AdditionButtonCell", "MedicineEmptyStateCell", "MemoCell"]
@@ -22,6 +27,7 @@ class CalendarViewController: UIViewController {
     weak var delegate: CalendarViewControllerDelegate?
     private var medicineRecordIndex = 0
     private var medicineRecordIndices: [Int] = []
+    private var indexes: [SampleIndex] = [] // 毎回初期化
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -60,6 +66,7 @@ class CalendarViewController: UIViewController {
         loadCalendars()
         configureCalendar()
         setupCalendarScope()
+        indexes.removeAll()  // リロード時に初期化
         //                loadMedicineRecords()
         //        print("🌈\(medicineRecordDataModel)")
     }
@@ -375,6 +382,8 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
                 medicineRecordDetailCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
                 medicineRecordIndex += 1
             }
+            let sampleIndex = SampleIndex(medicineRecordIndex: indexPath.row, tableViewIndex: indexPath.row)
+            indexes.append(sampleIndex)
             //            print("🍏medicineRecordDataModel : \(medicineRecordDataModel)")
             return medicineRecordDetailCell
         } else if identifier == "MemoCell" {
@@ -408,32 +417,19 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
     // 記録のある日付の下に点を表示
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         let dateList = calendarDataModel.map({ $0.date.zeroclock })
-        let dateList2 = medicineRecordDataModel.map { $0.date.zeroclock }
-        
-        let CalendarData = dateList.contains(date.zeroclock)
-        let MedicineRecordData = dateList2.contains(date.zeroclock)
-
-        // 両方のデータが存在する場合、2つの点を表示
-        return (CalendarData ? 1 : 0) + (MedicineRecordData ? 1 : 0)
+        // 比較対象のDate型の年月日が一致していた場合にtrueとなる
+        let isEqualDate = dateList.contains(date.zeroclock)
+        return isEqualDate ? 1 : 0
     }
     // 点の色を設定
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
         let dateList = calendarDataModel.map { $0.date.zeroclock }
-        let dateList2 = medicineRecordDataModel.map { $0.date.zeroclock }
-        
-            let CalendarData = dateList.contains(date.zeroclock)
-            let MedicineRecordData = dateList2.contains(date.zeroclock)
-        
-            var colors: [UIColor] = []
-        
-            if CalendarData {
-                colors.append(UIColor.red) // 赤色の点
-            }
-            if MedicineRecordData {
-                colors.append(UIColor.blue) // 青色の点
-            }
-
-            return colors.isEmpty ? nil : colors // 点の色を返す
+        let isEqualDate = dateList.contains(date.zeroclock)
+        // 記録がある日付に特定の色を設定
+        if isEqualDate {
+            return [UIColor.red] // 点の色を赤に設定
+        }
+        return nil
     }
     // MedicineRecordDetailCellだけ削除
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -529,35 +525,36 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
     //        }
     //    }
     func didChangeData(for cell: MedicineRecordDetailCell, newTime: Date) {
+        // tableViewからセルのindexPathを取得
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         
-        // indexPath.rowを使って、タップしたセルの正しいインデックスを取得
-        //        let medicineRecordIndex = indexPath.row
-        let medicineRecordIndex = medicineRecordIndex - 1
-        
-        print("タップしたセルのインデックス: \(medicineRecordIndex)")
-        
-        print("medicineRecordDataModel.count: \(medicineRecordDataModel.count)")
-        
-        // インデックスの範囲チェック
-        if medicineRecordIndex < medicineRecordDataModel.count {
-            let medicine = medicineRecordDataModel[medicineRecordIndex]
-            let realm = try! Realm()
+        // indexesから対応するSampleIndexを取得し、medicineRecordIndexを使う
+        if let sampleIndex = indexes.first(where: { $0.tableViewIndex == indexPath.row }) {
+            let medicineRecordIndex = sampleIndex.medicineRecordIndex
             
-            try! realm.write {
-                medicine.timePicker = newTime
-                realm.add(medicine, update: .modified)
-            }
+            print("タップしたセルのインデックス: \(medicineRecordIndex)")
+            print("medicineRecordDataModel.count: \(medicineRecordDataModel.count)")
             
-            // セルの位置が変わらないようにする
-            if let updatedCell = tableView.cellForRow(at: indexPath) as? MedicineRecordDetailCell {
-                updatedCell.timePicker.setDate(newTime, animated: true)
+            // インデックスの範囲チェック
+            if medicineRecordIndex < medicineRecordDataModel.count {
+                let medicine = medicineRecordDataModel[medicineRecordIndex]
+                let realm = try! Realm()
+                
+                try! realm.write {
+                    // 時間データを更新
+                    medicine.timePicker = newTime
+                    realm.add(medicine, update: .modified)
+                }
+                
+                // セルの表示を更新（セルの位置が変わらないように）
+                if let updatedCell = tableView.cellForRow(at: indexPath) as? MedicineRecordDetailCell {
+                    updatedCell.timePicker.setDate(newTime, animated: true)
+                }
+            } else {
+                print("Error: インデックスが範囲外です。")
             }
-        } else {
-            print("Error: インデックスが範囲外です。")
         }
     }
-    
     //        guard let indexPath = tableView.indexPath(for: cell) else { return }
     //        print("\(indexPath)")
     //        let indexPath = IndexPath(row: medicineRecordIndex, section: 0)

@@ -24,7 +24,10 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         
         tableView.register(UINib(nibName: "MedicineTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         loadMedicines()
-        print("⓪\(medicineDataModel)")
+        //        print("⓪\(medicineDataModel.count)")
+        //        for index in 0..<medicineDataModel.count {
+        //                print("インデックス: \(index), データ: \(medicineDataModel[index])")
+        //            }
     }
     func loadMedicines() {
         let realm = try! Realm()
@@ -97,28 +100,53 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
     // デリゲートメソッド
     func didSaveMedicine(_ medicine: MedicineDataModel) {
         let realm = try! Realm()
+        
         // 選択されたセルを削除
         if let existingIndex = selectedIndex {
-            let oldMedicine = medicineDataModel[existingIndex.row]
-            medicineDataModel.remove(at: existingIndex.row)
-            tableView.deleteRows(at: [existingIndex], with: .automatic)
-            
-            try! realm.write {
-                realm.delete(oldMedicine)
+            // インデックスが範囲内か確認
+            if existingIndex.row < medicineDataModel.count {
+                let oldMedicine = medicineDataModel[existingIndex.row]
+                medicineDataModel.remove(at: existingIndex.row)
+                tableView.deleteRows(at: [existingIndex], with: .automatic)
+                
+                try! realm.write {
+                    realm.delete(oldMedicine)
+                }
+            } else {
+                print("Warning: existingIndex.row \(existingIndex.row) is out of bounds for medicineDataModel with count \(medicineDataModel.count).")
             }
         }
+        
+        // 新しいデータを追加
         medicineDataModel.append(medicine)
         
         try! realm.write {
             realm.add(medicine, update: .modified)
         }
         tableView.reloadData()
-        print("\(medicineDataModel)")
+        
+        if medicineDataModel.count > 0 {
+            // すべてのインデックスを表示
+            for index in 0..<medicineDataModel.count {
+                print("追加インデックス \(index): \(medicineDataModel[index])")
+            }
+        }
     }
+    
     func didDeleteMedicine(_ medicine: MedicineDataModel) {
-        medicineDataModel.append(medicine)
+        // 削除したいデータをデータモデルから削除
+        if let index = medicineDataModel.firstIndex(of: medicine) {
+            medicineDataModel.remove(at: index)
+        }
         tableView.reloadData()
-        print("\(medicineDataModel)")
+        
+        if medicineDataModel.count > 0 {
+            // すべてのインデックスを表示
+            for index in 0..<medicineDataModel.count {
+                print("削除インデックス \(index): \(medicineDataModel[index])")
+            }
+        }
+        selectedIndex = nil
     }
     // 遷移
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
