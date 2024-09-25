@@ -115,19 +115,10 @@ class MedicineRecordDetailCell: UITableViewCell {
     @objc private func dismissKeyboard() {
         textField.resignFirstResponder()
     }
-    func setup(with medicine: MedicineRecordDataModel) {
-           medicineName.text = medicine.medicineName
-           unit.text = medicine.unit
-           textField.text = "\(medicine.textField)" // 必要に応じてキャスト
-           timePicker.setDate(medicine.timePicker, animated: false)
-           
-           // 必要ならここでフォーマットした時間を設定するなどの処理も可能です
-           let dateFormatter = DateFormatter()
-           dateFormatter.locale = Locale(identifier: "ja_JP")
-           dateFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
-           dateFormatter.dateFormat = "HH:mm"
-           
-           let formattedTime = dateFormatter.string(from: medicine.timePicker)
-           print("Formatted Time: \(formattedTime)")
-       }
+    func configure(medicineName: String, timePicker: Date, text: String, unit: String) {
+            self.medicineName.text = medicineName
+        self.unit.text = unit
+            self.timePicker.date = timePicker
+            self.textField.text = text
+        }
 }

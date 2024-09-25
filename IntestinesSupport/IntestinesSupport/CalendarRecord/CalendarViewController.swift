@@ -27,7 +27,7 @@ class CalendarViewController: UIViewController {
     weak var delegate: CalendarViewControllerDelegate?
     private var medicineRecordIndex = 0
     private var medicineRecordIndices: [Int] = []
-    private var indexes: [SampleIndex] = [] // 毎回初期化
+    private var indexes: [SampleIndex] = []
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -66,7 +66,8 @@ class CalendarViewController: UIViewController {
         loadCalendars()
         configureCalendar()
         setupCalendarScope()
-        indexes.removeAll()  // リロード時に初期化
+        indexes.removeAll()
+            tableView.reloadData()
         //                loadMedicineRecords()
         //        print("🌈\(medicineRecordDataModel)")
     }
@@ -381,9 +382,15 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
                 
                 medicineRecordDetailCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
                 medicineRecordIndex += 1
+                
+                // ここで sampleIndex を作成し、indexes に追加
+                let sampleIndex = SampleIndex(medicineRecordIndex: medicineRecordIndex, tableViewIndex: indexPath.row)
+                indexes.append(sampleIndex)
+                print("sampleIndex : \(sampleIndex)")
+                
+                // configure メソッドでセルにデータを設定
+                medicineRecordDetailCell.configure(medicineName: medicine.medicineName, timePicker: timePickerDate, text: String(medicine.textField), unit: medicine.unit)
             }
-            let sampleIndex = SampleIndex(medicineRecordIndex: indexPath.row, tableViewIndex: indexPath.row)
-            indexes.append(sampleIndex)
             //            print("🍏medicineRecordDataModel : \(medicineRecordDataModel)")
             return medicineRecordDetailCell
         } else if identifier == "MemoCell" {
@@ -464,16 +471,6 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
         updateTableViewCells(with: medicineRecordDataModel.count)
         reloadData()
     }
-    //        func saveMedicineRecord(_ record: MedicineRecordDataModel) {
-    //            let realm = try! Realm()
-    //            try! realm.write {
-    //                realm.add(record, update: .modified)
-    //            }
-    //        }
-    //        func loadMedicineRecords() -> [MedicineRecordDataModel] {
-    //            let realm = try! Realm()
-    //            return Array(realm.objects(MedicineRecordDataModel.self))
-    //        }
     func saveSelectedDate(date: Date) {
         let realm = try! Realm()
         //        print("選択した日付 : \(date)")
@@ -498,68 +495,34 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
     }
 }
 extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDelegate, MedicineAdditionViewControllerDelegate, MedicineRecordDetailCellDelegate {
-    //    func didChangeData(for cell: MedicineRecordDetailCell, newTime: Date) {
-    //                print("①medicineRecordIndex: \(medicineRecordIndex)")
-    //
-    //        guard let indexPath = tableView.indexPath(for: cell) else { return }
-    //                print("②medicineRecordIndex: \(medicineRecordIndex)")
-    //
-    ////        let medicineRecordIndex = indexPath.row
-    //        let medicineRecordIndex = medicineRecordIndex - 1
-    //        print("\(indexPath)")
-    //                print("③medicineRecordIndex: \(medicineRecordIndex)")
-    //
-    //        print("medicineRecordDataModel.count: \(medicineRecordDataModel.count)")
-    //        if medicineRecordIndex < medicineRecordDataModel.count {
-    //            let medicine = medicineRecordDataModel[medicineRecordIndex]
-    //            let realm = try! Realm()
-    //
-    //            try! realm.write {
-    //                medicine.timePicker = newTime
-    //                realm.add(medicine, update: .modified)
-    //            }
-    //            // セルの位置が変わらないようにする
-    //            if let updatedCell = tableView.cellForRow(at: indexPath) as? MedicineRecordDetailCell {
-    //                updatedCell.timePicker.setDate(newTime, animated: true)
-    //            }
-    //        }
-    //    }
     func didChangeData(for cell: MedicineRecordDetailCell, newTime: Date) {
         // tableViewからセルのindexPathを取得
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        
-        // indexesから対応するSampleIndexを取得し、medicineRecordIndexを使う
-        if let sampleIndex = indexes.first(where: { $0.tableViewIndex == indexPath.row }) {
-            let medicineRecordIndex = sampleIndex.medicineRecordIndex
+        let sampleIndex = indexes.first { $0.tableViewIndex == indexPath.row }
+        print("選択されたセルのindexPath: \(indexPath.row)")
+        print("sampleIndex ::: \(String(describing: sampleIndex))")
+
+        // インデックスの範囲チェック
+        if let sampleIndex = sampleIndex, sampleIndex.medicineRecordIndex < medicineRecordDataModel.count {
+            let medicine = medicineRecordDataModel[sampleIndex.medicineRecordIndex]
+            print("変更しようとしているセルのインデックス: \(sampleIndex.medicineRecordIndex)")
+            let realm = try! Realm()
             
-            print("タップしたセルのインデックス: \(medicineRecordIndex)")
-            print("medicineRecordDataModel.count: \(medicineRecordDataModel.count)")
-            
-            // インデックスの範囲チェック
-            if medicineRecordIndex < medicineRecordDataModel.count {
-                let medicine = medicineRecordDataModel[medicineRecordIndex]
-                let realm = try! Realm()
-                
-                try! realm.write {
-                    // 時間データを更新
-                    medicine.timePicker = newTime
-                    realm.add(medicine, update: .modified)
-                }
-                
-                // セルの表示を更新（セルの位置が変わらないように）
-                if let updatedCell = tableView.cellForRow(at: indexPath) as? MedicineRecordDetailCell {
-                    updatedCell.timePicker.setDate(newTime, animated: true)
-                }
-            } else {
-                print("Error: インデックスが範囲外です。")
+            try! realm.write {
+                // 時間データを更新
+                medicine.timePicker = newTime
+                realm.add(medicine, update: .modified)
             }
+            
+            // セルの表示を更新（セルの位置が変わらないように）
+            if let updatedCell = tableView.cellForRow(at: indexPath) as? MedicineRecordDetailCell {
+                updatedCell.timePicker.setDate(newTime, animated: true)
+            }
+            print("変更後のセルのインデックス: \(sampleIndex.medicineRecordIndex) が更新されました。")
+        } else {
+            print("Error: インデックスが範囲外です。")
         }
     }
-    //        guard let indexPath = tableView.indexPath(for: cell) else { return }
-    //        print("\(indexPath)")
-    //        let indexPath = IndexPath(row: medicineRecordIndex, section: 0)
-    //            if indexPath.row < medicineRecordDataModel.count {
-    //                let medicine = medicineRecordDataModel[indexPath.row]
     func didChangeTextData(for cell: MedicineRecordDetailCell, newText: Int) {
         //        guard let indexPath = tableView.indexPath(for: cell) else { return }
         let indexPath = IndexPath(row: medicineRecordIndex, section: 0)
