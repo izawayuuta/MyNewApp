@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MedicineAdditionTableViewCell: UITableViewCell {
+class MedicineAdditionTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var medicineName: UITextField!
     @IBOutlet weak var unitLabel: UILabel!
@@ -22,15 +22,29 @@ class MedicineAdditionTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        textField.keyboardType = .decimalPad
+        
+        textField.delegate = self
+        
         setupTextField()
         doneButton()
         setupCell()
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
+    //    override func setSelected(_ selected: Bool, animated: Bool) {
+    //        super.setSelected(selected, animated: animated)
+    //    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // 現在のテキストを取得
+        guard let currentText = textField.text else { return true }
+        // 新しいテキストを取得
+        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        // 小数点が2個以上含まれないかチェック
+        let decimalCount = newText.components(separatedBy: ".").count - 1
+        if decimalCount > 1 {
+            return false // 小数点が2個以上の場合は変更を許可しない
+        }
+        return true
     }
     private func setupTextField() {
         let textFields: [UITextField] = [medicineName, textField]

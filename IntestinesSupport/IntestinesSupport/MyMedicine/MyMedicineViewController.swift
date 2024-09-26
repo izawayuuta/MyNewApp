@@ -51,7 +51,11 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         let medicine = filteredData[indexPath.row]
         // セルの設定
         cell.medicineNameLabel.text = medicine.medicineName
-        cell.stockNumberLabel.text = "\(medicine.stock)"
+        if medicine.stock == Double(Int(medicine.stock)) {
+            cell.stockNumberLabel.text = "\(Int(medicine.stock))" // ０の場合整数として表示
+        } else {
+            cell.stockNumberLabel.text = "\(medicine.stock)" // 小数としてそのまま表示
+        }
         cell.stockUnitLabel.text = medicine.label
         cell.selectionStyle = .none // セル選択時の色の変化を無効化
         return cell
@@ -128,7 +132,7 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         if medicineDataModel.count > 0 {
             // すべてのインデックスを表示
             for index in 0..<medicineDataModel.count {
-                print("追加インデックス \(index): \(medicineDataModel[index])")
+                //                print("追加インデックス \(index): \(medicineDataModel[index])")
             }
         }
     }
@@ -143,7 +147,7 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         if medicineDataModel.count > 0 {
             // すべてのインデックスを表示
             for index in 0..<medicineDataModel.count {
-                print("削除インデックス \(index): \(medicineDataModel[index])")
+                //                print("削除インデックス \(index): \(medicineDataModel[index])")
             }
         }
         selectedIndex = nil
@@ -156,4 +160,7 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
     }
+    //    func addPickerData2Item(item: String) {
+    //        MyMedicines.sharedPickerData2.append(item)
+    //    }
 }

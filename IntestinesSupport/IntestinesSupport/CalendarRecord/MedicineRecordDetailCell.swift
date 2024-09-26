@@ -9,18 +9,18 @@ import UIKit
 
 protocol MedicineRecordDetailCellDelegate: AnyObject {
     func didChangeData(for cell: MedicineRecordDetailCell, newTime: Date)
-    func didChangeTextData(for cell: MedicineRecordDetailCell, newText: Int)
+    func didChangeTextData(for cell: MedicineRecordDetailCell, newText: Double)
 }
 
-class MedicineRecordDetailCell: UITableViewCell {
+class MedicineRecordDetailCell: UITableViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var medicineName: UILabel!
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var unit: UILabel!
     
-//    private var model: CalendarDataModel?
-//    private var selectedDate: Date?
+    //    private var model: CalendarDataModel?
+    //    private var selectedDate: Date?
     weak var delegate: CalendarViewControllerDelegate?
     weak var delegate2: MedicineRecordDetailCellDelegate?
     
@@ -30,9 +30,11 @@ class MedicineRecordDetailCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        //        delegateSelf()
-//        saveData()
+        
+        textField.keyboardType = .decimalPad
+        
+        textField.delegate = self
+        
         layoutSubviews()
         setupCell()
         loadTimePickerDate()
@@ -89,21 +91,38 @@ class MedicineRecordDetailCell: UITableViewCell {
             timePicker.date = Date() // 保存された時間がない場合は現在の時間をセット
         }
     }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // 現在のテキストを取得
+        guard let currentText = textField.text else { return true }
+        // 新しいテキストを取得
+        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        // 小数点が2個以上含まれないかチェック
+        let decimalCount = newText.components(separatedBy: ".").count - 1
+        if decimalCount > 1 {
+            return false // 小数点が2個以上の場合は変更を許可しない
+        }
+        return true
+    }
     @objc private func textFieldChanged(_ sender: UITextField) {
-        if let text = sender.text, let newText = Int(text) {
-            saveTextFieldDate(newText)
-            delegate2?.didChangeTextData(for: self, newText: newText)
+        if let text = sender.text, let newText = Double(text) {
+            saveTextFieldDate(Int(newText))
+            delegate2?.didChangeTextData(for: self, newText: Double(newText))
         }
     }
     private func saveTextFieldDate(_ text: Int) {
         UserDefaults.standard.set(text, forKey: "savedText") // 軽量な永続ストレージ（保存）
     }
     private func loadTextFieldDate() {
-        if let savedText = UserDefaults.standard.string(forKey: "savedText") as? Int {
-                textField.text = "\(savedText)"
+        if let savedText = UserDefaults.standard.value(forKey: "savedText") as? Double {
+            // 保存されたテキストを表示形式に応じて整える
+            if savedText == Double(Int(savedText)) {
+                textField.text = "\(Int(savedText))" // 整数として表示
             } else {
-                textField.text = "" // 保存されたテキストがない場合は空にする
+                textField.text = "\(savedText)" // 小数としてそのまま表示
             }
+        } else {
+            textField.text = "0" // 保存されたテキストがない場合は0を表示
+        }
     }
     private func doneButton() {
         let toolbar = UIToolbar()
@@ -116,9 +135,17 @@ class MedicineRecordDetailCell: UITableViewCell {
         textField.resignFirstResponder()
     }
     func configure(medicineName: String, timePicker: Date, text: String, unit: String) {
-            self.medicineName.text = medicineName
+        self.medicineName.text = medicineName
         self.unit.text = unit
-            self.timePicker.date = timePicker
-            self.textField.text = text
+        self.timePicker.date = timePicker
+        if let doseValue = Double(text) {
+            if doseValue.truncatingRemainder(dividingBy: 1) == 0 {
+                // 整数の場合は Int に変換して表示
+                self.textField.text = String(Int(doseValue))
+            } else {
+                // 小数の場合はそのまま表示
+                self.textField.text = String(doseValue) // Double 型として表示
+            }
         }
+    }
 }

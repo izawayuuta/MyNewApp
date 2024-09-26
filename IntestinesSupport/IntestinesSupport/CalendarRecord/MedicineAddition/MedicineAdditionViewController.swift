@@ -53,8 +53,14 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
         let medicine = medicineDataModel[indexPath.row]
         cell.medicineName.text = medicine.medicineName
         cell.unitLabel.text = medicine.label
-        cell.textField.text = "\(medicine.doseNumber)"
         
+        let doseNumber = medicine.doseNumber
+        // 整数の場合は Int として表示
+        if let doseInt = Int(exactly: doseNumber) {
+            cell.textField.text = "\(doseInt)"
+        } else {
+            cell.textField.text = "\(doseNumber)"
+        }
         
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         
@@ -109,9 +115,17 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
                     // セルの情報をデータモデルに保存
                     record.medicineName = cell.medicineName.text ?? ""
                     record.unit = cell.unitLabel.text ?? ""
-                    if let doseNumber = Int(cell.textField.text ?? "") {
-                        record.textField = doseNumber
+                    
+                    if let doseText = cell.textField.text {
+                        if let doseInt = Int(doseText) {
+                            // 整数の場合は Double 型に変換して保存
+                            record.textField = Double(doseInt)
+                        } else if let doseDouble = Double(doseText) {
+                            // 小数の場合はそのまま保存
+                            record.textField = doseDouble
+                        }
                     }
+                    
                     if let selectDate {
                         record.date = selectDate
                     }

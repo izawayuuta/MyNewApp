@@ -16,8 +16,8 @@ protocol MedicineViewControllerDelegate: AnyObject {
 class MedicineDataModel: Object {
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var medicineName: String = ""
-    @objc dynamic var doseNumber: Int = 0
-    @objc dynamic var stock: Int = 0
+    @objc dynamic var doseNumber: Double = 0.0
+    @objc dynamic var stock: Double = 0.0
     @objc dynamic var url: String = ""
     @objc dynamic var memo: String = ""
     @objc dynamic var datePickerTextField: String = ""
@@ -67,7 +67,10 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let textFields: [UITextField] = [medicineName, url]
+        let _: [UITextField] = [medicineName, url]
+        
+        doseNumber.keyboardType = .decimalPad
+        stock.keyboardType = .decimalPad
         
         medicineName.delegate = self
         doseNumber.delegate = self
@@ -242,14 +245,15 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == pickerView1 {
             self.textField.text = pickerData1[row]
-            print("選択された行のインデックス (pickerView1): \(row)")
+            //            print("選択された行のインデックス (pickerView1): \(row)")
         } else if pickerView == pickerView2 {
             let selectedValue = pickerData2[row]
             self.customPickerTextField.text = pickerData2[row]
             self.label.text = pickerData2[row] // 選んだ値がUILabelに反映
-            print("選択された行のインデックス (pickerView2): \(row)")
+            //            print("選択された行のインデックス (pickerView2): \(row)")
         }
     }
+    // カスタムアラートの作成
     @objc func showCustomOption() {
         let alert = UIAlertController(title: "カスタム", message: "選択してください", preferredStyle: .actionSheet)
         
@@ -257,7 +261,9 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
             self?.showAddCustomOptionAlert()
         }
         let selectedRow = pickerView2.selectedRow(inComponent: 0)
-        let selectedOption = pickerData2[selectedRow]
+        //        print("selectedRow : \(selectedRow)")
+        let selectedOption = MyMedicines.sharedPickerData2[selectedRow]  // 変更
+        //        let selectedOption = pickerData2[selectedRow]
         let deleteAction = UIAlertAction(title: "\(selectedOption)を削除", style: .destructive) { [weak self] _ in
             self?.showDeleteCustomOptionAlert()
         }
@@ -270,6 +276,7 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         
         present(alert, animated: true, completion: nil)
     }
+    // 新規追加アラート
     func showAddCustomOptionAlert() {
         let alert = UIAlertController(title: "新規追加", message: "オプションを追加してください", preferredStyle: .alert)
         alert.addTextField { textField in
@@ -277,10 +284,12 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         }
         let addAction = UIAlertAction(title: "追加", style: .default) { [weak self] _ in
             if let newOption = alert.textFields?.first?.text, !newOption.isEmpty {
+                MyMedicines.sharedPickerData2.append(newOption)  // 変更
                 self?.pickerData2.append(newOption)
                 self?.pickerView2.reloadAllComponents()
                 self?.resetPickerView2()
-                let newIndex = self?.pickerData2.count ?? 1 - 1
+                //                let newIndex = self?.pickerData2.count ?? 1 - 1
+                let newIndex = MyMedicines.sharedPickerData2.count - 1  // 変更
                 self?.pickerView2.selectRow(newIndex, inComponent: 0, animated: false)
                 self?.customPickerTextField.text = newOption
                 self?.label.text = newOption
@@ -291,20 +300,18 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
+    // 削除アラート
     func showDeleteCustomOptionAlert() {
-        guard pickerData2.count > 1 else {
-            return
-        }
+        guard pickerData2.count > 1 else { return }
         let selectedRow = pickerView2.selectedRow(inComponent: 0)
         let selectedOption = pickerData2[selectedRow]
-        guard selectedRow < pickerData2.count else {
-            return
-        }
+        guard selectedRow < pickerData2.count else { return }
         let alert = UIAlertController(title: "\(selectedOption)を削除しますか", message: nil, preferredStyle: .alert)
         let deleteAction = UIAlertAction(title: "削除", style: .destructive) { [weak self] _ in
             //                let selectedRow = pickerView.selectedRow(inComponent: 0)
             guard let self = self else { return }
-            self.pickerData2.remove(at: selectedRow)
+            MyMedicines.sharedPickerData2.remove(at: selectedRow)  // 変更
+            //            self.pickerData2.remove(at: selectedRow)
             self.pickerView2.reloadAllComponents()
             self.customPickerTextField.text = ""
             self.label.text = ""
@@ -336,15 +343,33 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
             textField.autocapitalizationType = .none // 大文字小文字の自動変換を無効
         }
     }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // 現在のテキストを取得
+        let currentText = textField.text ?? ""
+        // 入力後のテキストを計算
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        // 小数点の数をカウント
+        let dotCount = updatedText.filter { $0 == "." }.count
+        
+        if textField == doseNumber {
+            // 小数点が1つ以下のときは許可
+            return dotCount <= 1
+        }
+        if textField == stock {
+            return dotCount <= 1
+        }
+        return true // その他のテキストフィールドの場合はデフォルトで許可
+    }
     @IBAction func saveButton(_ sender: UIButton) {
         let medicine = MedicineDataModel()
         medicine.medicineName = medicineName.text ?? ""
-        if let doseNumberText = doseNumber.text, let doseNumberValue = Int(doseNumberText) {
+        if let doseNumberText = doseNumber.text, let doseNumberValue = Double(doseNumberText) {
             medicine.doseNumber = doseNumberValue
         } else {
             medicine.doseNumber = 0
         }
-        if let stockText = stock.text, let stockValue = Int(stockText) {
+        if let stockText = stock.text, let stockValue = Double(stockText) {
             medicine.stock = stockValue
         } else {
             medicine.stock = 0
@@ -369,19 +394,20 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         let existingMedicine = realm.objects(MedicineDataModel.self).filter("medicineName == %@", medicineName.text ?? "").first
         
         if !isEditingExistingMedicine {
-                let existingMedicine = realm.objects(MedicineDataModel.self).filter("medicineName == %@", medicine.medicineName).first
-                if existingMedicine != nil {
-                    // アラートを表示
-                    let alert = UIAlertController(title: "エラー", message: "同じ名前の薬が保存されています。\n別の名前を入力してください。", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    present(alert, animated: true, completion: nil)
-                    return
-                }
+            let existingMedicine = realm.objects(MedicineDataModel.self).filter("medicineName == %@", medicine.medicineName).first
+            if existingMedicine != nil {
+                // アラートを表示
+                let alert = UIAlertController(title: "エラー", message: "同じ名前の薬が保存されています。\n別の名前を入力してください。", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                present(alert, animated: true, completion: nil)
+                return
             }
+        }
         
         try! realm.write {
             realm.add(medicine)
         }
+        print("保存成功: stock = \(medicine.stock), doseNumber = \(medicine.doseNumber)")
         delegate?.didSaveMedicine(medicine)
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil) // モーダル画面を閉じる
@@ -421,8 +447,16 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         // Realmからデータを読み込む
         if let latestMedicine = medicines.last {
             medicineName.text = latestMedicine.medicineName
-            doseNumber.text = "\(latestMedicine.doseNumber)"
-            stock.text = "\(latestMedicine.stock)"
+            if latestMedicine.doseNumber == Double(Int(latestMedicine.doseNumber)) {
+                doseNumber.text = "\(Int(latestMedicine.doseNumber))" // ０の場合整数として表示
+            } else {
+                doseNumber.text = "\(latestMedicine.doseNumber)" // 小数としてそのまま表示
+            }
+            if latestMedicine.stock == Double(Int(latestMedicine.stock)) {
+                stock.text = "\(Int(latestMedicine.stock))" // ０の場合整数として表示
+            } else {
+                stock.text = "\(latestMedicine.stock)" // 小数としてそのまま表示
+            }
             url.text = latestMedicine.url
             memo.text = latestMedicine.memo
             datePickerTextField.text = latestMedicine.datePickerTextField
@@ -491,8 +525,20 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         guard let medicine = selectedMedicine else { return }
         
         medicineName.text = medicine.medicineName
-        doseNumber.text = "\(medicine.doseNumber)"
-        stock.text = "\(medicine.stock)"
+        if medicine.doseNumber == 0 {
+            doseNumber.text = "0"
+        } else if medicine.doseNumber.truncatingRemainder(dividingBy: 1) == 0 {
+            doseNumber.text = "\(Int(medicine.doseNumber))"
+        } else {
+            doseNumber.text = "\(medicine.doseNumber)"
+        }
+        if medicine.stock == 0 {
+            stock.text = "0"
+        } else if medicine.stock.truncatingRemainder(dividingBy: 1) == 0 {
+            stock.text = "\(Int(medicine.stock))"
+        } else {
+            stock.text = "\(medicine.stock)"
+        }
         url.text = medicine.url
         memo.text = medicine.memo
         datePickerTextField.text = medicine.datePickerTextField

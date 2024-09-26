@@ -72,7 +72,7 @@ class MedicineRecordDataModel: Object {
     @objc dynamic var date: Date = Date()
     @objc dynamic var medicineName: String = ""
     @objc dynamic var timePicker: Date = Date()
-    @objc dynamic var textField: Int = 0
+    @objc dynamic var textField: Double = 0.0
     @objc dynamic var unit: String = ""
     
     override init() {
@@ -82,7 +82,7 @@ class MedicineRecordDataModel: Object {
             return "id" // プライマリーキーの指定
         }
     
-    convenience init(id: String,date: Date, medicineName: String, timePicker: Date, textField: Int, unit: String) {
+    convenience init(id: String,date: Date, medicineName: String, timePicker: Date, textField: Double, unit: String) {
         self.init()
         self.id = id
         self.date = date

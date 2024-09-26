@@ -41,10 +41,6 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        let today = Date()
-        //        print("\(today)")
-        //        calendar.select(today)
-        
         calendar.delegate = self
         calendar.dataSource = self
         tableView.delegate = self
@@ -67,7 +63,7 @@ class CalendarViewController: UIViewController {
         configureCalendar()
         setupCalendarScope()
         indexes.removeAll()
-            tableView.reloadData()
+        tableView.reloadData()
         //                loadMedicineRecords()
         //        print("🌈\(medicineRecordDataModel)")
     }
@@ -363,7 +359,6 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
             medicineRecordDetailCell.delegate2 = self
             
             if medicineRecordIndex < medicineRecordDataModel.count {
-                //                print("\(medicineRecordIndex)🍋")
                 let medicine = medicineRecordDataModel[medicineRecordIndex]
                 
                 medicineRecordDetailCell.medicineName.text = medicine.medicineName
@@ -387,11 +382,9 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
                 let sampleIndex = SampleIndex(medicineRecordIndex: medicineRecordIndex, tableViewIndex: indexPath.row)
                 indexes.append(sampleIndex)
                 print("sampleIndex : \(sampleIndex)")
-                
                 // configure メソッドでセルにデータを設定
                 medicineRecordDetailCell.configure(medicineName: medicine.medicineName, timePicker: timePickerDate, text: String(medicine.textField), unit: medicine.unit)
             }
-            //            print("🍏medicineRecordDataModel : \(medicineRecordDataModel)")
             return medicineRecordDetailCell
         } else if identifier == "MemoCell" {
             let memoCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MemoCell
@@ -499,13 +492,9 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
         // tableViewからセルのindexPathを取得
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         let sampleIndex = indexes.first { $0.tableViewIndex == indexPath.row }
-        print("選択されたセルのindexPath: \(indexPath.row)")
-        print("sampleIndex ::: \(String(describing: sampleIndex))")
-
         // インデックスの範囲チェック
-        if let sampleIndex = sampleIndex, sampleIndex.medicineRecordIndex < medicineRecordDataModel.count {
-            let medicine = medicineRecordDataModel[sampleIndex.medicineRecordIndex]
-            print("変更しようとしているセルのインデックス: \(sampleIndex.medicineRecordIndex)")
+        if let sampleIndex = sampleIndex, sampleIndex.medicineRecordIndex - 1 < medicineRecordDataModel.count {
+            let medicine = medicineRecordDataModel[sampleIndex.medicineRecordIndex - 1]
             let realm = try! Realm()
             
             try! realm.write {
@@ -513,28 +502,27 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
                 medicine.timePicker = newTime
                 realm.add(medicine, update: .modified)
             }
-            
             // セルの表示を更新（セルの位置が変わらないように）
             if let updatedCell = tableView.cellForRow(at: indexPath) as? MedicineRecordDetailCell {
                 updatedCell.timePicker.setDate(newTime, animated: true)
             }
-            print("変更後のセルのインデックス: \(sampleIndex.medicineRecordIndex) が更新されました。")
-        } else {
-            print("Error: インデックスが範囲外です。")
         }
     }
-    func didChangeTextData(for cell: MedicineRecordDetailCell, newText: Int) {
-        //        guard let indexPath = tableView.indexPath(for: cell) else { return }
-        let indexPath = IndexPath(row: medicineRecordIndex, section: 0)
-        
-        if medicineRecordIndex < medicineRecordDataModel.count {
-            let medicine = medicineRecordDataModel[medicineRecordIndex]
+    func didChangeTextData(for cell: MedicineRecordDetailCell, newText: Double) {
+        // tableViewからセルのindexPathを取得
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        let sampleIndex = indexes.first { $0.tableViewIndex == indexPath.row }
+        // インデックスの範囲チェック
+        if let sampleIndex = sampleIndex, sampleIndex.medicineRecordIndex - 1 < medicineRecordDataModel.count {
+            let medicine = medicineRecordDataModel[sampleIndex.medicineRecordIndex - 1]
             let realm = try! Realm()
             
             try! realm.write {
-                medicine.textField = newText
+                // textデータを更新
+                medicine.textField = Double(newText)
                 realm.add(medicine, update: .modified)
             }
+            // セルの表示を更新（セルの位置が変わらないように）
             if let updatedCell = tableView.cellForRow(at: indexPath) as? MedicineRecordDetailCell {
                 updatedCell.textField.text = "\(newText)"
             }
@@ -546,12 +534,11 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
             medicineRecordDataModel.append(record)
             
             let newIndex = medicineRecordDataModel.count - 1
-            print("☠️追加されたデータのインデックス: \(newIndex)")
             let medicineRecordCount = medicineRecordDataModel.count
+            
             updateTableViewCells(with: medicineRecordCount)
             
             reloadData()
-            //            print("☠️medicineRecordIndex: \(medicineRecordIndex)")
             
         } else {
             print("Error: The record with the same medicine name and time already exists.")
@@ -607,23 +594,6 @@ extension CalendarViewController: CalendarViewControllerDelegate {
         // Realmの保存が完了した後TableViewをリロードする
         refreshData()
     }
-    //    func saveMedicineRecordData(_ newData: MedicineRecordDataModel) {
-    //        let realm = try! Realm()
-    //
-    //        if let data = realm.objects(MedicineRecordDataModel.self).filter("id == %@", newData.id).first {
-    //            try!realm.write {
-    //                data.date = newData.date
-    //                data.medicineName = newData.medicineName
-    //                data.textField = newData.textField
-    //                data.unit = newData.unit
-    //                data.timePicker = newData.timePicker
-    //            }
-    //        } else {
-    //            try! realm.write {
-    //                realm.add(newData)
-    //            }
-    //        }
-    //    }
 }
 
 // MARK: FSCalendarDelegate関連
