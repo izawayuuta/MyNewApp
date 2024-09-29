@@ -104,10 +104,24 @@ class MedicineRecordDetailCell: UITableViewCell, UITextFieldDelegate {
         return true
     }
     @objc private func textFieldChanged(_ sender: UITextField) {
-        if let text = sender.text, let newText = Double(text) {
-            saveTextFieldDate(Int(newText))
-            delegate2?.didChangeTextData(for: self, newText: Double(newText))
-        }
+//        if let text = sender.text, let newText = Double(text) {
+//            saveTextFieldDate(Int(newText))
+//            delegate2?.didChangeTextData(for: self, newText: Double(newText))
+//        }
+        // 入力中はフォーマットしない
+//            if let text = sender.text, !text.isEmpty {
+//                // テキストの内容をそのまま保持しておく
+//                delegate2?.didChangeTextData(for: self, newText: Double(text) ?? 0)
+//            }
+//        if let text = sender.text {
+//              // textが数字のみで構成されていれば変更を通知
+//              if let newText = Double(text) {
+//                  delegate2?.didChangeTextData(for: self, newText: newText)
+//              } else {
+//                  // 数字でない場合は何もしない (削除時や無効な文字が入力された場合)
+//                  delegate2?.didChangeTextData(for: self, newText: 0)
+//              }
+//          }
     }
     private func saveTextFieldDate(_ text: Int) {
         UserDefaults.standard.set(text, forKey: "savedText") // 軽量な永続ストレージ（保存）
@@ -132,7 +146,15 @@ class MedicineRecordDetailCell: UITableViewCell, UITextFieldDelegate {
         textField.inputAccessoryView = toolbar
     }
     @objc private func dismissKeyboard() {
-        textField.resignFirstResponder()
+        // キーボードを閉じる際に入力完了とみなし、テキストをフォーマットする
+        if let text = textField.text, let newText = Double(text) {
+            if newText.truncatingRemainder(dividingBy: 1) == 0 {
+                textField.text = String(Int(newText)) // 整数として表示
+            } else {
+                textField.text = String(newText) // 小数としてそのまま表示
+            }
+        }
+        textField.resignFirstResponder() // キーボードを閉じる
     }
     func configure(medicineName: String, timePicker: Date, text: String, unit: String) {
         self.medicineName.text = medicineName

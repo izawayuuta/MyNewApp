@@ -10,6 +10,8 @@ import UIKit
 import RealmSwift
 
 class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MedicineViewControllerDelegate {
+
+    
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -57,6 +59,14 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.stockNumberLabel.text = "\(medicine.stock)" // 小数としてそのまま表示
         }
         cell.stockUnitLabel.text = medicine.label
+        
+        if MyMedicines.sharedPickerData2.isEmpty {
+                cell.stockUnitLabel.text = "" // ピッカーが空ならラベルを空白に
+            } else {
+                // ピッカーが空でない場合はインデックス0の値を設定
+//                cell.stockUnitLabel.text = MyMedicines.sharedPickerData2[0]
+            }
+        
         cell.selectionStyle = .none // セル選択時の色の変化を無効化
         return cell
     }
@@ -129,12 +139,8 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         tableView.reloadData()
         
-        if medicineDataModel.count > 0 {
-            // すべてのインデックスを表示
-            for index in 0..<medicineDataModel.count {
-                //                print("追加インデックス \(index): \(medicineDataModel[index])")
-            }
-        }
+        print("⚽️medicineDataModel : \(medicineDataModel)")
+        print("🏀medicine : \(medicine)")
     }
     
     func didDeleteMedicine(_ medicine: MedicineDataModel) {
@@ -160,7 +166,4 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
     }
-    //    func addPickerData2Item(item: String) {
-    //        MyMedicines.sharedPickerData2.append(item)
-    //    }
 }

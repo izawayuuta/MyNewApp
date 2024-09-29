@@ -163,6 +163,10 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
     }
 }
 extension MedicineAdditionViewController: AdditionButtonCellDelegate, MedicineViewControllerDelegate {
+    func didChangeUnit(to newUnit: String) {
+        // 使用しない
+    }
+    
     func didTapAdditionButton(in cell: AdditionButtonCell) {
     }
     func didSaveMedicine(_ medicine: MedicineDataModel) {

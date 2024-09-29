@@ -28,6 +28,7 @@ class CalendarViewController: UIViewController {
     private var medicineRecordIndex = 0
     private var medicineRecordIndices: [Int] = []
     private var indexes: [SampleIndex] = []
+//    var unitLabel: UILabel!  ユニット表示用のラベル
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -66,6 +67,8 @@ class CalendarViewController: UIViewController {
         tableView.reloadData()
         //                loadMedicineRecords()
         //        print("🌈\(medicineRecordDataModel)")
+//        let medicineInfoVC = MyMedicineInformation(stockValue: 0)
+//                medicineInfoVC.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -375,6 +378,13 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
                 
                 let formattedTime = dateFormatter.string(from: timePickerDate)
                 
+                if MyMedicines.sharedPickerData2.isEmpty {
+                    medicineRecordDetailCell.unit.text = "" // ピッカーが空ならラベルを空白に
+                    } else {
+                        // ピッカーが空でない場合はインデックス0の値を設定
+//                        medicineRecordDetailCell.unit.text = MyMedicines.sharedPickerData2[0]
+                    }
+                
                 medicineRecordDetailCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
                 medicineRecordIndex += 1
                 
@@ -488,6 +498,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
     }
 }
 extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDelegate, MedicineAdditionViewControllerDelegate, MedicineRecordDetailCellDelegate {
+    
     func didChangeData(for cell: MedicineRecordDetailCell, newTime: Date) {
         // tableViewからセルのindexPathを取得
         guard let indexPath = tableView.indexPath(for: cell) else { return }
@@ -571,9 +582,8 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
 
 // MARK: CalendarViewControllerDelegate関連 / RealmDataの保存を行う
 extension CalendarViewController: CalendarViewControllerDelegate {
-    func didUpdateMedicineRecord(textFieldValue: String, medicine: MedicineDataModel) {
+    func didUpdateTextFieldValue(textFieldValue: Int) {
     }
-    
     func saveCalendarData(_ newData: CalendarDataModel) {
         let realm = try! Realm()
         // Realmのデータの中に同じidが存在するならそれをもとに更新する

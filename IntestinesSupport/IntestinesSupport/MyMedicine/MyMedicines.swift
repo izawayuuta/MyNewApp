@@ -8,7 +8,7 @@
 import UIKit
 
 class MyMedicines {
-    static var sharedPickerData2: [String] = []  // 共有の配列
+    static var sharedPickerData2: [String] = ["錠", "包", "個", "ml", "mg"]  // 共有の配列
     
     var medicineName: String?
     var doseNumber: Double?
@@ -34,5 +34,35 @@ class MyMedicines {
         self.pickerView1 = pickerView1
         self.pickerView2 = pickerView2
         self.datePicker = datePicker
+    }
+}
+extension MyMedicines {
+    // 新しい項目を追加するメソッド
+    static func addPickerData(item: String) {
+        sharedPickerData2.append(item)
+        savePickerData()
+    }
+    
+    // 指定したインデックスの項目を削除するメソッド
+    static func removePickerData(at index: Int) {
+        guard index >= 0 && index < sharedPickerData2.count else { return }
+        print("Before remove: \(sharedPickerData2)")
+
+        sharedPickerData2.remove(at: index)
+        print("After remove: \(sharedPickerData2)")
+        savePickerData()
+    }
+    // UserDefaults にデータを保存するメソッド
+    static func savePickerData() {
+        UserDefaults.standard.set(sharedPickerData2, forKey: "pickerData")
+        UserDefaults.standard.synchronize() // 追加でデータの同期を確実に行う（必須ではないが安全のため）
+            print("PickerData saved: \(sharedPickerData2)") // デバッグ用に出力
+    }
+    // UserDefaults からデータを読み込むメソッド
+    static func loadPickerData() {
+        if let savedData = UserDefaults.standard.array(forKey: "pickerData") as? [String] {
+            print("PickerData loaded: \(sharedPickerData2)")
+            sharedPickerData2 = savedData
+        }
     }
 }
