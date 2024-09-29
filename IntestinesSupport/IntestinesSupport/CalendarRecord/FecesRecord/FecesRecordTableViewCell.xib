@@ -68,7 +68,7 @@
                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="hAc-gm-Ox4">
                         <rect key="frame" x="280" y="39" width="95" height="37"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="95" id="c4S-gJ-mK8"/>
+                            <constraint firstAttribute="width" constant="95" id="JHq-Pf-uUy"/>
                             <constraint firstAttribute="height" constant="37" id="vtb-fm-xDc"/>
                         </constraints>
                     </datePicker>

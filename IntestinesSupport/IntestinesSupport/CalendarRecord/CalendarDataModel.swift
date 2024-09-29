@@ -9,7 +9,6 @@ import RealmSwift
 
 protocol CalendarViewControllerDelegate: AnyObject {
     func saveCalendarData(_ calendar: CalendarDataModel)
-    //    func saveMedicineRecordData(_ record: MedicineRecordDataModel)
 }
 
 class CalendarDataModel: Object {

@@ -40,56 +40,6 @@ class FecesRecordTableViewCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
-    let verticalLine: UIView = {
-        let view = UIView()
-        view.backgroundColor = .gray  // 縦線の色
-        return view
-    }()
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        createLines()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        createLines()
-    }
-    
-    private func createLines() {
-        
-        let line1 = createLine()
-        let line2 = createLine()
-        
-        contentView.addSubview(line1)
-        contentView.addSubview(line2)
-        
-        let lineWidth: CGFloat = 1
-        let spacing: CGFloat = 196 // ライン間の間隔
-        
-        line1.translatesAutoresizingMaskIntoConstraints = false
-        line2.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            // line1 の制約
-            line1.widthAnchor.constraint(equalToConstant: lineWidth),
-            line1.topAnchor.constraint(equalTo: contentView.topAnchor),
-            line1.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            line1.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 100),
-            
-            // line2 の制約
-            line2.widthAnchor.constraint(equalToConstant: lineWidth),
-            line2.topAnchor.constraint(equalTo: contentView.topAnchor),
-            line2.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            line2.leadingAnchor.constraint(equalTo: line1.trailingAnchor, constant: spacing),
-            
-        ])
-    }
-    // ラインビューを作成するヘルパーメソッド
-    private func createLine() -> UIView {
-        let line = UIView()
-        line.backgroundColor = .black // ラインの色
-        return line
-    }
     
     func configure(with record: [FecesDetailType], time: String, count: [Int]) {
         

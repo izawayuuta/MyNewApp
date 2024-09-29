@@ -33,7 +33,6 @@ class MedicineDataModel: Object {
     }
 }
 class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
- 
     
     @IBOutlet weak var medicineName: UITextField!
     @IBOutlet weak var doseNumber: UITextField!
@@ -57,6 +56,8 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
     var pickerData2 = ["錠", "包", "個", "ml", "mg"]
     var isEditingExistingMedicine = false // 編集中のフラグを設定
     var medicineDataModel: [MedicineDataModel] = []
+    static let shared = MyMedicineInformation()
+    var medicines: [String: Int] = [:] // medicineName: stock
     
     override func viewDidLoad() {
         super.viewDidLoad()

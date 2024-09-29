@@ -28,7 +28,6 @@ class CalendarViewController: UIViewController {
     private var medicineRecordIndex = 0
     private var medicineRecordIndices: [Int] = []
     private var indexes: [SampleIndex] = []
-//    var unitLabel: UILabel!  ユニット表示用のラベル
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -394,6 +393,12 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
                 print("sampleIndex : \(sampleIndex)")
                 // configure メソッドでセルにデータを設定
                 medicineRecordDetailCell.configure(medicineName: medicine.medicineName, timePicker: timePickerDate, text: String(medicine.textField), unit: medicine.unit)
+                
+                if indexPath.row % 2 == 0 {
+                    medicineRecordDetailCell.setupCell(borderColor: UIColor.red) // 例: 赤色に設定４
+                    } else {
+                        medicineRecordDetailCell.setupCell(borderColor: UIColor.gray) // 通常の枠線色
+                    }
             }
             return medicineRecordDetailCell
         } else if identifier == "MemoCell" {
@@ -418,11 +423,18 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
     }
     // 行の高さを設定
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 3 {
-            return 80 // 3行目の高さを80に設定
-        } else {
-            return UITableView.automaticDimension
-        }
+        // 3行目の高さを固定
+            if indexPath.row == 3 {
+                return 80
+            }
+        let startingRow = 5
+            let lastRow = tableView.numberOfRows(inSection: indexPath.section) - 1 // 最後のインデックス
+
+            if indexPath.row >= startingRow && indexPath.row <= lastRow {
+                return 60
+            } else {
+                return UITableView.automaticDimension // それ以外のセルは自動調整
+            }
     }
     // 記録のある日付の下に点を表示
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
@@ -582,8 +594,7 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
 
 // MARK: CalendarViewControllerDelegate関連 / RealmDataの保存を行う
 extension CalendarViewController: CalendarViewControllerDelegate {
-    func didUpdateTextFieldValue(textFieldValue: Int) {
-    }
+    
     func saveCalendarData(_ newData: CalendarDataModel) {
         let realm = try! Realm()
         // Realmのデータの中に同じidが存在するならそれをもとに更新する

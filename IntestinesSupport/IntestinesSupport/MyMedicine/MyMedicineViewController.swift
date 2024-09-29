@@ -10,8 +10,6 @@ import UIKit
 import RealmSwift
 
 class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MedicineViewControllerDelegate {
-
-    
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -138,9 +136,6 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
             realm.add(medicine, update: .modified)
         }
         tableView.reloadData()
-        
-        print("⚽️medicineDataModel : \(medicineDataModel)")
-        print("🏀medicine : \(medicine)")
     }
     
     func didDeleteMedicine(_ medicine: MedicineDataModel) {

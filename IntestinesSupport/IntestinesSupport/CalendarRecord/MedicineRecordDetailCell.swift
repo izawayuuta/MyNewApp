@@ -23,6 +23,7 @@ class MedicineRecordDetailCell: UITableViewCell, UITextFieldDelegate {
     //    private var selectedDate: Date?
     weak var delegate: CalendarViewControllerDelegate?
     weak var delegate2: MedicineRecordDetailCellDelegate?
+    var inputString: String = "" // 入力中の文字列を保持するためのプロパティ
     
     var selectedTime: Date {
         return timePicker.date
@@ -36,7 +37,7 @@ class MedicineRecordDetailCell: UITableViewCell, UITextFieldDelegate {
         textField.delegate = self
         
         layoutSubviews()
-        setupCell()
+        setupCell(borderColor: .gray)
         loadTimePickerDate()
         loadTextFieldDate()
         doneButton()
@@ -44,12 +45,6 @@ class MedicineRecordDetailCell: UITableViewCell, UITextFieldDelegate {
         textField.addTarget(self, action: #selector(textFieldChanged(_:)), for: .editingChanged)
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    // 枠線
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -59,9 +54,9 @@ class MedicineRecordDetailCell: UITableViewCell, UITextFieldDelegate {
         frame.origin.x = 20 // 左端から20ポイント内側に配置
         self.contentView.frame = frame
     }
-    private func setupCell() {
+    func setupCell(borderColor: UIColor) {
         contentView.layer.borderWidth = 1.5
-        contentView.layer.borderColor = UIColor.gray.cgColor
+        contentView.layer.borderColor = borderColor.cgColor
         contentView.layer.cornerRadius = 8.0
         contentView.clipsToBounds = true
     }
@@ -104,25 +99,32 @@ class MedicineRecordDetailCell: UITableViewCell, UITextFieldDelegate {
         return true
     }
     @objc private func textFieldChanged(_ sender: UITextField) {
-//        if let text = sender.text, let newText = Double(text) {
-//            saveTextFieldDate(Int(newText))
-//            delegate2?.didChangeTextData(for: self, newText: Double(newText))
-//        }
-        // 入力中はフォーマットしない
-//            if let text = sender.text, !text.isEmpty {
-//                // テキストの内容をそのまま保持しておく
-//                delegate2?.didChangeTextData(for: self, newText: Double(text) ?? 0)
-//            }
-//        if let text = sender.text {
-//              // textが数字のみで構成されていれば変更を通知
-//              if let newText = Double(text) {
-//                  delegate2?.didChangeTextData(for: self, newText: newText)
-//              } else {
-//                  // 数字でない場合は何もしない (削除時や無効な文字が入力された場合)
-//                  delegate2?.didChangeTextData(for: self, newText: 0)
-//              }
-//          }
+        if let text = sender.text {
+                   inputString = text
+               }
     }
+    @objc private func dismissKeyboard() {
+        if inputString.isEmpty {
+                // 空白の場合は0を代入
+                inputString = "0"
+            }
+            // 入力中の文字列を Double に変換
+            if let newValue = Double(inputString) {
+                if newValue.truncatingRemainder(dividingBy: 1) == 0 {
+                    // 整数の場合は整数として保存
+                    let intValue = Int(newValue)
+                    textField.text = String(intValue) // 整数として表示
+                    saveTextFieldDate(intValue)
+                    delegate2?.didChangeTextData(for: self, newText: Double(intValue))
+                } else {
+                    // 小数の場合はそのまま表示
+                    textField.text = String(newValue) // 小数としてそのまま表示
+                    saveTextFieldDate(Int(newValue))
+                    delegate2?.didChangeTextData(for: self, newText: newValue)
+                }
+            }
+            textField.resignFirstResponder()
+        }
     private func saveTextFieldDate(_ text: Int) {
         UserDefaults.standard.set(text, forKey: "savedText") // 軽量な永続ストレージ（保存）
     }
@@ -144,17 +146,6 @@ class MedicineRecordDetailCell: UITableViewCell, UITextFieldDelegate {
         let closeButton = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(dismissKeyboard))
         toolbar.items = [closeButton]
         textField.inputAccessoryView = toolbar
-    }
-    @objc private func dismissKeyboard() {
-        // キーボードを閉じる際に入力完了とみなし、テキストをフォーマットする
-        if let text = textField.text, let newText = Double(text) {
-            if newText.truncatingRemainder(dividingBy: 1) == 0 {
-                textField.text = String(Int(newText)) // 整数として表示
-            } else {
-                textField.text = String(newText) // 小数としてそのまま表示
-            }
-        }
-        textField.resignFirstResponder() // キーボードを閉じる
     }
     func configure(medicineName: String, timePicker: Date, text: String, unit: String) {
         self.medicineName.text = medicineName

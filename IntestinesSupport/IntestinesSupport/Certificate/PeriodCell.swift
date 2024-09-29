@@ -43,6 +43,16 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
         textField4.keyboardType = .numberPad
         textField5.keyboardType = .numberPad
     }
+    // 2の倍数かどうかを検知して背景色を変更
+    var cellIndex: Int = 0 {
+           didSet {
+               if cellIndex % 2 == 0 {
+                   self.backgroundColor = .white
+               } else {
+                   self.backgroundColor = .lightGray.withAlphaComponent(0.1)
+               }
+           }
+       }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

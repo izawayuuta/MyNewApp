@@ -78,6 +78,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                 moneyCell.certificateId = data.id
             }
             moneyCell.setDoneButton()
+            moneyCell.backgroundColor = .gray.withAlphaComponent(0.1)
             return moneyCell
         } else if identifier == "HierarchyClassificationCell" {
             let hierarchyClassificationCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! HierarchyClassificationCell
@@ -103,6 +104,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                 deadlineCell.certificateId = data.id
             }
             deadlineCell.setDoneButton()
+            deadlineCell.backgroundColor = .gray.withAlphaComponent(0.1)
             return deadlineCell
         } else if identifier == "PeriodCell" {
             let periodCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PeriodCell
@@ -120,6 +122,8 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
             }
             periodCell.loadPickerSelection()
             periodCell.setDoneButton()
+            
+            periodCell.cellIndex = indexPath.row
             return periodCell
         } else if identifier == "PlusButtonCell" {
             let plusButtonCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PlusButtonCell
