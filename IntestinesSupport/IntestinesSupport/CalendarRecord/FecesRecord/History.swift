@@ -9,10 +9,10 @@ import UIKit
 
 class History {
     
-   var count: Int
+    var count: Int
     var detail: Int
-   var time: Data
-
+    var time: Data
+    
     init(count: Int, detail: Int, time: Data) {
         self.count = count
         self.detail = detail

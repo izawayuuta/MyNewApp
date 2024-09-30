@@ -19,8 +19,6 @@ class MedicineRecordDetailCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var unit: UILabel!
     
-    //    private var model: CalendarDataModel?
-    //    private var selectedDate: Date?
     weak var delegate: CalendarViewControllerDelegate?
     weak var delegate2: MedicineRecordDetailCellDelegate?
     var inputString: String = "" // 入力中の文字列を保持するためのプロパティ
@@ -54,12 +52,14 @@ class MedicineRecordDetailCell: UITableViewCell, UITextFieldDelegate {
         frame.origin.x = 20 // 左端から20ポイント内側に配置
         self.contentView.frame = frame
     }
+    
     func setupCell(borderColor: UIColor) {
         contentView.layer.borderWidth = 1.5
         contentView.layer.borderColor = borderColor.cgColor
         contentView.layer.cornerRadius = 8.0
         contentView.clipsToBounds = true
     }
+    
     private func formatDate(_ date: Date?) -> String {
         guard let date = date else { return "" }
         let formatter = DateFormatter()
@@ -70,12 +70,14 @@ class MedicineRecordDetailCell: UITableViewCell, UITextFieldDelegate {
         saveTimePickerDate(sender.date) // 時間を保存する
         delegate2?.didChangeData(for: self, newTime: sender.date)
     }
+    
     private func saveTimePickerDate(_ date: Date) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         let timeString = dateFormatter.string(from: date)
         UserDefaults.standard.set(timeString, forKey: "savedTime") // 軽量な永続ストレージ（保存）
     }
+    
     private func loadTimePickerDate() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
@@ -86,6 +88,7 @@ class MedicineRecordDetailCell: UITableViewCell, UITextFieldDelegate {
             timePicker.date = Date() // 保存された時間がない場合は現在の時間をセット
         }
     }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // 現在のテキストを取得
         guard let currentText = textField.text else { return true }
@@ -98,36 +101,40 @@ class MedicineRecordDetailCell: UITableViewCell, UITextFieldDelegate {
         }
         return true
     }
+    
     @objc private func textFieldChanged(_ sender: UITextField) {
         if let text = sender.text {
-                   inputString = text
-               }
+            inputString = text
+        }
     }
+    
     @objc private func dismissKeyboard() {
         if inputString.isEmpty {
-                // 空白の場合は0を代入
-                inputString = "0"
-            }
-            // 入力中の文字列を Double に変換
-            if let newValue = Double(inputString) {
-                if newValue.truncatingRemainder(dividingBy: 1) == 0 {
-                    // 整数の場合は整数として保存
-                    let intValue = Int(newValue)
-                    textField.text = String(intValue) // 整数として表示
-                    saveTextFieldDate(intValue)
-                    delegate2?.didChangeTextData(for: self, newText: Double(intValue))
-                } else {
-                    // 小数の場合はそのまま表示
-                    textField.text = String(newValue) // 小数としてそのまま表示
-                    saveTextFieldDate(Int(newValue))
-                    delegate2?.didChangeTextData(for: self, newText: newValue)
-                }
-            }
-            textField.resignFirstResponder()
+            // 空白の場合は0を代入
+            inputString = "0"
         }
+        // 入力中の文字列を Double に変換
+        if let newValue = Double(inputString) {
+            if newValue.truncatingRemainder(dividingBy: 1) == 0 {
+                // 整数の場合は整数として保存
+                let intValue = Int(newValue)
+                textField.text = String(intValue) // 整数として表示
+                saveTextFieldDate(intValue)
+                delegate2?.didChangeTextData(for: self, newText: Double(intValue))
+            } else {
+                // 小数の場合はそのまま表示
+                textField.text = String(newValue) // 小数としてそのまま表示
+                saveTextFieldDate(Int(newValue))
+                delegate2?.didChangeTextData(for: self, newText: newValue)
+            }
+        }
+        textField.resignFirstResponder()
+    }
+    
     private func saveTextFieldDate(_ text: Int) {
         UserDefaults.standard.set(text, forKey: "savedText") // 軽量な永続ストレージ（保存）
     }
+    
     private func loadTextFieldDate() {
         if let savedText = UserDefaults.standard.value(forKey: "savedText") as? Double {
             // 保存されたテキストを表示形式に応じて整える
@@ -140,6 +147,7 @@ class MedicineRecordDetailCell: UITableViewCell, UITextFieldDelegate {
             textField.text = "0" // 保存されたテキストがない場合は0を表示
         }
     }
+    
     private func doneButton() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -147,6 +155,7 @@ class MedicineRecordDetailCell: UITableViewCell, UITextFieldDelegate {
         toolbar.items = [closeButton]
         textField.inputAccessoryView = toolbar
     }
+    
     func configure(medicineName: String, timePicker: Date, text: String, unit: String) {
         self.medicineName.text = medicineName
         self.unit.text = unit

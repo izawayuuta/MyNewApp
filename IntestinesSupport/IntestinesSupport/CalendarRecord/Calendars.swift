@@ -46,6 +46,6 @@ class Calendars {
         self.fecesDetail5 = fecesDetail5
         self.fecesDetail6 = fecesDetail6
         self.memo = memo
-
+        
     }
 }

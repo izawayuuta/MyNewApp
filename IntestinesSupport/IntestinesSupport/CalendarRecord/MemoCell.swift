@@ -30,12 +30,6 @@ class MemoCell: UITableViewCell, UITextViewDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -44,6 +38,7 @@ class MemoCell: UITableViewCell, UITextViewDelegate {
         self.endEditing(true)
         saveData()
     }
+    
     func setDoneButton() {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
         let commitButton = UIBarButtonItem(title: "保存", style: .done, target: self, action: #selector(tapDoneButton))
@@ -103,6 +98,7 @@ class MemoCell: UITableViewCell, UITextViewDelegate {
             }
         }
     }
+    
     private func saveData(selectedIndex: String = "") {
         if let model = model {
             let editModel = makeEditCalendarDataModel(memo: memo.text, model: model)
@@ -114,13 +110,13 @@ class MemoCell: UITableViewCell, UITextViewDelegate {
             delegate?.saveCalendarData(newModel)
         }
     }
+    
     private func makeEditCalendarDataModel(memo: String, model: CalendarDataModel) -> CalendarDataModel {
         return CalendarDataModel(
             id: model.id,
             date: model.date,
             selectedPhysicalConditionIndex: model.selectedPhysicalConditionIndex,
             selectedFecesConditionIndex: model.selectedFecesConditionIndex,
-//            medicineRecord: model.medicineRecord,
             memo: memo
         )
     }
@@ -132,6 +128,7 @@ class MemoCell: UITableViewCell, UITextViewDelegate {
         newModel.date = selectedDate
         return newModel
     }
+    
     func configure(selectedIndex: String, model: CalendarDataModel? = nil, selectedDate: Date) {
         self.model = model
         self.selectedDate = selectedDate

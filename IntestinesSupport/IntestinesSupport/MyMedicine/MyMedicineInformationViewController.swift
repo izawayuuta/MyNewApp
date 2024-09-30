@@ -116,11 +116,9 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         defaultDisplay()
         updateDeleteButtonState()
         displayMedicineData()
-        showCalendarViewController()
-        didUpdateStockValue(0)
         
         MyMedicines.loadPickerData() // データを読み込む
-          pickerView2.reloadAllComponents() // pickerView を更新
+        pickerView2.reloadAllComponents() // pickerView を更新
         
         saveButton.isEnabled = false
         deleteButton.isEnabled = false
@@ -133,6 +131,7 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
             deleteButton.isEnabled = true
         }
     }
+    
     func defaultDisplay() {
         // pickerの初期表示を設定
         let initialIndex1 = 0
@@ -143,9 +142,11 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         pickerView2.selectRow(initialIndex2, inComponent: 0, animated: false)
         self.customPickerTextField.text = pickerData2[initialIndex2]
     }
+    
     @objc func tapDoneButton() {
         self.view.endEditing(true)
     }
+    
     func setDoneButton() {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
         let commitButton = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(tapDoneButton))
@@ -164,6 +165,7 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         }
     }
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView == memo {
             NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -175,9 +177,11 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
     @objc func keyboardWillShow(_ notification: Notification) {
         adjustForKeyboard(notification: notification, willShow: true)
     }
+    
     @objc func keyboardWillHide(_ notification: Notification) {
         adjustForKeyboard(notification: notification, willShow: false)
     }
+    
     func adjustForKeyboard(notification: Notification, willShow: Bool) {
         guard let userInfo = notification.userInfo else { return }
         guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
@@ -215,6 +219,7 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         // Pickerのスタイルをホイールに設定
         datePicker.preferredDatePickerStyle = .wheels
     }
+    
     @objc func doneClicked(){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
@@ -223,9 +228,11 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         // キーボードを閉じる
         self.view.endEditing(true)
     }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == pickerView1 {
             return pickerData1.count
@@ -235,6 +242,7 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
             return 0
         }
     }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == pickerView1 {
             return pickerData1[row]
@@ -244,15 +252,15 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
             return nil
         }
     }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == pickerView1 {
             self.textField.text = pickerData1[row]
-            //            print("選択された行のインデックス (pickerView1): \(row)")
         } else if pickerView == pickerView2 {
             guard row < MyMedicines.sharedPickerData2.count else { return }  // インデックスチェック
-                    let selectedValue = MyMedicines.sharedPickerData2[row]  // 最新のデータを使用
-                    self.customPickerTextField.text = selectedValue
-                    self.label.text = selectedValue  // 選んだ値がUILabelに反映
+            let selectedValue = MyMedicines.sharedPickerData2[row]  // 最新のデータを使用
+            self.customPickerTextField.text = selectedValue
+            self.label.text = selectedValue  // 選んだ値がUILabelに反映
         }
     }
     // カスタムアラートの作成
@@ -264,7 +272,6 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         }
         let selectedRow = pickerView2.selectedRow(inComponent: 0)
         let selectedOptions = MyMedicines.sharedPickerData2[selectedRow]
-//                let selectedOption = pickerData2[selectedRow]
         let deleteAction = UIAlertAction(title: "「\(selectedOptions)」を削除", style: .destructive) { [weak self] _ in
             self?.showDeleteCustomOptionAlert()
         }
@@ -286,10 +293,9 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         let addAction = UIAlertAction(title: "追加", style: .default) { [weak self] _ in
             if let newOption = alert.textFields?.first?.text, !newOption.isEmpty {
                 MyMedicines.addPickerData(item: newOption)  // ここでメソッドを呼び出す
-//                self?.pickerData2.append(newOption)
                 self?.pickerView2.reloadAllComponents()
                 self?.resetPickerView2()
-                                let newIndex = self?.pickerData2.count ?? 1 - 1
+                let newIndex = self?.pickerData2.count ?? 1 - 1
                 self?.pickerView2.selectRow(newIndex, inComponent: 0, animated: false)
                 self?.customPickerTextField.text = newOption
                 self?.label.text = newOption
@@ -309,46 +315,20 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         guard selectedRow < pickerData2.count else { return }
         let alert = UIAlertController(title: "「\(selectedOptions)」を削除しますか？", message: nil, preferredStyle: .alert)
         let deleteAction = UIAlertAction(title: "削除", style: .destructive) { [weak self] _ in
-            //                let selectedRow = pickerView.selectedRow(inComponent: 0)
             guard let self = self else { return }
-//            MyMedicines.removePickerData(at: selectedRow)
-//                        self.pickerData2.remove(at: selectedRow)
-//            self.pickerView2.reloadAllComponents()
-////            self.customPickerTextField.text = ""
-////            self.label.text = ""
-////            // ここで選択されているデータのフィールドを更新
-////            // ここで、関連するデータを更新
-////                    self.updateMedicineData(for: selectedOption)
-////
-////                    // PickerViewを再ロード
-//            // フィールドをクリア
-//                self.customPickerTextField.text = ""
-//                self.label.text = ""
-//
-////                 インデックスを 0 に設定
-////                self.pickerView2.selectRow(0, inComponent: 0, animated: true)
-//                
-////                // 新たに選択された値をフィールドに設定
-////                let newSelectedValue = self.pickerData2.isEmpty ? "" : self.pickerData2[0]
-////                self.customPickerTextField.text = newSelectedValue
-////                self.label.text = newSelectedValue
-            ///
             // 選択肢を削除
-                    MyMedicines.removePickerData(at: selectedRow)
-
-                    // 関連するデータを更新
-//                    self.updateMedicineData(for: selectedOption)
-
-                    // PickerViewを再ロード
-                    self.pickerView2.reloadAllComponents()
-
-                    // インデックスを 0 に設定
-                    self.pickerView2.selectRow(0, inComponent: 0, animated: true)
-
-                    // 新たに選択された値を `sharedPickerData2` から取得してフィールドに設定
-                    let newSelectedValue = MyMedicines.sharedPickerData2.isEmpty ? "" : MyMedicines.sharedPickerData2[0]
-                    self.customPickerTextField.text = newSelectedValue
-                    self.label.text = newSelectedValue
+            MyMedicines.removePickerData(at: selectedRow)
+            
+            // PickerViewを再ロード
+            self.pickerView2.reloadAllComponents()
+            
+            // インデックスを 0 に設定
+            self.pickerView2.selectRow(0, inComponent: 0, animated: true)
+            
+            // 新たに選択された値を `sharedPickerData2` から取得してフィールドに設定
+            let newSelectedValue = MyMedicines.sharedPickerData2.isEmpty ? "" : MyMedicines.sharedPickerData2[0]
+            self.customPickerTextField.text = newSelectedValue
+            self.label.text = newSelectedValue
         }
         
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
@@ -357,36 +337,32 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         
         present(alert, animated: true, completion: nil)
     }
-//    // 選択肢が削除された際に、関連するデータを更新するメソッド
-//    func updateMedicineData(for deletedOption: String) {
-//        for medicine in medicineDataModel {
-//            if medicine.customPickerTextField == deletedOption {
-//                // 削除された選択肢を使っているデータのフィールドをリセット
-//                medicine.customPickerTextField = ""  // 空白またはデフォルト値にリセット
-//                // 必要に応じて他のフィールドも更新
-//            }
-//        }
-//    }
+    
     @objc func done() {
         self.view.endEditing(true)
     }
+    
     func CGRectMake(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
         return CGRect(x: x, y: y, width: width, height: height)
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     @objc func resetOption() {
         datePickerTextField? .text = ""
         datePicker.setDate(Date(), animated: false)
         self.view.endEditing(true)
     }
+    
     func customTextField(_ textFields: [UITextField], _ textView: UITextView) {
         textFields.forEach { textField in
             textField.autocorrectionType = .no // オートコレクトを無効
             textField.autocapitalizationType = .none // 大文字小文字の自動変換を無効
         }
     }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // 現在のテキストを取得
         let currentText = textField.text ?? ""
@@ -405,6 +381,7 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         }
         return true // その他のテキストフィールドの場合はデフォルトで許可
     }
+    
     @IBAction func saveButton(_ sender: UIButton) {
         let medicine = MedicineDataModel()
         medicine.medicineName = medicineName.text ?? ""
@@ -429,9 +406,9 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         
         let selectedRow2 = pickerView2.selectedRow(inComponent: 0)
         if selectedRow2 >= 0 && selectedRow2 < pickerData2.count {
-                let selectedValue = pickerData2[selectedRow2]
-                medicine.pickerView2 = selectedValue
-            }
+            let selectedValue = pickerData2[selectedRow2]
+            medicine.pickerView2 = selectedValue
+        }
         medicine.datePicker = datePicker.date
         
         let realm = try! Realm()
@@ -461,6 +438,7 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         
         isEditingExistingMedicine = false // 保存後にフラグをリセット
     }
+    
     @IBAction func deleteButton(_ sender: UIButton) {
         let medicineData = MedicineDataModel()
         let alertMessage = UIAlertController(title: "このページを削除しますか", message: nil, preferredStyle: .alert)
@@ -488,6 +466,7 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         
         present(alertMessage, animated: true, completion: nil)
     }
+    
     func loadLatestMedicine() {
         let realm = try! Realm()
         let medicines = realm.objects(MedicineDataModel.self)
@@ -534,6 +513,7 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         datePicker.setDate(Date(), animated: false)
         datePickerTextField.text = ""
     }
+    
     func resetPickerView2() {
         guard !pickerData2.isEmpty else {
             return
@@ -546,6 +526,7 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
     @objc private func textFieldDidChange(_ sender: Any) {
         validateInput()
     }
+    
     private func validateInput() {
         let isMedicineNameEmpty = medicineName.text?.isEmpty ?? true
         saveButton.isEnabled = !isMedicineNameEmpty
@@ -554,9 +535,11 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
     func textFieldDidChangeSelection(_ textField: UITextField) {
         updateDeleteButtonState()
     }
+    
     func textViewDidChange(_ textView: UITextView) {
         updateDeleteButtonState()
     }
+    
     func updateDeleteButtonState() {
         let isMedicineNameFilled = !(medicineName.text?.isEmpty ?? true)
         let isDoseNumberFilled = !(doseNumber.text?.isEmpty ?? true)
@@ -603,14 +586,5 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
     }
     func saveCalendarData(_ calendar: CalendarDataModel) {
         // 使用しない
-    }
-    
-    func didUpdateStockValue(_ stockValue: Double) {
-        print("\(stockValue)")
-//        stock.text = String(stockValue)
-    }
-    func showCalendarViewController() {
-        let calendarVC = CalendarViewController()
-        calendarVC.delegate = self // デリゲートを設定
     }
 }

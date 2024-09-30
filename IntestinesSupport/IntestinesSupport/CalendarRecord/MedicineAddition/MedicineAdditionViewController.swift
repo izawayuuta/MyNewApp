@@ -15,8 +15,6 @@ protocol MedicineAdditionViewControllerDelegate: AnyObject {
 
 class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var medicineAdditionButton: UIButton!
     
@@ -38,6 +36,7 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
         selectedCellButton()
         buttonSetup()
     }
+    
     func loadMedicines() {
         let realm = try! Realm()
         medicineDataModel = Array(realm.objects(MedicineDataModel.self))
@@ -90,6 +89,7 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0 // セルの高さ
     }
+    
     @IBAction func medicineAdditionButton(_ sender: UIButton) {
         let record = MedicineRecordDataModel()
         var recordsToSave: [MedicineRecordDataModel] = []
@@ -151,9 +151,11 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
             self.navigationController?.pushViewController(calendarVC, animated: true)
         }
     }
+    
     private func selectedCellButton() {
         medicineAdditionButton.isEnabled = !selectedIndexPaths.isEmpty
     }
+    
     private func buttonSetup() {
         medicineAdditionButton.backgroundColor = UIColor.clear // 背景色
         medicineAdditionButton.layer.borderWidth = 2.0 // 枠線の幅
@@ -162,18 +164,22 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
         medicineAdditionButton.tintColor = UIColor.blue
     }
 }
+
 extension MedicineAdditionViewController: AdditionButtonCellDelegate, MedicineViewControllerDelegate {
     func didChangeUnit(to newUnit: String) {
         // 使用しない
     }
     
     func didTapAdditionButton(in cell: AdditionButtonCell) {
+        // 使用しない
     }
+    
     func didSaveMedicine(_ medicine: MedicineDataModel) {
         medicineDataModel.append(medicine)
         loadMedicines()
         tableView.reloadData()
     }
+    
     func didDeleteMedicine(_ medicine: MedicineDataModel) {
         medicineDataModel.append(medicine)
         loadMedicines()

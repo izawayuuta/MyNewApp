@@ -56,8 +56,8 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.stockUnitLabel.text = medicine.label
         
         if MyMedicines.sharedPickerData2.isEmpty {
-                cell.stockUnitLabel.text = "" // ピッカーが空ならラベルを空白に
-            }
+            cell.stockUnitLabel.text = "" // ピッカーが空ならラベルを空白に
+        }
         
         cell.selectionStyle = .none // セル選択時の色の変化を無効化
         return cell

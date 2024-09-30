@@ -39,6 +39,7 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.separatorColor = UIColor.black
         setup()
     }
+    
     private func setup() {
         guard let selectedDate = selectedDate else { return }
         
@@ -71,7 +72,7 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
     }
     // 各行の内容を設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // `fecesDetails` が空の場合は EmptyStateCell を使用
+        // fecesDetailsが空の場合は EmptyStateCell を使用
         if fecesDetails.isEmpty {
             let emptyCell = tableView.dequeueReusableCell(withIdentifier: "EmptyStateCell", for: indexPath) as! EmptyStateCell
             emptyCell.messageLabel.text = "記録はありません"
@@ -142,6 +143,7 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
         return false
     }
 }
+
 extension FecesRecordViewController: FecesDetailCellDelegate, FecesDetailTableViewCellDelegate {
     func didTapPlusButton(indexes: [Int]) {
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
@@ -152,7 +154,9 @@ extension FecesRecordViewController: FecesDetailCellDelegate, FecesDetailTableVi
     }
     
     func didTapRecordButton(in cell: FecesDetailCell) {
+        // 使用しない
     }
+    
     func didChangeTime(for cell: FecesRecordTableViewCell, newTime: Date) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         

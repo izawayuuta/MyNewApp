@@ -9,7 +9,6 @@ import RealmSwift
 
 protocol CalendarViewControllerDelegate: AnyObject {
     func saveCalendarData(_ calendar: CalendarDataModel)
-    func didUpdateStockValue(_ stockValue: Double)
 }
 
 class CalendarDataModel: Object {
@@ -18,7 +17,6 @@ class CalendarDataModel: Object {
     // 99の番号は未選択状態を表す
     @objc dynamic var selectedPhysicalConditionIndex: Int = 99
     @objc dynamic var selectedFecesConditionIndex: Int = 99
-//    @objc dynamic var medicineRecord: MedicineRecordDataModel? // このプロパティを追加
     @objc dynamic var memo: String = ""
     
     convenience init(id: String, date: Date, selectedPhysicalConditionIndex: Int, selectedFecesConditionIndex: Int, memo: String) {
@@ -28,7 +26,6 @@ class CalendarDataModel: Object {
         self.date = date
         self.selectedPhysicalConditionIndex = selectedPhysicalConditionIndex
         self.selectedFecesConditionIndex = selectedFecesConditionIndex
-//        self.medicineRecord = medicineRecord
         self.memo = memo
     }
 }
@@ -38,19 +35,18 @@ class FecesDetailDataModel: Object {
     @objc dynamic var date: Date = Date()
     @objc dynamic var time: Date = Date()
     // 1回目とかのNo
-//    @objc dynamic var number: Int = 0
     let fecesDetailTypeObject = List<FecesDetailTypeObject>()
     
     override static func primaryKey() -> String? {
-           return "id" // プライマリキーとして使用するフィールド名
-       }
+        return "id" // プライマリキーとして使用するフィールド名
+    }
     
     convenience init(date: Date, fecesDetailTypeRowValues: [Int], time: Date) {
         self.init()
         self.id = UUID().uuidString
         self.date = date
         self.time = time
-//        self.number = number
+        //        self.number = number
         let object = fecesDetailTypeRowValues.map({ FecesDetailTypeObject(index: $0) })
         self.fecesDetailTypeObject.append(objectsIn: object)
     }
@@ -76,11 +72,11 @@ class MedicineRecordDataModel: Object {
     @objc dynamic var unit: String = ""
     
     override init() {
-            super.init()
-        }
+        super.init()
+    }
     override static func primaryKey() -> String? {
-            return "id" // プライマリーキーの指定
-        }
+        return "id" // プライマリーキーの指定
+    }
     
     convenience init(id: String,date: Date, medicineName: String, timePicker: Date, textField: Double, unit: String) {
         self.init()

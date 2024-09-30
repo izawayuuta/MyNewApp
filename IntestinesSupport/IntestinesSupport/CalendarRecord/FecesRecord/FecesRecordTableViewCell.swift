@@ -28,17 +28,10 @@ class FecesRecordTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         updateCount()
         setupTimePicker()
         loadTimePickerDate() // 保存された時間を読み込む
         timePicker.addTarget(self, action: #selector(timePickerChanged(_:)), for: .valueChanged) // 値が変更された時のアクションを追加
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     
     func configure(with record: [FecesDetailType], time: String, count: [Int]) {
@@ -69,10 +62,12 @@ class FecesRecordTableViewCell: UITableViewCell {
         let countString = count.map { String($0) }.joined(separator: ", ")
         countLabel.text = countString
     }
+    
     func updateCount() {
         currentCount += 1
         countLabel.text = "\(currentCount)"
     }
+    
     @objc private func timePickerChanged(_ sender: UIDatePicker) {
         saveTimePickerDate(sender.date) // 時間を保存する
         delegate2?.didChangeTime(for: self, newTime: sender.date)

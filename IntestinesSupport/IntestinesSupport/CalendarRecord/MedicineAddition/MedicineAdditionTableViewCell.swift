@@ -31,9 +31,7 @@ class MedicineAdditionTableViewCell: UITableViewCell, UITextFieldDelegate {
         doneButton()
         setupCell()
     }
-    //    override func setSelected(_ selected: Bool, animated: Bool) {
-    //        super.setSelected(selected, animated: animated)
-    //    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // 現在のテキストを取得
         guard let currentText = textField.text else { return true }
@@ -46,6 +44,7 @@ class MedicineAdditionTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
         return true
     }
+    
     private func setupTextField() {
         let textFields: [UITextField] = [medicineName, textField]
         
@@ -66,6 +65,7 @@ class MedicineAdditionTableViewCell: UITableViewCell, UITextFieldDelegate {
             
         }
     }
+    
     private func doneButton() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -73,6 +73,7 @@ class MedicineAdditionTableViewCell: UITableViewCell, UITextFieldDelegate {
         toolbar.items = [closeButton]
         textField.inputAccessoryView = toolbar
     }
+    
     @objc private func dismissKeyboard() {
         textField.resignFirstResponder()
     }
@@ -85,8 +86,8 @@ class MedicineAdditionTableViewCell: UITableViewCell, UITextFieldDelegate {
         frame.size.width = UIScreen.main.bounds.width - 55 // 画面の幅から40ポイント引いたサイズに設定
         frame.origin.x = 5 // 左端から20ポイント内側に配置
         self.contentView.frame = frame
-        
     }
+    
     private func setupCell() {
         contentView.layer.borderWidth = 1.5
         contentView.backgroundColor = UIColor.clear

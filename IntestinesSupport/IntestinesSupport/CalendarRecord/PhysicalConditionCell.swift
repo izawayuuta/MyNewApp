@@ -66,12 +66,11 @@ class PhysicalConditionCell: UITableViewCell {
     }
     
     private func makeEditCalendarDataModel(selectedIndex: Int, model: CalendarDataModel) -> CalendarDataModel {
-       return CalendarDataModel(
+        return CalendarDataModel(
             id: model.id,
             date: model.date,
             selectedPhysicalConditionIndex: selectedIndex,
             selectedFecesConditionIndex: model.selectedFecesConditionIndex,
-//            medicineRecord: model.medicineRecord,
             memo: model.memo
         )
     }

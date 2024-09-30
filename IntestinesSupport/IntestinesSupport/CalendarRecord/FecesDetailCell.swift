@@ -23,8 +23,6 @@ class FecesDetailCell: UITableViewCell {
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var history: UIButton!
     
-    
-    
     var selectedFecesDetails: [String] = ["", "", "", "", "", ""] // 追加分
     
     private var fecesDetails: [String] = ["硬便", "便秘", "普通便", "軟便", "下痢", "血便"] // 追加分
@@ -45,16 +43,10 @@ class FecesDetailCell: UITableViewCell {
         let fecesDetail: [UIButton] = [fecesDetail1, fecesDetail2, fecesDetail3, fecesDetail4, fecesDetail5, fecesDetail6]
         fecesDetailButtons(fecesDetail)
         plusButton(plusButton)
-        //        history.addTarget(self, action: #selector(RecordButtonTapped), for: .touchUpInside)
         history.addTarget(self, action: #selector(RecordButtonTapped(_:)), for: .touchUpInside)
     }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
+    
     private func fecesDetailButtons(_ buttons: [UIButton]) {
-        //        for button in buttons {
         for (index, button) in buttons.enumerated() { // 追加分
             button.setTitleColor(.black, for: .normal)
             button.backgroundColor = .white
@@ -69,6 +61,7 @@ class FecesDetailCell: UITableViewCell {
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         }
     }
+    
     @objc func buttonTapped(_ sender: UIButton) {
         let index = sender.tag
         
@@ -103,6 +96,7 @@ class FecesDetailCell: UITableViewCell {
         plusButton.layer.shadowOpacity = 0.3
         plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
     }
+    
     @IBAction func plusButtonTapped(_ sender: UIButton) {
         // 現在の日付と時刻を取得
         let currentDate = Date()
@@ -120,15 +114,15 @@ class FecesDetailCell: UITableViewCell {
             fecesRecordCell?.timePicker.date = Date()
         }
         if let cell = fecesRecordCell {
-                cell.label1.text = selectedFecesDetails[0]
-                cell.label2.text = selectedFecesDetails[1]
-                cell.label3.text = selectedFecesDetails[2]
-                cell.label4.text = selectedFecesDetails[3]
-                cell.label5.text = selectedFecesDetails[4]
-                cell.label6.text = selectedFecesDetails[5]
-                cell.updateCount()
-            } else {
-            }
+            cell.label1.text = selectedFecesDetails[0]
+            cell.label2.text = selectedFecesDetails[1]
+            cell.label3.text = selectedFecesDetails[2]
+            cell.label4.text = selectedFecesDetails[3]
+            cell.label5.text = selectedFecesDetails[4]
+            cell.label6.text = selectedFecesDetails[5]
+            cell.updateCount()
+        } else {
+        }
         
         var indexes: [Int] = []
         for button in selectedButtons {
@@ -183,9 +177,11 @@ class FecesDetailCell: UITableViewCell {
             }
         }
     }
+    
     @IBAction func RecordButtonTapped(_ sender: UIButton) { // 履歴ボタン
         delegate?.didTapRecordButton(in: self)
     }
+    
     private func saveData(selectedIndex: Int) {
         // modelがnilではない場合(Realmデータの編集)
         if let model {
@@ -206,7 +202,6 @@ class FecesDetailCell: UITableViewCell {
             date: model.date,
             selectedPhysicalConditionIndex: model.selectedPhysicalConditionIndex,
             selectedFecesConditionIndex: model.selectedFecesConditionIndex,
-//            medicineRecord: model.medicineRecord,
             memo: model.memo
         )
     }

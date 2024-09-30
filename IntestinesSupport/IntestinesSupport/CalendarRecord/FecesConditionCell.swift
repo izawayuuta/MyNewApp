@@ -29,12 +29,6 @@ class FecesConditionCell: UITableViewCell {
         setupButton()
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        
-    }
-    
     private func setupButton() {
         for (index, button) in buttons.enumerated() {
             // 選択中の状態をtagで管理する
@@ -47,6 +41,7 @@ class FecesConditionCell: UITableViewCell {
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         }
     }
+    
     @objc func buttonTapped(_ sender: UIButton) {
         sender.backgroundColor = .systemOrange
         
@@ -55,7 +50,8 @@ class FecesConditionCell: UITableViewCell {
         }
         self.selectedButton = sender
         saveData(selectedIndex: sender.tag)
-        }
+    }
+    
     private func saveData(selectedIndex: Int) {
         // modelがnilではない場合(Realmデータの編集)
         if let model {
@@ -69,16 +65,17 @@ class FecesConditionCell: UITableViewCell {
             delegate?.saveCalendarData(newModel)
         }
     }
+    
     private func makeEditCalendarDataModel(selectedIndex: Int, model: CalendarDataModel) -> CalendarDataModel {
-       return CalendarDataModel(
+        return CalendarDataModel(
             id: model.id,
             date: model.date,
             selectedPhysicalConditionIndex: model.selectedPhysicalConditionIndex,
             selectedFecesConditionIndex: selectedIndex,
-//            medicineRecord: model.medicineRecord,
             memo: model.memo
         )
     }
+    
     private func makeNewCalendarDataModel(selectedDate: Date, selectedIndex: Int) -> CalendarDataModel {
         // 日付とButtonのIndexをセットする
         let newModel = CalendarDataModel()
@@ -86,6 +83,7 @@ class FecesConditionCell: UITableViewCell {
         newModel.date = selectedDate
         return newModel
     }
+    
     func configure(selectedIndex: Int = 99, model: CalendarDataModel? = nil, selectedDate: Date) {
         self.model = model
         self.selectedDate = selectedDate
