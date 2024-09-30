@@ -64,6 +64,7 @@ class CalendarViewController: UIViewController {
         setupCalendarScope()
         indexes.removeAll()
         tableView.reloadData()
+
         //                loadMedicineRecords()
         //        print("🌈\(medicineRecordDataModel)")
 //        let medicineInfoVC = MyMedicineInformation(stockValue: 0)
@@ -75,6 +76,7 @@ class CalendarViewController: UIViewController {
         loadCalendars()
         loadMedicinesData()
         calendar.reloadData()
+        getAllValuesFromModel() // 表示された値を取得
     }
     
     private func setupCalendarScope() {
@@ -390,14 +392,13 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
                 // ここで sampleIndex を作成し、indexes に追加
                 let sampleIndex = SampleIndex(medicineRecordIndex: medicineRecordIndex, tableViewIndex: indexPath.row)
                 indexes.append(sampleIndex)
-                print("sampleIndex : \(sampleIndex)")
                 // configure メソッドでセルにデータを設定
                 medicineRecordDetailCell.configure(medicineName: medicine.medicineName, timePicker: timePickerDate, text: String(medicine.textField), unit: medicine.unit)
-                
+                // 色の設定
                 if indexPath.row % 2 == 0 {
-                    medicineRecordDetailCell.setupCell(borderColor: UIColor.red) // 例: 赤色に設定４
+                    medicineRecordDetailCell.setupCell(borderColor: UIColor.red)
                     } else {
-                        medicineRecordDetailCell.setupCell(borderColor: UIColor.gray) // 通常の枠線色
+                        medicineRecordDetailCell.setupCell(borderColor: UIColor.gray)
                     }
             }
             return medicineRecordDetailCell
@@ -417,6 +418,12 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
             return UITableViewCell()
         }
     }
+    // textFieldの値を取得
+    func getAllValuesFromModel() {
+        for record in medicineRecordDataModel {
+                print("薬名: \(record.medicineName), 服用量: \(record.textField)")
+            }
+        }
     // 全てのCellの選択を不可にする
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
@@ -594,6 +601,9 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
 
 // MARK: CalendarViewControllerDelegate関連 / RealmDataの保存を行う
 extension CalendarViewController: CalendarViewControllerDelegate {
+    func didUpdateStockValue(_ stockValue: Double) {
+        // 使用しない
+    }
     
     func saveCalendarData(_ newData: CalendarDataModel) {
         let realm = try! Realm()

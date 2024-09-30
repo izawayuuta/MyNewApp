@@ -47,7 +47,7 @@ extension MyMedicines {
     static func removePickerData(at index: Int) {
         guard index >= 0 && index < sharedPickerData2.count else { return }
         print("Before remove: \(sharedPickerData2)")
-
+        
         sharedPickerData2.remove(at: index)
         print("After remove: \(sharedPickerData2)")
         savePickerData()
@@ -55,8 +55,8 @@ extension MyMedicines {
     // UserDefaults にデータを保存するメソッド
     static func savePickerData() {
         UserDefaults.standard.set(sharedPickerData2, forKey: "pickerData")
-        UserDefaults.standard.synchronize() // 追加でデータの同期を確実に行う（必須ではないが安全のため）
-            print("PickerData saved: \(sharedPickerData2)") // デバッグ用に出力
+        UserDefaults.standard.synchronize() // 追加でデータの同期を確実に行う
+        print("PickerData saved: \(sharedPickerData2)") // デバッグ用に出力
     }
     // UserDefaults からデータを読み込むメソッド
     static func loadPickerData() {

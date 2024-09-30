@@ -23,18 +23,18 @@ class MoneyCell: UITableViewCell, UITextFieldDelegate {
         
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
     }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
+    
     @objc func tapDoneButton() {
         self.endEditing(true)
     }
+    
     func setDoneButton() {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
         let commitButton = UIBarButtonItem(title: "保存", style: .done, target: self, action: #selector(tapDoneButton))
         toolBar.items = [commitButton]
         textField01.inputAccessoryView = toolBar
     }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // 各フィールドの最大文字数
         let maxMoneyLength = 5
@@ -49,6 +49,7 @@ class MoneyCell: UITableViewCell, UITextFieldDelegate {
             return true
         }
     }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let inputValue = textField.text, let convertedValue = Int(inputValue) else { return }
         

@@ -24,11 +24,8 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         
         tableView.register(UINib(nibName: "MedicineTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         loadMedicines()
-        //        print("⓪\(medicineDataModel.count)")
-        //        for index in 0..<medicineDataModel.count {
-        //                print("インデックス: \(index), データ: \(medicineDataModel[index])")
-        //            }
     }
+    
     func loadMedicines() {
         let realm = try! Realm()
         let MyMedicines = realm.objects(MedicineDataModel.self)
@@ -60,9 +57,6 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if MyMedicines.sharedPickerData2.isEmpty {
                 cell.stockUnitLabel.text = "" // ピッカーが空ならラベルを空白に
-            } else {
-                // ピッカーが空でない場合はインデックス0の値を設定
-//                cell.stockUnitLabel.text = MyMedicines.sharedPickerData2[0]
             }
         
         cell.selectionStyle = .none // セル選択時の色の変化を無効化
@@ -83,7 +77,6 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
             try! realm.write {
                 realm.delete(medicineToDelete)
             }
-            
             // テーブルビューを更新
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
@@ -124,11 +117,8 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
                 try! realm.write {
                     realm.delete(oldMedicine)
                 }
-            } else {
-                print("Warning: existingIndex.row \(existingIndex.row) is out of bounds for medicineDataModel with count \(medicineDataModel.count).")
             }
         }
-        
         // 新しいデータを追加
         medicineDataModel.append(medicine)
         
@@ -148,7 +138,6 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         if medicineDataModel.count > 0 {
             // すべてのインデックスを表示
             for index in 0..<medicineDataModel.count {
-                //                print("削除インデックス \(index): \(medicineDataModel[index])")
             }
         }
         selectedIndex = nil

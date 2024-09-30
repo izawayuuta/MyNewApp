@@ -45,20 +45,19 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
     }
     // 2の倍数かどうかを検知して背景色を変更
     var cellIndex: Int = 0 {
-           didSet {
-               if cellIndex % 2 == 0 {
-                   self.backgroundColor = .white
-               } else {
-                   self.backgroundColor = .lightGray.withAlphaComponent(0.1)
-               }
-           }
-       }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        didSet {
+            if cellIndex % 2 == 0 {
+                self.backgroundColor = .white
+            } else {
+                self.backgroundColor = .lightGray.withAlphaComponent(0.1)
+            }
+        }
     }
+    
     @objc func tapDoneButton() {
         self.endEditing(true)
     }
+    
     func setDoneButton() {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
         let commitButton = UIBarButtonItem(title: "保存", style: .done, target: self, action: #selector(tapDoneButton))
@@ -69,6 +68,7 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
         textField4.inputAccessoryView = toolBar
         textField5.inputAccessoryView = toolBar
     }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // 各フィールドの最大文字数
         let maxMonthLength = 2
@@ -88,6 +88,7 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
             return true
         }
     }
+    
     struct ContentView: View {
         @State var pickerIndex: Int = 0
         var body: some View {
@@ -103,15 +104,19 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
             }
         }
     }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return 3
     }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerData[row]
     }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let realm = try! Realm()
         
@@ -134,6 +139,7 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
             }
         }
     }
+    
     func loadPickerSelection() {
         let realm = try! Realm()
         // certificateIdの確認
@@ -146,6 +152,7 @@ class PeriodCell: UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UI
             pickerView.selectRow(certificate.pickerView, inComponent: 0, animated: false)
         }
     }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let inputValue = textField.text, let convertedValue = Int(inputValue) else { return }
         

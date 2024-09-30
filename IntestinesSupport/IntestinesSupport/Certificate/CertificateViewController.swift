@@ -183,6 +183,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
             tableView.reloadData()
         }
     }
+    
     func didTapPlusButton(in cell: PlusButtonCell) {
         let realm = try! Realm()
         let newCertificate = CertificateDataModel()
@@ -200,6 +201,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
         
         saveData()
     }
+    
     private func saveData() {
         let realm = try! Realm()
         try! realm.write {
@@ -250,6 +252,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
     }
+    
     func didSaveCertificate(_ certificate: CertificateDataModel) {
         // certificateIds に id が存在するか確認
         if let index = certificateIds.firstIndex(of: certificate.id) {

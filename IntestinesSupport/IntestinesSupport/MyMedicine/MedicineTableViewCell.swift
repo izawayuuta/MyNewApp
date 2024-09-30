@@ -20,8 +20,4 @@ class MedicineTableViewCell: UITableViewCell {
         stockNumberLabel.numberOfLines = 1 // 1行で表示する
         stockUnitLabel.numberOfLines = 1 // 1行で表示する
     }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
 }

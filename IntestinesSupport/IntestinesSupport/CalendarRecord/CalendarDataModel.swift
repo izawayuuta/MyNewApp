@@ -9,6 +9,7 @@ import RealmSwift
 
 protocol CalendarViewControllerDelegate: AnyObject {
     func saveCalendarData(_ calendar: CalendarDataModel)
+    func didUpdateStockValue(_ stockValue: Double)
 }
 
 class CalendarDataModel: Object {

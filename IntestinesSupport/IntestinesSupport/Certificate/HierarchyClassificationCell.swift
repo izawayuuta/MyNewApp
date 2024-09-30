@@ -20,18 +20,18 @@ class HierarchyClassificationCell: UITableViewCell, UITextFieldDelegate {
         textField02.delegate = self
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
     }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
+    
     @objc func tapDoneButton() {
         self.endEditing(true)
     }
+    
     func setDoneButton() {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
         let commitButton = UIBarButtonItem(title: "保存", style: .done, target: self, action: #selector(tapDoneButton))
         toolBar.items = [commitButton]
         textField02.inputAccessoryView = toolBar
     }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let text = textField.text, let id = certificateId else { return }
         

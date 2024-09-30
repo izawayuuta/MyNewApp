@@ -21,9 +21,7 @@ class PlusButtonCell: UITableViewCell {
         super.awakeFromNib()
         plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
     }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
+    
     @objc private func plusButtonTapped() {
         delegate?.didTapPlusButton(in: self)
     }

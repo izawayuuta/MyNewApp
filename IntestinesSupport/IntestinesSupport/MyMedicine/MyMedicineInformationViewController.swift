@@ -32,7 +32,7 @@ class MedicineDataModel: Object {
         return "id"
     }
 }
-class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, CalendarViewControllerDelegate {
     
     @IBOutlet weak var medicineName: UITextField!
     @IBOutlet weak var doseNumber: UITextField!
@@ -116,6 +116,8 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         defaultDisplay()
         updateDeleteButtonState()
         displayMedicineData()
+        showCalendarViewController()
+        didUpdateStockValue(0)
         
         MyMedicines.loadPickerData() // データを読み込む
           pickerView2.reloadAllComponents() // pickerView を更新
@@ -598,5 +600,17 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         }
         
         datePicker.setDate(medicine.datePicker, animated: false)
+    }
+    func saveCalendarData(_ calendar: CalendarDataModel) {
+        // 使用しない
+    }
+    
+    func didUpdateStockValue(_ stockValue: Double) {
+        print("\(stockValue)")
+//        stock.text = String(stockValue)
+    }
+    func showCalendarViewController() {
+        let calendarVC = CalendarViewController()
+        calendarVC.delegate = self // デリゲートを設定
     }
 }

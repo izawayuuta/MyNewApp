@@ -41,12 +41,11 @@ class DeadlineCell: UITableViewCell, UITextFieldDelegate {
         day2.keyboardType = UIKeyboardType.numberPad
         
     }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
+    
     @objc func tapDoneButton() {
         self.endEditing(true)
     }
+    
     func setDoneButton() {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
         let commitButton = UIBarButtonItem(title: "保存", style: .done, target: self, action: #selector(tapDoneButton))
@@ -58,6 +57,7 @@ class DeadlineCell: UITableViewCell, UITextFieldDelegate {
         month2.inputAccessoryView = toolBar
         day2.inputAccessoryView = toolBar
     }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // 各フィールドの最大文字数
         let maxYearLength = 4
@@ -80,6 +80,7 @@ class DeadlineCell: UITableViewCell, UITextFieldDelegate {
             return true
         }
     }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let inputValue = textField.text, let convertedValue = Int(inputValue) else { return }
         
@@ -128,7 +129,6 @@ class DeadlineCell: UITableViewCell, UITextFieldDelegate {
                     default:
                         break
                     }
-                    
                     realm.add(newCertificate, update: .modified)
                 }
             }

@@ -34,10 +34,4 @@ class CalendarDateCell: UITableViewCell {
         let dateString = dateFormatter.string(from: date)
         calendarDate.text = dateString
     }
-    //    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-    //        let dateFormatter = DateFormatter()
-    //        dateFormatter.dateFormat = "yyyy年MM月dd日"
-    //        let selectedDateText = dateFormatter.string(from: date)
-    //        calendarDate.text = selectedDateText
-    //    }
 }
