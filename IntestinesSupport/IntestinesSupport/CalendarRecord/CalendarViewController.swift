@@ -159,7 +159,6 @@ class CalendarViewController: UIViewController {
         defaults.set(scope == .month ? "month" : "week", forKey: "calendarScope")
     }
     
-    // FIXME: 遷移するとクラッシュする
     func didTapRecordButton(in cell: FecesDetailCell) {
         performSegue(withIdentifier: "FecesRecord", sender: self)
     }
@@ -335,7 +334,6 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
                 return fecesDetailCell
             }
             return fecesDetailCell
-            
         } else if identifier == "AdditionButtonCell" {
             let additionButtonCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! AdditionButtonCell
             additionButtonCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
@@ -381,11 +379,11 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
                 // configure メソッドでセルにデータを設定
                 medicineRecordDetailCell.configure(medicineName: medicine.medicineName, timePicker: timePickerDate, text: String(medicine.textField), unit: medicine.unit)
                 // 色の設定
-                if indexPath.row % 2 == 0 {
-                    medicineRecordDetailCell.setupCell(borderColor: UIColor.red)
-                } else {
-                    medicineRecordDetailCell.setupCell(borderColor: UIColor.gray)
-                }
+//                if indexPath.row % 2 == 0 {
+//                    medicineRecordDetailCell.setupCell(borderColor: UIColor.systemTeal)
+//                } else {
+                    medicineRecordDetailCell.setupCell(borderColor: UIColor.systemTeal)
+//                }
             }
             return medicineRecordDetailCell
         } else if identifier == "MemoCell" {

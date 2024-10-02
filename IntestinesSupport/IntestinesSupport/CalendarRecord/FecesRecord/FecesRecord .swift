@@ -116,6 +116,13 @@ class FecesRecordViewController: UIViewController, UITableViewDelegate, UITableV
             // セルを設定する
             recordCell.configure(with: type, time: timeString, count: [indexPath.row + 1])
             
+            // 色の設定
+            if indexPath.row % 2 == 0 {
+                recordCell.backgroundColor = .white
+            } else {
+                recordCell.backgroundColor = .brown.withAlphaComponent(0.1)
+            }
+            
             recordCell.selectionStyle = .none // セルを選択したときに色が変わらないようにする
             
             return recordCell

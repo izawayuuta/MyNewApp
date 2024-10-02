@@ -50,6 +50,8 @@ class MedicineRecordDetailCell: UITableViewCell, UITextFieldDelegate {
         var frame = self.contentView.frame
         frame.size.width = UIScreen.main.bounds.width - 40 // 画面の幅から40ポイント引いたサイズに設定
         frame.origin.x = 20 // 左端から20ポイント内側に配置
+        frame.size.height = frame.size.height - 5 // 上下の余白を5ポイントずつ引く
+        frame.origin.y = 3 // 上端から3ポイント内側に配置
         self.contentView.frame = frame
     }
     
