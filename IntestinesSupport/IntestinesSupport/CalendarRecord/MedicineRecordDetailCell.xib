@@ -37,7 +37,7 @@
                         </constraints>
                     </datePicker>
                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P1f-Ef-kgp">
-                        <rect key="frame" x="248" y="5" width="32" height="34"/>
+                        <rect key="frame" x="250" y="5" width="32" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="Rmh-OI-p9y"/>
                         </constraints>
@@ -53,7 +53,7 @@
                     <constraint firstItem="Hi7-cd-EQ8" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="sKb-BX-huB"/>
                     <constraint firstItem="XbC-NH-dPF" firstAttribute="centerY" secondItem="Hi7-cd-EQ8" secondAttribute="centerY" id="tRg-Pa-rBq"/>
                     <constraint firstItem="Hi7-cd-EQ8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="uci-w1-79R"/>
-                    <constraint firstItem="XbC-NH-dPF" firstAttribute="leading" secondItem="P1f-Ef-kgp" secondAttribute="trailing" constant="3" id="zgW-lo-Hfc"/>
+                    <constraint firstItem="XbC-NH-dPF" firstAttribute="leading" secondItem="P1f-Ef-kgp" secondAttribute="trailing" constant="1" id="zgW-lo-Hfc"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
