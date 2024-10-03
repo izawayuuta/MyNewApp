@@ -379,11 +379,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
                 // configure メソッドでセルにデータを設定
                 medicineRecordDetailCell.configure(medicineName: medicine.medicineName, timePicker: timePickerDate, text: String(medicine.textField), unit: medicine.unit)
                 // 色の設定
-//                if indexPath.row % 2 == 0 {
-//                    medicineRecordDetailCell.setupCell(borderColor: UIColor.systemTeal)
-//                } else {
                     medicineRecordDetailCell.setupCell(borderColor: UIColor.systemTeal)
-//                }
             }
             return medicineRecordDetailCell
         } else if identifier == "MemoCell" {
