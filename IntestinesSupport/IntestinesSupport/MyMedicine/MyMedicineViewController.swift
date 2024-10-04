@@ -26,6 +26,12 @@ class MyMedicineViewController: UIViewController, UITableViewDelegate, UITableVi
         loadMedicines()
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadMedicines()
+    }
+    
     func loadMedicines() {
         let realm = try! Realm()
         let MyMedicines = realm.objects(MedicineDataModel.self)

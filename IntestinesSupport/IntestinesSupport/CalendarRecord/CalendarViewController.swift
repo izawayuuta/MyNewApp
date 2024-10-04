@@ -454,9 +454,11 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
         
         // medicineRecordIndicesから対象のIndexを取得する
         if let index = medicineRecordIndices.firstIndex(where: { $0 == indexPath.row }) {
+            let medicineRecord = medicineRecordDataModel[index]
+            updateMedicineDataModel(medicineRecord, isDelete: true)
+
             let realm = try! Realm()
             if index < medicineRecordDataModel.count {
-                let medicineRecord = medicineRecordDataModel[index]
                 try! realm.write {
                     realm.delete(medicineRecord)
                 }
@@ -540,10 +542,33 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
             
             let newIndex = medicineRecordDataModel.count - 1
             let medicineRecordCount = medicineRecordDataModel.count
+            updateMedicineDataModel(record, isDelete: false)
             
             updateTableViewCells(with: medicineRecordCount)
             
             reloadData()
+        }
+    }
+    
+    func updateMedicineDataModel(_ record: MedicineRecordDataModel, isDelete: Bool) {
+        let realm = try! Realm()
+        // `MedicineDataModel`の対象レコードを取得
+        if let targetEmployee = realm.objects(MedicineDataModel.self).filter("id == %@", record.id).first {
+            do {
+                try realm.write {
+                    // stockの更新処理
+                    if isDelete {
+                        targetEmployee.stock += record.textField
+                    } else {
+                        targetEmployee.stock -= record.textField
+                    }
+                    
+                }
+            } catch {
+                print("Error: \(error)")
+            }
+        } else {
+            print("該当するレコードが見つかりません: \(record.id)")
         }
     }
     

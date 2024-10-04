@@ -52,6 +52,7 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
         let medicine = medicineDataModel[indexPath.row]
         cell.medicineName.text = medicine.medicineName
         cell.unitLabel.text = medicine.label
+        cell.modelId = medicine.id
         
         let doseNumber = medicine.doseNumber
         // 整数の場合は Int として表示
@@ -115,6 +116,7 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
                     // セルの情報をデータモデルに保存
                     record.medicineName = cell.medicineName.text ?? ""
                     record.unit = cell.unitLabel.text ?? ""
+                    record.id = cell.modelId
                     
                     if let doseText = cell.textField.text {
                         if let doseInt = Int(doseText) {
