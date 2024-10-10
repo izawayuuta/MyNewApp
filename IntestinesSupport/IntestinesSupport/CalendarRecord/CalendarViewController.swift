@@ -355,7 +355,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
                 
                 medicineRecordDetailCell.medicineName.text = medicine.medicineName
                 medicineRecordDetailCell.unit.text = medicine.unit
-                medicineRecordDetailCell.textField.text = "\(medicine.textField)"
+                medicineRecordDetailCell.label.text = "\(medicine.label)"
                 
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "ja_JP")
@@ -377,13 +377,9 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
                 let sampleIndex = SampleIndex(medicineRecordIndex: medicineRecordIndex, tableViewIndex: indexPath.row)
                 indexes.append(sampleIndex)
                 // configure メソッドでセルにデータを設定
-                medicineRecordDetailCell.configure(medicineName: medicine.medicineName, timePicker: timePickerDate, text: String(medicine.textField), unit: medicine.unit)
+                medicineRecordDetailCell.configure(medicineName: medicine.medicineName, timePicker: timePickerDate, label: medicine.label, unit: medicine.unit)
                 // 色の設定
-//                if indexPath.row % 2 == 0 {
-//                    medicineRecordDetailCell.setupCell(borderColor: UIColor.systemTeal)
-//                } else {
-                    medicineRecordDetailCell.setupCell(borderColor: UIColor.systemTeal)
-//                }
+                medicineRecordDetailCell.setupCell(borderColor: UIColor.systemTeal)
             }
             return medicineRecordDetailCell
         } else if identifier == "MemoCell" {
@@ -458,6 +454,8 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
         
         // medicineRecordIndicesから対象のIndexを取得する
         if let index = medicineRecordIndices.firstIndex(where: { $0 == indexPath.row }) {
+            let medicineRecord = medicineRecordDataModel[index]
+            updateMedicineDataModel(medicineRecord, isDelete: true)
             let realm = try! Realm()
             if index < medicineRecordDataModel.count {
                 let medicineRecord = medicineRecordDataModel[index]
@@ -516,27 +514,6 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
         }
     }
     
-    func didChangeTextData(for cell: MedicineRecordDetailCell, newText: Double) {
-        // tableViewからセルのindexPathを取得
-        guard let indexPath = tableView.indexPath(for: cell) else { return }
-        let sampleIndex = indexes.first { $0.tableViewIndex == indexPath.row }
-        // インデックスの範囲チェック
-        if let sampleIndex = sampleIndex, sampleIndex.medicineRecordIndex - 1 < medicineRecordDataModel.count {
-            let medicine = medicineRecordDataModel[sampleIndex.medicineRecordIndex - 1]
-            let realm = try! Realm()
-            
-            try! realm.write {
-                // textデータを更新
-                medicine.textField = Double(newText)
-                realm.add(medicine, update: .modified)
-            }
-            // セルの表示を更新（セルの位置が変わらないように）
-            if let updatedCell = tableView.cellForRow(at: indexPath) as? MedicineRecordDetailCell {
-                updatedCell.textField.text = "\(newText)"
-            }
-        }
-    }
-    
     func didSaveMedicineRecord(_ record: MedicineRecordDataModel) {
         // 既存データと重複しないようにチェック
         if !medicineRecordDataModel.contains(where: { $0.medicineName == record.medicineName && $0.timePicker == record.timePicker }) {
@@ -545,9 +522,38 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
             let newIndex = medicineRecordDataModel.count - 1
             let medicineRecordCount = medicineRecordDataModel.count
             
+            updateMedicineDataModel(record, isDelete: false)
+            
             updateTableViewCells(with: medicineRecordCount)
             
             reloadData()
+        }
+    }
+    
+    func updateMedicineDataModel(_ record: MedicineRecordDataModel, isDelete: Bool) {
+        let realm = try! Realm()
+        // MedicineDataModelの対象レコードを取得
+        if let targetEmployee = realm.objects(MedicineDataModel.self).filter("id == %@", record.medicineModelId).first {
+            // stockが0の場合は計算をスキップ
+            if targetEmployee.stock == 0 {
+                return
+            }
+            
+            do {
+                try realm.write {
+                    // labelValueが数値かどうかを確認
+                    if let labelValue = Double(record.label) {
+                        // stock の更新処理
+                        if isDelete {
+                            targetEmployee.stock += labelValue
+                        } else {
+                            targetEmployee.stock -= labelValue
+                        }
+                    }
+                }
+            } catch {
+                print("該当するレコードが見つかりません: \(record.medicineModelId)")
+            }
         }
     }
     

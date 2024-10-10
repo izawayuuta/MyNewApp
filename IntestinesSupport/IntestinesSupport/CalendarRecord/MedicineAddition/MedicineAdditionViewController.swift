@@ -52,6 +52,7 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
         let medicine = medicineDataModel[indexPath.row]
         cell.medicineName.text = medicine.medicineName
         cell.unitLabel.text = medicine.label
+        cell.modelId = medicine.id
         
         let doseNumber = medicine.doseNumber
         // 整数の場合は Int として表示
@@ -115,16 +116,8 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
                     // セルの情報をデータモデルに保存
                     record.medicineName = cell.medicineName.text ?? ""
                     record.unit = cell.unitLabel.text ?? ""
-                    
-                    if let doseText = cell.textField.text {
-                        if let doseInt = Int(doseText) {
-                            // 整数の場合は Double 型に変換して保存
-                            record.textField = Double(doseInt)
-                        } else if let doseDouble = Double(doseText) {
-                            // 小数の場合はそのまま保存
-                            record.textField = doseDouble
-                        }
-                    }
+                    record.label = cell.textField.text ?? ""
+                    record.medicineModelId = cell.modelId
                     
                     if let selectDate {
                         record.date = selectDate

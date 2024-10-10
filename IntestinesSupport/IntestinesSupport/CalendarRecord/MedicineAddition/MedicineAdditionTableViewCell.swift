@@ -14,6 +14,8 @@ class MedicineAdditionTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var timePicker: UIDatePicker!
     
+    var modelId: String = ""
+    
     weak var delegate: MedicineAdditionViewControllerDelegate?
     
     var addedAmount: Int {
