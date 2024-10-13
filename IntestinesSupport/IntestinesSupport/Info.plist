@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Appearance</key>
-	<string>Light</string>
 	<key>Bundle display name</key>
 	<string>腸サポート</string>
 	<key>UIApplicationSceneManifest</key>
@@ -25,5 +23,7 @@
 			</array>
 		</dict>
 	</dict>
+	<key>User Interface Style</key>
+	<string>Light</string>
 </dict>
 </plist>
