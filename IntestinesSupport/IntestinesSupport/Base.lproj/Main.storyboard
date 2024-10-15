@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cRp-JN-P6a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cRp-JN-P6a">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -90,7 +90,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tabBarItem title="Item" id="zI3-1f-vUk"/>
             </objects>
-            <point key="canvasLocation" x="205.59999999999999" y="-632.83358320839591"/>
+            <point key="canvasLocation" x="86" y="-1070"/>
         </scene>
         <!--Medicine Addition View Controller-->
         <scene sceneID="gcm-3Q-ydV">
@@ -144,7 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kut-zT-TW8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="997.60000000000002" y="-633.73313343328346"/>
+            <point key="canvasLocation" x="998" y="-1070"/>
         </scene>
         <!--Feces Record View Controller-->
         <scene sceneID="7ko-G8-o0H">
@@ -186,7 +186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zAC-aO-lwR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="998" y="-1247"/>
+            <point key="canvasLocation" x="998" y="-1819"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="OGf-fy-ya3">
@@ -202,6 +202,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="kjn-iQ-3lw"/>
                         <segue destination="nR3-aE-GoE" kind="relationship" relationship="viewControllers" id="M0V-Gz-mre"/>
                         <segue destination="FWq-X4-DVZ" kind="relationship" relationship="viewControllers" id="UKN-45-OFh"/>
+                        <segue destination="r6N-sy-aPd" kind="relationship" relationship="viewControllers" id="Fhp-I1-47U"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jkm-d3-pLy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -249,7 +250,49 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ugc-nZ-uhg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="206.87022900763358" y="711.97183098591552"/>
+            <point key="canvasLocation" x="86" y="433"/>
+        </scene>
+        <!--サポート-->
+        <scene sceneID="ISn-Dt-BfD">
+            <objects>
+                <viewController id="r6N-sy-aPd" customClass="SupportViewController" customModule="IntestinesSupport" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Gu-fR-2YZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="avb-nF-P3b">
+                                <rect key="frame" x="0.0" y="50" width="375" height="568"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <inset key="separatorInset" minX="30" minY="0.0" maxX="30" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Iaf-x7-lS4">
+                                        <rect key="frame" x="0.0" y="50" width="375" height="44.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Iaf-x7-lS4" id="1O4-A2-XfX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RbE-4j-NZw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="avb-nF-P3b" firstAttribute="top" secondItem="RbE-4j-NZw" secondAttribute="top" constant="30" id="LeV-p2-MCT"/>
+                            <constraint firstItem="avb-nF-P3b" firstAttribute="bottom" secondItem="RbE-4j-NZw" secondAttribute="bottom" id="qez-Fz-cMR"/>
+                            <constraint firstItem="avb-nF-P3b" firstAttribute="leading" secondItem="RbE-4j-NZw" secondAttribute="leading" id="vnX-XK-6R4"/>
+                            <constraint firstItem="avb-nF-P3b" firstAttribute="trailing" secondItem="RbE-4j-NZw" secondAttribute="trailing" id="yHe-6O-3Cx"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="サポート" image="Tab.Setting" id="CKr-5k-Fc8"/>
+                    <connections>
+                        <outlet property="tableView" destination="avb-nF-P3b" id="dUr-L0-Pfq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qza-zR-Jit" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="86" y="1153"/>
         </scene>
         <!--Myお薬-->
         <scene sceneID="8n9-k8-kla">
@@ -305,7 +348,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uT7-pH-GIZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="205.59999999999999" y="10.344827586206897"/>
+            <point key="canvasLocation" x="86" y="-247"/>
         </scene>
         <!--My Medicine Information-->
         <scene sceneID="wDM-rd-P3k">
@@ -531,13 +574,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RG1-Su-K0o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="997.60000000000002" y="9.4452773613193415"/>
+            <point key="canvasLocation" x="998" y="-248"/>
         </scene>
     </scenes>
     <resources>
         <image name="Tab.Certificate" width="21.333333969116211" height="21.333333969116211"/>
         <image name="Tab.MyMedicine" width="16" height="16"/>
         <image name="Tab.Record" width="21.333333969116211" height="21.333333969116211"/>
+        <image name="Tab.Setting" width="21.333333969116211" height="21.333333969116211"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

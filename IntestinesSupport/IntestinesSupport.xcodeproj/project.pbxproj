@@ -68,6 +68,11 @@
 		A64AAC7D2C7DFB0300AE04C1 /* MedicineAdditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC7C2C7DFB0300AE04C1 /* MedicineAdditionViewController.swift */; };
 		A64AAC812C7EB97700AE04C1 /* MedicineAdditionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64AAC7F2C7EB97700AE04C1 /* MedicineAdditionTableViewCell.swift */; };
 		A64AAC822C7EB97700AE04C1 /* MedicineAdditionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A64AAC802C7EB97700AE04C1 /* MedicineAdditionTableViewCell.xib */; };
+		A689A9D22CBD28E800039F37 /* SupportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A689A9D12CBD28E800039F37 /* SupportTableViewCell.xib */; };
+		A689A9D32CBD28E800039F37 /* SupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9D02CBD28E800039F37 /* SupportTableViewCell.swift */; };
+		A689A9D52CBD294200039F37 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9D42CBD294200039F37 /* SupportViewController.swift */; };
+		A689A9D82CBD374700039F37 /* TentativeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A689A9D72CBD374700039F37 /* TentativeTableViewCell.xib */; };
+		A689A9D92CBD374700039F37 /* TentativeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9D62CBD374700039F37 /* TentativeTableViewCell.swift */; };
 		ED0FE989D657E8FADDF3BE80 /* Pods_IntestinesSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 821BD2A208DED6BC34BAAE2E /* Pods_IntestinesSupport.framework */; };
 /* End PBXBuildFile section */
 
@@ -158,6 +163,11 @@
 		A64AAC7C2C7DFB0300AE04C1 /* MedicineAdditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineAdditionViewController.swift; sourceTree = "<group>"; };
 		A64AAC7F2C7EB97700AE04C1 /* MedicineAdditionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineAdditionTableViewCell.swift; sourceTree = "<group>"; };
 		A64AAC802C7EB97700AE04C1 /* MedicineAdditionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MedicineAdditionTableViewCell.xib; sourceTree = "<group>"; };
+		A689A9D02CBD28E800039F37 /* SupportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportTableViewCell.swift; sourceTree = "<group>"; };
+		A689A9D12CBD28E800039F37 /* SupportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SupportTableViewCell.xib; sourceTree = "<group>"; };
+		A689A9D42CBD294200039F37 /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
+		A689A9D62CBD374700039F37 /* TentativeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TentativeTableViewCell.swift; sourceTree = "<group>"; };
+		A689A9D72CBD374700039F37 /* TentativeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TentativeTableViewCell.xib; sourceTree = "<group>"; };
 		B1FC26A613D5492A6A92A954 /* Pods-IntestinesSupportTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntestinesSupportTests.release.xcconfig"; path = "Target Support Files/Pods-IntestinesSupportTests/Pods-IntestinesSupportTests.release.xcconfig"; sourceTree = "<group>"; };
 		C6BAB30AA22CD6F747063D5A /* Pods_IntestinesSupport_IntestinesSupportUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupport_IntestinesSupportUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2E464BD7D4F2F142C45DAD /* Pods_IntestinesSupportTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupportTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -241,11 +251,12 @@
 			children = (
 				A62297DE2C341E7F0099F425 /* AppDelegate.swift */,
 				A62297E02C341E7F0099F425 /* SceneDelegate.swift */,
+				A62298182C3825A50099F425 /* TabViewController.swift */,
 				A62297E42C341E7F0099F425 /* Main.storyboard */,
 				A64AAC242C4145A600AE04C1 /* CalendarRecord */,
 				A64AAC312C44F58200AE04C1 /* MyMedicine */,
 				A64AAC452C4D230F00AE04C1 /* Certificate */,
-				A62298182C3825A50099F425 /* TabViewController.swift */,
+				A689A9CB2CBD26FD00039F37 /* Support */,
 				A62297E72C341E810099F425 /* Assets.xcassets */,
 				A62297E92C341E810099F425 /* LaunchScreen.storyboard */,
 				A62297EC2C341E810099F425 /* Info.plist */,
@@ -355,6 +366,18 @@
 				A64AAC802C7EB97700AE04C1 /* MedicineAdditionTableViewCell.xib */,
 			);
 			path = MedicineAddition;
+			sourceTree = "<group>";
+		};
+		A689A9CB2CBD26FD00039F37 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				A689A9D42CBD294200039F37 /* SupportViewController.swift */,
+				A689A9D02CBD28E800039F37 /* SupportTableViewCell.swift */,
+				A689A9D12CBD28E800039F37 /* SupportTableViewCell.xib */,
+				A689A9D62CBD374700039F37 /* TentativeTableViewCell.swift */,
+				A689A9D72CBD374700039F37 /* TentativeTableViewCell.xib */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -482,11 +505,13 @@
 				A64AAC482C4D232E00AE04C1 /* ApplicationClassificationCell.xib in Resources */,
 				A64AAC272C4146BF00AE04C1 /* MedicineRecordDetailCell.xib in Resources */,
 				A64AAC822C7EB97700AE04C1 /* MedicineAdditionTableViewCell.xib in Resources */,
+				A689A9D82CBD374700039F37 /* TentativeTableViewCell.xib in Resources */,
 				A64AAC362C4683AB00AE04C1 /* PhysicalConditionCell.xib in Resources */,
 				A64AAC2B2C41556300AE04C1 /* MemoCell.xib in Resources */,
 				A64AAC402C4BD06200AE04C1 /* MedicineEmptyStateCell.xib in Resources */,
 				A64AAC1C2C4144F700AE04C1 /* FecesConditionCell.xib in Resources */,
 				A62297E62C341E7F0099F425 /* Base in Resources */,
+				A689A9D22CBD28E800039F37 /* SupportTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,6 +640,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A64AAC592C4E716300AE04C1 /* PeriodCell.swift in Sources */,
+				A689A9D32CBD28E800039F37 /* SupportTableViewCell.swift in Sources */,
 				A64AAC792C6C249D00AE04C1 /* FecesRecordTableViewCell.swift in Sources */,
 				A64AAC432C4BD47600AE04C1 /* History.swift in Sources */,
 				A64AAC5D2C4E718200AE04C1 /* PlusButtonCell.swift in Sources */,
@@ -630,10 +656,12 @@
 				A64AAC7D2C7DFB0300AE04C1 /* MedicineAdditionViewController.swift in Sources */,
 				A64AAC812C7EB97700AE04C1 /* MedicineAdditionTableViewCell.swift in Sources */,
 				A64AAC732C6B76F900AE04C1 /* CalendarDataModel.swift in Sources */,
+				A689A9D52CBD294200039F37 /* SupportViewController.swift in Sources */,
 				A64AAC392C4A878700AE04C1 /* FecesRecord .swift in Sources */,
 				A64AAC372C4683AB00AE04C1 /* PhysicalConditionCell.swift in Sources */,
 				A64AAC6B2C6245D600AE04C1 /* MyMedicines.swift in Sources */,
 				A62297DF2C341E7F0099F425 /* AppDelegate.swift in Sources */,
+				A689A9D92CBD374700039F37 /* TentativeTableViewCell.swift in Sources */,
 				A64AAC282C4146BF00AE04C1 /* MedicineRecordDetailCell.swift in Sources */,
 				A64AAC2C2C41556300AE04C1 /* MemoCell.swift in Sources */,
 				A62297E12C341E7F0099F425 /* SceneDelegate.swift in Sources */,
@@ -831,12 +859,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = MWZL7CC4LD;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IntestinesSupport/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "腸サポート";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -849,7 +878,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dotinstall.IntestinesSupport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -872,12 +901,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = MWZL7CC4LD;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IntestinesSupport/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "腸サポート";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -890,7 +920,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dotinstall.IntestinesSupport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
