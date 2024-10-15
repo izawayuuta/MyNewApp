@@ -10,39 +10,39 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="SupportTableViewCell" customModule="IntestinesSupport" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="PrivacyPolicyTableViewCell" customModule="IntestinesSupport" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お問い合わせ " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkB-rx-lCy">
-                        <rect key="frame" x="70" y="13" width="88.333333333333314" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="プライバシーポリシー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jx2-Gm-g9P">
+                        <rect key="frame" x="70.000000000000014" y="13" width="140.33333333333337" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jt5-ai-WtT">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FbW-MA-HVv">
                         <rect key="frame" x="40" y="12" width="20" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="20" id="3Bk-pk-AVx"/>
-                            <constraint firstAttribute="height" constant="20" id="r6q-LZ-b6n"/>
+                            <constraint firstAttribute="width" constant="20" id="Jft-lo-Nsi"/>
+                            <constraint firstAttribute="height" constant="20" id="r31-nL-zbw"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="jt5-ai-WtT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1fO-A3-ze9"/>
-                    <constraint firstItem="jt5-ai-WtT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="QlL-Jz-1Zx"/>
-                    <constraint firstItem="qkB-rx-lCy" firstAttribute="leading" secondItem="jt5-ai-WtT" secondAttribute="trailing" constant="10" id="jP5-TN-sJn"/>
-                    <constraint firstItem="qkB-rx-lCy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ngl-yd-L4V"/>
+                    <constraint firstItem="Jx2-Gm-g9P" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7TV-nd-yRg"/>
+                    <constraint firstItem="FbW-MA-HVv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="Jgk-qy-KNC"/>
+                    <constraint firstItem="Jx2-Gm-g9P" firstAttribute="leading" secondItem="FbW-MA-HVv" secondAttribute="trailing" constant="10" id="YNB-yJ-qM9"/>
+                    <constraint firstItem="FbW-MA-HVv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dVC-2V-vZA"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="supportImageView" destination="jt5-ai-WtT" id="A7R-Qa-tjf"/>
+                <outlet property="supportImageView" destination="FbW-MA-HVv" id="qjV-tE-3MU"/>
             </connections>
-            <point key="canvasLocation" x="129.7709923664122" y="-33.098591549295776"/>
+            <point key="canvasLocation" x="131" y="-33"/>
         </tableViewCell>
     </objects>
 </document>
