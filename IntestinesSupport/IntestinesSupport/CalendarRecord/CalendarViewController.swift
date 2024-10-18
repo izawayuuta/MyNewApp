@@ -68,6 +68,7 @@ class CalendarViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
         loadCalendars()
         loadMedicinesData()
         calendar.reloadData()
@@ -80,9 +81,11 @@ class CalendarViewController: UIViewController {
             if savedScope == "month" {
                 calendar.setScope(.month, animated: false)
                 changeButton.setTitle("週表示", for: .normal)
+//                calendar.firstWeekday = 2
             } else {
                 calendar.setScope(.week, animated: false)
                 changeButton.setTitle("月表示", for: .normal)
+//                calendar.firstWeekday = 2
             }
         } else {
             // デフォルトの表示形式を月表示に設定
@@ -90,7 +93,10 @@ class CalendarViewController: UIViewController {
             changeButton.setTitle("週表示", for: .normal)
         }
     }
-    
+//    func weekStart() {
+//        calendar.firstWeekday = 2
+//
+//    }
     private func loadCalendars() {
         let realm = try! Realm()
         let calendars = realm.objects(CalendarDataModel.self)
@@ -152,6 +158,34 @@ class CalendarViewController: UIViewController {
             saveCalendarScope(scope: .month)
             calendar.reloadData()
         }
+    }
+    // 週が日曜始まり
+    func weekSunStart() {
+        calendar.firstWeekday = 1
+    }
+    // 週が月曜始まり
+    func weekMonStart () {
+        calendar.firstWeekday = 2
+    }
+    // 週が火曜始まり
+    func weekTheStart () {
+        calendar.firstWeekday = 3
+    }
+    // 週が水曜始まり
+    func weekWedStart () {
+        calendar.firstWeekday = 4
+    }
+    // 週が木曜始まり
+    func weekThuStart () {
+        calendar.firstWeekday = 5
+    }
+    // 週が金曜始まり
+    func weekFriStart () {
+        calendar.firstWeekday = 6
+    }
+    // 週が土曜始まり
+    func weekSatStart () {
+        calendar.firstWeekday = 7
     }
     
     private func saveCalendarScope(scope: FSCalendarScope) {
@@ -491,7 +525,34 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
     }
 }
 
-extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDelegate, MedicineAdditionViewControllerDelegate, MedicineRecordDetailCellDelegate {
+extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDelegate, MedicineAdditionViewControllerDelegate, MedicineRecordDetailCellDelegate, WeekStartTableViewCellDelegate {
+    func didSelectDay(at index: Int) {
+        switch index {
+                case 0:
+                    print("日曜日が選択されました")
+                    // 日曜日に対する処理
+                case 1:
+                    print("月曜日が選択されました")
+                    // 月曜日に対する処理
+                case 2:
+                    print("火曜日が選択されました")
+                    // 火曜日に対する処理
+                case 3:
+                    print("水曜日が選択されました")
+                    // 水曜日に対する処理
+                case 4:
+                    print("木曜日が選択されました")
+                    // 木曜日に対する処理
+                case 5:
+                    print("金曜日が選択されました")
+                    // 金曜日に対する処理
+                case 6:
+                    print("土曜日が選択されました")
+                    // 土曜日に対する処理
+                default:
+                    break
+                }
+    }
     
     func didChangeData(for cell: MedicineRecordDetailCell, newTime: Date) {
         // tableViewからセルのindexPathを取得

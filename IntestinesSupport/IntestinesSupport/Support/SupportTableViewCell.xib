@@ -26,14 +26,17 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jt5-ai-WtT">
                         <rect key="frame" x="40" y="12" width="20" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="20" id="3Bk-pk-AVx"/>
-                            <constraint firstAttribute="height" constant="20" id="r6q-LZ-b6n"/>
+                            <constraint firstAttribute="height" constant="20" id="6aC-aB-FaD"/>
+                            <constraint firstAttribute="width" constant="20" id="WOJ-fW-JLk"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="jt5-ai-WtT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1fO-A3-ze9"/>
                     <constraint firstItem="jt5-ai-WtT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="QlL-Jz-1Zx"/>
+                    <constraint firstAttribute="bottom" secondItem="jt5-ai-WtT" secondAttribute="bottom" constant="12" id="Qlh-CI-0e8"/>
+                    <constraint firstItem="jt5-ai-WtT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="S6q-In-Iab"/>
+                    <constraint firstAttribute="trailing" secondItem="qkB-rx-lCy" secondAttribute="trailing" constant="161.66999999999999" id="aZp-sL-XKu"/>
                     <constraint firstItem="qkB-rx-lCy" firstAttribute="leading" secondItem="jt5-ai-WtT" secondAttribute="trailing" constant="10" id="jP5-TN-sJn"/>
                     <constraint firstItem="qkB-rx-lCy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ngl-yd-L4V"/>
                 </constraints>

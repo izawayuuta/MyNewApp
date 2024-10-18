@@ -6,6 +6,7 @@ target 'IntestinesSupport' do
   use_frameworks!
   pod 'RealmSwift'
   pod 'FSCalendar'
+  pod 'Charts'
 
   # Pods for IntestinesSupport
 

@@ -24,6 +24,8 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.delegate = self
         tableView.dataSource = self
         
+        navigationController?.navigationBar.isHidden = true
+        
         tableView.register(UINib(nibName: "ApplicationClassificationCell", bundle: nil), forCellReuseIdentifier: "ApplicationClassificationCell")
         tableView.register(UINib(nibName: "MoneyCell", bundle: nil), forCellReuseIdentifier: "MoneyCell")
         tableView.register(UINib(nibName: "HierarchyClassificationCell", bundle: nil), forCellReuseIdentifier: "HierarchyClassificationCell")
@@ -67,6 +69,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                 applicationClassificationCell.certificateId = data.id
             }
             applicationClassificationCell.setDoneButton()
+            applicationClassificationCell.backgroundColor = .gray.withAlphaComponent(0.1)
             return applicationClassificationCell
         } else if identifier == "MoneyCell" {
             let moneyCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MoneyCell
@@ -78,7 +81,6 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                 moneyCell.certificateId = data.id
             }
             moneyCell.setDoneButton()
-            moneyCell.backgroundColor = .gray.withAlphaComponent(0.1)
             return moneyCell
         } else if identifier == "HierarchyClassificationCell" {
             let hierarchyClassificationCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! HierarchyClassificationCell
@@ -89,6 +91,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                 hierarchyClassificationCell.certificateId = data.id
             }
             hierarchyClassificationCell.setDoneButton()
+            hierarchyClassificationCell.backgroundColor = .gray.withAlphaComponent(0.1)
             return hierarchyClassificationCell
         } else if identifier == "DeadlineCell" {
             let deadlineCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! DeadlineCell
@@ -104,7 +107,6 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
                 deadlineCell.certificateId = data.id
             }
             deadlineCell.setDoneButton()
-            deadlineCell.backgroundColor = .gray.withAlphaComponent(0.1)
             return deadlineCell
         } else if identifier == "PeriodCell" {
             let periodCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PeriodCell

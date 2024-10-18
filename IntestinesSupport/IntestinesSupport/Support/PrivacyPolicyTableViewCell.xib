@@ -26,15 +26,18 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FbW-MA-HVv">
                         <rect key="frame" x="40" y="12" width="20" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="20" id="Jft-lo-Nsi"/>
-                            <constraint firstAttribute="height" constant="20" id="r31-nL-zbw"/>
+                            <constraint firstAttribute="height" constant="20" id="1eW-xu-US2"/>
+                            <constraint firstAttribute="width" constant="20" id="hrd-6t-UIU"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Jx2-Gm-g9P" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7TV-nd-yRg"/>
+                    <constraint firstAttribute="trailing" secondItem="Jx2-Gm-g9P" secondAttribute="trailing" constant="109.67" id="Azn-h7-EC7"/>
                     <constraint firstItem="FbW-MA-HVv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="Jgk-qy-KNC"/>
+                    <constraint firstAttribute="bottom" secondItem="FbW-MA-HVv" secondAttribute="bottom" constant="12" id="N8h-6B-MjB"/>
                     <constraint firstItem="Jx2-Gm-g9P" firstAttribute="leading" secondItem="FbW-MA-HVv" secondAttribute="trailing" constant="10" id="YNB-yJ-qM9"/>
+                    <constraint firstItem="FbW-MA-HVv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="YZt-jV-OXz"/>
                     <constraint firstItem="FbW-MA-HVv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dVC-2V-vZA"/>
                 </constraints>
             </tableViewCellContentView>
