@@ -85,6 +85,8 @@
 		A689A9F92CBFDBD800039F37 /* WeekStartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A689A9F72CBFDBD800039F37 /* WeekStartTableViewCell.xib */; };
 		A689A9FB2CC0011700039F37 /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9FA2CC0011700039F37 /* ColorViewController.swift */; };
 		A689A9FE2CC0A5ED00039F37 /* GrapfDataTitleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9FD2CC0A5ED00039F37 /* GrapfDataTitleFormatter.swift */; };
+		A6C955DA2CC52BB100056F0B /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C955D82CC52BB100056F0B /* MessageTableViewCell.swift */; };
+		A6C955DB2CC52BB100056F0B /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6C955D92CC52BB100056F0B /* MessageTableViewCell.xib */; };
 		ED0FE989D657E8FADDF3BE80 /* Pods_IntestinesSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 821BD2A208DED6BC34BAAE2E /* Pods_IntestinesSupport.framework */; };
 /* End PBXBuildFile section */
 
@@ -192,6 +194,8 @@
 		A689A9F72CBFDBD800039F37 /* WeekStartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeekStartTableViewCell.xib; sourceTree = "<group>"; };
 		A689A9FA2CC0011700039F37 /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 		A689A9FD2CC0A5ED00039F37 /* GrapfDataTitleFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrapfDataTitleFormatter.swift; sourceTree = "<group>"; };
+		A6C955D82CC52BB100056F0B /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		A6C955D92CC52BB100056F0B /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		B1FC26A613D5492A6A92A954 /* Pods-IntestinesSupportTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntestinesSupportTests.release.xcconfig"; path = "Target Support Files/Pods-IntestinesSupportTests/Pods-IntestinesSupportTests.release.xcconfig"; sourceTree = "<group>"; };
 		C6BAB30AA22CD6F747063D5A /* Pods_IntestinesSupport_IntestinesSupportUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupport_IntestinesSupportUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2E464BD7D4F2F142C45DAD /* Pods_IntestinesSupportTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupportTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -402,6 +406,8 @@
 				A689A9EC2CBFB3B000039F37 /* SetupTableViewCell.xib */,
 				A689A9D02CBD28E800039F37 /* SupportTableViewCell.swift */,
 				A689A9D12CBD28E800039F37 /* SupportTableViewCell.xib */,
+				A6C955D82CC52BB100056F0B /* MessageTableViewCell.swift */,
+				A6C955D92CC52BB100056F0B /* MessageTableViewCell.xib */,
 				A689A9DA2CBE873F00039F37 /* PrivacyPolicyTableViewCell.swift */,
 				A689A9DB2CBE873F00039F37 /* PrivacyPolicyTableViewCell.xib */,
 				A689A9D62CBD374700039F37 /* TentativeTableViewCell.swift */,
@@ -554,6 +560,7 @@
 				A64AAC2F2C42B87800AE04C1 /* FecesDetailCell.xib in Resources */,
 				A62297E82C341E810099F425 /* Assets.xcassets in Resources */,
 				A64AAC4C2C4E711800AE04C1 /* MoneyCell.xib in Resources */,
+				A6C955DB2CC52BB100056F0B /* MessageTableViewCell.xib in Resources */,
 				A64AAC202C41455500AE04C1 /* AdditionButtonCell.xib in Resources */,
 				A689A9F92CBFDBD800039F37 /* WeekStartTableViewCell.xib in Resources */,
 				A64AAC502C4E713A00AE04C1 /* HierarchyClassificationCell.xib in Resources */,
@@ -712,6 +719,7 @@
 				A62298132C358A5A0099F425 /* CertificateViewController.swift in Sources */,
 				A64AAC192C3FFD4300AE04C1 /* CalendarDateCell.swift in Sources */,
 				A622980F2C341F0E0099F425 /* CalendarViewController.swift in Sources */,
+				A6C955DA2CC52BB100056F0B /* MessageTableViewCell.swift in Sources */,
 				A64AAC412C4BD06200AE04C1 /* MedicineEmptyStateCell.swift in Sources */,
 				A64AAC1D2C4144F700AE04C1 /* FecesConditionCell.swift in Sources */,
 				A64AAC632C6098DB00AE04C1 /* CustomTextField.swift in Sources */,
@@ -933,12 +941,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = MWZL7CC4LD;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IntestinesSupport/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "腸サポート";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -951,7 +960,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dotinstall.IntestinesSupport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -974,12 +983,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = MWZL7CC4LD;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IntestinesSupport/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "腸サポート";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -992,7 +1002,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dotinstall.IntestinesSupport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

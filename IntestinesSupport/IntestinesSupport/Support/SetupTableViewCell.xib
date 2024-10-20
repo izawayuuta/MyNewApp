@@ -30,13 +30,21 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="調整中です" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1k-Eh-niT">
+                        <rect key="frame" x="209" y="13" width="71" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="MW7-Zb-KqN" secondAttribute="trailing" constant="218" id="3dG-Eq-ta7"/>
                     <constraint firstItem="p9H-ow-iTW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bTm-ts-DWk"/>
                     <constraint firstItem="p9H-ow-iTW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="38" id="fG9-L2-foe"/>
                     <constraint firstItem="MW7-Zb-KqN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="nvE-wt-Wks"/>
+                    <constraint firstItem="x1k-Eh-niT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qcO-Fp-mO4"/>
                     <constraint firstItem="MW7-Zb-KqN" firstAttribute="leading" secondItem="p9H-ow-iTW" secondAttribute="trailing" constant="10" id="qvV-e9-And"/>
+                    <constraint firstAttribute="trailing" secondItem="x1k-Eh-niT" secondAttribute="trailing" constant="40" id="t52-Ee-GSC"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

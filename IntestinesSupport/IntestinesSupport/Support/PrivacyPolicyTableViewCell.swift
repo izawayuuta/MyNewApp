@@ -10,7 +10,7 @@ import UIKit
 class PrivacyPolicyTableViewCell: UITableViewCell {
     
     @IBOutlet weak var supportImageView: UIImageView!
-//    @IBOutlet weak var supportImageView2: UIImageView!
+    @IBOutlet weak var supportImageView2: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,7 +20,7 @@ class PrivacyPolicyTableViewCell: UITableViewCell {
         supportImageView.image = privacyPolicyImage
         supportImageView.tintColor = UIColor.blue
         
-//        supportImageView2.image = UIImage(named: "Setting.Support2")
+        supportImageView2.image = UIImage(named: "Setting.Support2")
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

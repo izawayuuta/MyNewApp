@@ -30,20 +30,30 @@
                             <constraint firstAttribute="width" constant="20" id="hrd-6t-UIU"/>
                         </constraints>
                     </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mhf-XD-Bng">
+                        <rect key="frame" x="250" y="7" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="MeC-nb-0Ye"/>
+                            <constraint firstAttribute="height" constant="30" id="W0C-pf-euw"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Jx2-Gm-g9P" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7TV-nd-yRg"/>
                     <constraint firstAttribute="trailing" secondItem="Jx2-Gm-g9P" secondAttribute="trailing" constant="109.67" id="Azn-h7-EC7"/>
+                    <constraint firstItem="Mhf-XD-Bng" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Bu6-JF-DtL"/>
                     <constraint firstItem="FbW-MA-HVv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="Jgk-qy-KNC"/>
                     <constraint firstAttribute="bottom" secondItem="FbW-MA-HVv" secondAttribute="bottom" constant="12" id="N8h-6B-MjB"/>
                     <constraint firstItem="Jx2-Gm-g9P" firstAttribute="leading" secondItem="FbW-MA-HVv" secondAttribute="trailing" constant="10" id="YNB-yJ-qM9"/>
                     <constraint firstItem="FbW-MA-HVv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="YZt-jV-OXz"/>
                     <constraint firstItem="FbW-MA-HVv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dVC-2V-vZA"/>
+                    <constraint firstAttribute="trailing" secondItem="Mhf-XD-Bng" secondAttribute="trailing" constant="40" id="tKN-6A-AqW"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="supportImageView" destination="FbW-MA-HVv" id="qjV-tE-3MU"/>
+                <outlet property="supportImageView2" destination="Mhf-XD-Bng" id="XhM-0H-pk2"/>
             </connections>
             <point key="canvasLocation" x="131" y="-33"/>
         </tableViewCell>

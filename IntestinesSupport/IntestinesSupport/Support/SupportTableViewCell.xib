@@ -17,12 +17,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お問い合わせ " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkB-rx-lCy">
-                        <rect key="frame" x="70" y="13" width="88.333333333333314" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jt5-ai-WtT">
                         <rect key="frame" x="40" y="12" width="20" height="20"/>
                         <constraints>
@@ -30,20 +24,44 @@
                             <constraint firstAttribute="width" constant="20" id="WOJ-fW-JLk"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="返信が必要な場合はこちら" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="orI-FP-vFx">
+                        <rect key="frame" x="162" y="18" width="112.33333333333331" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お問い合わせ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3l-Nx-lZQ">
+                        <rect key="frame" x="70" y="13" width="85" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hFh-JG-Y9a">
+                        <rect key="frame" x="250" y="7" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="5Uw-cM-P8b"/>
+                            <constraint firstAttribute="width" constant="30" id="prl-0z-dcs"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="jt5-ai-WtT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1fO-A3-ze9"/>
+                    <constraint firstItem="s3l-Nx-lZQ" firstAttribute="leading" secondItem="jt5-ai-WtT" secondAttribute="trailing" constant="10" id="6kP-Ci-rvZ"/>
+                    <constraint firstItem="orI-FP-vFx" firstAttribute="leading" secondItem="s3l-Nx-lZQ" secondAttribute="trailing" constant="7" id="BLI-al-SgA"/>
+                    <constraint firstItem="orI-FP-vFx" firstAttribute="bottom" secondItem="s3l-Nx-lZQ" secondAttribute="bottom" constant="-1" id="No1-jb-36t"/>
+                    <constraint firstItem="hFh-JG-Y9a" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="OYF-qk-LPM"/>
                     <constraint firstItem="jt5-ai-WtT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="QlL-Jz-1Zx"/>
                     <constraint firstAttribute="bottom" secondItem="jt5-ai-WtT" secondAttribute="bottom" constant="12" id="Qlh-CI-0e8"/>
                     <constraint firstItem="jt5-ai-WtT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="S6q-In-Iab"/>
-                    <constraint firstAttribute="trailing" secondItem="qkB-rx-lCy" secondAttribute="trailing" constant="161.66999999999999" id="aZp-sL-XKu"/>
-                    <constraint firstItem="qkB-rx-lCy" firstAttribute="leading" secondItem="jt5-ai-WtT" secondAttribute="trailing" constant="10" id="jP5-TN-sJn"/>
-                    <constraint firstItem="qkB-rx-lCy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ngl-yd-L4V"/>
+                    <constraint firstItem="s3l-Nx-lZQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="S7m-24-rpt"/>
+                    <constraint firstAttribute="trailing" secondItem="hFh-JG-Y9a" secondAttribute="trailing" constant="40" id="dyK-AB-QhZ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="label" destination="orI-FP-vFx" id="VQa-la-eBZ"/>
                 <outlet property="supportImageView" destination="jt5-ai-WtT" id="A7R-Qa-tjf"/>
+                <outlet property="supportImageView2" destination="hFh-JG-Y9a" id="tfn-7l-eQs"/>
             </connections>
             <point key="canvasLocation" x="129.7709923664122" y="-33.098591549295776"/>
         </tableViewCell>

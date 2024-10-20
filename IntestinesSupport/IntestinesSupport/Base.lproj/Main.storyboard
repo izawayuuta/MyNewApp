@@ -61,17 +61,6 @@
                                     <action selector="changeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7PP-RX-Cfy"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HaD-uT-En7">
-                                <rect key="frame" x="20" y="59" width="50.5" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="YVc-xF-LYM"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="graph"/>
-                                <connections>
-                                    <segue destination="amZ-5P-aul" kind="push" id="9wB-2O-o72"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -81,8 +70,6 @@
                             <constraint firstItem="iGu-j5-plf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="YNc-eg-sGu"/>
                             <constraint firstItem="HMS-Vr-Kn0" firstAttribute="top" secondItem="iGu-j5-plf" secondAttribute="bottom" id="ZoH-GX-60x"/>
                             <constraint firstItem="HMS-Vr-Kn0" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="agF-H5-zIB"/>
-                            <constraint firstItem="HaD-uT-En7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="bK3-wK-bbE"/>
-                            <constraint firstItem="EdB-Oi-QBb" firstAttribute="centerY" secondItem="HaD-uT-En7" secondAttribute="centerY" id="bnX-WQ-Fl3"/>
                             <constraint firstItem="iGu-j5-plf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dgY-vK-QcU"/>
                             <constraint firstItem="EdB-Oi-QBb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="l61-FX-dQM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EdB-Oi-QBb" secondAttribute="trailing" constant="5" id="pgM-1P-zrP"/>
@@ -168,12 +155,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CUD-ve-9Kv" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="10" y="144" width="355" height="444"/>
+                                <rect key="frame" x="10" y="100" width="355" height="537"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <gestureRecognizers/>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uPe-9g-q0Q">
-                                <rect key="frame" x="122.5" y="72.5" width="130" height="34"/>
+                                <rect key="frame" x="122.5" y="28.5" width="130" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="198-n0-4FJ"/>
                                 </constraints>
@@ -592,14 +579,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QSY-Ts-Meh">
-                                <rect key="frame" x="133" y="559.5" width="128" height="35"/>
+                                <rect key="frame" x="133" y="539.5" width="128" height="35"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="Wyk-7J-bVU"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="保存"/>
+                                <buttonConfiguration key="configuration" style="plain" image="doneButton" imagePlacement="trailing" title="保存" imagePadding="5"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="10"/>
@@ -617,16 +604,10 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DX3-3m-bQ9">
-                                <rect key="frame" x="167" y="609.5" width="60" height="34.5"/>
-                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <rect key="frame" x="167" y="589.5" width="60" height="54.5"/>
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="削除"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
+                                <buttonConfiguration key="configuration" style="plain" image="deleteButton" imagePlacement="trailing" title="削除" imagePadding="0.0"/>
                                 <connections>
                                     <action selector="deleteButton:" destination="xqw-Cf-JHW" eventType="touchUpInside" id="dvi-Nf-e3h"/>
                                 </connections>
@@ -756,7 +737,6 @@
         <!--記録-->
         <scene sceneID="arp-hu-kYG">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DRg-KZ-lgN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rSC-09-vWX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="記録" image="Tab.Record" id="GZd-kh-ac3"/>
                     <toolbarItems/>
@@ -769,6 +749,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="olR-EB-dRA"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DRg-KZ-lgN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="85.599999999999994" y="-1070.9145427286358"/>
         </scene>
@@ -835,7 +816,8 @@
         <image name="Tab.MyMedicine" width="26.666666030883789" height="26.666666030883789"/>
         <image name="Tab.Record" width="26.666666030883789" height="26.666666030883789"/>
         <image name="Tab.Setting" width="26.666666030883789" height="26.666666030883789"/>
-        <image name="graph" width="26.666666030883789" height="26.666666030883789"/>
+        <image name="deleteButton" width="30" height="30"/>
+        <image name="doneButton" width="30" height="30"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
