@@ -36,21 +36,12 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wii-5c-F86">
-                        <rect key="frame" x="250" y="7" width="30" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="30" id="3Kx-PD-NaC"/>
-                            <constraint firstAttribute="height" constant="30" id="wAb-fS-UcU"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="yCN-9Z-Gse" firstAttribute="leading" secondItem="OSo-b7-8cQ" secondAttribute="trailing" constant="10" id="Wam-AN-NDc"/>
                     <constraint firstItem="yCN-9Z-Gse" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZYL-w8-T1V"/>
                     <constraint firstItem="OSo-b7-8cQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="b40-VW-bwf"/>
-                    <constraint firstItem="Wii-5c-F86" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="mJr-ll-bKa"/>
                     <constraint firstItem="OSo-b7-8cQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="n79-Hx-BrJ"/>
-                    <constraint firstAttribute="trailing" secondItem="Wii-5c-F86" secondAttribute="trailing" constant="40" id="oXc-i5-f39"/>
                     <constraint firstItem="EPh-iW-keN" firstAttribute="bottom" secondItem="yCN-9Z-Gse" secondAttribute="bottom" constant="-1" id="pax-P2-zKZ"/>
                     <constraint firstItem="EPh-iW-keN" firstAttribute="leading" secondItem="yCN-9Z-Gse" secondAttribute="trailing" constant="7" id="zax-e6-0d2"/>
                 </constraints>
@@ -59,7 +50,6 @@
             <connections>
                 <outlet property="label" destination="EPh-iW-keN" id="RlI-lZ-qtx"/>
                 <outlet property="supportImageView" destination="OSo-b7-8cQ" id="oug-1S-F53"/>
-                <outlet property="supportImageView2" destination="Wii-5c-F86" id="as4-1O-GRd"/>
             </connections>
             <point key="canvasLocation" x="11" y="-32"/>
         </tableViewCell>

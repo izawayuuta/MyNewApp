@@ -25,6 +25,7 @@ class CertificateViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.dataSource = self
         
         navigationController?.navigationBar.isHidden = true
+        tableView
         
         tableView.register(UINib(nibName: "ApplicationClassificationCell", bundle: nil), forCellReuseIdentifier: "ApplicationClassificationCell")
         tableView.register(UINib(nibName: "MoneyCell", bundle: nil), forCellReuseIdentifier: "MoneyCell")

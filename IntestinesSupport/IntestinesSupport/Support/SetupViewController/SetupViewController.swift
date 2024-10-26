@@ -53,21 +53,17 @@ class SetupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return 50
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // セルタップ時の色を変えないようにする
-        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-        // セルの identifier を取得
-        let identifier = tableViewCell[indexPath.row]
-        
-//        // 各セルの identifier に応じて URL を設定
-//        var urlString: String?
-        
-        if identifier == "ColorTableViewCell" {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let colorViewController = storyboard.instantiateViewController(withIdentifier: "ColorViewController") as? ColorViewController {
-                colorViewController.modalPresentationStyle = .automatic // フルスクリーンで表示したい場合
-                            present(colorViewController, animated: true, completion: nil)
-                        }
-            return
+            // セルタップ時の色を変えないようにする
+            tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+            // セルの identifier を取得
+            let identifier = tableViewCell[indexPath.row]
+            
+            if identifier == "ColorTableViewCell" {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let colorViewController = storyboard.instantiateViewController(withIdentifier: "ColorViewController") as? ColorViewController {
+                    // pushViewControllerを使用してタブバーにアクセスできるようにする
+                    navigationController?.pushViewController(colorViewController, animated: true)
+                }
+            }
         }
-    }
 }

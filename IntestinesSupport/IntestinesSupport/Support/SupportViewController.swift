@@ -82,13 +82,13 @@ class SupportViewController: UIViewController, UITableViewDelegate, UITableViewD
         // 各セルの identifier に応じて URL を設定
         var urlString: String?
         
-//        if identifier == "SetupTableViewCell" {
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                if let setupViewController = storyboard.instantiateViewController(withIdentifier: "SetupViewController") as? SetupViewController {
-//                    navigationController?.pushViewController(setupViewController, animated: true)
-//                }
-//                return
-        if identifier == "SupportTableViewCell" {
+        if identifier == "SetupTableViewCell" {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let setupViewController = storyboard.instantiateViewController(withIdentifier: "SetupViewController") as? SetupViewController {
+                navigationController?.pushViewController(setupViewController, animated: true)
+            }
+            return
+        } else if identifier == "SupportTableViewCell" {
             urlString = "https://intestinessupport.hp.peraichi.com/?_gl=1*awdhas*_gcl_au*MjAzNjk2ODY0OC4xNzI4Njk0NzMy&_ga=2.221421852.562715736.1728904895-1236405149.1728694732"
         } else if identifier == "PrivacyPolicyTableViewCell" {
             urlString = "https://wooded-starburst-67e.notion.site/11ce36f7a27180ed9311d9209fa8237b"

@@ -10,17 +10,17 @@ import UIKit
 class SupportTableViewCell: UITableViewCell {
     
     @IBOutlet weak var supportImageView: UIImageView!
-    @IBOutlet weak var supportImageView2: UIImageView!
+//    @IBOutlet weak var supportImageView2: UIImageView!
     @IBOutlet weak var label: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // テンプレートモードで画像を読み込む
-        let privacyPolicyImage = UIImage(named: "Setting.Support1-1")?.withRenderingMode(.alwaysTemplate)
+        let privacyPolicyImage = UIImage(named: "Setting.Support1-2")?.withRenderingMode(.alwaysTemplate)
         supportImageView.image = privacyPolicyImage
         supportImageView.tintColor = UIColor.blue
         
-        supportImageView2.image = UIImage(named: "Setting.Support2")
+//        supportImageView2.image = UIImage(named: "Setting.Support2")
         
         // ストーリーボードで設定されたテキストを取得
                 let fullText = label.text ?? ""

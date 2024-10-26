@@ -23,18 +23,19 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISG-9E-4sV">
-                        <rect key="frame" x="238" y="11.666666666666664" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2ir-Ko-vmt">
+                        <rect key="frame" x="250" y="7" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="R7R-q1-57g"/>
+                            <constraint firstAttribute="height" constant="30" id="a4U-yH-EHR"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ISG-9E-4sV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="V9g-Ce-xhi"/>
+                    <constraint firstAttribute="trailing" secondItem="2ir-Ko-vmt" secondAttribute="trailing" constant="40" id="3lc-YT-GXY"/>
                     <constraint firstItem="AGg-pU-4BN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="agf-WG-hnP"/>
                     <constraint firstItem="AGg-pU-4BN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="oTF-1a-YVE"/>
-                    <constraint firstAttribute="trailing" secondItem="ISG-9E-4sV" secondAttribute="trailing" constant="40" id="vti-Ig-cb0"/>
+                    <constraint firstItem="2ir-Ko-vmt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vee-ZV-cOO"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
