@@ -12,7 +12,7 @@ import MessageUI
 class SupportViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    private let tableViewCell = ["SetupTableViewCell", "SupportTableViewCell", "MessageTableViewCell", "PrivacyPolicyTableViewCell"]
+    private let tableViewCell = ["SupportTableViewCell", "PrivacyPolicyTableViewCell"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +25,6 @@ class SupportViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.register(UINib(nibName: "SetupTableViewCell", bundle: nil), forCellReuseIdentifier: "SetupTableViewCell")
         tableView.register(UINib(nibName: "SupportTableViewCell", bundle: nil), forCellReuseIdentifier: "SupportTableViewCell")
         tableView.register(UINib(nibName: "PrivacyPolicyTableViewCell", bundle: nil), forCellReuseIdentifier: "PrivacyPolicyTableViewCell")
-        tableView.register(UINib(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageTableViewCell")
-//        tableView.register(UINib(nibName: "TentativeTableViewCell", bundle: nil), forCellReuseIdentifier: "TentativeTableViewCell")
         
         tableView.separatorColor = UIColor.systemBlue // 色を赤に設定
     }
@@ -43,27 +41,18 @@ class SupportViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = tableViewCell[indexPath.row]
         
-        if identifier == "SetupTableViewCell" {
-            let setupTableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! SetupTableViewCell
-            setupTableViewCell.selectionStyle = .none // 選択スタイルを無効にする
-            return setupTableViewCell
-        } else if identifier == "SupportTableViewCell" {
+//        if identifier == "SetupTableViewCell" {
+//            let setupTableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! SetupTableViewCell
+//            setupTableViewCell.selectionStyle = .none // 選択スタイルを無効にする
+//            return setupTableViewCell
+        if identifier == "SupportTableViewCell" {
             let supportTableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! SupportTableViewCell
             supportTableViewCell.selectionStyle = .none // 選択スタイルを無効にする
             return supportTableViewCell
-        } else if identifier == "MessageTableViewCell" {
-            let messageTableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! MessageTableViewCell
-            messageTableViewCell.selectionStyle = .none // 選択スタイルを無効にする
-            return messageTableViewCell
         } else if identifier == "PrivacyPolicyTableViewCell" {
             let privacyPolicyTableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PrivacyPolicyTableViewCell
             privacyPolicyTableViewCell.selectionStyle = .none // 選択スタイルを無効にする
             return privacyPolicyTableViewCell
-//        } else if identifier == "TentativeTableViewCell" {
-//            let tentativeTableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! TentativeTableViewCell
-//            tentativeTableViewCell.selectionStyle = .none // 選択スタイルを無効にする
-//            tentativeTableViewCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude) // 線を消す
-//            return tentativeTableViewCell
         } else {
             return UITableViewCell()
         }
@@ -92,23 +81,6 @@ class SupportViewController: UIViewController, UITableViewDelegate, UITableViewD
             urlString = "https://intestinessupport.hp.peraichi.com/?_gl=1*awdhas*_gcl_au*MjAzNjk2ODY0OC4xNzI4Njk0NzMy&_ga=2.221421852.562715736.1728904895-1236405149.1728694732"
         } else if identifier == "PrivacyPolicyTableViewCell" {
             urlString = "https://wooded-starburst-67e.notion.site/11ce36f7a27180ed9311d9209fa8237b"
-        } else if identifier == "MessageTableViewCell" {
-            if MFMailComposeViewController.canSendMail() {
-                        let mail = MFMailComposeViewController()
-                        mail.mailComposeDelegate = self
-                        mail.setToRecipients(["yutaizw2512@icloud.com"])
-                        mail.setSubject("お問い合わせ")
-                mail.setMessageBody("""
-                \n\n\n\n\nーーーーーーーーーーーーーーーー
-                この上にメッセージを入力してください。！注意！このお問い合わせには返信致しません。返信が必要な場合は<a href="https://IntestinesSupport.hp.peraichi.com">こちら</a> からお願いします。
-                """, isHTML: true)
-
-                        present(mail, animated: true)
-                    } else {
-                        let alert = UIAlertController(title: "エラー", message: "時間を置いてからもう一度お試しください。", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default))
-                        present(alert, animated: true)
-                    }
         }
         
         // URLを開く処理
@@ -116,18 +88,5 @@ class SupportViewController: UIViewController, UITableViewDelegate, UITableViewD
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
-    // 匿名メッセージ
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-            controller.dismiss(animated: true)
-            if result == .sent {
-                let alert = UIAlertController(title: "メールを送信しました", message: "※返信は致しません", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default))
-                present(alert, animated: true)
-            } else if result == .failed {
-                let alert = UIAlertController(title: "メールを送信できませんでした", message: "時間を置いてからもう一度お試しください。", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default))
-                present(alert, animated: true)
-            }
-        }
 }
 

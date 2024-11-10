@@ -55,8 +55,13 @@ class ColorViewController: UIViewController {
     @IBAction func tabBrown() {
         changeTabBarColor(to: .brown.withAlphaComponent(0.5), textColor: .white)
     }
-    private func changeTabBarColor(to color: UIColor?, textColor: UIColor?) {
-        if let tabBar = self.tabBarController?.tabBar {
+        
+        private func changeTabBarColor(to color: UIColor?, textColor: UIColor?) {
+            guard let tabBar = self.tabBarController?.tabBar else {
+                print("タブバーコントローラが見つかりません")
+                return
+            }
+            
             let appearance = UITabBarAppearance()
             appearance.configureWithOpaqueBackground()
             
@@ -66,16 +71,13 @@ class ColorViewController: UIViewController {
             // タブバーアイテムの文字色とアイコンの色を設定
             let itemAppearance = UITabBarItemAppearance()
             itemAppearance.normal.titleTextAttributes = [.foregroundColor: textColor] // 通常時の文字色
-            itemAppearance.selected.titleTextAttributes = [.foregroundColor: textColor] // 選択時の文字色
+            itemAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.black] // 選択時の文字色
             itemAppearance.normal.iconColor = textColor // 通常時のアイコン色
-            itemAppearance.selected.iconColor = textColor // 選択時のアイコン色
+            itemAppearance.selected.iconColor = UIColor.black // 選択時のアイコン色
             
             appearance.stackedLayoutAppearance = itemAppearance
             
             tabBar.standardAppearance = appearance
             tabBar.scrollEdgeAppearance = appearance // iOS 15以降対応
-        } else {
-            print("タブバーコントローラが見つかりません")
-        }
     }
 }
