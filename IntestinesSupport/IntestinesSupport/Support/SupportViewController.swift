@@ -12,7 +12,7 @@ import MessageUI
 class SupportViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    private let tableViewCell = ["SupportTableViewCell", "PrivacyPolicyTableViewCell"]
+    private let tableViewCell = ["SetupTableViewCell", "SupportTableViewCell", "PrivacyPolicyTableViewCell"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,11 +41,11 @@ class SupportViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = tableViewCell[indexPath.row]
         
-//        if identifier == "SetupTableViewCell" {
-//            let setupTableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! SetupTableViewCell
-//            setupTableViewCell.selectionStyle = .none // 選択スタイルを無効にする
-//            return setupTableViewCell
-        if identifier == "SupportTableViewCell" {
+        if identifier == "SetupTableViewCell" {
+            let setupTableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! SetupTableViewCell
+            setupTableViewCell.selectionStyle = .none // 選択スタイルを無効にする
+            return setupTableViewCell
+        } else if identifier == "SupportTableViewCell" {
             let supportTableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! SupportTableViewCell
             supportTableViewCell.selectionStyle = .none // 選択スタイルを無効にする
             return supportTableViewCell
