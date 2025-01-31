@@ -34,7 +34,7 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
         tableView.allowsMultipleSelection = true
         loadMedicines()
         selectedCellButton()
-        buttonSetup()
+//        buttonSetup()
     }
     
     func loadMedicines() {
@@ -149,13 +149,13 @@ class MedicineAdditionViewController: UIViewController, UITableViewDelegate, UIT
         medicineAdditionButton.isEnabled = !selectedIndexPaths.isEmpty
     }
     
-    private func buttonSetup() {
-        medicineAdditionButton.backgroundColor = UIColor.clear // 背景色
-        medicineAdditionButton.layer.borderWidth = 2.0 // 枠線の幅
-        medicineAdditionButton.layer.borderColor = UIColor.blue.cgColor // 枠線の色
-        medicineAdditionButton.layer.cornerRadius = 10.0 // 角丸のサイズ
-        medicineAdditionButton.tintColor = UIColor.blue
-    }
+//    private func buttonSetup() {
+//        medicineAdditionButton.backgroundColor = UIColor.clear // 背景色
+//        medicineAdditionButton.layer.borderWidth = 2.0 // 枠線の幅
+//        medicineAdditionButton.layer.borderColor = UIColor.blue.cgColor // 枠線の色
+//        medicineAdditionButton.layer.cornerRadius = 10.0 // 角丸のサイズ
+//        medicineAdditionButton.tintColor = UIColor.blue
+//    }
 }
 
 extension MedicineAdditionViewController: AdditionButtonCellDelegate, MedicineViewControllerDelegate {

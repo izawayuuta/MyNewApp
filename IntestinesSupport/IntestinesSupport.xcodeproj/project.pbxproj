@@ -84,7 +84,7 @@
 		A689A9F82CBFDBD800039F37 /* WeekStartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9F62CBFDBD800039F37 /* WeekStartTableViewCell.swift */; };
 		A689A9F92CBFDBD800039F37 /* WeekStartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A689A9F72CBFDBD800039F37 /* WeekStartTableViewCell.xib */; };
 		A689A9FB2CC0011700039F37 /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9FA2CC0011700039F37 /* ColorViewController.swift */; };
-		A689A9FE2CC0A5ED00039F37 /* GrapfDataTitleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9FD2CC0A5ED00039F37 /* GrapfDataTitleFormatter.swift */; };
+		A6C955E22D4C98C300056F0B /* AllData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C955E12D4C98C000056F0B /* AllData.swift */; };
 		ED0FE989D657E8FADDF3BE80 /* Pods_IntestinesSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 821BD2A208DED6BC34BAAE2E /* Pods_IntestinesSupport.framework */; };
 /* End PBXBuildFile section */
 
@@ -191,7 +191,7 @@
 		A689A9F62CBFDBD800039F37 /* WeekStartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStartTableViewCell.swift; sourceTree = "<group>"; };
 		A689A9F72CBFDBD800039F37 /* WeekStartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeekStartTableViewCell.xib; sourceTree = "<group>"; };
 		A689A9FA2CC0011700039F37 /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
-		A689A9FD2CC0A5ED00039F37 /* GrapfDataTitleFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrapfDataTitleFormatter.swift; sourceTree = "<group>"; };
+		A6C955E12D4C98C000056F0B /* AllData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllData.swift; sourceTree = "<group>"; };
 		B1FC26A613D5492A6A92A954 /* Pods-IntestinesSupportTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntestinesSupportTests.release.xcconfig"; path = "Target Support Files/Pods-IntestinesSupportTests/Pods-IntestinesSupportTests.release.xcconfig"; sourceTree = "<group>"; };
 		C6BAB30AA22CD6F747063D5A /* Pods_IntestinesSupport_IntestinesSupportUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupport_IntestinesSupportUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2E464BD7D4F2F142C45DAD /* Pods_IntestinesSupportTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupportTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -414,7 +414,7 @@
 			isa = PBXGroup;
 			children = (
 				A689A9DF2CBF7C9000039F37 /* GraphViewController.swift */,
-				A689A9FD2CC0A5ED00039F37 /* GrapfDataTitleFormatter.swift */,
+				A6C955E12D4C98C000056F0B /* AllData.swift */,
 			);
 			path = Graph;
 			sourceTree = "<group>";
@@ -727,6 +727,7 @@
 				A64AAC372C4683AB00AE04C1 /* PhysicalConditionCell.swift in Sources */,
 				A64AAC6B2C6245D600AE04C1 /* MyMedicines.swift in Sources */,
 				A689A9E02CBF7C9000039F37 /* GraphViewController.swift in Sources */,
+				A6C955E22D4C98C300056F0B /* AllData.swift in Sources */,
 				A62297DF2C341E7F0099F425 /* AppDelegate.swift in Sources */,
 				A689A9D92CBD374700039F37 /* TentativeTableViewCell.swift in Sources */,
 				A64AAC282C4146BF00AE04C1 /* MedicineRecordDetailCell.swift in Sources */,
@@ -737,7 +738,6 @@
 				A64AAC7B2C6E21E900AE04C1 /* Date+Extension.swift in Sources */,
 				A689A9DD2CBE873F00039F37 /* PrivacyPolicyTableViewCell.swift in Sources */,
 				A64AAC6F2C68E7ED00AE04C1 /* CertificateDataModel.swift in Sources */,
-				A689A9FE2CC0A5ED00039F37 /* GrapfDataTitleFormatter.swift in Sources */,
 				A64AAC4D2C4E711800AE04C1 /* MoneyCell.swift in Sources */,
 				A689A9F02CBFBABC00039F37 /* SetupViewController.swift in Sources */,
 				A64AAC332C44F5A500AE04C1 /* MyMedicineInformationViewController.swift in Sources */,
@@ -952,7 +952,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dotinstall.IntestinesSupport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -994,7 +994,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dotinstall.IntestinesSupport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

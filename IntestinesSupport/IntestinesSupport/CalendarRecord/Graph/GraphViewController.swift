@@ -10,52 +10,92 @@ import UIKit
 import Charts
 import RealmSwift
 
-class GraphViewController: UIViewController {
+class GraphViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var graphView: LineChartView!
+    @IBOutlet weak var toolBar: UIToolbar!
+    @IBOutlet weak var barItem: UIBarItem!
     
-        var recordList: [FecesDetailDataModel] = []
-        // 1ヶ月分のデータを取得する
+    var textField = UITextField()
+    
+    var recordList: [FecesDetailDataModel] = []
+    
+    let years = (2000...2030).map { $0 }
+    let months = (1...12).map { $0 }
+    
     override func viewDidLoad() {
-            super.viewDidLoad()
+        super.viewDidLoad()
+        
         navigationController?.navigationBar.isHidden = false
-
-            // 1ヶ月分のデータを取得
-            fetchLastMonthFecesData()
-            
-            // グラフをセットアップ
-            setupGraph()
-        }
         
-        // 1ヶ月分のデータを取得する
-        func fetchLastMonthFecesData() {
-            let realm = try! Realm()
-            let currentDate = Date()
-            
-            guard let oneMonthAgo = Calendar.current.date(byAdding: .month, value: -1, to: currentDate) else {
-                return
-            }
-            
-            // Realmで1ヶ月分のデータを取得
-            let lastMonthData = realm.objects(FecesDetailDataModel.self).filter("date >= %@ AND date <= %@", oneMonthAgo, currentDate)
-            
-            // recordList にデータを保存
-            recordList = Array(lastMonthData)
-        }
+        barItem.isEnabled = false
         
-    // グラフをセットアップしてデータを表示する
+        // グラフをセットアップ
+        setupGraph()
+        
+        // 現在の日付を取得
+        let currentDate = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy年MM月"
+        let currentDateString = formatter.string(from: currentDate)
+        
+        // UITextField の設定
+        textField = UITextField(frame: CGRect(x: (view.bounds.size.width - 100) / 2, y: 116, width: 200, height: 36))
+        textField.borderStyle = .none // 枠線を消す
+        textField.tintColor = .clear // カーソルを非表示にする
+        textField.text = currentDateString // 初期表示を現在の日付に設定
+        textField.placeholder = "年と月を選択"
+        
+        let pickerView = UIPickerView()
+        pickerView.backgroundColor = UIColor.white
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        pickerView.tag = 1 // PickerView 識別用
+        textField.inputView = pickerView
+        view.addSubview(textField)
+        
+        // PickerView の初期選択を設定
+        let currentYear = Calendar.current.component(.year, from: currentDate)
+        let currentMonth = Calendar.current.component(.month, from: currentDate)
+        pickerView.selectRow(currentYear - 2000, inComponent: 0, animated: false) // 年
+        pickerView.selectRow(currentMonth - 1, inComponent: 1, animated: false) // 月
+        
+        fetchFecesData(forYear: currentYear, month: currentMonth) //グラフの初期表示を現在に
+        
+        setKeyboardAccessory()
+        hidePickerView()
+        
+    }
+    
+    // 指定された年と月のデータを取得する
+    func fetchFecesData(forYear year: Int, month: Int) {
+        recordList.removeAll()
+        let realm = try! Realm()
+        let calendar = Calendar.current
+        
+        // 現在の年と月の初日と最終日を取得
+        let startDate = calendar.date(from: DateComponents(year: year, month: month, day: 1))!
+        let range = calendar.range(of: .day, in: .month, for: startDate)!
+        let endDate = calendar.date(from: DateComponents(year: year, month: month, day: range.count))!
+        
+        // Realmで指定された期間のデータを取得
+        let fecesData = realm.objects(FecesDetailDataModel.self).filter("date >= %@ AND date <= %@", startDate, endDate)
+        
+        // recordList にデータを保存
+        recordList = Array(fecesData)
+        setupGraph()
+    }
+    
     func setupGraph() {
         var dataEntries: [ChartDataEntry] = []
         let calendar = Calendar.current
         let currentDate = Date()
         
-        // 1ヶ月前の日付を取得
-        guard let oneMonthAgo = calendar.date(byAdding: .month, value: -1, to: currentDate) else { return }
-        
         // 1ヶ月間の日付を作成（初期化）
         var dailyCount: [Int: Int] = [:]
+        let daysInMonth = calendar.range(of: .day, in: .month, for: currentDate)?.count ?? 31
         for dayOffset in 0..<31 {
-            if let date = calendar.date(byAdding: .day, value: dayOffset, to: oneMonthAgo) {
+            if let date = calendar.date(byAdding: .day, value: dayOffset, to: currentDate) {
                 let day = calendar.component(.day, from: date)
                 dailyCount[day] = 0 // データがない日は0を初期化
             }
@@ -63,177 +103,132 @@ class GraphViewController: UIViewController {
         
         // データがある日をカウント
         for fecesData in recordList {
-            let daysFromStart = calendar.dateComponents([.day], from: oneMonthAgo, to: fecesData.date).day ?? 0
-            dailyCount[daysFromStart, default: 0] += 1
+            let day = calendar.component(.day, from: fecesData.date)
+            dailyCount[day, default: 0] += 1
         }
         
         // データエントリを作成
-        for dayOffset in 0..<31 {
+        for dayOffset in 1...31 {
             let count = dailyCount[dayOffset] ?? 0
             let dataEntry = ChartDataEntry(x: Double(dayOffset), y: Double(count))
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = LineChartDataSet(entries: dataEntries, label: "Feces Data")
+        let chartDataSet = LineChartDataSet(entries: dataEntries, label: "便の回数")
         let chartData = LineChartData(dataSet: chartDataSet)
+        
+        chartDataSet.colors = [NSUIColor.red]
+        chartDataSet.circleColors = [NSUIColor.red]
+        chartDataSet.drawValuesEnabled = false //グラフ中の数字を表示
+        chartDataSet.circleRadius = 4.0
+        chartDataSet.circleHoleColor = .red.withAlphaComponent(1.0)
         
         // グラフにデータをセット
         graphView.data = chartData
         
         // グラフの追加設定
-        graphView.chartDescription.text = "Feces Data for Last Month"
         graphView.xAxis.labelPosition = .bottom
         graphView.xAxis.granularity = 1.0 // X軸の間隔
         graphView.rightAxis.enabled = false // 右側のY軸を無効化
-
+        
+        //横軸の設定
+        graphView.xAxis.axisMinimum = 1
+        graphView.xAxis.axisMaximum = 31
+        graphView.xAxis.labelCount = daysInMonth // ラベルの数を月の日数に合わせる
+        
         // 縦軸の設定
         graphView.leftAxis.labelPosition = .outsideChart
         graphView.leftAxis.axisMinimum = 0 // Y軸の最小値を0に固定
         graphView.leftAxis.granularity = 1.0 // Y軸の間隔を1に設定
-    }
+        //        graphView.leftAxis.forceLabelsEnabled = true // ラベルが強制的に表示されるようにする
+        
+        // 5の倍数の縦線を赤色で表示
+        for day in stride(from: 5, to: 32, by: 5) {
+            let limitLine = ChartLimitLine(limit: Double(day), label: "")
+            limitLine.lineColor = .black.withAlphaComponent(0.7)
+            limitLine.lineWidth = 1.0
+            graphView.xAxis.addLimitLine(limitLine)
+        }
+        
+        for time in stride(from: 5, to: 100, by: 5) {
+            let limitLine = ChartLimitLine(limit: Double(time), label: "")
+            limitLine.lineColor = .black.withAlphaComponent(0.7)
+            limitLine.lineWidth = 1.0
+            graphView.leftAxis.addLimitLine(limitLine)
+        }
+        
+        for time in stride(from: 1, to: 100, by: 1) {
+            let limitLine = ChartLimitLine(limit: Double(time), label: "")
+            limitLine.lineColor = .black.withAlphaComponent(0.3)
+            limitLine.lineWidth = 0.3
+            graphView.leftAxis.addLimitLine(limitLine)
+        }
+        // 凡例を非表示
+        graphView.legend.enabled = false
+        // タップでプロットを選択できないようにする
+        graphView.highlightPerTapEnabled = false
+        // ピンチズームオフ
+        graphView.pinchZoomEnabled = false
+        // ダブルタップズームオフ
+        graphView.doubleTapToZoomEnabled = false
     }
     
-
-
-//    @IBOutlet weak var startDateTextField: UITextField!
-//        @IBOutlet weak var endDateTextField: UITextField!
-//
-//    var recordList: [FecesDetailDataModel] = []
-//
-//    var datePicker: UIDatePicker {
-//           let datePicker: UIDatePicker = UIDatePicker()
-//           datePicker.datePickerMode = .date
-//           datePicker.timeZone = .current
-//           datePicker.preferredDatePickerStyle = .wheels
-//           datePicker.locale = .current
-//           return datePicker
-//       }
-//
-//    var dateFormatter: DateFormatter {
-//            let dateFormatt = DateFormatter()
-//            dateFormatt.dateStyle = .long
-//            dateFormatt.timeZone = .current
-//            dateFormatt.locale = Locale(identifier: "ja-JP")
-//            return dateFormatt
-//        }
-//
-//    var toolBar: UIToolbar {
-//            let toolBarRect = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35)
-//            let toolBar = UIToolbar(frame: toolBarRect)
-//            let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
-//            toolBar.setItems([doneItem], animated: true)
-//            return toolBar
-//        }
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        navigationController?.navigationBar.isHidden = false
-//        // データを取得してグラフを描画
-//        fetchDataAndSetupGraph()
-//    }
-//
-//    override func viewWillAppear(_ animated: Bool) {
-//            super.viewWillAppear(animated)
-//            configureGraph()
-//            configureTextField()
-//        }
-//
-//        private func fetchDataAndSetupGraph() {
-//            let realm = try! Realm()
-//
-//            // Realmから全データを取得
-//            let allRecords = realm.objects(FecesDetailDataModel.self)
-//
-//            // 選択された日付範囲を取得
-//            guard let startDateText = startDateTextField.text,
-//                  let endDateText = endDateTextField.text,
-//                  let startDate = dateFormatter.date(from: startDateText),
-//                  let endDate = dateFormatter.date(from: endDateText) else {
-//                return
-//            }
-//
-//            // 選択された日付範囲でデータをフィルタリング
-//            let filteredRecords = allRecords.filter("date >= %@ AND date <= %@", startDate, endDate)
-//
-//            // 日付ごとのデータ数をカウントする辞書を作成
-//            var countByDate: [String: Int] = [:]
-//
-//            for record in filteredRecords {
-//                // 日付をフォーマットしてキーとして使用
-//                let dateString = DateFormatter.localizedString(from: record.date, dateStyle: .short, timeStyle: .none)
-//                countByDate[dateString, default: 0] += 1
-//            }
-//
-//            // グラフ用のデータを設定
-//            setupGraph(with: countByDate)
-//        }
-//
-//        private func setupGraph(with countByDate: [String: Int]) {
-//            var entries: [ChartDataEntry] = []
-//            var index = 0
-//
-//            for (date, count) in countByDate {
-//                let entry = ChartDataEntry(x: Double(index), y: Double(count), data: date as AnyObject)
-//                entries.append(entry)
-//                index += 1
-//            }
-//
-//            let dataSet = LineChartDataSet(entries: entries, label: "Feces Count")
-//            let data = LineChartData(dataSet: dataSet)
-//
-//            graphView.data = data
-//            graphView.xAxis.valueFormatter = DefaultAxisValueFormatter { (value, axis) -> String in
-//                let index = Int(value)
-//                let keys = Array(countByDate.keys)
-//                return index < keys.count ? keys[index] : ""
-//            }
-//        }
-//
-//        func configureGraph() {
-//            graphView.xAxis.labelPosition = .bottom
-//            let titleFormatter = GraphDataTitleFormatter()
-//            let dateList = recordList.map({ $0.date })
-//            titleFormatter.dateList = dateList
-//            graphView.xAxis.valueFormatter = titleFormatter
-//        }
-//
-//        func configureTextField() {
-//            let startDatePicker = datePicker
-//            let endDatePicker = datePicker
-//            let today = Date()
-//            let pastMonth = Calendar.current.date(byAdding: .month, value: -1, to: today)
-//
-//            startDatePicker.date = pastMonth ?? Date()
-//            endDatePicker.date = today
-//
-//            startDateTextField.inputView = startDatePicker
-//            endDateTextField.inputView = endDatePicker
-//
-//            startDateTextField.text = dateFormatter.string(from: pastMonth ?? Date())
-//            endDateTextField.text = dateFormatter.string(from: today)
-//
-//            // キーボードの上にツールバーを表示するための設定
-//            startDateTextField.inputAccessoryView = toolBar
-//            endDateTextField.inputAccessoryView = toolBar
-//
-//            // 日付が変更されたときに呼ばれるメソッドを設定
-//            startDatePicker.addTarget(self, action: #selector(didChangeStartDate(picker:)), for: .valueChanged)
-//            endDatePicker.addTarget(self, action: #selector(didChangeEndDate(picker:)), for: .valueChanged)
-//        }
-//
-//        @objc func didTapDone() {
-//            view.endEditing(true)
-//        }
-//
-//        @objc func didChangeStartDate(picker: UIDatePicker) {
-//            startDateTextField.text = dateFormatter.string(from: picker.date)
-//            // 日付が変更されたらグラフを更新
-//            fetchDataAndSetupGraph()
-//        }
-//
-//        @objc func didChangeEndDate(picker: UIDatePicker) {
-//            endDateTextField.text = dateFormatter.string(from: picker.date)
-//            // 日付が変更されたらグラフを更新
-//            fetchDataAndSetupGraph()
-//        }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if component == 0 {
+            return years.count
+        } else if component == 1 {
+            return months.count
+        } else {
+            return 0
+        }
+    }
+    
+    // MARK: - UIPickerView delegate
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if component == 0 {
+            return "\(years[row])年"
+        } else if component == 1 {
+            return "\(months[row])月"
+        } else {
+            return nil
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let year = years[pickerView.selectedRow(inComponent: 0)]
+        let month = months[pickerView.selectedRow(inComponent: 1)]
+        textField.text = "\(year)年 \(month)月"
+        
+        fetchFecesData(forYear: year, month: month)
+    }
+    
+    func setKeyboardAccessory() {
+        let keyboardAccessory = UIView(frame: CGRectMake(0, 0, view.bounds.size.width, 36))
+        keyboardAccessory.backgroundColor = UIColor.white
+        textField.inputAccessoryView = keyboardAccessory
+        
+        let topBorder = UIView(frame: CGRectMake(0, 0, keyboardAccessory.bounds.size.width, 0.5))
+        topBorder.backgroundColor = UIColor.lightGray
+        keyboardAccessory.addSubview(topBorder)
+        
+        let completeButton = UIButton(frame: CGRectMake(keyboardAccessory.bounds.size.width - 48, 0, 48, keyboardAccessory.bounds.size.height - 0.5 * 2))
+        completeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16.0)
+        completeButton.setTitle("完了", for: .normal)
+        completeButton.setTitleColor(UIColor.blue, for: .normal)
+        completeButton.setTitleColor(UIColor.red, for: .highlighted)
+        completeButton.addTarget(self, action: Selector("hidePickerView"), for: .touchUpInside)
+        keyboardAccessory.addSubview(completeButton)
+        
+        let bottomBorder = UIView(frame: CGRectMake(0, keyboardAccessory.bounds.size.height - 0.5, keyboardAccessory.bounds.size.width, 0.5))
+        bottomBorder.backgroundColor = UIColor.lightGray
+        keyboardAccessory.addSubview(bottomBorder)
+    }
+    
+    @objc func hidePickerView() {
+        textField.resignFirstResponder()
+    }
+}

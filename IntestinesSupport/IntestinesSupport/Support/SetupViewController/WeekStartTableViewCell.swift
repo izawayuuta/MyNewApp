@@ -8,7 +8,7 @@
 import UIKit
 
 protocol WeekStartTableViewCellDelegate: AnyObject {
-    func didSelectDay(at index: Int)
+    func didSelectDay(at index: Int, day: String)
 }
 
 class WeekStartTableViewCell: UITableViewCell {
@@ -42,8 +42,8 @@ class WeekStartTableViewCell: UITableViewCell {
                    // ボタンのタイトルを選択された値に変更
                    self.pickerView.setTitle(option, for: .normal)
 //                   self.performAction(for: index)
-                   self.delegate?.didSelectDay(at: index) // デリゲートメソッドを呼び出す
-
+                   self.delegate?.didSelectDay(at: index, day: option)
+//                   print("選択された曜日: \(option) (Index: \(index))")
                }
                actions.append(action)
            }

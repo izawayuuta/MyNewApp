@@ -12,7 +12,8 @@ import MessageUI
 class SupportViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    private let tableViewCell = ["SetupTableViewCell", "SupportTableViewCell", "PrivacyPolicyTableViewCell"]
+    
+    private let tableViewCell = ["SupportTableViewCell", "PrivacyPolicyTableViewCell"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
