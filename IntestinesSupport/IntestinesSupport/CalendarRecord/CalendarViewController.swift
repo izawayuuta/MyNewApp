@@ -46,6 +46,8 @@ class CalendarViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.showsVerticalScrollIndicator = false
+        
         tableView.register(UINib(nibName: "CalendarDateCell", bundle: nil), forCellReuseIdentifier: "CalendarDateCell")
         tableView.register(UINib(nibName: "PhysicalConditionCell", bundle: nil), forCellReuseIdentifier: "PhysicalConditionCell")
         tableView.register(UINib(nibName: "FecesConditionCell", bundle: nil), forCellReuseIdentifier: "FecesConditionCell")
@@ -444,6 +446,9 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
         }
         let startingRow = 5
         let lastRow = tableView.numberOfRows(inSection: indexPath.section) - 1 // 最後のインデックス
+        if indexPath.row == lastRow {
+            return 200
+        }
         
         if indexPath.row >= startingRow && indexPath.row <= lastRow {
             return 50

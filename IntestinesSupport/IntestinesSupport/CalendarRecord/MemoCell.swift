@@ -11,6 +11,7 @@ class MemoCell: UITableViewCell, UITextViewDelegate {
     
     @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var memo: UITextView!
+//    @IBOutlet weak var templateButton: UIButton!
     
     private var model: CalendarDataModel?
     private var selectedDate: Date?
@@ -19,11 +20,14 @@ class MemoCell: UITableViewCell, UITextViewDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         memo.delegate = self
-        memo.isScrollEnabled = false
-        memo.layer.borderColor = UIColor(red: 0.2, green: 0.7, blue: 0.5, alpha: 1.0).cgColor
+        memo.isScrollEnabled = true
+        memo.showsVerticalScrollIndicator = true
+        memo.layer.borderColor = UIColor.systemGray.cgColor
         
         memo.layer.borderWidth = 1.0
         memo.layer.masksToBounds = true
+        
+//        memo.textContainerInset = UIEdgeInsets(top: 8, left: 30, bottom: 8, right: 8) // 左に20ポイントのスペース
         
         setDoneButton()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -139,4 +143,11 @@ class MemoCell: UITableViewCell, UITextViewDelegate {
             memo.text = ""
         }
     }
+//    @IBAction func templateButtonTapped() {
+//        templatePickerView()
+//        print("aaa")
+//    }
+//    private func templatePickerView() {
+//        
+//    }
 }
