@@ -262,11 +262,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CUD-ve-9Kv" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="10" y="144" width="355" height="395"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <gestureRecognizers/>
-                            </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ubN-PA-Ssr">
                                 <rect key="frame" x="0.0" y="77" width="375" height="44"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
@@ -278,13 +273,9 @@
                         <viewLayoutGuide key="safeArea" id="f2A-Fx-6hG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="CUD-ve-9Kv" firstAttribute="top" secondItem="f2A-Fx-6hG" secondAttribute="top" constant="80" id="4fR-UV-BzD"/>
-                            <constraint firstItem="f2A-Fx-6hG" firstAttribute="bottom" secondItem="CUD-ve-9Kv" secondAttribute="bottom" constant="30" id="4ii-ga-C1Q"/>
                             <constraint firstItem="ubN-PA-Ssr" firstAttribute="top" secondItem="f2A-Fx-6hG" secondAttribute="top" constant="13" id="FDj-gu-Kb2"/>
                             <constraint firstItem="ubN-PA-Ssr" firstAttribute="trailing" secondItem="f2A-Fx-6hG" secondAttribute="trailing" id="WmD-Ll-oHw"/>
                             <constraint firstItem="ubN-PA-Ssr" firstAttribute="leading" secondItem="f2A-Fx-6hG" secondAttribute="leading" id="YEc-d5-fJJ"/>
-                            <constraint firstItem="f2A-Fx-6hG" firstAttribute="trailing" secondItem="CUD-ve-9Kv" secondAttribute="trailing" constant="10" id="cgy-zy-Wdn"/>
-                            <constraint firstItem="CUD-ve-9Kv" firstAttribute="leading" secondItem="f2A-Fx-6hG" secondAttribute="leading" constant="10" id="jeg-ci-VHf"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -292,7 +283,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="barItem" destination="r1t-ex-oyP" id="ACZ-fu-0qh"/>
-                        <outlet property="graphView" destination="CUD-ve-9Kv" id="OpZ-5B-htm"/>
                         <outlet property="toolBar" destination="ubN-PA-Ssr" id="DNd-in-aEG"/>
                     </connections>
                 </viewController>

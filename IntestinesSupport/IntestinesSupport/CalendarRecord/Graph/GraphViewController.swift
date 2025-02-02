@@ -7,16 +7,17 @@
 
 import Foundation
 import UIKit
-import Charts
+import DGCharts
 import RealmSwift
 
 class GraphViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    @IBOutlet weak var graphView: LineChartView!
+//    @IBOutlet weak var graphView: LineChartView!
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var barItem: UIBarItem!
     
     var textField = UITextField()
+    var graphView = LineChartView()
     
     var recordList: [FecesDetailDataModel] = []
     
@@ -25,7 +26,8 @@ class GraphViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        graphView.frame = CGRect(x: 0, y: 155, width: 420, height: 680)
+            view.addSubview(graphView)
         navigationController?.navigationBar.isHidden = false
         
         barItem.isEnabled = false

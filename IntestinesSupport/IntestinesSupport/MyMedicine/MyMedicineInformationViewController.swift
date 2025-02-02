@@ -81,7 +81,7 @@ class MyMedicineInformation: UIViewController, UITextFieldDelegate, UITextViewDe
         memo.textContainer.lineBreakMode = .byWordWrapping
         memo.sizeToFit()
         
-        memo.layer.borderColor = UIColor(red: 0.2, green: 0.7, blue: 0.5, alpha: 1.0).cgColor
+        memo.layer.borderColor = UIColor.systemGray.withAlphaComponent(0.2).cgColor
         
         memo.layer.borderWidth = 1.0
         // textFieldに収まるようにする
