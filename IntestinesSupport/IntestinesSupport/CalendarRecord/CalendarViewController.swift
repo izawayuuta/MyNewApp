@@ -161,34 +161,6 @@ class CalendarViewController: UIViewController {
             calendar.reloadData()
         }
     }
-//    // 週が日曜始まり
-//    func weekSunStart() {
-//        calendar.firstWeekday = 1
-//    }
-//    // 週が月曜始まり
-//    func weekMonStart () {
-//        calendar.firstWeekday = 2
-//    }
-//    // 週が火曜始まり
-//    func weekTheStart () {
-//        calendar.firstWeekday = 3
-//    }
-//    // 週が水曜始まり
-//    func weekWedStart () {
-//        calendar.firstWeekday = 4
-//    }
-//    // 週が木曜始まり
-//    func weekThuStart () {
-//        calendar.firstWeekday = 5
-//    }
-//    // 週が金曜始まり
-//    func weekFriStart () {
-//        calendar.firstWeekday = 6
-//    }
-//    // 週が土曜始まり
-//    func weekSatStart () {
-//        calendar.firstWeekday = 7
-//    }
     
     private func saveCalendarScope(scope: FSCalendarScope) {
         let defaults = UserDefaults.standard
@@ -558,34 +530,6 @@ extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDel
                     break
                 }
     }
-    
-//    func didSelectDay(at index: Int) {
-//        switch index {
-//                case 0:
-//                    print("日曜日が選択されました")
-//                    // 日曜日に対する処理
-//                case 1:
-//                    print("月曜日が選択されました")
-//                    // 月曜日に対する処理
-//                case 2:
-//                    print("火曜日が選択されました")
-//                    // 火曜日に対する処理
-//                case 3:
-//                    print("水曜日が選択されました")
-//                    // 水曜日に対する処理
-//                case 4:
-//                    print("木曜日が選択されました")
-//                    // 木曜日に対する処理
-//                case 5:
-//                    print("金曜日が選択されました")
-//                    // 金曜日に対する処理
-//                case 6:
-//                    print("土曜日が選択されました")
-//                    // 土曜日に対する処理
-//                default:
-//                    break
-//                }
-//    }
     
     func didChangeData(for cell: MedicineRecordDetailCell, newTime: Date) {
         // tableViewからセルのindexPathを取得

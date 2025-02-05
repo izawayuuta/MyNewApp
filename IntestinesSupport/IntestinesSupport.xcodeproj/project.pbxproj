@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -105,6 +105,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A6C955F92D520A1D00056F0B /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		467596D2228F4201B438C9FA /* Pods-IntestinesSupport-IntestinesSupportUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntestinesSupport-IntestinesSupportUITests.release.xcconfig"; path = "Target Support Files/Pods-IntestinesSupport-IntestinesSupportUITests/Pods-IntestinesSupport-IntestinesSupportUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4F711FBC41263F27E07CA037 /* Pods-IntestinesSupport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntestinesSupport.release.xcconfig"; path = "Target Support Files/Pods-IntestinesSupport/Pods-IntestinesSupport.release.xcconfig"; sourceTree = "<group>"; };
@@ -192,10 +205,16 @@
 		A689A9F72CBFDBD800039F37 /* WeekStartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeekStartTableViewCell.xib; sourceTree = "<group>"; };
 		A689A9FA2CC0011700039F37 /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 		A6C955E12D4C98C000056F0B /* AllData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllData.swift; sourceTree = "<group>"; };
+		A6C955E82D520A1B00056F0B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		A6C955EA2D520A1B00056F0B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		B1FC26A613D5492A6A92A954 /* Pods-IntestinesSupportTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntestinesSupportTests.release.xcconfig"; path = "Target Support Files/Pods-IntestinesSupportTests/Pods-IntestinesSupportTests.release.xcconfig"; sourceTree = "<group>"; };
 		C6BAB30AA22CD6F747063D5A /* Pods_IntestinesSupport_IntestinesSupportUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupport_IntestinesSupportUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2E464BD7D4F2F142C45DAD /* Pods_IntestinesSupportTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupportTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A6C9561C2D522A9700056F0B /* MyWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MyWidget; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A62297D82C341E7F0099F425 /* Frameworks */ = {
@@ -244,6 +263,8 @@
 				821BD2A208DED6BC34BAAE2E /* Pods_IntestinesSupport.framework */,
 				C6BAB30AA22CD6F747063D5A /* Pods_IntestinesSupport_IntestinesSupportUITests.framework */,
 				CE2E464BD7D4F2F142C45DAD /* Pods_IntestinesSupportTests.framework */,
+				A6C955E82D520A1B00056F0B /* WidgetKit.framework */,
+				A6C955EA2D520A1B00056F0B /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -254,6 +275,7 @@
 				A62297DD2C341E7F0099F425 /* IntestinesSupport */,
 				A62297F42C341E810099F425 /* IntestinesSupportTests */,
 				A62297FE2C341E810099F425 /* IntestinesSupportUITests */,
+				A6C9561C2D522A9700056F0B /* MyWidget */,
 				A62297DC2C341E7F0099F425 /* Products */,
 				8DEC9D613D32BA8B6D719832 /* Pods */,
 				9F22DB1F9C67FA258BCBAE4C /* Frameworks */,
@@ -452,6 +474,7 @@
 				A62297D82C341E7F0099F425 /* Frameworks */,
 				A62297D92C341E7F0099F425 /* Resources */,
 				C84E71CC4433A5F4946827BF /* [CP] Embed Pods Frameworks */,
+				A6C955F92D520A1D00056F0B /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -508,7 +531,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1540;
+				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					A62297DA2C341E7F0099F425 = {
@@ -929,7 +952,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 92F675F3C58372ABE5B7CDBE /* Pods-IntestinesSupport.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)\n";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -972,7 +994,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4F711FBC41263F27E07CA037 /* Pods-IntestinesSupport.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)\n";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -1015,7 +1036,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7328FF37E08947606FE2D580 /* Pods-IntestinesSupportTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1035,7 +1055,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B1FC26A613D5492A6A92A954 /* Pods-IntestinesSupportTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1055,7 +1074,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9DBDAF44E1A8BF8DA17A6C4C /* Pods-IntestinesSupport-IntestinesSupportUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1073,7 +1091,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 467596D2228F4201B438C9FA /* Pods-IntestinesSupport-IntestinesSupportUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

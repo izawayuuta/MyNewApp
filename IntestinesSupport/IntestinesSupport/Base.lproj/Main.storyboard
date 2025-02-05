@@ -626,6 +626,7 @@
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お薬の名前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjl-fe-njk">
                                 <rect key="frame" x="32" y="43" width="82" height="21"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ShN-kC-c6P"/>
                                 </constraints>
@@ -716,7 +717,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mI1-dg-mMo" customClass="CustomTextField" customModule="IntestinesSupport" customModuleProvider="target">
-                                <rect key="frame" x="184" y="231.5" width="77" height="34"/>
+                                <rect key="frame" x="201" y="231.5" width="77" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="77" id="apr-He-Omf"/>
                                 </constraints>
@@ -756,7 +757,6 @@
                             <constraint firstItem="l41-S3-70F" firstAttribute="centerY" secondItem="xL5-TH-sjR" secondAttribute="centerY" id="54O-vi-zGC"/>
                             <constraint firstItem="C5Q-KM-KHu" firstAttribute="leading" secondItem="OV2-dd-Gmc" secondAttribute="trailing" constant="31" id="5oC-3R-tKf"/>
                             <constraint firstItem="wvj-qC-xqd" firstAttribute="leading" secondItem="DE9-lh-YTJ" secondAttribute="trailing" constant="31" id="6df-1p-aic"/>
-                            <constraint firstItem="mI1-dg-mMo" firstAttribute="leading" secondItem="buv-5D-gXj" secondAttribute="trailing" constant="120" id="8vI-7p-RQG"/>
                             <constraint firstItem="cYk-Oc-SuY" firstAttribute="centerY" secondItem="xL5-TH-sjR" secondAttribute="centerY" id="9BO-Jv-ZXL"/>
                             <constraint firstItem="zjl-fe-njk" firstAttribute="top" secondItem="MWi-Yt-WWC" secondAttribute="top" constant="43" id="AIL-aO-gyQ"/>
                             <constraint firstItem="DE9-lh-YTJ" firstAttribute="top" secondItem="X3n-Ym-AfJ" secondAttribute="bottom" constant="50" id="CJ1-HZ-QGm"/>
@@ -767,10 +767,10 @@
                             <constraint firstItem="MWi-Yt-WWC" firstAttribute="bottom" secondItem="C5Q-KM-KHu" secondAttribute="bottom" constant="110" id="GM4-SR-1el"/>
                             <constraint firstItem="l41-S3-70F" firstAttribute="leading" secondItem="cCA-uS-DdY" secondAttribute="trailing" constant="10" id="HtB-WP-KlV"/>
                             <constraint firstItem="DX3-3m-bQ9" firstAttribute="top" secondItem="QSY-Ts-Meh" secondAttribute="bottom" constant="15" id="IAL-Rl-pWT"/>
+                            <constraint firstItem="nL0-oA-OXa" firstAttribute="leading" secondItem="mI1-dg-mMo" secondAttribute="trailing" constant="15" id="J8i-fa-nkV"/>
                             <constraint firstItem="OV2-dd-Gmc" firstAttribute="top" secondItem="DE9-lh-YTJ" secondAttribute="bottom" constant="50" id="KoQ-1g-Zow"/>
                             <constraint firstItem="MWi-Yt-WWC" firstAttribute="trailing" secondItem="zjl-fe-njk" secondAttribute="trailing" constant="261" id="OGW-Vj-EiK"/>
                             <constraint firstItem="cCA-uS-DdY" firstAttribute="top" secondItem="ETL-sk-czs" secondAttribute="bottom" constant="56" id="OXU-cC-KiT"/>
-                            <constraint firstItem="nL0-oA-OXa" firstAttribute="leading" secondItem="mI1-dg-mMo" secondAttribute="trailing" constant="32" id="QHi-MZ-wGD"/>
                             <constraint firstItem="cCA-uS-DdY" firstAttribute="centerY" secondItem="xL5-TH-sjR" secondAttribute="centerY" id="QX6-ug-YVB"/>
                             <constraint firstItem="cCA-uS-DdY" firstAttribute="leading" secondItem="cYk-Oc-SuY" secondAttribute="trailing" constant="25" id="QmC-uz-zfw"/>
                             <constraint firstItem="MWi-Yt-WWC" firstAttribute="trailing" secondItem="QSY-Ts-Meh" secondAttribute="trailing" constant="114" id="Qpf-mm-8bL"/>
@@ -814,6 +814,7 @@
                         <outlet property="doseNumber" destination="l41-S3-70F" id="zic-Vz-GgV"/>
                         <outlet property="label" destination="EmV-hR-wuv" id="Ujz-rG-Ot4"/>
                         <outlet property="medicineName" destination="ETL-sk-czs" id="QBJ-dS-WsR"/>
+                        <outlet property="medicineNameLabel" destination="zjl-fe-njk" id="DGe-ZT-LJi"/>
                         <outlet property="memo" destination="C5Q-KM-KHu" id="hYM-IZ-FcH"/>
                         <outlet property="saveButton" destination="QSY-Ts-Meh" id="un6-YX-xOf"/>
                         <outlet property="stock" destination="LI8-oj-4mZ" id="pkV-VS-0Np"/>

@@ -12,7 +12,6 @@ import RealmSwift
 
 class GraphViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-//    @IBOutlet weak var graphView: LineChartView!
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var barItem: UIBarItem!
     
@@ -121,7 +120,7 @@ class GraphViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         chartDataSet.colors = [NSUIColor.red]
         chartDataSet.circleColors = [NSUIColor.red]
-//        chartDataSet.drawValuesEnabled = true //グラフ中の数字を表示
+        chartDataSet.drawValuesEnabled = false //グラフ中の数字を表示
 //        chartDataSet.valueFont = UIFont.systemFont(ofSize: 9) // 数値のフォントサイズ変更
         chartDataSet.circleRadius = 4.0
         chartDataSet.circleHoleColor = .red.withAlphaComponent(1.0)

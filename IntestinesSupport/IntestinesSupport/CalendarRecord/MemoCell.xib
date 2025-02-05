@@ -31,12 +31,22 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VqG-Rr-w1n">
+                        <rect key="frame" x="45" y="8" width="48" height="35"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="list.clipboard" catalog="system"/>
+                        <connections>
+                            <action selector="templateButtonTapped" destination="KGk-i7-Jjw" eventType="touchUpInside" id="nXh-kO-TbR"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="l6g-YR-Dpp" secondAttribute="trailing" constant="8" id="9ck-Fj-gwD"/>
                     <constraint firstItem="s8e-as-3RV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="FrM-24-pVV"/>
                     <constraint firstItem="l6g-YR-Dpp" firstAttribute="leading" secondItem="s8e-as-3RV" secondAttribute="trailing" constant="16" id="GNe-jK-Zuv"/>
                     <constraint firstAttribute="bottom" secondItem="l6g-YR-Dpp" secondAttribute="bottom" constant="8" id="Kg0-tn-Fdm"/>
+                    <constraint firstItem="VqG-Rr-w1n" firstAttribute="leading" secondItem="s8e-as-3RV" secondAttribute="trailing" constant="8" symbolic="YES" id="P4A-TF-Qsc"/>
+                    <constraint firstItem="VqG-Rr-w1n" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Qna-y2-Fcs"/>
                     <constraint firstItem="s8e-as-3RV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="k2j-qT-J2P"/>
                     <constraint firstItem="l6g-YR-Dpp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="u96-Qr-GII"/>
                 </constraints>
@@ -45,11 +55,13 @@
             <connections>
                 <outlet property="memo" destination="l6g-YR-Dpp" id="raK-0V-LKe"/>
                 <outlet property="memoLabel" destination="s8e-as-3RV" id="jDl-Qy-k2r"/>
+                <outlet property="templateButton" destination="VqG-Rr-w1n" id="Fv7-rH-bgL"/>
             </connections>
-            <point key="canvasLocation" x="129.7709923664122" y="-2.8169014084507045"/>
+            <point key="canvasLocation" x="283.96946564885496" y="21.83098591549296"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="list.clipboard" catalog="system" width="98" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
