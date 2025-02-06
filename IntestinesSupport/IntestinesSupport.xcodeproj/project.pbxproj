@@ -85,6 +85,7 @@
 		A689A9F92CBFDBD800039F37 /* WeekStartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A689A9F72CBFDBD800039F37 /* WeekStartTableViewCell.xib */; };
 		A689A9FB2CC0011700039F37 /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9FA2CC0011700039F37 /* ColorViewController.swift */; };
 		A6C955E22D4C98C300056F0B /* AllData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C955E12D4C98C000056F0B /* AllData.swift */; };
+		A6C956382D53932300056F0B /* AllDataCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C956372D53930600056F0B /* AllDataCalendar.swift */; };
 		ED0FE989D657E8FADDF3BE80 /* Pods_IntestinesSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 821BD2A208DED6BC34BAAE2E /* Pods_IntestinesSupport.framework */; };
 /* End PBXBuildFile section */
 
@@ -207,6 +208,7 @@
 		A6C955E12D4C98C000056F0B /* AllData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllData.swift; sourceTree = "<group>"; };
 		A6C955E82D520A1B00056F0B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		A6C955EA2D520A1B00056F0B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		A6C956372D53930600056F0B /* AllDataCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDataCalendar.swift; sourceTree = "<group>"; };
 		B1FC26A613D5492A6A92A954 /* Pods-IntestinesSupportTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntestinesSupportTests.release.xcconfig"; path = "Target Support Files/Pods-IntestinesSupportTests/Pods-IntestinesSupportTests.release.xcconfig"; sourceTree = "<group>"; };
 		C6BAB30AA22CD6F747063D5A /* Pods_IntestinesSupport_IntestinesSupportUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupport_IntestinesSupportUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2E464BD7D4F2F142C45DAD /* Pods_IntestinesSupportTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupportTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -300,6 +302,7 @@
 				A62298182C3825A50099F425 /* TabViewController.swift */,
 				A62297E42C341E7F0099F425 /* Main.storyboard */,
 				A64AAC242C4145A600AE04C1 /* CalendarRecord */,
+				A6C956372D53930600056F0B /* AllDataCalendar.swift */,
 				A64AAC312C44F58200AE04C1 /* MyMedicine */,
 				A64AAC452C4D230F00AE04C1 /* Certificate */,
 				A689A9CB2CBD26FD00039F37 /* Support */,
@@ -760,6 +763,7 @@
 				A64AAC712C695A3600AE04C1 /* Certificates.swift in Sources */,
 				A64AAC7B2C6E21E900AE04C1 /* Date+Extension.swift in Sources */,
 				A689A9DD2CBE873F00039F37 /* PrivacyPolicyTableViewCell.swift in Sources */,
+				A6C956382D53932300056F0B /* AllDataCalendar.swift in Sources */,
 				A64AAC6F2C68E7ED00AE04C1 /* CertificateDataModel.swift in Sources */,
 				A64AAC4D2C4E711800AE04C1 /* MoneyCell.swift in Sources */,
 				A689A9F02CBFBABC00039F37 /* SetupViewController.swift in Sources */,
@@ -956,7 +960,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = MWZL7CC4LD;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -998,7 +1002,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = MWZL7CC4LD;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
