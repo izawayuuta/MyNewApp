@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -214,10 +214,6 @@
 		CE2E464BD7D4F2F142C45DAD /* Pods_IntestinesSupportTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupportTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		A6C9561C2D522A9700056F0B /* MyWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MyWidget; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
 		A62297D82C341E7F0099F425 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -277,7 +273,6 @@
 				A62297DD2C341E7F0099F425 /* IntestinesSupport */,
 				A62297F42C341E810099F425 /* IntestinesSupportTests */,
 				A62297FE2C341E810099F425 /* IntestinesSupportUITests */,
-				A6C9561C2D522A9700056F0B /* MyWidget */,
 				A62297DC2C341E7F0099F425 /* Products */,
 				8DEC9D613D32BA8B6D719832 /* Pods */,
 				9F22DB1F9C67FA258BCBAE4C /* Frameworks */,

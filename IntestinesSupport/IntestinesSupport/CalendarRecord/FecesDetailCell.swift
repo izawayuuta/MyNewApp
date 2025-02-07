@@ -64,7 +64,6 @@ class FecesDetailCell: UITableViewCell {
     }
     
     @objc func buttonTapped(_ sender: UIButton) {
-        AudioServicesPlaySystemSound(1519) // バイブレーション
         let index = sender.tag
         
         if sender.layer.borderColor == UIColor(white: 0.9, alpha: 1.0).cgColor {

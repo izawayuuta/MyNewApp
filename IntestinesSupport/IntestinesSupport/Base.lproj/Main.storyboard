@@ -82,7 +82,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="graph"/>
                                 <connections>
-                                    <segue destination="jde-6h-WqF" kind="showDetail" id="MFM-1G-3yd"/>
+                                    <segue destination="B7W-jr-YSU" kind="show" id="U12-7l-dT1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -269,20 +269,20 @@
             <point key="canvasLocation" x="1028" y="-2474.2128935532237"/>
         </scene>
         <!--All Data Calendar View Controller-->
-        <scene sceneID="5Vq-kW-3tc">
+        <scene sceneID="CjI-4x-0r0">
             <objects>
-                <viewController id="jde-6h-WqF" customClass="AllDataCalendarViewController" customModule="IntestinesSupport" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="n1j-x1-lhF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                <viewController id="B7W-jr-YSU" customClass="AllDataCalendarViewController" customModule="IntestinesSupport" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="O7l-zO-KAG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="eXY-Ut-Y60"/>
+                        <viewLayoutGuide key="safeArea" id="gaF-Mh-ATD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ETK-nN-3Gm"/>
+                    <navigationItem key="navigationItem" id="4o5-Ey-u7h"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iSz-DX-xAt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l4s-4P-0E4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="108" y="-1787"/>
+            <point key="canvasLocation" x="66" y="-1807"/>
         </scene>
         <!--便の回数-->
         <scene sceneID="qJr-Lt-ymp">
