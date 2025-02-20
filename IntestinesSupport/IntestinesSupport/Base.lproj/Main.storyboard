@@ -73,24 +73,11 @@
                                     <segue destination="amZ-5P-aul" kind="show" id="YJw-7e-e52"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09j-dV-oYx">
-                                <rect key="frame" x="60" y="69" width="25" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="OQG-pT-7Dh"/>
-                                    <constraint firstAttribute="width" constant="25" id="RVX-o7-iJr"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="graph"/>
-                                <connections>
-                                    <segue destination="B7W-jr-YSU" kind="show" id="U12-7l-dT1"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="iGu-j5-plf" firstAttribute="top" secondItem="hGa-3x-oOB" secondAttribute="bottom" id="3Fq-jt-kEy"/>
-                            <constraint firstItem="09j-dV-oYx" firstAttribute="centerY" secondItem="hGa-3x-oOB" secondAttribute="centerY" id="CZV-Al-RE6"/>
                             <constraint firstItem="iGu-j5-plf" firstAttribute="top" secondItem="EdB-Oi-QBb" secondAttribute="bottom" constant="5" id="GTm-o2-dfn"/>
                             <constraint firstItem="HMS-Vr-Kn0" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="VZu-4A-AlW"/>
                             <constraint firstItem="iGu-j5-plf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="YNc-eg-sGu"/>
@@ -100,7 +87,6 @@
                             <constraint firstItem="EdB-Oi-QBb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="l61-FX-dQM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EdB-Oi-QBb" secondAttribute="trailing" constant="5" id="pgM-1P-zrP"/>
                             <constraint firstItem="HMS-Vr-Kn0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="q9N-tE-6f0"/>
-                            <constraint firstItem="09j-dV-oYx" firstAttribute="leading" secondItem="hGa-3x-oOB" secondAttribute="trailing" constant="10" id="w76-Bv-s9h"/>
                             <constraint firstItem="hGa-3x-oOB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="wD4-bI-AfJ"/>
                         </constraints>
                     </view>
