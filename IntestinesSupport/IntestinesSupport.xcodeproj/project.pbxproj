@@ -71,21 +71,22 @@
 		A689A9D22CBD28E800039F37 /* SupportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A689A9D12CBD28E800039F37 /* SupportTableViewCell.xib */; };
 		A689A9D32CBD28E800039F37 /* SupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9D02CBD28E800039F37 /* SupportTableViewCell.swift */; };
 		A689A9D52CBD294200039F37 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9D42CBD294200039F37 /* SupportViewController.swift */; };
-		A689A9D82CBD374700039F37 /* TentativeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A689A9D72CBD374700039F37 /* TentativeTableViewCell.xib */; };
-		A689A9D92CBD374700039F37 /* TentativeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9D62CBD374700039F37 /* TentativeTableViewCell.swift */; };
 		A689A9DC2CBE873F00039F37 /* PrivacyPolicyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A689A9DB2CBE873F00039F37 /* PrivacyPolicyTableViewCell.xib */; };
 		A689A9DD2CBE873F00039F37 /* PrivacyPolicyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9DA2CBE873F00039F37 /* PrivacyPolicyTableViewCell.swift */; };
 		A689A9E02CBF7C9000039F37 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9DF2CBF7C9000039F37 /* GraphViewController.swift */; };
-		A689A9ED2CBFB3B000039F37 /* SetupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A689A9EC2CBFB3B000039F37 /* SetupTableViewCell.xib */; };
-		A689A9EE2CBFB3B000039F37 /* SetupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9EB2CBFB3B000039F37 /* SetupTableViewCell.swift */; };
-		A689A9F02CBFBABC00039F37 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9EF2CBFBABC00039F37 /* SetupViewController.swift */; };
 		A689A9F42CBFD8F200039F37 /* ColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9F22CBFD8F200039F37 /* ColorTableViewCell.swift */; };
 		A689A9F52CBFD8F200039F37 /* ColorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A689A9F32CBFD8F200039F37 /* ColorTableViewCell.xib */; };
-		A689A9F82CBFDBD800039F37 /* WeekStartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9F62CBFDBD800039F37 /* WeekStartTableViewCell.swift */; };
-		A689A9F92CBFDBD800039F37 /* WeekStartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A689A9F72CBFDBD800039F37 /* WeekStartTableViewCell.xib */; };
-		A689A9FB2CC0011700039F37 /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689A9FA2CC0011700039F37 /* ColorViewController.swift */; };
 		A6C955E22D4C98C300056F0B /* AllData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C955E12D4C98C000056F0B /* AllData.swift */; };
 		A6C956382D53932300056F0B /* AllDataCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C956372D53930600056F0B /* AllDataCalendar.swift */; };
+		A6CE3AD52D68B5AB00E06D23 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6CE3AD42D68B5AB00E06D23 /* UserNotifications.framework */; };
+		A6CE3AD72D68B5B800E06D23 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6CE3AD62D68B5B800E06D23 /* UserNotificationsUI.framework */; };
+		A6CE3ADE2D69EDC600E06D23 /* NotificationSettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6CE3ADD2D69EDC600E06D23 /* NotificationSettingsTableViewCell.xib */; };
+		A6CE3ADF2D69EDC600E06D23 /* NotificationSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CE3ADC2D69EDC600E06D23 /* NotificationSettingsTableViewCell.swift */; };
+		A6CE3AE62D6A0B5200E06D23 /* Empty2TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6CE3AE52D6A0B5200E06D23 /* Empty2TableViewCell.xib */; };
+		A6CE3AE72D6A0B5200E06D23 /* Empty2TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CE3AE42D6A0B5200E06D23 /* Empty2TableViewCell.swift */; };
+		A6CE3AEA2D6A0CF700E06D23 /* Empty1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6CE3AE92D6A0CF700E06D23 /* Empty1TableViewCell.xib */; };
+		A6CE3AEB2D6A0CF700E06D23 /* Empty1TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CE3AE82D6A0CF700E06D23 /* Empty1TableViewCell.swift */; };
+		A6CE3AED2D6AB52B00E06D23 /* PracticePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CE3AEC2D6AB51000E06D23 /* PracticePage.swift */; };
 		ED0FE989D657E8FADDF3BE80 /* Pods_IntestinesSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 821BD2A208DED6BC34BAAE2E /* Pods_IntestinesSupport.framework */; };
 /* End PBXBuildFile section */
 
@@ -192,23 +193,24 @@
 		A689A9D02CBD28E800039F37 /* SupportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportTableViewCell.swift; sourceTree = "<group>"; };
 		A689A9D12CBD28E800039F37 /* SupportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SupportTableViewCell.xib; sourceTree = "<group>"; };
 		A689A9D42CBD294200039F37 /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
-		A689A9D62CBD374700039F37 /* TentativeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TentativeTableViewCell.swift; sourceTree = "<group>"; };
-		A689A9D72CBD374700039F37 /* TentativeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TentativeTableViewCell.xib; sourceTree = "<group>"; };
 		A689A9DA2CBE873F00039F37 /* PrivacyPolicyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyTableViewCell.swift; sourceTree = "<group>"; };
 		A689A9DB2CBE873F00039F37 /* PrivacyPolicyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrivacyPolicyTableViewCell.xib; sourceTree = "<group>"; };
 		A689A9DF2CBF7C9000039F37 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
-		A689A9EB2CBFB3B000039F37 /* SetupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupTableViewCell.swift; sourceTree = "<group>"; };
-		A689A9EC2CBFB3B000039F37 /* SetupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetupTableViewCell.xib; sourceTree = "<group>"; };
-		A689A9EF2CBFBABC00039F37 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		A689A9F22CBFD8F200039F37 /* ColorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTableViewCell.swift; sourceTree = "<group>"; };
 		A689A9F32CBFD8F200039F37 /* ColorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorTableViewCell.xib; sourceTree = "<group>"; };
-		A689A9F62CBFDBD800039F37 /* WeekStartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStartTableViewCell.swift; sourceTree = "<group>"; };
-		A689A9F72CBFDBD800039F37 /* WeekStartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeekStartTableViewCell.xib; sourceTree = "<group>"; };
-		A689A9FA2CC0011700039F37 /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 		A6C955E12D4C98C000056F0B /* AllData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllData.swift; sourceTree = "<group>"; };
 		A6C955E82D520A1B00056F0B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		A6C955EA2D520A1B00056F0B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		A6C956372D53930600056F0B /* AllDataCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDataCalendar.swift; sourceTree = "<group>"; };
+		A6CE3AD42D68B5AB00E06D23 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		A6CE3AD62D68B5B800E06D23 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		A6CE3ADC2D69EDC600E06D23 /* NotificationSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsTableViewCell.swift; sourceTree = "<group>"; };
+		A6CE3ADD2D69EDC600E06D23 /* NotificationSettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationSettingsTableViewCell.xib; sourceTree = "<group>"; };
+		A6CE3AE42D6A0B5200E06D23 /* Empty2TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty2TableViewCell.swift; sourceTree = "<group>"; };
+		A6CE3AE52D6A0B5200E06D23 /* Empty2TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Empty2TableViewCell.xib; sourceTree = "<group>"; };
+		A6CE3AE82D6A0CF700E06D23 /* Empty1TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty1TableViewCell.swift; sourceTree = "<group>"; };
+		A6CE3AE92D6A0CF700E06D23 /* Empty1TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Empty1TableViewCell.xib; sourceTree = "<group>"; };
+		A6CE3AEC2D6AB51000E06D23 /* PracticePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticePage.swift; sourceTree = "<group>"; };
 		B1FC26A613D5492A6A92A954 /* Pods-IntestinesSupportTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntestinesSupportTests.release.xcconfig"; path = "Target Support Files/Pods-IntestinesSupportTests/Pods-IntestinesSupportTests.release.xcconfig"; sourceTree = "<group>"; };
 		C6BAB30AA22CD6F747063D5A /* Pods_IntestinesSupport_IntestinesSupportUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupport_IntestinesSupportUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2E464BD7D4F2F142C45DAD /* Pods_IntestinesSupportTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntestinesSupportTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,6 +221,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6CE3AD72D68B5B800E06D23 /* UserNotificationsUI.framework in Frameworks */,
+				A6CE3AD52D68B5AB00E06D23 /* UserNotifications.framework in Frameworks */,
 				ED0FE989D657E8FADDF3BE80 /* Pods_IntestinesSupport.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +262,8 @@
 		9F22DB1F9C67FA258BCBAE4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A6CE3AD62D68B5B800E06D23 /* UserNotificationsUI.framework */,
+				A6CE3AD42D68B5AB00E06D23 /* UserNotifications.framework */,
 				821BD2A208DED6BC34BAAE2E /* Pods_IntestinesSupport.framework */,
 				C6BAB30AA22CD6F747063D5A /* Pods_IntestinesSupport_IntestinesSupportUITests.framework */,
 				CE2E464BD7D4F2F142C45DAD /* Pods_IntestinesSupportTests.framework */,
@@ -296,6 +302,7 @@
 				A62297E02C341E7F0099F425 /* SceneDelegate.swift */,
 				A62298182C3825A50099F425 /* TabViewController.swift */,
 				A62297E42C341E7F0099F425 /* Main.storyboard */,
+				A6CE3AEC2D6AB51000E06D23 /* PracticePage.swift */,
 				A64AAC242C4145A600AE04C1 /* CalendarRecord */,
 				A6C956372D53930600056F0B /* AllDataCalendar.swift */,
 				A64AAC312C44F58200AE04C1 /* MyMedicine */,
@@ -417,15 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				A689A9D42CBD294200039F37 /* SupportViewController.swift */,
-				A689A9F12CBFD8BC00039F37 /* SetupViewController */,
-				A689A9EB2CBFB3B000039F37 /* SetupTableViewCell.swift */,
-				A689A9EC2CBFB3B000039F37 /* SetupTableViewCell.xib */,
-				A689A9D02CBD28E800039F37 /* SupportTableViewCell.swift */,
-				A689A9D12CBD28E800039F37 /* SupportTableViewCell.xib */,
-				A689A9DA2CBE873F00039F37 /* PrivacyPolicyTableViewCell.swift */,
-				A689A9DB2CBE873F00039F37 /* PrivacyPolicyTableViewCell.xib */,
-				A689A9D62CBD374700039F37 /* TentativeTableViewCell.swift */,
-				A689A9D72CBD374700039F37 /* TentativeTableViewCell.xib */,
+				A6CE3AEE2D6C35FA00E06D23 /* TableViewCell */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -439,25 +438,23 @@
 			path = Graph;
 			sourceTree = "<group>";
 		};
-		A689A9F12CBFD8BC00039F37 /* SetupViewController */ = {
+		A6CE3AEE2D6C35FA00E06D23 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				A689A9EF2CBFBABC00039F37 /* SetupViewController.swift */,
-				A689A9FC2CC0016100039F37 /* Color */,
-				A689A9F62CBFDBD800039F37 /* WeekStartTableViewCell.swift */,
-				A689A9F72CBFDBD800039F37 /* WeekStartTableViewCell.xib */,
-			);
-			path = SetupViewController;
-			sourceTree = "<group>";
-		};
-		A689A9FC2CC0016100039F37 /* Color */ = {
-			isa = PBXGroup;
-			children = (
-				A689A9FA2CC0011700039F37 /* ColorViewController.swift */,
 				A689A9F22CBFD8F200039F37 /* ColorTableViewCell.swift */,
 				A689A9F32CBFD8F200039F37 /* ColorTableViewCell.xib */,
+				A6CE3AE82D6A0CF700E06D23 /* Empty1TableViewCell.swift */,
+				A6CE3AE92D6A0CF700E06D23 /* Empty1TableViewCell.xib */,
+				A6CE3ADC2D69EDC600E06D23 /* NotificationSettingsTableViewCell.swift */,
+				A6CE3ADD2D69EDC600E06D23 /* NotificationSettingsTableViewCell.xib */,
+				A6CE3AE42D6A0B5200E06D23 /* Empty2TableViewCell.swift */,
+				A6CE3AE52D6A0B5200E06D23 /* Empty2TableViewCell.xib */,
+				A689A9D02CBD28E800039F37 /* SupportTableViewCell.swift */,
+				A689A9D12CBD28E800039F37 /* SupportTableViewCell.xib */,
+				A689A9DA2CBE873F00039F37 /* PrivacyPolicyTableViewCell.swift */,
+				A689A9DB2CBE873F00039F37 /* PrivacyPolicyTableViewCell.xib */,
 			);
-			path = Color;
+			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -576,9 +573,10 @@
 				A62297E82C341E810099F425 /* Assets.xcassets in Resources */,
 				A64AAC4C2C4E711800AE04C1 /* MoneyCell.xib in Resources */,
 				A64AAC202C41455500AE04C1 /* AdditionButtonCell.xib in Resources */,
-				A689A9F92CBFDBD800039F37 /* WeekStartTableViewCell.xib in Resources */,
 				A64AAC502C4E713A00AE04C1 /* HierarchyClassificationCell.xib in Resources */,
+				A6CE3AE62D6A0B5200E06D23 /* Empty2TableViewCell.xib in Resources */,
 				A62297EB2C341E810099F425 /* Base in Resources */,
+				A6CE3ADE2D69EDC600E06D23 /* NotificationSettingsTableViewCell.xib in Resources */,
 				A64AAC3C2C4BCDBF00AE04C1 /* EmptyStateCell.xib in Resources */,
 				A64AAC782C6C249D00AE04C1 /* FecesRecordTableViewCell.xib in Resources */,
 				A64AAC542C4E714D00AE04C1 /* DeadlineCell.xib in Resources */,
@@ -586,15 +584,14 @@
 				A64AAC5C2C4E718200AE04C1 /* PlusButtonCell.xib in Resources */,
 				A64AAC482C4D232E00AE04C1 /* ApplicationClassificationCell.xib in Resources */,
 				A64AAC272C4146BF00AE04C1 /* MedicineRecordDetailCell.xib in Resources */,
+				A6CE3AEA2D6A0CF700E06D23 /* Empty1TableViewCell.xib in Resources */,
 				A689A9F52CBFD8F200039F37 /* ColorTableViewCell.xib in Resources */,
 				A64AAC822C7EB97700AE04C1 /* MedicineAdditionTableViewCell.xib in Resources */,
 				A689A9DC2CBE873F00039F37 /* PrivacyPolicyTableViewCell.xib in Resources */,
-				A689A9D82CBD374700039F37 /* TentativeTableViewCell.xib in Resources */,
 				A64AAC362C4683AB00AE04C1 /* PhysicalConditionCell.xib in Resources */,
 				A64AAC2B2C41556300AE04C1 /* MemoCell.xib in Resources */,
 				A64AAC402C4BD06200AE04C1 /* MedicineEmptyStateCell.xib in Resources */,
 				A64AAC1C2C4144F700AE04C1 /* FecesConditionCell.xib in Resources */,
-				A689A9ED2CBFB3B000039F37 /* SetupTableViewCell.xib in Resources */,
 				A62297E62C341E7F0099F425 /* Base in Resources */,
 				A689A9D22CBD28E800039F37 /* SupportTableViewCell.xib in Resources */,
 			);
@@ -736,10 +733,9 @@
 				A64AAC412C4BD06200AE04C1 /* MedicineEmptyStateCell.swift in Sources */,
 				A64AAC1D2C4144F700AE04C1 /* FecesConditionCell.swift in Sources */,
 				A64AAC632C6098DB00AE04C1 /* CustomTextField.swift in Sources */,
-				A689A9F82CBFDBD800039F37 /* WeekStartTableViewCell.swift in Sources */,
 				A64AAC752C6B797200AE04C1 /* Calendars.swift in Sources */,
 				A64AAC552C4E714D00AE04C1 /* DeadlineCell.swift in Sources */,
-				A689A9EE2CBFB3B000039F37 /* SetupTableViewCell.swift in Sources */,
+				A6CE3AED2D6AB52B00E06D23 /* PracticePage.swift in Sources */,
 				A64AAC7D2C7DFB0300AE04C1 /* MedicineAdditionViewController.swift in Sources */,
 				A64AAC812C7EB97700AE04C1 /* MedicineAdditionTableViewCell.swift in Sources */,
 				A64AAC732C6B76F900AE04C1 /* CalendarDataModel.swift in Sources */,
@@ -750,7 +746,6 @@
 				A689A9E02CBF7C9000039F37 /* GraphViewController.swift in Sources */,
 				A6C955E22D4C98C300056F0B /* AllData.swift in Sources */,
 				A62297DF2C341E7F0099F425 /* AppDelegate.swift in Sources */,
-				A689A9D92CBD374700039F37 /* TentativeTableViewCell.swift in Sources */,
 				A64AAC282C4146BF00AE04C1 /* MedicineRecordDetailCell.swift in Sources */,
 				A64AAC2C2C41556300AE04C1 /* MemoCell.swift in Sources */,
 				A62297E12C341E7F0099F425 /* SceneDelegate.swift in Sources */,
@@ -761,15 +756,16 @@
 				A6C956382D53932300056F0B /* AllDataCalendar.swift in Sources */,
 				A64AAC6F2C68E7ED00AE04C1 /* CertificateDataModel.swift in Sources */,
 				A64AAC4D2C4E711800AE04C1 /* MoneyCell.swift in Sources */,
-				A689A9F02CBFBABC00039F37 /* SetupViewController.swift in Sources */,
 				A64AAC332C44F5A500AE04C1 /* MyMedicineInformationViewController.swift in Sources */,
 				A62298112C358A3F0099F425 /* MyMedicineViewController.swift in Sources */,
 				A64AAC212C41455500AE04C1 /* AdditionButtonCell.swift in Sources */,
+				A6CE3AE72D6A0B5200E06D23 /* Empty2TableViewCell.swift in Sources */,
 				A64AAC512C4E713A00AE04C1 /* HierarchyClassificationCell.swift in Sources */,
+				A6CE3AEB2D6A0CF700E06D23 /* Empty1TableViewCell.swift in Sources */,
 				A64AAC302C42B87800AE04C1 /* FecesDetailCell.swift in Sources */,
 				A64AAC3D2C4BCDBF00AE04C1 /* EmptyStateCell.swift in Sources */,
 				A64AAC672C6239DF00AE04C1 /* MedicineTableViewCell.swift in Sources */,
-				A689A9FB2CC0011700039F37 /* ColorViewController.swift in Sources */,
+				A6CE3ADF2D69EDC600E06D23 /* NotificationSettingsTableViewCell.swift in Sources */,
 				A689A9F42CBFD8F200039F37 /* ColorTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

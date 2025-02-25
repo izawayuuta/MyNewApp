@@ -66,6 +66,35 @@ class CalendarViewController: UIViewController {
         setupCalendarScope()
         indexes.removeAll()
         tableView.reloadData()
+        
+        // TODO: 色の読み込み・再描画
+        // 保存された色を読み込む
+            if let savedColor = loadColorFromUserDefaults() {
+                let calendarDataCell = CalendarDateCell()
+                calendarDataCell.calendarDate.backgroundColor = savedColor
+                
+                var red: CGFloat = 0
+                var green: CGFloat = 0
+                var blue: CGFloat = 0
+                var alpha: CGFloat = 0
+                
+                if savedColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
+                    let calendarDataCell = CalendarDateCell()
+                    if red == 0 && green == 0 && blue == 0 && alpha == 1 {
+                        calendarDataCell.calendarDate.textColor = .white
+                    } else {
+                        calendarDataCell.calendarDate.textColor = .black
+                    }
+                }
+            }
+        }
+        // UserDefaults から色を読み込む
+        private func loadColorFromUserDefaults() -> UIColor? {
+            if let colorData = UserDefaults.standard.data(forKey: "savedColor"),
+               let color = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(colorData) as? UIColor {
+                return color
+            }
+            return nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -502,34 +531,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource  {
     }
 }
 
-extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDelegate, MedicineAdditionViewControllerDelegate, MedicineRecordDetailCellDelegate, WeekStartTableViewCellDelegate {
-    func didSelectDay(at index: Int, day: String) {
-        switch index {
-                case 0:
-                    print("日曜日が選択されました")
-                    // 日曜日に対する処理
-                case 1:
-                    print("月曜日が選択されました")
-                    // 月曜日に対する処理
-                case 2:
-                    print("火曜日が選択されました")
-                    // 火曜日に対する処理
-                case 3:
-                    print("水曜日が選択されました")
-                    // 水曜日に対する処理
-                case 4:
-                    print("木曜日が選択されました")
-                    // 木曜日に対する処理
-                case 5:
-                    print("金曜日が選択されました")
-                    // 金曜日に対する処理
-                case 6:
-                    print("土曜日が選択されました")
-                    // 土曜日に対する処理
-                default:
-                    break
-                }
-    }
+extension CalendarViewController: FecesDetailCellDelegate, AdditionButtonCellDelegate, MedicineAdditionViewControllerDelegate, MedicineRecordDetailCellDelegate {
     
     func didChangeData(for cell: MedicineRecordDetailCell, newTime: Date) {
         // tableViewからセルのindexPathを取得

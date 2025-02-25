@@ -26,7 +26,7 @@ class GraphViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         graphView.frame = CGRect(x: 0, y: 155, width: 420, height: 680)
-            view.addSubview(graphView)
+        view.addSubview(graphView)
         navigationController?.navigationBar.isHidden = false
         
         barItem.isEnabled = false
@@ -121,7 +121,7 @@ class GraphViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         chartDataSet.colors = [NSUIColor.red]
         chartDataSet.circleColors = [NSUIColor.red]
         chartDataSet.drawValuesEnabled = false //グラフ中の数字を表示
-//        chartDataSet.valueFont = UIFont.systemFont(ofSize: 9) // 数値のフォントサイズ変更
+        //        chartDataSet.valueFont = UIFont.systemFont(ofSize: 9) // 数値のフォントサイズ変更
         chartDataSet.circleRadius = 4.0
         chartDataSet.circleHoleColor = .red.withAlphaComponent(1.0)
         

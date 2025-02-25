@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,34 +18,35 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jt5-ai-WtT">
-                        <rect key="frame" x="40" y="12" width="20" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="6aC-aB-FaD"/>
-                            <constraint firstAttribute="width" constant="20" id="WOJ-fW-JLk"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お問い合わせ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3l-Nx-lZQ">
-                        <rect key="frame" x="70" y="13" width="85" height="18"/>
+                        <rect key="frame" x="45" y="13" width="85" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Of-fT-6LT">
+                        <rect key="frame" x="255" y="14.333333333333329" width="20" height="15.666666666666679"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="ew8-fS-Qg4"/>
+                            <constraint firstAttribute="height" constant="20" id="ntc-B3-t6a"/>
+                        </constraints>
+                        <imageReference key="image" image="rectangle.portrait.and.arrow.right" catalog="system" symbolScale="small"/>
+                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="jt5-ai-WtT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1fO-A3-ze9"/>
-                    <constraint firstItem="s3l-Nx-lZQ" firstAttribute="leading" secondItem="jt5-ai-WtT" secondAttribute="trailing" constant="10" id="6kP-Ci-rvZ"/>
-                    <constraint firstItem="jt5-ai-WtT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="QlL-Jz-1Zx"/>
-                    <constraint firstAttribute="bottom" secondItem="jt5-ai-WtT" secondAttribute="bottom" constant="12" id="Qlh-CI-0e8"/>
-                    <constraint firstItem="jt5-ai-WtT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="S6q-In-Iab"/>
                     <constraint firstItem="s3l-Nx-lZQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="S7m-24-rpt"/>
+                    <constraint firstItem="s3l-Nx-lZQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="45" id="XI0-kv-g72"/>
+                    <constraint firstItem="0Of-fT-6LT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gy7-kS-U0n"/>
+                    <constraint firstAttribute="trailing" secondItem="0Of-fT-6LT" secondAttribute="trailing" constant="45" id="xA5-DH-2ZG"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <connections>
-                <outlet property="supportImageView" destination="jt5-ai-WtT" id="A7R-Qa-tjf"/>
-            </connections>
             <point key="canvasLocation" x="129.7709923664122" y="-33.098591549295776"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="109"/>
+    </resources>
 </document>

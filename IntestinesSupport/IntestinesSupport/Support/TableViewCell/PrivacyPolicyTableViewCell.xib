@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,34 +19,34 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="プライバシーポリシー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jx2-Gm-g9P">
-                        <rect key="frame" x="70.000000000000014" y="13" width="140.33333333333337" height="18"/>
+                        <rect key="frame" x="45" y="13" width="140.33333333333334" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FbW-MA-HVv">
-                        <rect key="frame" x="40" y="12" width="20" height="20"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zOO-c9-yPC">
+                        <rect key="frame" x="255" y="14.333333333333329" width="20" height="15.666666666666679"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="1eW-xu-US2"/>
-                            <constraint firstAttribute="width" constant="20" id="hrd-6t-UIU"/>
+                            <constraint firstAttribute="width" constant="20" id="dSe-l1-kzx"/>
+                            <constraint firstAttribute="height" constant="20" id="yug-k2-4gg"/>
                         </constraints>
+                        <imageReference key="image" image="rectangle.portrait.and.arrow.right" catalog="system" symbolScale="small"/>
+                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                     </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="zOO-c9-yPC" secondAttribute="trailing" constant="45" id="0hH-P3-mVo"/>
+                    <constraint firstItem="zOO-c9-yPC" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3s0-NG-TuN"/>
                     <constraint firstItem="Jx2-Gm-g9P" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7TV-nd-yRg"/>
-                    <constraint firstAttribute="trailing" secondItem="Jx2-Gm-g9P" secondAttribute="trailing" constant="109.67" id="Azn-h7-EC7"/>
-                    <constraint firstItem="FbW-MA-HVv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="Jgk-qy-KNC"/>
-                    <constraint firstAttribute="bottom" secondItem="FbW-MA-HVv" secondAttribute="bottom" constant="12" id="N8h-6B-MjB"/>
-                    <constraint firstItem="Jx2-Gm-g9P" firstAttribute="leading" secondItem="FbW-MA-HVv" secondAttribute="trailing" constant="10" id="YNB-yJ-qM9"/>
-                    <constraint firstItem="FbW-MA-HVv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="YZt-jV-OXz"/>
-                    <constraint firstItem="FbW-MA-HVv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dVC-2V-vZA"/>
+                    <constraint firstItem="Jx2-Gm-g9P" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="45" id="UUi-TN-hbz"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <connections>
-                <outlet property="supportImageView" destination="FbW-MA-HVv" id="qjV-tE-3MU"/>
-            </connections>
             <point key="canvasLocation" x="131" y="-33"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="109"/>
+    </resources>
 </document>

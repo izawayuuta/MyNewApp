@@ -18,27 +18,35 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="テーマカラー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGg-pU-4BN">
-                        <rect key="frame" x="40" y="13" width="85" height="18"/>
+                        <rect key="frame" x="45" y="13" width="85" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2ir-Ko-vmt">
-                        <rect key="frame" x="250" y="7" width="30" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="793-F4-Ydx">
+                        <rect key="frame" x="253" y="12" width="20" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="R7R-q1-57g"/>
-                            <constraint firstAttribute="height" constant="30" id="a4U-yH-EHR"/>
+                            <constraint firstAttribute="width" constant="20" id="KGd-3k-vae"/>
+                            <constraint firstAttribute="height" constant="20" id="afc-Fn-1tH"/>
                         </constraints>
-                    </imageView>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain"/>
+                        <connections>
+                            <action selector="colorButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bJB-ib-ziO"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="2ir-Ko-vmt" secondAttribute="trailing" constant="40" id="3lc-YT-GXY"/>
+                    <constraint firstAttribute="trailing" secondItem="793-F4-Ydx" secondAttribute="trailing" constant="47" id="1kE-nA-z4v"/>
                     <constraint firstItem="AGg-pU-4BN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="agf-WG-hnP"/>
-                    <constraint firstItem="AGg-pU-4BN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="oTF-1a-YVE"/>
-                    <constraint firstItem="2ir-Ko-vmt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vee-ZV-cOO"/>
+                    <constraint firstItem="793-F4-Ydx" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bji-AX-6Ui"/>
+                    <constraint firstItem="AGg-pU-4BN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="45" id="oTF-1a-YVE"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="colorButton" destination="793-F4-Ydx" id="wfQ-su-NYN"/>
+            </connections>
             <point key="canvasLocation" x="131" y="-33"/>
         </tableViewCell>
     </objects>
