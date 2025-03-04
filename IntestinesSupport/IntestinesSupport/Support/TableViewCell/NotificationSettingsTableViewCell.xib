@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -34,29 +33,12 @@
                         <imageReference key="image" image="rectangle.portrait.and.arrow.right" catalog="system" symbolScale="small"/>
                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="86M-tq-ZTK">
-                        <rect key="frame" x="111" y="12" width="20" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="20" id="Pf6-5A-bwq"/>
-                            <constraint firstAttribute="height" constant="20" id="d6C-r6-QeO"/>
-                        </constraints>
-                        <color key="tintColor" systemColor="systemBlueColor"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system">
-                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="small"/>
-                        </buttonConfiguration>
-                        <connections>
-                            <action selector="buttonTaped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="laQ-A0-cCe"/>
-                        </connections>
-                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="fph-bL-rGK" secondAttribute="trailing" constant="45" id="3Se-b3-qbK"/>
                     <constraint firstItem="hGU-6M-ejv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7Uz-P6-11h"/>
                     <constraint firstItem="fph-bL-rGK" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="AaK-oC-OeI"/>
                     <constraint firstItem="hGU-6M-ejv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="45" id="DQO-Md-CvL"/>
-                    <constraint firstItem="86M-tq-ZTK" firstAttribute="leading" secondItem="hGU-6M-ejv" secondAttribute="trailing" constant="9.6699999999999999" id="cw1-M9-fxm"/>
-                    <constraint firstItem="86M-tq-ZTK" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="yE2-ZH-rsm"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -65,10 +47,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="109"/>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

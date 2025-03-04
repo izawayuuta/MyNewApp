@@ -13,7 +13,7 @@ class SupportViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     
-    private let tableViewCell = ["Empty1TableViewCell", "ColorTableViewCell", "NotificationSettingsTableViewCell", "Empty2TableViewCell", "SupportTableViewCell", "PrivacyPolicyTableViewCell"]
+    private let tableViewCell = ["Empty1TableViewCell", "ColorTableViewCell","Empty2TableViewCell",  "NotificationSettingsTableViewCell", "Empty3TableViewCell", "SupportTableViewCell", "PrivacyPolicyTableViewCell"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +23,11 @@ class SupportViewController: UIViewController, UITableViewDelegate, UITableViewD
         // スクロールを無効化
         tableView.isScrollEnabled = false
         
-        tableView.register(UINib(nibName: "ColorTableViewCell", bundle: nil), forCellReuseIdentifier: "ColorTableViewCell")
         tableView.register(UINib(nibName: "Empty1TableViewCell", bundle: nil), forCellReuseIdentifier: "Empty1TableViewCell")
-        tableView.register(UINib(nibName: "NotificationSettingsTableViewCell", bundle: nil), forCellReuseIdentifier: "NotificationSettingsTableViewCell")
+        tableView.register(UINib(nibName: "ColorTableViewCell", bundle: nil), forCellReuseIdentifier: "ColorTableViewCell")
         tableView.register(UINib(nibName: "Empty2TableViewCell", bundle: nil), forCellReuseIdentifier: "Empty2TableViewCell")
+        tableView.register(UINib(nibName: "NotificationSettingsTableViewCell", bundle: nil), forCellReuseIdentifier: "NotificationSettingsTableViewCell")
+        tableView.register(UINib(nibName: "Empty3TableViewCell", bundle: nil), forCellReuseIdentifier: "Empty3TableViewCell")
         tableView.register(UINib(nibName: "SupportTableViewCell", bundle: nil), forCellReuseIdentifier: "SupportTableViewCell")
         tableView.register(UINib(nibName: "PrivacyPolicyTableViewCell", bundle: nil), forCellReuseIdentifier: "PrivacyPolicyTableViewCell")
         
@@ -45,19 +46,28 @@ class SupportViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = tableViewCell[indexPath.row]
         
+        if identifier == "Empty1TableViewCell" {
+            let empty1TableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! Empty1TableViewCell
+            empty1TableViewCell.selectionStyle = .none // 選択スタイルを無効にする
+            return empty1TableViewCell
+        }
         if identifier == "ColorTableViewCell" {
             let colorTableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! ColorTableViewCell
             colorTableViewCell.selectionStyle = .none // 選択スタイルを無効にする
             return colorTableViewCell
-        } else if identifier == "Empty1TableViewCell" {
-            let empty1TableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! Empty1TableViewCell
-            empty1TableViewCell.selectionStyle = .none // 選択スタイルを無効にする
-            return empty1TableViewCell
+        } else if identifier == "Empty2TableViewCell" {
+            let empty2TableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! Empty2TableViewCell
+            empty2TableViewCell.selectionStyle = .none // 選択スタイルを無効にする
+            return empty2TableViewCell
         } else if identifier == "NotificationSettingsTableViewCell" {
             let notificationSettingsTableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! NotificationSettingsTableViewCell
             notificationSettingsTableViewCell.selectionStyle = .none // 選択スタイルを無効にする
             notificationSettingsTableViewCell.delegate = self
             return notificationSettingsTableViewCell
+        } else if identifier == "Empty3TableViewCell" {
+                let empty3TableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! Empty3TableViewCell
+                empty3TableViewCell.selectionStyle = .none // 選択スタイルを無効にする
+                return empty3TableViewCell
         } else if identifier == "SupportTableViewCell" {
             let supportTableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! SupportTableViewCell
             supportTableViewCell.selectionStyle = .none // 選択スタイルを無効にする
@@ -66,12 +76,6 @@ class SupportViewController: UIViewController, UITableViewDelegate, UITableViewD
             let privacyPolicyTableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PrivacyPolicyTableViewCell
             privacyPolicyTableViewCell.selectionStyle = .none // 選択スタイルを無効にする
             return privacyPolicyTableViewCell
-            
-            
-        } else if identifier == "Empty2TableViewCell" {
-            let empty2TableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! Empty2TableViewCell
-            empty2TableViewCell.selectionStyle = .none // 選択スタイルを無効にする
-            return empty2TableViewCell
         }
         return UITableViewCell()
         
@@ -87,6 +91,8 @@ extension SupportViewController: NotificationSettingsTableViewCellDelegate {
         if identifier == "Empty1TableViewCell" {
             return 25
         } else if identifier == "Empty2TableViewCell" {
+            return 60
+        } else if identifier == "Empty3TableViewCell" {
             return 60
             
         }

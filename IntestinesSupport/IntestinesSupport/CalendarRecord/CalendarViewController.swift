@@ -66,27 +66,6 @@ class CalendarViewController: UIViewController {
         setupCalendarScope()
         indexes.removeAll()
         tableView.reloadData()
-        
-        // TODO: 色の読み込み・再描画
-        // 保存された色を読み込む
-            if let savedColor = loadColorFromUserDefaults() {
-                let calendarDataCell = CalendarDateCell()
-                calendarDataCell.calendarDate.backgroundColor = savedColor
-                
-                var red: CGFloat = 0
-                var green: CGFloat = 0
-                var blue: CGFloat = 0
-                var alpha: CGFloat = 0
-                
-                if savedColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
-                    let calendarDataCell = CalendarDateCell()
-                    if red == 0 && green == 0 && blue == 0 && alpha == 1 {
-                        calendarDataCell.calendarDate.textColor = .white
-                    } else {
-                        calendarDataCell.calendarDate.textColor = .black
-                    }
-                }
-            }
         }
         // UserDefaults から色を読み込む
         private func loadColorFromUserDefaults() -> UIColor? {

@@ -70,7 +70,6 @@ class ColorTableViewCell: UITableViewCell {
                     self.saveTabBarColor(backColor: red)
                     self.saveTabDefaultTintColor(DefaultTintColor: customColor)
                     self.saveTabTintColor(tintColor: black)
-                    self.changeColor(to: red)
                 }),
                 UIAction(title: "青", image: blueImage, handler: { _ in
                     let blue = UIColor(red: 0.5, green: 0.5, blue: 1.0, alpha: 1.0)
@@ -83,7 +82,6 @@ class ColorTableViewCell: UITableViewCell {
                     self.saveTabBarColor(backColor: blue)
                     self.saveTabDefaultTintColor(DefaultTintColor: customColor)
                     self.saveTabTintColor(tintColor: black)
-                    self.changeColor(to: blue)
                 }),
                 UIAction(title: "緑", image: greenImage, handler: { _ in
                     let green = UIColor(red: 0.4, green: 0.7, blue: 0.4, alpha: 0.2)
@@ -96,7 +94,6 @@ class ColorTableViewCell: UITableViewCell {
                     self.saveTabBarColor(backColor: green)
                     self.saveTabDefaultTintColor(DefaultTintColor: customColor)
                     self.saveTabTintColor(tintColor: black)
-                    self.changeColor(to: green)
                 }),
                 UIAction(title: "黄", image: yellowImage, handler: { _ in
                     let yellow = UIColor(red: 1.0, green: 1.0, blue: 0.5, alpha: 1.0)
@@ -109,7 +106,6 @@ class ColorTableViewCell: UITableViewCell {
                     self.saveTabBarColor(backColor: yellow)
                     self.saveTabDefaultTintColor(DefaultTintColor: customColor)
                     self.saveTabTintColor(tintColor: black)
-                    self.changeColor(to: yellow)
                 }),
                 UIAction(title: "白", image: whiteImage, handler: { _ in
                     let white = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
@@ -122,7 +118,6 @@ class ColorTableViewCell: UITableViewCell {
                     self.saveTabBarColor(backColor: white)
                     self.saveTabDefaultTintColor(DefaultTintColor: customColor)
                     self.saveTabTintColor(tintColor: black)
-                    self.changeColor(to: white)
                 }),
                 UIAction(title: "黒", image: blackImage, handler: { _ in
                     let black = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
@@ -135,7 +130,6 @@ class ColorTableViewCell: UITableViewCell {
                     self.saveTabBarColor(backColor: black)
                     self.saveTabDefaultTintColor(DefaultTintColor: customColor)
                     self.saveTabTintColor(tintColor: white)
-                    self.changeColor(to: black)
                 })
             ])
             
@@ -175,8 +169,8 @@ class ColorTableViewCell: UITableViewCell {
         }
     }
     
-    func changeColor(to color: UIColor) {
-        // NotificationCenterで色を通知
-        NotificationCenter.default.post(name: .didChangeColor, object: nil, userInfo: ["color": color])
-    }
+//    func changeColor(to color: UIColor) {
+//        // NotificationCenterで色を通知
+//        NotificationCenter.default.post(name: .didChangeColor, object: nil, userInfo: ["color": color])
+//    }
 }

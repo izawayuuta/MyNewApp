@@ -1,5 +1,5 @@
 //
-//  Empty2TableViewCell.swift
+//  Empty3TableViewCell.swift
 //  IntestinesSupport
 //
 //  Created by 俺の MacBook Air on 2025/03/04.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Empty2TableViewCell: UITableViewCell {
+class Empty3TableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

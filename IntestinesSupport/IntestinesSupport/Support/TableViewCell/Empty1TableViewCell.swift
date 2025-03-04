@@ -2,7 +2,7 @@
 //  Empty1TableViewCell.swift
 //  IntestinesSupport
 //
-//  Created by 俺の MacBook Air on 2025/02/22.
+//  Created by 俺の MacBook Air on 2025/03/04.
 //
 
 import UIKit
