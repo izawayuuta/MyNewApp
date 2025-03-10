@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="PhysicalConditionCell" customModule="IntestinesSupport" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="402" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="402" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体調" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3p-dK-CAa">
+                        <rect key="frame" x="30" y="11.666666666666664" width="32" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MbR-YB-Uat">
+                        <rect key="frame" x="125.33333333333333" y="5" width="31.666666666666671" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="Z52-4g-eSu"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="1"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBu-sw-JcJ">
+                        <rect key="frame" x="179" y="5" width="34" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="lVg-6H-8Zr"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="2"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZEY-mU-l5n">
+                        <rect key="frame" x="235" y="5" width="35" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="qlO-VJ-a2l"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="3"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVN-4U-QZ3">
+                        <rect key="frame" x="292" y="5" width="35" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="jn2-MM-Re5"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="4"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glW-Kg-8Nq">
+                        <rect key="frame" x="349" y="5" width="35" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="FkK-40-FSh"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="5"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ZVN-4U-QZ3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="C9P-70-cOm"/>
+                    <constraint firstItem="ZEY-mU-l5n" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Kif-AZ-9M3"/>
+                    <constraint firstItem="ZEY-mU-l5n" firstAttribute="leading" secondItem="RBu-sw-JcJ" secondAttribute="trailing" constant="22" id="Knt-ci-M7e"/>
+                    <constraint firstItem="glW-Kg-8Nq" firstAttribute="leading" secondItem="ZVN-4U-QZ3" secondAttribute="trailing" constant="22" id="LFE-zB-LSa"/>
+                    <constraint firstItem="x3p-dK-CAa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="OY0-FK-TJv"/>
+                    <constraint firstItem="MbR-YB-Uat" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Pl2-J9-Lfr"/>
+                    <constraint firstItem="glW-Kg-8Nq" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VGm-Lm-Hh3"/>
+                    <constraint firstAttribute="trailing" secondItem="glW-Kg-8Nq" secondAttribute="trailing" constant="18" id="hje-WL-wNE"/>
+                    <constraint firstItem="ZVN-4U-QZ3" firstAttribute="leading" secondItem="ZEY-mU-l5n" secondAttribute="trailing" constant="22" id="ken-yh-UiS"/>
+                    <constraint firstItem="RBu-sw-JcJ" firstAttribute="leading" secondItem="MbR-YB-Uat" secondAttribute="trailing" constant="22" id="ug6-y2-pev"/>
+                    <constraint firstItem="RBu-sw-JcJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vcc-TU-xJB"/>
+                    <constraint firstItem="x3p-dK-CAa" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vfR-Cz-hIl"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="number01Button" destination="MbR-YB-Uat" id="fna-th-gUL"/>
+                <outlet property="number02Button" destination="RBu-sw-JcJ" id="dVY-eg-SJi"/>
+                <outlet property="number03Button" destination="ZEY-mU-l5n" id="1Gf-Qq-f0r"/>
+                <outlet property="number04Button" destination="ZVN-4U-QZ3" id="2fI-vT-Sbg"/>
+                <outlet property="number05Button" destination="glW-Kg-8Nq" id="Oph-iF-2jX"/>
+            </connections>
+            <point key="canvasLocation" x="-56.488549618320612" y="74.647887323943664"/>
+        </tableViewCell>
+    </objects>
+</document>
